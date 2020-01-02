@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
     constructor( private renderer : Renderer, private router: Router, private element : ElementRef, public location: Location) {}
 
-    @HostListener('window:scroll', ['$event'])
+    @HostListener('window:scroll')
     hasScrolled() {
 
         var st = window.pageYOffset;
@@ -87,11 +87,14 @@ export class AppComponent implements OnInit {
                 _locationSections = _locationSections.split('#')[0];
                 if (_locationSections !== '/sections') {
                   var _locationExamples = this.location.path();
+                  const isLocationOfBooking = ( _locationExamples.split('/')[3] === 'booking' );
                     _locationExamples = _locationExamples.split('/')[2];
+
+                    
                     if (number > 150 || window.pageYOffset > 150) {
                         // add logic
                         navbar.classList.remove('navbar-transparent');
-                    } else if (_locationExamples !== 'addproduct' && _locationExamples !== 'blogposts' && _locationExamples !== 'discover' && _locationExamples !== 'contactus' && _locationExamples !== 'login' && _locationExamples !== 'register' && _locationExamples !== 'search' && this.location.path() !== '/nucleoicons') {
+                    } else if (_locationExamples !== 'addproduct' && _locationExamples !== 'blogposts' && !isLocationOfBooking) {
                         // remove logic
                         navbar.classList.add('navbar-transparent');
                     }
@@ -116,7 +119,7 @@ export class AppComponent implements OnInit {
     removeFooter() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice( 1 );
-        if(titlee === 'signup' || titlee === 'nucleoicons'){
+        if(titlee === 'register' || titlee === 'contactus'){
             return false;
         }
         else {

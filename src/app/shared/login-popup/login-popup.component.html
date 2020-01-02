@@ -1,0 +1,68 @@
+<button 
+    *ngIf="title === 'ログイン'"
+    type="button" 
+    class="btn btn-primary btn-round" 
+    (click)="open(Login)">
+    <i class="nc-icon nc-lock-circle-open"></i> ログイン
+</button>
+<button 
+    *ngIf="title === 'ログインして予約'"
+    type="button" 
+    class="btn btn-primary" 
+    (click)="open(Login)">
+    <i class="nc-icon nc-lock-circle-open"></i> ログインして予約
+</button>
+<ng-template #Login let-c="close" let-d="dismiss">
+    <div class="modal-header modal-register no-border-header text-center">
+        <button type="button" class="close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h6 class="text-muted">Welcome</h6>
+        <h3 class="modal-title text-center">ログインする</h3>
+        <p>SNSでログイン</p>
+    </div>
+    <div class="modal-body">
+        <div class="social">
+            <button (click)="signInWithFB()" class="btn btn-just-icon btn-facebook mr-1"><i class="fa fa-facebook"></i></button>
+            <!-- <button href="javascript:void(0)" class="btn btn-just-icon btn-google mr-1"><i class="fa fa-google"></i></button> -->
+            <!-- <button href="javascript:void(0)" class="btn btn-just-icon btn-twitter mr-1"><i class="fa fa-twitter"></i></button> -->
+        </div>
+
+        <div class="division">
+            <div class="line l"></div>
+            <span>or</span>
+            <div class="line r"></div>
+        </div>
+
+        <div *ngIf="errors.length > 0" class="alert alert-danger">
+            <p *ngFor="let error of errors">{{error.detail}}</p>
+        </div>
+
+        <form class="register-form" [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+            <label>Email</label>
+            <input 
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="Email" 
+                />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input 
+                type="password" 
+                id="password"
+                formControlName="password"
+                placeholder="Password" 
+                class="form-control" 
+                />
+            </div>
+            <button [disabled]="!loginForm.valid" type="submit" class="btn btn-block btn-round btn-primary">ログイン</button>
+        </form>
+    </div>
+    <div class="modal-register modal-footer no-border-footer">
+        <a routerLink="/register" class="btn btn-link btn-primary">パスワードをお忘れですか？</a>
+    </div>
+</ng-template>

@@ -1,0 +1,86 @@
+<section id="userBookings">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/ana-bernardo.jpg');">
+    <div class="filter"></div>
+    <div class="container">
+      <div class="space-50"></div>
+      <div class="motto text-center">
+        <h1>My Bookings</h1>
+        <h3>You can check your bookings here.</h3>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="section text-center">
+      <div class="container">
+        <ngb-tabset [justify]="'center'" type="pills" class="nav-pills-danger">
+          <ngb-tab title="開始前">
+            <ng-template ngbTabContent>
+              <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+                  <h2 class="title">Upcoming bookings</h2>
+                  <h5 class="description">日時が確定した予約リストです！先生との連絡はLINEで行えます.</h5>
+                  <div class="space-top"></div>
+                </div>
+              </div>
+
+              <ng-container *ngIf="bookings && bookings.length > 0">
+                <app-user-mybookings-list [bookings]="bookings"></app-user-mybookings-list>
+              </ng-container>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div *ngIf="bookings.length==0" class="card card-pricing">
+                    <a routerLink="/rentals">
+                      <div class="card-body">
+                        <!-- <h3 class="card-category">No bookings found!</h3> -->
+                        <h3 class="card-title">No bookings found !</h3>
+                        <p class="card-description"></p>
+                        <div class="card-footer">
+                          <p class="btn btn-warning btn-round">Find my Trainer</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="終了レッスン">
+            <ng-template ngbTabContent>
+              <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+                  <h2 class="title">Finished bookings</h2>
+                  <h5 class="description">終了したレッスンです.先生にレッスンの感想を伝えましょう！</h5>
+                  <div class="space-top"></div>
+                </div>
+              </div>
+
+              <ng-container *ngIf="bookings && bookings.length > 0">
+                <app-user-mybookings-list [filterFinished]="true" [bookings]="bookings"></app-user-mybookings-list>
+              </ng-container>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div *ngIf="bookings.length==0" class="card card-pricing">
+                    <a routerLink="/rentals">
+                      <div class="card-body">
+                        <!-- <h3 class="card-category">No bookings found!</h3> -->
+                        <h3 class="card-title">No bookings found !</h3>
+                        <p class="card-description"></p>
+                        <div class="card-footer">
+                          <p class="btn btn-warning btn-round">Find my Trainer</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</section>
+        

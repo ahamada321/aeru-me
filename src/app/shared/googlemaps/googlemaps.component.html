@@ -1,0 +1,46 @@
+<div class="big-map" >
+  <agm-map (mapReady)="mapReadyHandler()" 
+           [latitude]="lat"
+           [longitude]="lng"
+           [zoom]="14"
+           [scrollwheel]="false"
+           style="height: 400px"
+           >
+    <agm-circle *ngIf="!isPositionError && lat && lng"
+                [latitude]="lat" 
+                [longitude]="lng"
+                [radius]="600"
+                [fillColor]="'#F44336'"
+                [fillOpacity]="0.4"
+                >
+    </agm-circle>
+    <agm-info-window *ngIf="isPositionError"
+                      [latitude]="0" 
+                      [longitude]="0"
+                      [mawWidth]="300"
+                      [isOpen]=true
+                      >
+                      商品の住所情報が正しく取得できていません。
+                      商品オーナーは住所が正しく入力できているか確認をお願いいたします。
+                      もし解決が難しい場合はサポートフォームにお問い合わせください。
+    </agm-info-window>
+
+    <div *ngIf="places && places.length>0">
+      <agm-marker 
+          *ngFor="let place of places; let i = index"
+          (markerClick)="onMarkerClick(infoWindow)"
+          [latitude]="place.lat"
+          [longitude]="place.lng"
+          >
+        <agm-info-window #infoWindow>
+          <h4>{{ place.placeName }}</h4>
+          <br>
+          <p>
+            TEL：{{ place.tel }}<br>
+            {{ place.address }}    
+          </p>
+        </agm-info-window>
+      </agm-marker>
+    </div>
+  </agm-map>
+</div>

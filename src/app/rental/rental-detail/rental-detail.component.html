@@ -1,0 +1,304 @@
+<section id="rentalDetail" *ngIf="rental">
+<div class="wrapper">
+    <div class="header-3">
+        <div class="page-carousel">
+            <ngb-carousel>
+                <ng-template ngbSlide>
+                    <div class="page-header page-header-small" [ngStyle]="{'background-image' : 'url(' + rental.image + ')' }">
+                        <div class="filter"></div>
+                        <div class="content-center">
+                            <div class="container">
+                                <div class="space-110"></div>
+                                <div class="row">
+                                    <div class="col-md-8 text-left motto">
+                                        <h1 class="title">{{ rental.rentalname }} Trainer</h1>
+                                        <h5>{{ rental.headlinedescription1 }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="page-header page-header-small" [ngStyle]="{'background-image' : 'url(' + rental.image2 + ')' }">
+                        <div class="filter"></div>
+                        <div class="content-center">
+                            <div class="container">
+                                <div class="space-110"></div>
+                                <div class="row">
+                                    <div class="col-md-8 text-left motto">
+                                        <h1 class="title">{{ rental.rentalname }} Trainer</h1>
+                                        <h5>{{ rental.headlinedescription2 }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="section text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mr-auto ml-auto">
+                        <h2 class="title">Greeting</h2>
+                        <h5 class="description">
+                            {{ rental.description }}
+                        </h5>
+                        <br>
+                        <button (click)="smoothScroll('detail-of-lessons')" class="btn btn-danger btn-round">See Details</button>
+                    </div>
+                </div>
+                <br/><br/>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-danger">
+                                <i class="nc-icon nc-bulb-63"></i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">New Ideas</h4>
+                                <p>{{ rental.appeal1 }}</p>
+                                <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-danger">
+                                <i class="nc-icon nc-chart-bar-32"></i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Statistics</h4>
+                                <p>{{ rental.appeal2 }}</p>
+                                <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-danger">
+                                <i class="nc-icon nc-sun-fog-29"></i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Delightful design</h4>
+                                <p>{{ rental.appeal3 }}</p>
+                                <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--     *********     Detail of lessons      *********      -->
+        <div class="blog-1" id="detail-of-lessons">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <h2 class="title">Detail of lessones</h2>
+                        <br />
+                        <div class="card card-plain card-blog">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="video-responsive">
+                                        <iframe [src]="safeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                    <!-- <div *ngIf="!rental.video" class="card-image">
+                                        <img class="img" src="{{ rental.course60img }}" />
+                                    </div> -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h6 class="card-category text-info">Entry course</h6>
+                                        <h3 class="card-title">
+                                            60min Course
+                                        </h3>
+                                        <p class="card-description">
+                                            {{ rental.course60Description }}
+                                        </p>
+                                        <!-- <p class="author">
+                                            by <a href="#pablo"><b>Tim Merel</b></a>, 11 hours ago
+                                        </p> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-plain card-blog">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <h6 class="card-category text-danger">
+                                            <i class="fa fa-free-code-camp" aria-hidden="true"></i> Trending
+                                        </h6>
+                                        <h3 class="card-title">
+                                            90min Course
+                                        </h3>
+                                        <p class="card-description">
+                                            {{ rental.course90Description }}
+                                        </p>
+                                        <!-- <p class="author">
+                                            by <a href="#pablo"><b>John Biggs</b></a>, 3 seconds ago
+                                        </p> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="card-image">
+                                        <img class="img" src="{{ rental.course90img }}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--     *********     Reviews & Comments     *********      -->
+        <div class="section section-dark text-center">
+            <div class="container">
+                <h2 class="title">Reviews</h2>
+                <div class="row">
+                    <ng-container *ngIf="reviews && reviews.length>0">
+                        <div class="col-md-4" *ngFor="let review of reviews">
+                            <div class="card card-profile card-plain">
+                                <div class="card-avatar">
+                                    <a href="#avatar"><img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="..."></a>
+                                </div>
+                                <div class="card-block">
+                                    <div class="author">
+                                        <h4 class="card-title">{{ review.user.username }}</h4>
+                                        <h6 class="card-category">Product Manager</h6>
+                                        <bar-rating [rate]="review.rating" 
+                                                    [max]="5" 
+                                                    [theme]="'stars'"
+                                                    [readOnly]="true" ></bar-rating>
+                                    </div>
+                                    <p class="card-description text-center">
+                                        {{ review.comment }}
+                                    </p>
+                                </div>
+                                <div class="card-footer text-center">
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!reviews || reviews.length==0">
+                        <div class="card card-profile card-plain ml-auto mr-auto">
+                            <div class="card-avatar">
+                                <a href="#avatar"><img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="..."></a>
+                            </div>
+                            <div class="card-block">
+                                <div class="author">
+                                    <h4 class="card-title">No reviews yet!</h4>
+                                    <h6 class="card-category"></h6>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <!--     *********     Photo Gallery      *********      -->
+        <div class="blog-5">
+            <div class="container">
+                <h2 class="title text-center">Photo Gallery</h2>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery + ')' }">
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery2 + ')' }">
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery3 + ')' }">
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery4 + ')' }">
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery5 + ')' }">
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--     *********     Callendar      *********      -->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mr-auto ml-auto">
+                        <h2 class="text-center">Available Time</h2>
+                    </div>
+                </div>
+                <div class="space-top"></div>
+                <div class="row">
+                    <div class="col-md-10 mr-auto ml-auto">
+                        <full-calendar defaultView="timeGridWeek" 
+                                        [plugins]="calendarPlugins" 
+                                        [allDaySlot]="false"
+                                        [nowIndicator]="true"
+                                        [events]="calendarEvents"
+                                        [businessHours]="calendarBusinessHours"
+                                        ></full-calendar>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--     *********     Call to action      *********      -->
+        <div class="section text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2 class="title">Let's book</h2>
+                        <p class="description">スケジュールと場所を確認して、問題なければ予約リクエストページへ進みましょう。待ち合わせの詳細場所は、予約完了後にLINEで直接トレーナーと連絡しながら決められます。</p>
+                        <br>
+                        <a *ngIf="!isYourRental()" routerLink="booking" class="btn btn-danger btn-round btn-lg">Go to booking</a>
+                        <button *ngIf="isYourRental()" 
+                                class="btn btn-round btn-lg disabled" 
+                                placement="bottom" 
+                                ngbPopover="Cannot book your Rental !"
+                                triggers="mouseenter:mouseleave"
+                                #pop="ngbPopover" 
+                                (click)="pop.open()">Go to booking</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-googlemaps [location]="rental.province + ', ' + rental.nearStation"></app-googlemaps>
+<app-bottom-navbar [rental]="rental"></app-bottom-navbar>
+</section>

@@ -1,5 +1,9 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
+import { AuthService } from "angularx-social-login";
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-navbar',
@@ -10,8 +14,14 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(public location: Location, private element : ElementRef) {
-        this.sidebarVisible = false;
+    constructor(
+        public location: Location, 
+        private element : ElementRef,
+        public auth: MyOriginAuthService,
+        private socialAuthService: AuthService,
+        private router: Router,
+        ) {
+            this.sidebarVisible = false;
     }
 
     ngOnInit() {
@@ -62,5 +72,12 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+    logout() {
+        this.socialAuthService.signOut()
+        this.auth.logout()
+        this.sidebarClose()
+        this.router.navigate(['/'])
     }
 }

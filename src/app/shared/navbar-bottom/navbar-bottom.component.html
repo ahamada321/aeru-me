@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand fixed-bottom" color-on-scroll="500">
+    <div class="container justify-content-start">
+        <span class="nav-link">{{ rental.hourlyPrice }} JPY/Hour</span>
+        <ng-container *ngIf="!auth.isAuthenticated()">
+            <app-login-popup [title]="'ログインして予約'"></app-login-popup>
+        </ng-container>
+        <ng-container *ngIf="auth.isAuthenticated()">
+            <a *ngIf="!isYourRental()" 
+                class="btn btn-danger btn-fill" 
+                [routerLink]="['booking']" >予約ページに進む</a>
+            <button 
+                *ngIf="isYourRental()" 
+                class="btn btn-fill disabled" 
+                ngbPopover="Cannot book your Rental !"
+                triggers="mouseenter:mouseleave"
+                #pop="ngbPopover" 
+                (click)="pop.open()">予約ページに進む</button>
+        </ng-container>
+
+    </div>
+</nav>
