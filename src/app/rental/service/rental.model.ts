@@ -30,11 +30,11 @@ export class Rental {
     course90Description: string;
 
     image1: string;
-    image2: string;
-    image3: string;
-    image4: string;
-    image5: string;
-    image6: string;
+    garally1: string;
+    garally2: string;
+    garally3: string;
+    garally4: string;
+    garally5: string;
 
     video: string;
 

@@ -25,11 +25,11 @@ const rentalSchema = new Schema({
     course90Description: String,
 
     image1: { type: String, required: true },
-    image2: String,
-    image3: String,
-    image4: String,
-    image5: String,
-    image6: String,
+    garally1: String,
+    garally2: String,
+    garally3: String,
+    garally4: String,
+    garally5: String,
     youtubeLink: String,
 
     businesshour_enabled_sun: { type: Boolean, default: true },
