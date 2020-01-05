@@ -1,5 +1,5 @@
 <section id="rentalDetail" *ngIf="rental">
-    <div class="page-header page-header-small" data-parallax="true" [ngStyle]="{'background-image' : 'url(' + rental.image + ')' }">>
+    <div class="page-header page-header-small" data-parallax="true" [ngStyle]="{'background-image' : 'url(' + rental.image1 + ')' }">>
         <div class="filter"></div>
         <div class="content-center">
             <div class="container">
@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-8 text-left motto">
                         <h1 class="title">{{ rental.rentalname }} Trainer</h1>
-                        <h5>{{ rental.headlinedescription1 }}</h5>
+                        <h5>{{ rental.cardDescription }}</h5>
                     </div>
                 </div>
             </div>
@@ -149,13 +149,13 @@
                 <h2 class="title text-center">Photo Gallery</h2>
                 <div class="row">
                     <div class="col-7">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.image2 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery2 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.image3 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>
@@ -163,20 +163,20 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery3 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.image4 + ')' }">
                             <div class="card-body">
 
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-5">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery4 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.image5 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-7">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery5 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.image6 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>

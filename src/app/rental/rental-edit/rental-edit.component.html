@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="page-header page-header-xs settings-background" [ngStyle]="{'background-image' : 'url(' + rental.image + ')' }">
+    <div class="page-header page-header-xs settings-background" [ngStyle]="{'background-image' : 'url(' + rental.image1 + ')' }">
         <div class="filter"></div>
     </div>
     <div class="profile-content section">
@@ -28,14 +28,14 @@
                         <div class="form-group">
                             <label>商品概要</label>
                             <textarea 
-                                [(ngModel)]="rental.headlinedescription1" 
-                                name="headlinedescription1"
+                                [(ngModel)]="rental.cardDescription" 
+                                name="cardDescription"
                                 class="form-control textarea-limited" 
                                 placeholder="ヘッダーカバーテキストを入力できます。" 
                                 rows="4" 
                                 maxlength="120" 
                                 ></textarea>
-                            <h5><small><span id="textarea-limited-message" class="pull-right">残文字数 {{ 120 - rental.headlinedescription1.length }}</span></small></h5>
+                            <h5><small><span id="textarea-limited-message" class="pull-right">残文字数 {{ 120 - rental.cardDescription.length }}</span></small></h5>
                         </div>
                         <div class="form-group">
                             <label>挨拶文</label>
@@ -47,18 +47,6 @@
                                 rows="4" 
                                 maxlength="120" ></textarea>
                             <h5><small><span id="textarea-limited-message" class="pull-right">残文字数 {{ 120 - rental.description.length }}</span></small></h5>
-                        </div>
-                        <div class="form-group">
-                            <label>ベネフィット１</label>
-                            <input type="text" class="form-control border-input" placeholder="ベネフィット文章１" [(ngModel)]="rental.appeal1" name="appeal1" required>
-                        </div>
-                        <div class="form-group">
-                            <label>ベネフィット２</label>
-                            <input type="text" class="form-control border-input" placeholder="ベネフィット文章２" [(ngModel)]="rental.appeal2" name="appeal2" required>
-                        </div>
-                        <div class="form-group">
-                            <label>ベネフィット３</label>
-                            <input type="text" class="form-control border-input" placeholder="ベネフィット文章３" [(ngModel)]="rental.appeal3" name="appeal3" required>
                         </div>
 
                         <!-- <div class="form-group">
