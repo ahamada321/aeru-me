@@ -152,21 +152,19 @@ exports.toggleFavourite = function(req, res) {
             })
 }
 
-
 exports.createRental = function(req, res) {
     const { 
         rentalname, 
         selectedCategory,
         age, 
-        height, 
-        bust, 
-        weight, 
-        image, 
+        image1, 
         video, 
         province, 
-        nearStation, 
+        nearStation,
         hourlyPrice, 
-        description, 
+        cardDescription,
+        description,         
+        course60Description,
         shared 
     } = req.body
     const user = res.locals.user
@@ -176,15 +174,14 @@ exports.createRental = function(req, res) {
         rentalname,
         selectedCategory,
         age,
-        height,
-        bust,
-        weight,
-        image,
+        image1,
         video,
         province,
         nearStation,
         hourlyPrice,
+        cardDescription,
         description,
+        course60Description,
         shared
     })
 

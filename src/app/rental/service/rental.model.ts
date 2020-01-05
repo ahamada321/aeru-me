@@ -18,33 +18,24 @@ export class Rental {
     rentalname: string;
     email: string;
     age: number;
-    height: string;
-    bust: string;
-    weight: string;
 
     province: string;
     nearStation: string;
-
     hourlyPrice: number;
     cardDescription
-    headlinedescription1: string;
-    headlinedescription2: string;
     description: string;
-    appeal1: string;
-    appeal2: string;
-    appeal3: string;
     course60img: string;
     course90img: string;
     course60Description: string;
     course90Description: string;
 
-    image: string;
+    image1: string;
     image2: string;
-    gallery: string;
-    gallery2: string;
-    gallery3: string;
-    gallery4: string;
-    gallery5: string;
+    image3: string;
+    image4: string;
+    image5: string;
+    image6: string;
+
     video: string;
 
     businesshour_enabled_sun: boolean

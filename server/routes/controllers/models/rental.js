@@ -6,41 +6,33 @@ const rentalSchema = new Schema({
     lastLogin: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now },
     shared: { type: Boolean, default: true },
+
     lineworksURL: String,
     email: String,
     rating: Number,
 
+    province: { type: String, required: true },
+    nearStation: { type: String, required: true },
+    hourlyPrice: Number,
+
     selectedCategory: Object,
     rentalname: { type: String, required: true, max: [128, 'Too long, max is 128 characters.']},
-    cardDescription: { type: String, required: true, lowercase: true },
-    headlinedescription1: { type: String, lowercase: true },
-    headlinedescription2: { type: String, lowercase: true },
-    description: { type: String, required: true, lowercase: true },
-    appeal1: String,
-    appeal2: String,
-    appeal3: String,
+    cardDescription: { type: String, required: true },
+    headlinedescription1: String,
+    headlinedescription2: String,
+    description: { type: String, required: true },
     course60img: String,
     course90img: String,
-    course60Description: { type: String, required: true, lowercase: true },
-    course90Description: { type: String, required: true, lowercase: true },
+    course60Description: { type: String, required: true },
+    course90Description: String,
 
-    
-    age: Number,
-    height: Number,
-    bust: { type: String, required: true },
-    weight: { type: String, required: true },
-    image: { type: String, required: true },
-    image2: { type: String, required: true },
-    gallery: { type: String, required: true },
-    gallery2: { type: String, required: true },
-    gallery3: { type: String, required: true },
-    gallery4: { type: String, required: true },
-    gallery5: { type: String, required: true },
-    video: { type: String },
-    province: { type: String, required: true, lowercase: true },
-    nearStation: { type: String, required: true, lowercase: true },
-    hourlyPrice: Number,
-    
+    image1: { type: String, required: true },
+    image2: String,
+    image3: String,
+    image4: String,
+    image5: String,
+    image6: String,
+    youtubeLink: String,
 
     businesshour_enabled_sun: { type: Boolean, default: true },
     businesshour_startTime_sun: { hour: {type: Number, default: 10}, minute: {type: Number, default: 0}, second: {type: Number, default: 0} },
@@ -65,10 +57,9 @@ const rentalSchema = new Schema({
     businesshour_endTime_sat: { hour: {type: Number, default: 19}, minute: {type: Number, default: 0}, second: {type: Number, default: 0} },
 
     user: { type: Schema.Types.ObjectId, ref: "User" },
-    brand: { type: Schema.Types.ObjectId, ref: "User" },
+    owner: { type: Schema.Types.ObjectId, ref: "User" },
     favouritesFrom: [{ type: Schema.Types.ObjectId, ref: "User" }],
     bookings: [{ type: Schema.Types.ObjectId, ref: "Booking"}]
-    
 });
 
 module.exports = mongoose.model('Rental', rentalSchema);

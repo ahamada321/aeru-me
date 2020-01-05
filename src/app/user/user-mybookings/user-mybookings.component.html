@@ -1,36 +1,43 @@
 <section id="userBookings">
-  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/ana-bernardo.jpg');">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/lp/back-image.jpg');">
     <div class="filter"></div>
-    <div class="container">
-      <div class="space-50"></div>
-      <div class="motto text-center">
-        <h1>My Bookings</h1>
-        <h3>You can check your bookings here.</h3>
-        <br />
+    <div class="content-center">
+      <div class="container">
+          <div class="space-50"></div>
+          <h1>My Bookings</h1>
+          <h3>あなたの予約一覧です</h3>
+          <br />
       </div>
     </div>
   </div>
+
   <div class="main">
     <div class="section text-center">
       <div class="container">
-        <ngb-tabset [justify]="'center'" type="pills" class="nav-pills-danger">
-          <ngb-tab title="開始前">
+        <ngb-tabset [justify]="'center'" type="pills" class="nav-pills-primary">
+          <ngb-tab title="予約一覧">
             <ng-template ngbTabContent>
               <div class="row">
                 <div class="col-md-12 ml-auto mr-auto">
-                  <h2 class="title">Upcoming bookings</h2>
-                  <h5 class="description">日時が確定した予約リストです！先生との連絡はLINEで行えます.</h5>
+                  <h3 class="title">返答待ち</h3>
+                  <h5 class="description">先方の返信待ちです。まだ予約確定していません！</h5>
                   <div class="space-top"></div>
                 </div>
               </div>
 
-              <ng-container *ngIf="bookings && bookings.length > 0">
-                <app-user-mybookings-list [bookings]="bookings"></app-user-mybookings-list>
-              </ng-container>
-
               <div class="row">
-                <div class="col-md-4">
-                  <div *ngIf="bookings.length==0" class="card card-pricing">
+                <div class="col-md-12 ml-auto mr-auto">
+                  <h3 class="title">予約確定</h3>
+                  <h5 class="description">待ち合わせ場所等連絡を取り合い、当日は時間に遅れないように注意しましょう。</h5>
+                  <div class="space-top"></div>
+                </div>
+              </div>
+              <div *ngIf="bookings && bookings.length > 0">
+                <!-- <app-user-pending-list [bookings]="bookings"></app-user-pending-list> -->
+              </div>
+              <div class="row">
+                <div *ngIf="bookings.length==0" class="col-md-4">
+                  <div class="card card-pricing">
                     <a routerLink="/rentals">
                       <div class="card-body">
                         <!-- <h3 class="card-category">No bookings found!</h3> -->
@@ -42,39 +49,37 @@
                       </div>
                     </a>
                   </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+                  <h3 class="title">いかがでしたか？</h3>
+                  <h5 class="description">良かったところや改善できるところをレビューを残しましょう。</h5>
+                  <div class="space-top"></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+                  <h3 class="title">終了</h3>
+                  <h5 class="description">終了した予約一覧です。過去12ヶ月分確認できます。</h5>
+                  <div class="space-top"></div>
                 </div>
               </div>
             </ng-template>
           </ngb-tab>
-          <ngb-tab title="終了レッスン">
+          <ngb-tab title="期限切れ">
             <ng-template ngbTabContent>
               <div class="row">
                 <div class="col-md-12 ml-auto mr-auto">
-                  <h2 class="title">Finished bookings</h2>
-                  <h5 class="description">終了したレッスンです.先生にレッスンの感想を伝えましょう！</h5>
+                  <h3 class="title">請求されません</h3>
+                  <h5 class="description">時間ぎれにより予約確定できなかったリクエストです。過去3ヶ月分確認できます。</h5>
                   <div class="space-top"></div>
                 </div>
               </div>
-
-              <ng-container *ngIf="bookings && bookings.length > 0">
-                <app-user-mybookings-list [filterFinished]="true" [bookings]="bookings"></app-user-mybookings-list>
-              </ng-container>
-
-              <div class="row">
-                <div class="col-md-4">
-                  <div *ngIf="bookings.length==0" class="card card-pricing">
-                    <a routerLink="/rentals">
-                      <div class="card-body">
-                        <!-- <h3 class="card-category">No bookings found!</h3> -->
-                        <h3 class="card-title">No bookings found !</h3>
-                        <p class="card-description"></p>
-                        <div class="card-footer">
-                          <p class="btn btn-warning btn-round">Find my Trainer</p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
+              <div *ngIf="bookings && bookings.length > 0">
+                <!-- <app-user-pending-list [filterExpired]="true" [bookings]="bookings"></app-user-pending-list> -->
               </div>
             </ng-template>
           </ngb-tab>

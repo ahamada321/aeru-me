@@ -1,25 +1,26 @@
 <div class="wrapper">
-    <div class="page-header page-header-xs settings-background" style="background-image: url('./assets/img/rawpixel-com.jpg')">
+    <div class="page-header page-header-xs settings-background" style="background-image: url('./assets/img/lp/back-image.jpg')">
         <div class="filter"></div>
     </div>
     <div class="profile-content section">
         <div class="container">
-            <!-- <div class="row">
+            <div class="row">
                 <div class="profile-picture">
-                    <app-image-upload [image]="'./assets/img//default-avatar.png'"></app-image-upload>
+                    <app-image-upload [image]="'./assets/img/default-avatar.png'"></app-image-upload>
                 </div>
-            </div> -->
+            </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto">
                     <form *ngIf="userData" class="settings-form" #userForm="ngForm" (ngSubmit)="updateUser(userForm)">
                         <div class="form-group">
-                            <label>Your Name</label>
+                            <label>名前</label>
                             <input type="text" 
                                 class="form-control border-input" 
-                                placeholder="Your Name" 
+                                placeholder="あなたの名前（必須）" 
                                 [(ngModel)]="userData.username" 
                                 name="username" 
-                                required >
+                                required 
+                                />
                         </div>
                         <!-- <div class="form-group">
                             <label>Email Address</label>
@@ -36,10 +37,10 @@
                             <input type="text" class="form-control border-input" placeholder="Confirm New Password">
                         </div>  -->
                         <div class="form-group">
-                            <label>Let's appeal to trainers!</label>
+                            <label>自己紹介</label>
                                 <textarea type="text"
                                         class="form-control textarea-limited" 
-                                        placeholder="Your trainer can see your description here. Let's introduse who you are." 
+                                        placeholder="充実させる事であなたの事を事前に知ってもらえる為、リクエストが受理されやすくなります。" 
                                         [(ngModel)]="userData.description" 
                                         name="description"
                                         rows="3" 
@@ -52,7 +53,7 @@
                             <input type="text" class="form-control border-input" placeholder="あなたと会える場所" [ngModel]="userData.nearStation" name="nearStation" required>
                         </div> -->
 
-                        <label>Notifications</label>
+                        <label>通知</label>
                         <ul class="notifications">
                             <!-- <li class="notification-item">
                                 Updates regarding platform changes
@@ -73,17 +74,17 @@
                                 </bSwitch>
                             </li> -->
                             <li class="notification-item">
-                                From our special Newsletters & Coupons
+                                ニュースレター＆クーポン
                                 <bSwitch
-                                    [switch-on-color]="'info'"
-                                    [switch-off-color]="'info'"
+                                    [switch-on-color]="'primary'"
+                                    [switch-off-color]="'primary'"
                                     [(ngModel)]="third_switch"
                                     name="third_switch">
                                 </bSwitch>
                             </li>
                         </ul>
                         <div class="text-center">
-                            <button [disabled]="userForm.pristine" type="submit" class="btn btn-wd btn-info btn-round">Update</button>
+                            <button [disabled]="!(userForm.valid && userForm.dirty)" type="submit" class="btn btn-wd btn-primary">更新する</button>
                         </div>
                     </form>
 

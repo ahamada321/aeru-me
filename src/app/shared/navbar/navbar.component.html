@@ -21,15 +21,6 @@
                         <a ngbDropdownItem [routerLink]="['/presentation']"><i class="nc-icon nc-settings"></i>Presentation</a>
                         <a ngbDropdownItem href="https://demos.creative-tim.com/paper-kit-2-pro-angular/#/documentation/introduction"><i class="nc-icon nc-bullet-list-67"></i>Documentation</a>
                     </div>
-                </div>
-                <div ngbDropdown class="nav-item dropdown">
-                    <div class="nav-link dropdown-toggle" ngbDropdownToggle>Sections</div>
-                    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-danger">
-                        <a class="dropdown-item" [routerLink]="['/sections']" fragment="headers"><i class="nc-icon nc-tile-56"></i>&nbsp; Headers</a>
-                        <a class="dropdown-item" [routerLink]="['/sections']" fragment="features"><i class="nc-icon nc-settings"></i>&nbsp; Features</a>
-                        <a class="dropdown-item" [routerLink]="['/sections']" fragment="blogs"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; Blogs</a>
-                        <a class="dropdown-item" [routerLink]="['/sections']" fragment="teams"><i class="nc-icon nc-single-02"></i>&nbsp; Teams</a>
-                    </div>
                 </div> -->
 
                 <ng-container *ngIf="!auth.isAuthenticated()">
@@ -41,11 +32,30 @@
                     </li>
                 </ng-container>
                 <ng-container *ngIf="auth.isAuthenticated()">
-                    <li class="nav-item">
-                        <button class="btn btn-primary btn-round" (click)="logout()"><i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログアウト</button>
-                    </li>
+                    <ng-container *ngIf="auth.getUserRole() === ('Owner' || 'Teacher')">
+                        <div ngbDropdown class="nav-item dropdown">
+                            <div class="nav-link dropdown-toggle" ngbDropdownToggle>オーナー機能</div>
+                            <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary">
+                                <a class="dropdown-item" [routerLink]="['/rentals/manage/revenue']"><i class="nc-icon nc-chart-bar-32"></i>&nbsp; 収益レポート</a>
+                                <a class="dropdown-item" [routerLink]="['/rentals/manage']"><i class="nc-icon nc-album-2"></i>&nbsp; 商品管理</a>
+                                <a class="dropdown-item" [routerLink]="['/rentals/manage/incoming']"><i class="nc-icon nc-bell-55"></i>&nbsp; 予約リクエスト管理</a>
+                                <a class="dropdown-item" [routerLink]="['/rentals/manage/bookings']"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; スケジュール確認</a>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div ngbDropdown class="nav-item dropdown">
+                        <div class="nav-link dropdown-toggle" ngbDropdownToggle>{{auth.getUsername()}}さん</div>
+                        <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary">
+                            <a class="dropdown-item" [routerLink]="['/user/myfavourite']"><i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入り</a>
+                            <a class="dropdown-item" [routerLink]="['/user/mybookings']"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; 予約一覧</a>
+                            <a class="dropdown-item" [routerLink]="['/user']"><i class="nc-icon nc-settings-gear-65"></i>&nbsp; 設定</a>
+                            <a class="dropdown-item clickable" (click)="logout()"><i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログアウト</a>
+                        </div>
+                    </div>
+                    <!-- <div ngbDropdown class="nav-item">
+                        <a class="nav-link" (click)="logout()"><i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログアウト</a>
+                    </div> -->
                 </ng-container>
-
             </ul>
         </div>
     </div>

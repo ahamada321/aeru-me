@@ -51,9 +51,8 @@ export class RentalRevenueComponent implements OnInit {
     this.initDashboardChart()
     this.getPaidPayments()
 
-    // Also adding exception logic in app.component.ts for NavBar
     let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
+    navbar.classList.add('navbar-transparent');
   }
 
   getPaidPayments() {

@@ -26,7 +26,6 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
     secondFormGroup: FormGroup;
     @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
-    selectedCourse: number = 1
     isSelectedDateTime: boolean = false
     chosenCourseTime: number = 60
 
@@ -54,13 +53,12 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.getStripeCustomerInfo()
-
-        // Think it is better to pass id from before page.
         this.route.params.subscribe(
             (params) => {
                 this.getRental(params['rentalId'])
+                if(params['selectedCourse'] === '1') this.chosenCourseTime = 60
+                else if(params['selectedCourse'] === '2') this.chosenCourseTime = 90
         })
-
     }
 
     ngOnDestroy() {
@@ -68,14 +66,6 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
         if (navbar.classList.contains('nav-up')) {
             navbar.classList.remove('nav-up');
         }
-    }
-
-    getRental(rentalId: string) {
-        this.rentalService.getRentalById(rentalId).subscribe(
-            (rental: Rental) => {
-                this.rental = rental
-            }
-        )
     }
 
     getStripeCustomerInfo() {
@@ -87,13 +77,14 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
             },
             (err) => { }
         )
-      }
+    }
 
-    onCourseSelected(course: number){
-        this.selectedCourse = course
-        if(course === 1) this.chosenCourseTime = 60
-        if(course === 2) this.chosenCourseTime = 90
-        this.stepper.next();
+    getRental(rentalId: string) {
+        this.rentalService.getRentalById(rentalId).subscribe(
+            (rental: Rental) => {
+                this.rental = rental
+            }
+        )
     }
 
     onBookingReady(newBooking: Booking) {

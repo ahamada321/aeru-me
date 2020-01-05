@@ -1,20 +1,42 @@
 <section id="manageRentals">
-  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/rawpixel-com.jpg');">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/lp/back-image.jpg');">
     <div class="filter"></div>
-    <div class="container">
-        <div class="space-50"></div>
-        <div class="motto text-center">
-            <h1>Manage Rentals</h1>
-            <h3>You can manage your rentals here.</h3>
-            <br />
-        </div>
+    <div class="content-center">
+      <div class="container">
+          <div class="space-50"></div>
+          <div class="motto text-center">
+              <h1>商品管理</h1>
+              <h3>あなたの商品情報を編集できます</h3>
+              <br />
+          </div>
+      </div>
     </div>
   </div>
-  <div class="main">
+  
+  <div class="main" *ngIf="rentals">
     <div class="section text-center">
       <div class="container">
         <div class="row">
-          <ng-container *ngIf="rentals && rentals.length > 0">
+          <ng-container *ngIf="(auth.getUserRole() === 'Owner') || (rentals.length === 0)">
+            <div class="col-md-3 col-xs-6">
+                <div class="card card-pricing">
+                    <div class="card-body">
+                        <div class="card-icon">
+                            <i class="nc-icon nc-basket"></i>
+                            <!-- <i class="nc-icon nc-simple-add"></i> -->
+                        </div>
+                        <!-- <h3 class="card-title">新規追加</h3> -->
+                        <p class="card-description">
+                            ここから新しく商品を追加できます
+                        </p>
+                        <div class="card-footer">
+                            <a class="btn btn-info btn-round card-link" [routerLink]="['/rentals/new']">商品を追加</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="rentals.length > 0">
             <div *ngFor="let rental of rentals; let i = index" class="col-md-3 col-xs-6">
               <!-- <app-rental-incoming-list-item [booking]="bookin"></app-rental-incoming-list-item> -->
               <div class="card" data-background="declined">
@@ -43,60 +65,8 @@
               </div>
             </div>
           </ng-container>
-          <div class="col-md-4">
-            <div *ngIf="rentals && rentals.length == 0" class="card card-pricing">
-              <a routerLink="/rentals/new">
-                <div class="card-body">
-                  <!-- <h3 class="card-category">No bookings found!</h3> -->
-                  <h3 class="card-title">No Rentals yet!</h3>
-                  <!-- <p class="card-description"></p>
-                  <div class="card-footer">
-                    <p class="btn btn-warning btn-round">Find my Trainer</p>
-                  </div> -->
-                </div>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
-
-
-  <!-- <h1 class="page-title">My Rentals</h1> レンタル削除ボタンがまだ移植できていない為、コードを残している！！！
-  <div class="row">
-    <ng-container *ngIf="rentals && rentals.length > 0">
-      <div *ngFor="let rental of rentals; let i = index" class="col-md-4">
-
-          <div class="card card-product">
-            <div class="card-body">
-              <div class="card-actions text-center">
-                <button mat-raised-button type="button" 
-                        class="btn btn-danger btn-link" 
-                        matTooltip="Remove" 
-                        [matTooltipPosition]="'below'"
-                        (click)="swalConfirmation.show(); rentalDeleteIndex = i"><i class="material-icons">close</i>
-                </button>
-                <swal #swalConfirmation 
-                      title="この商品を削除しますか？" 
-                      text="この決定は取り消せません" 
-                      type="question"
-                      showCancelButton="true"
-                      confirmButtonText="削除する"
-                      [focusCancel]="true"
-                      (confirm)="swalDeleted.show()"
-                      (cancel)="rentalDeleteIndex = undefined">
-                </swal>
-                <swal #swalDeleted 
-                      title="削除しました" 
-                      type="error"
-                      (confirm)="deleteRental(rental._id)">
-                </swal>
-              </div>
-            </div>
-          </div>
-      </div>
-    </ng-container>
-  </div> -->
-
 </section>

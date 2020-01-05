@@ -11,6 +11,7 @@ import { ChartsModule } from 'ng2-charts';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AuthGuard } from '../auth/service/auth.guard';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { TagInputModule } from 'ngx-chips';
 import { BarRatingModule } from 'ngx-bar-rating';
 
 import { RentalComponent } from './rental.component';
@@ -41,7 +42,7 @@ import { RentalService } from './service/rental.service';
 import { BookingService } from './rental-detail/rental-detail-booking/services/booking.service';
 import { BookingHelperService } from './rental-detail/rental-detail-booking/services/booking.helper.service';
 import { LoginPopupModule } from '../shared/login-popup/login-pupup.module';
-// import { ImageUploadModule } from '../shared/components/image-upload/image-upload.module';
+import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 
 
 const routes: Routes = [{
@@ -50,14 +51,17 @@ const routes: Routes = [{
     children: [
         { path: '', component: RentalListComponent },
         { path: 'new', component: RentalNewComponent, canActivate: [AuthGuard] },
+
         { path: 'manage', component: RentalManageComponent, canActivate: [AuthGuard] },
         { path: 'manage/incoming', component: RentalIncomingComponent, canActivate: [AuthGuard] }, // OEM mode
         { path: 'manage/bookings', component: RentalBookingsComponent, canActivate: [AuthGuard] }, // OEM mode
-        { path: 'revenue', component: RentalRevenueComponent, canActivate: [AuthGuard] },
-        { path: ':rentalId', component: RentalDetailComponent },
+        { path: 'manage/revenue', component: RentalRevenueComponent, canActivate: [AuthGuard] },
+
+        { path: ':rentalId', component: RentalDetailComponent }, // Going to replace rentalId to rentalUri
         { path: ':rentalId/booking', component: RentalBookingComponent, canActivate: [AuthGuard] }, // Going to replace to "createbooking"
         { path: ':rentalId/edit', component: RentalEditComponent, canActivate: [AuthGuard] },
         { path: ':rentalId/editschedule', component: RentalManageScheduleComponent, canActivate: [AuthGuard] },
+        { path: ':rentalId/revenue', component: RentalRevenueComponent, canActivate: [AuthGuard] },
     ]
 }];
 
@@ -99,9 +103,10 @@ const routes: Routes = [{
           ReviewModule,
           BarRatingModule,
           BookingSelecterModule,
-          // ImageUploadModule
+          ImageUploadModule,
           FullCalendarModule,
           JwBootstrapSwitchNg2Module,
+          TagInputModule,
           LoginPopupModule
       ],
       entryComponents: [

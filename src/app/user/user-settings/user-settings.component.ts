@@ -27,13 +27,13 @@ export class UserSettingsComponent implements OnInit {
         this.getUser()
 
         let body = document.getElementsByTagName('body')[0];
-        body.classList.add('settings');
+        body.classList.add('settings-page');
         let navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
     }
     ngOnDestroy(){
         let body = document.getElementsByTagName('body')[0];
-        body.classList.remove('settings');
+        body.classList.remove('settings-page');
         let navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.remove('navbar-transparent');
     }
@@ -63,7 +63,7 @@ export class UserSettingsComponent implements OnInit {
             // title: 'User infomation has been updated!',
             text: 'ユーザー情報が更新されました！',
             type: 'success',
-            confirmButtonClass: "btn btn-primary btn-round btn-lg",
+            confirmButtonClass: "btn btn-primary btn-lg",
             buttonsStyling: false,
             timer: 5000
         }).then(() => {

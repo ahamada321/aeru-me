@@ -1,4 +1,4 @@
-<section id="booking-selecter" *ngIf="rental">
+<section id="booking-selecter">
     <form>
         <div class="form-group">
             <div class="input-group date" [ngClass]="{'input-group-focus':focus===true}">
@@ -12,7 +12,8 @@
                     ngbDatepicker #d="ngbDatepicker" 
                     (click)="d.toggle()" 
                     (focus)="focus=true" 
-                    (blur)="focus=false" />
+                    (blur)="focus=false" 
+                    />
                 <div class="input-group-append">
                     <span class="glyphicon glyphicon-calendar input-group-text">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -25,11 +26,11 @@
     <div *ngIf="timeTables && timeTables.length > 0 && !isDateBlock_flg" class="info">
         <div *ngFor="let timeTable of timeTables">
             <p>
-                <button *ngIf="isValidBooking(timeTable)" class="btn btn-danger" (click)="selectDateTime(timeTable)" >
-                    Start from {{ timeTable.format('HH:mm') }}
+                <button *ngIf="isValidBooking(timeTable)" class="btn btn-primary" (click)="selectDateTime(timeTable)" >
+                    {{ timeTable.format('HH:mm') }} スタート
                 </button>
                 <button  *ngIf="!isValidBooking(timeTable)" class="btn"  [disabled]="true">
-                    Sold out!
+                    完売！
                 </button>
             </p>
         </div>

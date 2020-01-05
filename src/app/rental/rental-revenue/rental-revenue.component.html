@@ -1,5 +1,4 @@
 <section id="rentalRevenue">
-  <div class="space-70"></div>
   <div class="panel-header panel-header-lg">
     <canvas baseChart id="dashboardChart"
             [chartType]="DashboardChartType"
@@ -11,7 +10,7 @@
             (chartClick)="chartClicked($event)"></canvas>
   </div>
 
-  <div class="main">
+  <div class="main" *ngIf="payments">
     <div class="section text-center">
       <div class="container">
         <div class="row">

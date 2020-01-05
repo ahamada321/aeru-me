@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Rental } from '../service/rental.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RentalService } from '../service/rental.service';
@@ -12,8 +12,7 @@ import Swal from 'sweetalert2'
   templateUrl: './rental-new.component.html',
   styleUrls: ['./rental-new.component.scss']
 })
-export class RentalNewComponent implements OnInit {
-
+export class RentalNewComponent implements OnInit, OnDestroy {
   newRental: Rental
   rentalCategories = Rental.CATEGORIES
   errors: any[] = []
@@ -38,10 +37,20 @@ export class RentalNewComponent implements OnInit {
 
   ngOnInit() {
     this.newRental = new Rental()
-    this.newRental.image = "assets/images/image_placeholder.jpg"
+    this.newRental.image1 = "assets/img/image_placeholder.jpg"
 
     let navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
+
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('add-product');
+  }
+
+  ngOnDestroy(){
+    let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
+    var body = document.getElementsByTagName('body')[0];
+    body.classList.remove('add-product');
   }
 
   createRental(rentalForm: NgForm) {
@@ -68,6 +77,6 @@ export class RentalNewComponent implements OnInit {
 }
 
   imageChange() {
-    this.newRental.image = "assets/images/room1.jpg"
+    this.newRental.image1 = "assets/img/lp/back-image.jpg"
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RentalService } from 'src/app/rental/service/rental.service';
 import { Rental } from 'src/app/rental/service/rental.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 
 
 @Component({
@@ -14,8 +15,10 @@ export class RentalManageComponent implements OnInit, OnDestroy {
   rentals: Rental[] = []
   rentalDeleteIndex: number = undefined
 
-  constructor(private rentalService: RentalService,
-              ) { }
+  constructor(
+    private rentalService: RentalService,
+    public auth: MyOriginAuthService,
+    ) { }
 
   ngOnInit() {
     let body = document.getElementsByTagName('body')[0];

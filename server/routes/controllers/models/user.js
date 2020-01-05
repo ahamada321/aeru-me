@@ -4,40 +4,42 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
     FBuserID: String,
-    
     username: {
         type: String,
-        max: [32, 'Too long, max is 32 characters.'],
-        min: [4, 'Too short, min is 4 characters.'],
+        max: [32, '32文字以下で入力してください'],
+        min: [4, '4文字以上で入力してください'],
     },
     email: {
         type: String,
-        max: [32, 'Too long, max is 32 characters.'],
-        min: [4, 'Too short, min is 4 characters.'],
+        max: [32, '32文字以下で入力してください'],
+        min: [4, '4文字以上で入力してください'],
         unique: true,
         lowercase: true,
-        required: 'Email is required',
+        required: 'Emailは必須です',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
     },
     password: {
         type: String,
-        max: [32, 'Too long, max is 32 characters.'],
-        min: [4, 'Too short, min is 4 characters.'],
-        required: 'Password is required',
+        max: [32, '32文字以下で入力してください'],
+        min: [6, '6文字以上で入力してください'],
+        required: 'パスワードは必須です',
     },
-    customer: {
-        id: { type: String, default: '' },
-        default_source: { type: String, default: '' }
-    },
-    rating: Number,
     description: String,
+    rating: Number,
 
-    isVerified: { type: Boolean, default: false },
-    userRole:  { type: String, default: "User" }, // User, Owner, OEM_Owner
-    
+    bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }],
     rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
     // favouriteRentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
-    bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }]
+
+    isVerified: { type: Boolean, default: false },
+    isLocked: { type: Boolean, default: false }, // If user missed password too much
+    isBanned: { type: Boolean, default: false }, // If user was not appropriate for our service
+    userRole:  { type: String, default: "User" }, // User, Teacher, Owner, Admin, SuperAdmin
+    
+    customer: { // Stripe
+        id: { type: String, default: '' },
+        default_source: { type: String, default: '' }
+    }
 })
 
 userSchema.methods.hasSamePassword = function(requestPassword) {
