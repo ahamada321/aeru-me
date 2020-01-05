@@ -29,7 +29,7 @@ export class Rental {
     course60Description: string;
     course90Description: string;
 
-    image1: string;
+    image: string;
     garally1: string;
     garally2: string;
     garally3: string;

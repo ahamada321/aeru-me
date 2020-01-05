@@ -37,7 +37,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.newRental = new Rental()
-    this.newRental.image1 = "assets/img/image_placeholder.jpg"
+    this.newRental.image = "assets/img/image_placeholder.jpg"
 
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
@@ -77,6 +77,6 @@ export class RentalNewComponent implements OnInit, OnDestroy {
 }
 
   imageChange() {
-    this.newRental.image1 = "assets/img/lp/back-image.jpg"
+    this.newRental.image = "assets/img/lp/back-image.jpg"
   }
 }

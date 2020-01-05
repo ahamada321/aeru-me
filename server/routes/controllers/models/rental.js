@@ -24,7 +24,7 @@ const rentalSchema = new Schema({
     course60Description: { type: String, required: true },
     course90Description: String,
 
-    image1: { type: String, required: true },
+    image: { type: String, required: true },
     garally1: String,
     garally2: String,
     garally3: String,
