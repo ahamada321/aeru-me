@@ -1,27 +1,15 @@
 <div class="wrapper">
-  <div class="page-header page-header-xs settings-background" [ngStyle]="{'background-image' : 'url(' + newRental.image + ')' }">
-      <div class="filter"></div>
+  <div class="page-header page-header-small" data-parallax="true" [ngStyle]="{'background-image' : 'url(' + newRental.image + ')' }">>
+    <div class="filter"></div>
   </div>
+
   <div class="main">
     <div class="container">
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
-          <div class="form-group">
-            <h6>カバー写真 <span class="icon-danger">*</span></h6>
-            <div class="row">
-                    <div class="col-md-10 ml-auto mr-auto">
-                        <app-image-upload></app-image-upload>
-                        <!-- <app-image-upload-myver 
-                            [inputImage]="rental.image"
-                            (imageUploaded)="rental.image=$event;isTouched=true"
-                            >
-                        </app-image-upload-myver> -->
-                    </div>
-                </div>
-            </div>
-
           <div class="space-top"></div>
-          <form #rentalForm="ngForm" (ngSubmit)="createRental(rentalForm)">
+          <app-image-upload-myver (imageUploaded)="imageChange($event)"></app-image-upload-myver>
+          <form #rentalForm="ngForm">
           <!--<form [formGroup]="myGroup" action="" method="">-->
             <div class="form-group">
               <h6>商品名 <span class="icon-danger">*</span></h6>
@@ -40,6 +28,26 @@
                 <div *ngIf="newRental.rentalname">
                   残文字数 {{ 20 - newRental.rentalname.length }}
                 </div>
+              </span></small></h5>
+            </div>
+
+            <div class="form-group">
+              <h6>ひとこと <span class="icon-danger">*</span></h6>
+              <textarea 
+                  [(ngModel)]="newRental.cardDescription" 
+                  name="cardDescription"
+                  class="form-control textarea-limited" 
+                  placeholder="商品カードのコピー文が入力できます。" 
+                  rows="1" 
+                  maxlength="20" 
+                  ></textarea>
+              <h5><small><span id="textarea-limited-message" class="pull-right">
+                  <div *ngIf="!newRental.cardDescription">
+                      残文字数 20
+                  </div>
+                  <div *ngIf="newRental.cardDescription">
+                      残文字数 {{ 20 - newRental.cardDescription.length }}
+                  </div>
               </span></small></h5>
             </div>
 
@@ -71,26 +79,6 @@
             </div>
 
             <div class="form-group">
-                <h6>ひとこと <span class="icon-danger">*</span></h6>
-                <textarea 
-                    [(ngModel)]="newRental.cardDescription" 
-                    name="cardDescription"
-                    class="form-control textarea-limited" 
-                    placeholder="商品カードのコピー文が入力できます。" 
-                    rows="1" 
-                    maxlength="20" 
-                    ></textarea>
-                <h5><small><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.cardDescription">
-                        残文字数 20
-                    </div>
-                    <div *ngIf="newRental.cardDescription">
-                        残文字数 {{ 20 - newRental.cardDescription.length }}
-                    </div>
-                </span></small></h5>
-            </div>
-
-            <div class="form-group">
                 <h6>自己紹介 <span class="icon-danger">*</span></h6>
                 <textarea
                     [(ngModel)]="newRental.description" 
@@ -119,7 +107,8 @@
                     [(ngModel)]="newRental.course60Description" 
                     name="course60Description"
                     rows="3" 
-                    maxlength="150" ></textarea>
+                    maxlength="150" 
+                    required></textarea>
                 <h5><small><span id="textarea-limited-message" class="pull-right">
                   <div *ngIf="!newRental.course60Description">
                     残文字数 150
@@ -159,21 +148,35 @@
                   required
                   />
             </div>
-            <!-- <div class="form-group">
-                <h6>HP（任意）</h6>
-                <input type="text" class="form-control border-input" placeholder="HPのURLが入力できます" [(ngModel)]="newRental.homepage" name="homepage">
-            </div> -->
             <div class="form-group">
                 <h6>Facebook（任意）</h6>
-                <input type="text" class="form-control border-input" placeholder="FacebookURLが入力できます" [(ngModel)]="newRental.facebook" name="facebook">
+                <input 
+                  type="text" 
+                  class="form-control border-input" 
+                  placeholder="FacebookURLが入力できます" 
+                  [(ngModel)]="newRental.facebook" 
+                  name="facebook"
+                  />
             </div>
             <div class="form-group">
                 <h6>Instagram（任意）</h6>
-                <input type="text" class="form-control border-input" placeholder="InstagramURLが入力できます" [(ngModel)]="newRental.instagram" name="instagram">
+                <input 
+                  type="text" 
+                  class="form-control border-input" 
+                  placeholder="InstagramURLが入力できます" 
+                  [(ngModel)]="newRental.instagram" 
+                  name="instagram"
+                  />
             </div>
             <div class="form-group">
                 <h6>Twitter（任意）</h6>
-                <input type="text" class="form-control border-input" placeholder="TwitterURLが入力できます" [(ngModel)]="newRental.twitter" name="twitter">
+                <input 
+                  type="text" 
+                  class="form-control border-input" 
+                  placeholder="TwitterURLが入力できます" 
+                  [(ngModel)]="newRental.twitter" 
+                  name="twitter"
+                  />
             </div>
 
             <div class="form-group">
@@ -185,6 +188,7 @@
                     class="form-control border-input" 
                     [(ngModel)]="newRental.hourlyPrice" 
                     name="hourlyPrice" 
+                    required
                     />
                   <div class="input-group-append">
                       <span class="input-group-text">円</span>
@@ -192,27 +196,24 @@
                 </div>
             </div>
 
-            <div class="space-top"></div>
-            <!-- <label>Notifications</label> -->
-            <ul class="notifications">
-                <li class="notification-item">
-                    外部公開
-                    <bSwitch
-                        [switch-on-color]="'primary'"
-                        [switch-off-color]="'primary'"
-                        [(ngModel)]="newRental.shared"
-                        name="shared">
-                    </bSwitch>
-                </li>
-            </ul>
-            <div class="text-center">
-              <button [disabled]="!rentalForm.form.valid" type="submit" class="btn btn-wd btn-primary">商品登録</button>
+            <div class="row buttons-row">
+              <div class="col-md-6">
+                  <button 
+                    [disabled]="!rentalForm.form.valid" 
+                    (click)="createUnpublishedRental()"
+                    class="btn btn-outline-default btn-block btn-round">下書き保存</button>
+              </div>
+              <div class="col-md-6">
+                  <button 
+                    [disabled]="!rentalForm.form.valid" 
+                    (click)="createRental()"
+                    class="btn btn-primary btn-block btn-round">公開申請</button>
+              </div>
             </div>
           </form>
+          <div class="space-top"></div>
           <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
-            <p *ngFor="let error of errors">
-              {{error.detail}}
-            </p>
+            <p *ngFor="let error of errors">{{ error.detail }}</p>
           </div>
         </div>
       </div>

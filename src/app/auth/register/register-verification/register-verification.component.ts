@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { MyOriginAuthService } from '../../service/auth.service'
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MyOriginAuthService } from '../../service/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2'
+import { LoginPupupTestComponent } from '../../login-popup/login-popup.component';
+
 
 @Component({
   selector: 'app-register-verification',
@@ -16,9 +19,11 @@ export class RegisterVerificationComponent implements OnInit {
   errors: any[] = []
   notifyMessage: string = ''
 
-  constructor(private auth: MyOriginAuthService,
-              private router: Router,
-              private route: ActivatedRoute ) { }
+  constructor(
+    private auth: MyOriginAuthService,
+    private modalService: NgbModal,
+    private router: Router,
+    private route: ActivatedRoute ) { }
 
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];
@@ -50,25 +55,31 @@ export class RegisterVerificationComponent implements OnInit {
   showSwal(type) {
     if (type == 'success') {
       Swal.fire({
-            title: 'Successfully Activated!',
-            text: 'アクティベーションが完了しました!',
+            title: 'アクティベーション完了',
+            text: '無事にログイン出来るようになりました！',
             type: 'success',
-            confirmButtonClass: "btn btn-primary btn-round btn-lg",
+            confirmButtonClass: "btn btn-primary btn-lg",
             buttonsStyling: false,
             allowOutsideClick: false
         }).then(() => {
-            this.router.navigate(['/login'])
+            this.modalOpen()
         })
     } else if (type == 'failed') { // Maybe won't need URL expired pattern.
       Swal.fire({
             title: 'Faild',
             text: 'URLが期限切れです',
             type: 'error',
-            confirmButtonClass: "btn btn-primary btn-round btn-lg",
+            confirmButtonClass: "btn btn-danger btn-lg",
             buttonsStyling: false,
             allowOutsideClick: false
-        })
+        }).then(() => {
+          this.router.navigate(['/'])
+      })
 
     }
+  }
+
+  modalOpen() {
+    this.modalService.open(LoginPupupTestComponent)
   }
 }

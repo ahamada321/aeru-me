@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { MyOriginAuthService } from '../service/auth.service'
+import { MyOriginAuthService } from '../service/auth.service';
 import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
-import { HttpErrorResponse } from '@angular/common/http'
+import { HttpErrorResponse } from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router'
 import { User } from 'src/app/user/service/user.model';
+import { LoginPupupTestComponent } from '../login-popup/login-popup.component';
 
 
 @Component({
@@ -24,9 +26,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   formData: User = new User()
   errors: any[] = []
 
-  constructor( private auth: MyOriginAuthService, 
-               private socialAuthService: AuthService,
-               private router: Router ) { }
+  constructor( 
+    private auth: MyOriginAuthService, 
+    private socialAuthService: AuthService,
+    private modalService: NgbModal,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     let body = document.getElementsByTagName('body')[0];
@@ -76,4 +81,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  modalOpen() {
+    this.modalService.open(LoginPupupTestComponent)
+}
 }

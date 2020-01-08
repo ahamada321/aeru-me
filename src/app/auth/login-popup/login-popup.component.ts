@@ -5,7 +5,7 @@ import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 
 
@@ -15,11 +15,8 @@ import { Location } from '@angular/common';
   templateUrl: './login-popup.component.html',
   styleUrls: ['./login-popup.component.scss']
 })
-export class LoginPupupComponent implements OnInit, OnDestroy {
-  @Input() title: string = "ログイン"
+export class LoginPupupTestComponent implements OnInit, OnDestroy {
   @Output() click = new EventEmitter()
-
-  closeResult: string;
   
   isFBloggedIn: boolean
   pressedFBButton: boolean = false
@@ -29,7 +26,8 @@ export class LoginPupupComponent implements OnInit, OnDestroy {
   errors: any[] = []
   notifyMessage: string = ''
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(public activeModal: NgbActiveModal,
+              private formBuilder: FormBuilder,
               private auth: MyOriginAuthService,
               private socialAuthService: AuthService,
               private router: Router,
@@ -53,34 +51,6 @@ export class LoginPupupComponent implements OnInit, OnDestroy {
   //   body.classList.remove('full-screen');
     body.classList.remove('login-popup');
   }
-
-  open(content, type?) {
-    if (type === 'sm') {
-        console.log('aici');
-        this.modalService.open(content, { size: 'sm' }).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    } else {
-        this.modalService.open(content).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-}
-
-private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-        return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-        return 'by clicking on a backdrop';
-    } else {
-        return  `with: ${reason}`;
-    }
-}
-
 
   signInWithFB() {
     if(!this.user) {
@@ -135,9 +105,9 @@ private getDismissReason(reason: any): string {
       (token) => {
         this.modalService.dismissAll()
 
-        let titlee = this.location.prepareExternalUrl(this.location.path());
-        titlee = titlee.slice( 1 );
-        if(titlee === ""){
+        let _locationExamples = this.location.path();
+        const isLocationOfRentals = ( _locationExamples.split('/')[1] === 'rentals' );
+        if(!isLocationOfRentals){
           this.router.navigate(['/rentals'])
         }
       },

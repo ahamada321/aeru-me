@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { RentalService } from '../../service/rental.service';
+import { Rental } from '../../service/rental.model';
 
 @Component({
   selector: 'app-rental-list-item',
@@ -8,7 +9,7 @@ import { RentalService } from '../../service/rental.service';
   styleUrls: ['./rental-list-item.component.scss']
 })
 export class RentalListItemComponent implements OnInit {
-  @Input() rental: any
+  @Input() rental: Rental
   isFavourite: boolean
 
   constructor(

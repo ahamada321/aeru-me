@@ -18,7 +18,6 @@ export class RentalListComponent implements OnInit, OnDestroy {
         navbar.classList.add('navbar-transparent');
 
     const rentalObservable = this.rentalService.getRentals()
-
     rentalObservable.subscribe(
       (rentals: Rental[]) => {
         this.rentals = rentals

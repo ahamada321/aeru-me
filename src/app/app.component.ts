@@ -116,16 +116,15 @@ export class AppComponent implements OnInit {
         }
         this.hasScrolled();
     }
+
     removeFooter() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        titlee = titlee.slice( 1 );
-        if(titlee === 'register' || titlee === 'contactus'){
+        let _location = this.location.path();
+        const titlee = _location.split('/')[1]
+        if(titlee === 'register' || titlee === 'login' || titlee === 'contactus'){
             return false;
         }
         else {
             return true;
         }
     }
-
-
 }

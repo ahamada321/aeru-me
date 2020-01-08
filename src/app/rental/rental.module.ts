@@ -37,12 +37,13 @@ import { PaymentModule } from '../shared/payment/payment.module';
 import { ReviewModule } from '../shared/review/review.module';
 // import { EditableModule } from '../shared/editable/editable.module';
 import { BookingSelecterModule } from '../shared/booking-selecter/booking-selecter.module';
+import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
+import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
+
 
 import { RentalService } from './service/rental.service';
 import { BookingService } from './rental-detail/rental-detail-booking/services/booking.service';
 import { BookingHelperService } from './rental-detail/rental-detail-booking/services/booking.helper.service';
-import { LoginPopupModule } from '../shared/login-popup/login-pupup.module';
-import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 
 
 const routes: Routes = [{
@@ -104,10 +105,10 @@ const routes: Routes = [{
           BarRatingModule,
           BookingSelecterModule,
           ImageUploadModule,
+          ImageUploadMyverModule,
           FullCalendarModule,
           JwBootstrapSwitchNg2Module,
           TagInputModule,
-          LoginPopupModule
       ],
       entryComponents: [
         RentalIncomingDialog,

@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Rental } from '../service/rental.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RentalService } from '../service/rental.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { Rental } from '../service/rental.model';
 import Swal from 'sweetalert2'
 
 
@@ -14,6 +13,7 @@ import Swal from 'sweetalert2'
 })
 export class RentalNewComponent implements OnInit, OnDestroy {
   newRental: Rental
+  isTouched: boolean = false
   rentalCategories = Rental.CATEGORIES
   errors: any[] = []
 
@@ -41,7 +41,6 @@ export class RentalNewComponent implements OnInit, OnDestroy {
 
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
-
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('add-product');
   }
@@ -49,26 +48,44 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
-    var body = document.getElementsByTagName('body')[0];
+    let body = document.getElementsByTagName('body')[0];
     body.classList.remove('add-product');
   }
 
-  createRental(rentalForm: NgForm) {
+  createUnpublishedRental() {
+    this.newRental.shared = false
     this.rentalService.createRental(this.newRental).subscribe(
       (rental: Rental) => {
-        this.showSwalSuccess()
+          this.showSwalSuccess()
       },
       (errorResponse: HttpErrorResponse) => {
-        this.errors = errorResponse.error.errors
+          this.errors = errorResponse.error.errors
       }
-  )}
+    )
+  }
+
+  createRental() {
+    if(!this.isTouched) {
+      this.errors.push({detail: "プロフィール写真の選択と切り抜きを先に押してください"})
+    } else {
+      this.newRental.shared = true
+      this.rentalService.createRental(this.newRental).subscribe(
+        (rental: Rental) => {
+          this.showSwalSuccess()
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.errors = errorResponse.error.errors
+        }
+      )
+    }
+  }
 
   private showSwalSuccess() {
     Swal.fire({
         // title: 'User infomation has been updated!',
         text: '商品を新規登録しました！',
         type: 'success',
-        confirmButtonClass: "btn btn-primary btn-round btn-lg",
+        confirmButtonClass: "btn btn-primary btn-lg",
         buttonsStyling: false,
         timer: 5000
     }).then(() => {
@@ -76,7 +93,8 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     })
 }
 
-  imageChange() {
-    this.newRental.image = "assets/img/lp/back-image.jpg"
+  imageChange(uploadedImage) {
+    this.isTouched = true
+    this.newRental.image = uploadedImage
   }
 }

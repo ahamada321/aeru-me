@@ -3,6 +3,8 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { AuthService } from "angularx-social-login";
 import { Router } from '@angular/router';
+import { LoginPupupTestComponent } from 'src/app/auth/login-popup/login-popup.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -17,6 +19,7 @@ export class NavbarComponent implements OnInit {
     constructor(
         public location: Location, 
         private element : ElementRef,
+        private modalService: NgbModal,
         public auth: MyOriginAuthService,
         private socialAuthService: AuthService,
         private router: Router,
@@ -28,6 +31,7 @@ export class NavbarComponent implements OnInit {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     }
+
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
@@ -35,16 +39,17 @@ export class NavbarComponent implements OnInit {
             toggleButton.classList.add('toggled');
         }, 500);
         html.classList.add('nav-open');
-
         this.sidebarVisible = true;
-    };
+    }
+
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
         // console.log(html);
         this.toggleButton.classList.remove('toggled');
-        this.sidebarVisible = false;
         html.classList.remove('nav-open');
-    };
+        this.sidebarVisible = false;
+    }
+
     sidebarToggle() {
         // const toggleButton = this.toggleButton;
         // const body = document.getElementsByTagName('body')[0];
@@ -53,7 +58,13 @@ export class NavbarComponent implements OnInit {
         } else {
             this.sidebarClose();
         }
-    };
+    }
+
+    modalOpen() {
+        this.sidebarClose()
+        this.modalService.open(LoginPupupTestComponent)
+    }
+
     isHome() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
 
@@ -64,6 +75,7 @@ export class NavbarComponent implements OnInit {
             return false;
         }
     }
+
     isDocumentation() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if( titlee === '/documentation' ) {

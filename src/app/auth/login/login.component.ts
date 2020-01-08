@@ -1,11 +1,10 @@
-import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyOriginAuthService } from '../service/auth.service';
 import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import Swal from 'sweetalert2'
 
 
 @Component({
@@ -31,7 +30,6 @@ export class LoginComponent implements OnInit, OnDestroy {
               private socialAuthService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
-              private zone: NgZone,
               private ref:ChangeDetectorRef ) { }
 
   ngOnInit() {
@@ -51,7 +49,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.notifyMessage = "アクティベーションが完了しました！ご登録いただいたEメールアドレスとパスワードでログインできます！"
         } else if(params['password'] == 'updated') {
           // this.notifyMessage = "パスワードが再設定されました！新しいパスワードでログインできます！"
-          this.showSwalSuccess()
         }
     })
   }
@@ -124,16 +121,5 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.errors = errorResponse.error.errors
       }
     )
-  }
-
-  showSwalSuccess() {
-    Swal.fire({
-        title: 'Password has been updated!',
-        text: '新しいパスワードでログインできます！',
-        type: 'success',
-        confirmButtonClass: "btn btn-primary btn-round btn-lg",
-        buttonsStyling: false,
-        timer: 5000
-    })
   }
 }

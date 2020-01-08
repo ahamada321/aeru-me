@@ -9,7 +9,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { LoginPopupModule } from './shared/login-popup/login-pupup.module';
 
 
 @NgModule({
@@ -25,7 +24,6 @@ import { LoginPopupModule } from './shared/login-popup/login-pupup.module';
     BrowserAnimationsModule,
     NgbModule, // Using in Navbar
     SweetAlert2Module.forRoot(),
-    LoginPopupModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,12 +2,15 @@ import { Booking } from '../rental-detail/rental-detail-booking/services/booking
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
 export class Rental {
+    _id: string;
+    createdAt: string;
+    lastLogin: string;
 
     static readonly CATEGORIES = ["カテゴリ1", "カテゴリ2"];
-    _id: string;
-    shared: Boolean;
-    lastLogin: string;
-    createdAt: string;
+    shared: boolean;
+    isApproved: boolean;
+    reasonOfBanned: string;
+
     lineworksURL: string;
     homepage: string;
     facebook: string;
@@ -17,7 +20,7 @@ export class Rental {
     
     rentalname: string;
     email: string;
-    age: number;
+    birthday: Date;
 
     province: string;
     nearStation: string;
@@ -30,12 +33,14 @@ export class Rental {
     course90Description: string;
 
     image: string;
-    garally1: string;
-    garally2: string;
-    garally3: string;
-    garally4: string;
-    garally5: string;
-
+    gallery1: string;
+    gallery2: string;
+    gallery3: string;
+    gallery4: string;
+    gallery5: string;
+    gallery6: string;
+    gallery7: string;
+    gallery8: string;
     video: string;
 
     businesshour_enabled_sun: boolean

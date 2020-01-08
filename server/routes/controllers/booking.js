@@ -116,7 +116,6 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
      sgMail.send(msg);
 }
 
-
 async function createPayment(booking, toUser, paymentToken = null) {
     const { user } = booking
     let customer
@@ -217,7 +216,6 @@ exports.createDateBlockBooking = function(req, res) {
                 return res.status(422).send({errors: normalizeErrors(err.errors)})
             }
 
-            foundRental.save()
             return res.json(result.id)
         })
     })
@@ -243,46 +241,45 @@ exports.createBooking = function(req, res) {
             return res.status(422).send({errors: [{title: "Invalid user!", detail: "Cannot make booking on your Rentals!"}]})
         }
 
-        if(isValidBooking(booking, foundRental.bookings)) {
-            booking.user = user
-            booking.rental = foundRental
-            const { err, payment } = await createPayment(booking, foundRental.user, paymentToken)
-
-            if(err) {
-                return res.status(422).send({errors: [{title: "Payment error!", detail: err}]})
-            }
-            if(payment){
-                booking.payment = payment
-                foundRental.bookings.push(booking)
-                
-                booking.save(function(err) {
-                    if(err) {
-                        return res.status(422).send({errors: normalizeErrors(err.errors)})
-                    }
-
-                    // Send notification to both of users.
-                    sendEmailTo(user.email, REQUEST_SEND, booking, req.hostname)
-                    sendEmailTo(foundRental.user.email, REQUEST_RECIEVED, booking, req.hostname)
-
-                    foundRental.save()
-                    User.updateOne({_id: user.id}, {$push: {bookings: booking}}, function(){})
-                    return res.json({startAt: booking.startAt, endAt: booking.endAt})
-                })
-            }
-        } else {
-           return res.status(422).send({errors: [{title: "Invalid booking!", detail: "Chosed dates are already taken!"}]})
+        if(!isValidBooking(booking, foundRental.bookings)) {
+            return res.status(422).send({errors: [{title: "Invalid booking!", detail: "Chosed dates are already taken!"}]})
         }
+
+        booking.user = user
+        booking.rental = foundRental
+        const { err, payment } = await createPayment(booking, foundRental.user, paymentToken)
+
+        if(err) {
+            return res.status(422).send({errors: [{title: "Payment error!", detail: err}]})
+        }
+
+        if(!payment) {
+            return res.status(422).send({errors: [{title: "Payment error!", detail: "No payment data!"}]})
+        }
+
+        booking.payment = payment
+        foundRental.bookings.push(booking) // This updates DB side.
+        foundRental.user.bookings.push(booking) // This updates DB side.
+
+        // Send notification to both of users.
+        sendEmailTo(user.email, REQUEST_SEND, booking, req.hostname)
+        sendEmailTo(foundRental.user.email, REQUEST_RECIEVED, booking, req.hostname)
+        
+        booking.save(function(err) {
+            if(err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
+            return res.json({startAt: booking.startAt, endAt: booking.endAt})
+        })
     })
 }
 
 exports.deleteBooking = function(req, res) { // Under development! Not working completely yet!
     const user = res.locals.user
+    const bookingId = req.params.id
 
-    Booking.findById(req.params.id) 
-    .populate('user')
-    .populate('rental')
-    .populate('payment', '_id')
-    // .populate('startAt')
+    Booking.findById(bookingId) 
+    .populate('user renta payment', '_id')
     .exec(function(err, foundBooking) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})

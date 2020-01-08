@@ -2,33 +2,51 @@
     "rentals": [
         {
             "shared": true,
-            "birthday": "1987/11/30",
-            "gender": "男性",
-            "postalcode": "160-0023",
-            "selectedPrefecture": [{
-                "id": 13,
-                "itemName": "東京都"
-            }],
-            "city": "新宿区",
-            "address": "新宿1-1-1",
-            "rentalname": "田中太郎"
+            "isApproved": true,
+            "businesshour_enabled_sun": true,
+            "businesshour_enabled_mon": true,
+            "businesshour_enabled_tue": true,
+            "businesshour_enabled_wed": true,
+            "businesshour_enabled_thu": true,
+            "businesshour_enabled_fri": true,
+            "businesshour_enabled_sat": true,
+            "favouritesFrom": [],
+            "bookings": [],
+            "image": "https://share-pf-s3-dev.s3.amazonaws.com/1578308178805",
+            "rentalname": "えなこ",
+            "cardDescription": "コスプレイヤー",
+            "province": "東京都",
+            "nearStation": "新宿",
+            "description": "こんにちはえなこです！",
+            "course60Description": "一緒に秋葉原デート",
+            "email": "enako@enako.com",
+            "hourlyPrice": 10000
         },
         {
             "shared": true,
-            "gender": "男性",
-            "postalcode": "160-0023",
-            "selectedPrefecture": [{
-                "id": 13,
-                "itemName": "東京都"
-            }],
-            "city": "新宿区",
-            "address": "新宿1-1-1",
-            "rentalname": "岡村太郎"
+            "isApproved": false,
+            "businesshour_enabled_sun": true,
+            "businesshour_enabled_mon": true,
+            "businesshour_enabled_tue": true,
+            "businesshour_enabled_wed": true,
+            "businesshour_enabled_thu": true,
+            "businesshour_enabled_fri": true,
+            "businesshour_enabled_sat": true,
+            "favouritesFrom": [],
+            "bookings": [],
+            "image": "https://share-pf-s3-dev.s3.amazonaws.com/1578310726400",
+            "rentalname": "伊織もえ",
+            "cardDescription": "コスプレイヤー",
+            "province": "東京都",
+            "nearStation": "渋谷",
+            "description": "こんにちは！伊織もえです！",
+            "course60Description": "渋谷でデート",
+            "email": "moe@moe.com",
+            "hourlyPrice": 10000
         }
     ],
     "users": [
         {
-            "teacherId": 1,
             "username": "Admin",
             "email": "a.hamada21@gmail.com",
             "password": "test1",
@@ -36,13 +54,10 @@
             "userRole": "Owner"
         },
         {
-            "teacherId": 3,
             "username": "テスト太郎",
             "email": "a.hamada.free@gmail.com",
             "password": "test1",
-            "isVerified": "true",
-            "gender": "男性"
-
+            "isVerified": "true"
         }
     ]
 }

@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { MyOriginAuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth.guard';
 import { TokenInterceptor } from './service/token.interceptor';
+import { LoginPupupTestComponent } from './login-popup/login-popup.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ export function provideConfig() {
   declarations: [
     AuthComponent,
     LoginComponent,
+    LoginPupupTestComponent,
     LoginResetpasswordComponent,
     LoginResetpasswordSentComponent,
     LoginNewPasswordComponent,
@@ -62,7 +64,10 @@ export function provideConfig() {
     CommonModule,
     SocialLoginModule
   ],
-  exports: [RouterModule],
+  exports: [RouterModule, LoginPupupTestComponent],
+
+  entryComponents: [LoginPupupTestComponent],
+
   providers: [
     MyOriginAuthService,
     AuthGuard,

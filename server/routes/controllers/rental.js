@@ -7,37 +7,25 @@ exports.getRentalById = function(req, res) {
     const rentalId = req.params.id
 
     Rental.findById(rentalId)
-            //.populate('user', 'username -_id')
             .populate('user') // Need to consider security in future.
-            //.populate('bookings', 'startAt endAt status -_id')
-            .populate('bookings', 'startAt endAt status _id') // Need to consider security in future.
             .exec(function(err, foundRental) {
                 if(err) {
-                    return res.status(422).send({
-                        errors: {
-                            title: "Rental error!",
-                            detail: "Could not find Rental!"
-                        }
-                    })
+                    return res.status(422).send({errors: {title: "Rental error!", detail: "Could not find Rental!"}})
                 }
                 return res.json(foundRental)
             })
 }
 
 exports.getRentals = function(req, res) {
-    // Rental.find({})
-    Rental.where({shared: true})
-          .select('-bookings')
-          .exec(function(err, foundRentals){
-            res.json(foundRentals)
-          })
-
+    Rental.find({shared: true}, function(err, foundRentals) {
+        return res.json(foundRentals)
+    })
 }
 
 exports.getOwnerRentals = function(req,res) {
     const user = res.locals.user
 
-    Rental.where({user})
+    Rental.find({user})
             .populate('bookings')
             .exec(function(err, foundRentals) {
                 if(err) {
@@ -50,21 +38,19 @@ exports.getOwnerRentals = function(req,res) {
 exports.getUserFavouriteRentals = function(req,res) {
     const user = res.locals.user
 
-    Rental.where({favouritesFrom: user})
-            // .populate('bookings')
-            .exec(function(err, foundRentals) {
-                if(err) {
-                    return res.status(422).send({errors: normalizeErrors(err.errors)})
-                }
-                return res.json(foundRentals)
-            })
+    Rental.find({favouritesFrom: user}, function(err, foundRentals) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(foundRentals)
+    })
 }
-
 
 exports.deleteRental = function(req, res) {
     const user = res.locals.user
+    const rentalId = req.params.id
 
-    Rental.findById(req.params.id) 
+    Rental.findById(rentalId) 
             .populate('user', '_id')
             .populate({
                 path: 'bookings',
@@ -101,98 +87,69 @@ exports.deleteRental = function(req, res) {
 }
 
 exports.updateRental = function(req, res) {
+    const rentalId = req.params.id
     const rentalData = req.body
     const user = res.locals.user
 
-    Rental.findById(req.params.id)
+    Rental.findById(rentalId)
             .populate('user', '_id')
             .exec(function(err, foundRental) {
-                if(err) {
-                    return res.status(422).send({errors: normalizeErrors(err.errors)})
-                }
-                if(foundRental.user.id !== user.id) {
-                    return res.status(422).send({errors: {title: "Invalid user!", detail: "You are not rental owner!"}})
-                }
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        if(foundRental.user.id !== user.id) {
+            return res.status(422).send({errors: {title: "Invalid user!", detail: "You are not rental owner!"}})
+        }
 
-                try {
-                    const updatedRental = Rental.updateOne({ _id: foundRental.id}, rentalData, () => {})
-                    return res.json(updatedRental)
-                } catch(err) {
-                    return res.json(err)
-                }
-            })
+        foundRental.updateOne(rentalData, function(err) {
+            if (err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
+            return res.json({"status": "updated"})
+        })
+    })
 }
 
 exports.toggleFavourite = function(req, res) {
     const user = res.locals.user
     const rentalId = req.params.id
 
-    Rental.findById(rentalId)
-            // .populate('favouritesFrom', '_id')
-            .exec(function(err, foundRental) {
-                if(err) {
-                    return res.status(422).send({errors: normalizeErrors(err.errors)})
-                }
-
-                // const index = foundRental.favouritesFrom.findIndex((x) => x.id === user.id)
-                const index = foundRental.favouritesFrom.indexOf(user.id)
-
-                if(index >= 0) {
-                    foundRental.favouritesFrom.splice(index, 1) // Dlete user from array.
-                } else {
-                    foundRental.favouritesFrom.push(user)
-                }
-
-                try {
-                    Rental.updateOne({ _id: foundRental.id}, foundRental, () => {})
-                    return res.json(index)
-                } catch(err) {
-                    return res.json(err)
-                }
-            })
-}
-
-exports.createRental = function(req, res) {
-    const { 
-        rentalname, 
-        selectedCategory,
-        age, 
-        image, 
-        video, 
-        province, 
-        nearStation,
-        hourlyPrice, 
-        cardDescription,
-        description,         
-        course60Description,
-        shared 
-    } = req.body
-    const user = res.locals.user
-
-    //referring from ../models/rental.js
-    const rental = new Rental({
-        rentalname,
-        selectedCategory,
-        age,
-        image,
-        video,
-        province,
-        nearStation,
-        hourlyPrice,
-        cardDescription,
-        description,
-        course60Description,
-        shared
-    })
-
-    rental.user = user
-
-    Rental.create(rental, function(err, newRental) {
+    Rental.findById(rentalId, function(err, foundRental) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
 
-        User.updateOne({ _id: user.id}, {$push: { rentals: newRental}}, function(){})
-        return res.json(newRental)
+        const index = foundRental.favouritesFrom.indexOf(user.id)
+        if(index >= 0) {
+            foundRental.favouritesFrom.splice(index, 1) // Dlete user from array.
+        } else {
+            foundRental.favouritesFrom.push(user)
+        }
+
+        return res.json({"status": "updated"})
     })
+}
+
+exports.createRental = function(req, res) {
+    const rental = new Rental(req.body) // if calling Model constractor, data will be automatically saved in db.
+          rental.user = res.locals.user
+
+    User.findByIdAndUpdate(rental.user.id, {$push: {rentals: rental}}, function(err, result){
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(result)
+    })
+
+    // Rental.create(rental, function(err, newRental) {
+    //     if(err) {
+    //         return res.status(422).send({errors: normalizeErrors(err.errors)})
+    //     }
+    //     User.updateOne({_id: rental.user.id}, {$push: {rentals: newRental}}, function(err, result){
+    //         if(err) {
+    //             return res.status(422).send({errors: normalizeErrors(err.errors)})
+    //         }
+    //         return res.json(result)
+    //     })
+    // })
 }

@@ -1,5 +1,4 @@
-<section id="rentalListing">
-  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/lp/back-image.jpg');">
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/lp/back-image.jpg');">
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
@@ -37,48 +36,19 @@
           </div>
         </div> -->
     </div>
+  </div>
+</div>
+<div class="main">
+  <div class="section text-center">
+    <div class="container">
+        <div class="row">
+          <ng-container *ngFor="let rental of rentals">
+            <div class="col-md-3 col-6">
+              <app-rental-list-item [rental]="rental"></app-rental-list-item>
+            </div>
+          </ng-container>
+        </div>
     </div>
   </div>
-  <div class="main">
-    <div class="section text-center">
-      <div class="container">
-        <div class="tim-title">
-            <h2>New</h2>
-            <div class="space-top"></div>
-        </div>
-        <div class="row">
-          <ng-container *ngFor="let rental of rentals">
-            <div *ngIf="rental.selectedCategory && (rental.selectedCategory[0].id === 1)" class='col-xl-3 col-md-4 col-6'>
-              <app-rental-list-item [rental]="rental"></app-rental-list-item>
-            </div>
-          </ng-container>
-        </div>
+</div>
 
-        <div class="tim-title">
-            <h2>Ladies</h2>
-            <div class="space-top"></div>
-        </div>
-        <div class="row">
-          <ng-container *ngFor="let rental of rentals">
-            <div *ngIf="rental.selectedCategory && (rental.selectedCategory[0].id === 2)" class='col-xl-3 col-md-4 col-6'>
-              <app-rental-list-item [rental]="rental"></app-rental-list-item>
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="tim-title">
-            <h2>Mens</h2>
-            <div class="space-top"></div>
-        </div>
-        <div class="row">
-          <ng-container *ngFor="let rental of rentals">
-            <div *ngIf="rental.selectedCategory && (rental.selectedCategory[0].id === 3)" class='col-xl-3 col-md-4 col-6'>
-              <app-rental-list-item [rental]="rental"></app-rental-list-item>
-            </div>
-          </ng-container>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RentalService } from '../service/rental.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Rental } from '../service/rental.model';
 import Swal from 'sweetalert2'
 
@@ -13,9 +13,8 @@ import Swal from 'sweetalert2'
 })
 export class RentalEditComponent implements OnInit {
     rental: Rental
-    state_info = true;
-    state_info1 = true;
-    third_switch = true;
+    isTouched: boolean
+    errors: any[] = []
 
     data : Date = new Date();
 
@@ -46,26 +45,48 @@ export class RentalEditComponent implements OnInit {
 
       let navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.add('navbar-transparent');
+      let body = document.getElementsByTagName('body')[0];
+      body.classList.add('add-product');
     }
     ngOnDestroy(){
       let navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.remove('navbar-transparent');
+      let body = document.getElementsByTagName('body')[0];
+      body.classList.remove('add-product');
     }
 
     getRental(rentalId: string) {
       this.rentalService.getRentalById(rentalId).subscribe(
         (rental: Rental) => {
           this.rental = rental
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.errors = errorResponse.error.errors
         }
       )
     }
 
-    updateRental(rentalForm: NgForm) {
+    upnpublishRental() {
+      this.rental.shared = false
       this.rentalService.updateRental(this.rental._id, this.rental).subscribe(
         (updatedRental) => {
           this.showSwalSuccess()
         },
-        (err) => { }
+        (errorResponse: HttpErrorResponse) => {
+          this.errors = errorResponse.error.errors
+        }
+      )
+    }
+
+    updateRental() {
+      this.rental.shared = true
+      this.rentalService.updateRental(this.rental._id, this.rental).subscribe(
+        (updatedRental) => {
+          this.showSwalSuccess()
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.errors = errorResponse.error.errors
+        }
       )
     }
 
@@ -74,7 +95,7 @@ export class RentalEditComponent implements OnInit {
             // title: 'User infomation has been updated!',
             text: '商品情報を更新しました！',
             type: 'success',
-            confirmButtonClass: "btn btn-primary btn-round btn-lg",
+            confirmButtonClass: "btn btn-primary btn-lg",
             buttonsStyling: false,
             timer: 5000
         }).then(() => {

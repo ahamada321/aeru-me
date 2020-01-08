@@ -24,9 +24,9 @@ import { Page500Component } from './static/page500/page500.component';
 
 
 const routes: Routes = [
-  { path: '',         component: LandingComponent },
   { path: 'aboutus',  component: AboutusComponent },
   { path: 'contactus',   component: ContactusComponent },
+
   // // { path: 'presentation', component: PresentationComponent },
   // { path: 'terms',        component: TermsOfServiceComponent },
   // { path: 'privacy',      component: PrivacyPolicyComponent },
@@ -38,6 +38,7 @@ const routes: Routes = [
   // { path: 'usersvoice',  component: UsersVoiceComponent },
   // { path: 'results',  component: ResultsComponent },
 
+  { path: '',         component: LandingComponent},
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ]
@@ -46,7 +47,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     CommonModule,
-    
     FormsModule,
     AngularMultiSelectModule,
     NgbModule, // Using in LandingComponent

@@ -3,20 +3,31 @@ const Schema = mongoose.Schema;
 
 
 const rentalSchema = new Schema({
-    lastLogin: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now },
-    shared: { type: Boolean, default: true },
+    lastLogin: { type: Date, default: Date.now },
+    
+    shared: { type: Boolean, default: false },
+    isApproved: { type: Boolean, default: false },
+    reasonOfBanned: String,
 
     lineworksURL: String,
-    email: String,
+    email: {
+        type: String,
+        max: [32, '32文字以下で入力してください'],
+        min: [4, '4文字以上で入力してください'],
+        lowercase: true,
+        required: 'Emailは必須です',
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
+    },
     rating: Number,
 
-    province: { type: String, required: true },
-    nearStation: { type: String, required: true },
-    hourlyPrice: Number,
+    rentalname: { type: String, required: true, max: [128, '商品名は最大128文字までです']},
+    province: { type: String, required: '都道府県を設定してください' },
+    nearStation: { type: String, required: '活動最寄駅を入力してください' },
+    hourlyPrice: { type: Number, required: '時給を設定してください' },
 
     selectedCategory: Object,
-    rentalname: { type: String, required: true, max: [128, 'Too long, max is 128 characters.']},
+    birthday: Date,
     cardDescription: { type: String, required: true },
     description: { type: String, required: true },
     course60img: String,
@@ -24,14 +35,19 @@ const rentalSchema = new Schema({
     course60Description: { type: String, required: true },
     course90Description: String,
 
-    image: { type: String, required: true },
-    garally1: String,
-    garally2: String,
-    garally3: String,
-    garally4: String,
-    garally5: String,
+    image: { type: String, required: 'プロフィール写真を設定してください' },
+    gallery1: String,
+    gallery2: String,
+    gallery3: String,
+    gallery4: String,
+    gallery5: String,
+    gallery6: String,
+    gallery7: String,
+    gallery8: String,
     youtubeLink: String,
 
+
+    // Wanna be more simlpify menu below
     businesshour_enabled_sun: { type: Boolean, default: true },
     businesshour_startTime_sun: { hour: {type: Number, default: 10}, minute: {type: Number, default: 0}, second: {type: Number, default: 0} },
     businesshour_endTime_sun: { hour: {type: Number, default: 19}, minute: {type: Number, default: 0}, second: {type: Number, default: 0} },

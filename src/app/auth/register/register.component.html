@@ -87,7 +87,7 @@
                                 <button [disabled]="!registerForm.valid" type="submit" class="btn btn-block btn-round btn-primary">メンバー登録する</button>
                             </form>
                             <div class="text-center">
-                                <a routerLink="/login" class="btn btn-link btn-primary">ログインページはこちら</a>
+                                <button class="btn btn-link btn-primary" (click)="modalOpen()">ログインページはこちら</button>
                             </div>
                         </div>
                     </div>

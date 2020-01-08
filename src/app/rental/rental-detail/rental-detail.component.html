@@ -6,7 +6,7 @@
                 <div class="space-110"></div>
                 <div class="row">
                     <div class="col-md-8 text-left motto">
-                        <h1 class="title">{{ rental.rentalname }} Trainer</h1>
+                        <h1 class="title">{{ rental.rentalname }}</h1>
                         <h5>{{ rental.cardDescription }}</h5>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="main">
+    <div class="wrapper">
         <div class="section text-center">
             <div class="container">
                 <div class="row">
@@ -23,72 +23,86 @@
                         <h5 class="description">{{ rental.description }}</h5>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6  ml-auto mr-auto">
+                        <div class="video-responsive">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/mINgxUgOl28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!--     *********     Detail of lessons      *********      -->
-        <div class="blog-1" id="detail-of-lessons">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 ml-auto mr-auto">
-                        <h2 class="title">レッスンメニュー</h2>
-                        <br />
-                        <div class="card card-plain card-blog">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="video-responsive">
-                                        <iframe [src]="safeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="section" id="detail-of-lessons">
+            <div class="blog-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 ml-auto mr-auto">
+                            <h2 class="title text-center">コースメニュー</h2>
+                            <br />
+                            <div class="card card-plain card-blog">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="video-responsive">
+                                            <!-- <iframe [src]="safeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/mINgxUgOl28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
+                                        <!-- <div *ngIf="!rental.video" class="card-image">
+                                            <img class="img" src="{{ rental.course60img }}" />
+                                        </div> -->
                                     </div>
-                                    <!-- <div *ngIf="!rental.video" class="card-image">
-                                        <img class="img" src="{{ rental.course60img }}" />
-                                    </div> -->
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h6 class="card-category text-info">Entry course</h6>
-                                        <h3 class="card-title">
-                                            60min Course
-                                        </h3>
-                                        <p class="card-description">
-                                            {{ rental.course60Description }}
-                                        </p>
-                                        <a *ngIf="!isYourRental()" [routerLink]="['booking', {selectedCourse: '1'}]" class="btn btn-primary">このレッスンを選択</a>
+                                    <div class="col-md-6">
+                                        <div class="card-body">
+                                            <h6 class="card-category text-primary">Entry course</h6>
+                                            <h3 class="card-title">
+                                                60min Course
+                                            </h3>
+                                            <p class="card-description">
+                                                {{ rental.course60Description }}
+                                            </p>
+                                            <a *ngIf="!isYourRental()" [routerLink]="['booking', {selectedCourse: '1'}]" class="btn btn-primary">このレッスンを選択</a>
 
-                                        <!-- <p class="author">
-                                            by <a href="#pablo"><b>Tim Merel</b></a>, 11 hours ago
-                                        </p> -->
-                                    </div>
+                                            <!-- <p class="author">
+                                                by <a href="#pablo"><b>Tim Merel</b></a>, 11 hours ago
+                                            </p> -->
+                                        </div>
 
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-plain card-blog">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="card-body">
-                                        <h6 class="card-category text-danger">
-                                            <i class="fa fa-free-code-camp" aria-hidden="true"></i> Trending
-                                        </h6>
-                                        <h3 class="card-title">
-                                            90min Course
-                                        </h3>
-                                        <p class="card-description">
-                                            {{ rental.course90Description }}
-                                        </p>
-                                        <a *ngIf="!isYourRental()" [routerLink]="['booking', {selectedCourse: '2'}]" class="btn btn-primary">このレッスンを選択</a>
-
-                                        <!-- <p class="author">
-                                            by <a href="#pablo"><b>John Biggs</b></a>, 3 seconds ago
-                                        </p> -->
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="card-image">
-                                        <img class="img" src="{{ rental.course90img }}" />
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="card card-plain card-blog">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="video-responsive">
+                                            <!-- <iframe [src]="safeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/mINgxUgOl28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
+                                        <!-- <div *ngIf="!rental.video" class="card-image">
+                                            <img class="img" src="{{ rental.course60img }}" />
+                                        </div> -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-body">
+                                            <h6 class="card-category text-primary">Advanced course</h6>
+                                            <h3 class="card-title">
+                                                90min Course
+                                            </h3>
+                                            <p class="card-description">
+                                                {{ rental.course90Description }}
+                                            </p>
+                                            <a *ngIf="!isYourRental()" [routerLink]="['booking', {selectedCourse: '2'}]" class="btn btn-primary">このレッスンを選択</a>
+
+                                            <!-- <p class="author">
+                                                by <a href="#pablo"><b>Tim Merel</b></a>, 11 hours ago
+                                            </p> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        
                         </div>
                     </div>
                 </div>
@@ -144,18 +158,18 @@
         </div>
 
         <!--     *********     Photo Gallery      *********      -->
-        <div class="blog-5">
+        <!-- <div class="blog-5">
             <div class="container">
                 <h2 class="title text-center">Photo Gallery</h2>
                 <div class="row">
                     <div class="col-7">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.garally1 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery1 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.garally2 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery2 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>
@@ -163,42 +177,80 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.garally3 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery3 + ')' }">
                             <div class="card-body">
 
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-5">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.garally4 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery4 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-7">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.garally5 + ')' }">
+                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery5 + ')' }">
                             <div class="card-body">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+        <div class="section section-sections">
+            <div class="container">
+              <div class="col-md-8 ml-auto mr-auto">
+                <div class="section-description text-center">
+                  <h2 class="title">Photo Gallery</h2>
+                  <!-- <h5 class="description"> Build pages in no time using pre-made sections! We have created multiple sections for you to put together and customise into pixel perfect example pages. From headers to footers, you will be able to choose the best combination for your project.</h5> -->
+                  <br/>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="section-cols">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <img src="{{rental.gallery1}}" alt="" />
+                    </div>
+                    <div class="col-md-4">
+                      <img src="{{rental.gallery2}}" alt="" />
+                    </div>
+                    <div class="col-md-4">
+                      <img src="{{rental.gallery3}}" alt="" />
+                    </div>
+                  </div>
+          
+                  <div class="row">
+                    <div class="col-md-4">
+                      <img src="{{rental.gallery4}}" alt="" />
+                    </div>
+                    <div class="col-md-4">
+                      <img src="{{rental.gallery5}}" alt="" />
+                    </div>
+                    <div class="col-md-4">
+                      <img src="{{rental.gallery6}}" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         <!--     *********     Call to action      *********      -->
         <div class="section text-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">Let's book !</h2>
-                        <!-- <p class="description">スケジュールと場所を確認して、問題なければ予約リクエストページへ進みましょう。待ち合わせの詳細場所は、予約完了後にLINEで直接トレーナーと連絡しながら決められます。</p> -->
-                        <br>
-                        <button (click)="smoothScroll('detail-of-lessons')" class="btn btn-primary btn-round btn-lg">レッスンメニュー</button>
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h2 class="title">会えるエリア</h2>
                     </div>
                 </div>
             </div>
         </div>
+        <app-googlemaps [location]="rental.province + ', ' + rental.nearStation"></app-googlemaps>
     </div>
-    <app-googlemaps [location]="rental.province + ', ' + rental.nearStation"></app-googlemaps>
     <app-bottom-navbar [rental]="rental"></app-bottom-navbar>
 </section>

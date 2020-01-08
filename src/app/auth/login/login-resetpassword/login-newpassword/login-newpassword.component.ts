@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { MyOriginAuthService } from '../../../service/auth.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { Router, ActivatedRoute } from '@angular/router'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { LoginPupupTestComponent } from 'src/app/auth/login-popup/login-popup.component'
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-login-newpassword',
@@ -21,11 +25,16 @@ export class LoginNewPasswordComponent implements OnInit, OnDestroy {
 
   constructor(private auth: MyOriginAuthService, 
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private modalService: NgbModal
+              ) { }
 
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
+    let body = document.getElementsByTagName('body')[0];
+        body.classList.add('full-screen');
+        body.classList.add('register-page');
 
     this.route.params.subscribe(
       (params) => {
@@ -35,17 +44,36 @@ export class LoginNewPasswordComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
+        navbar.classList.remove('navbar-transparent');
+    let body = document.getElementsByTagName('body')[0];
+        body.classList.remove('full-screen');
+        body.classList.remove('register-page');
   }
 
   setNewPassword() {
-    this.auth.setNewPassword(this.formData, this.verifyToken).subscribe(
-      () => {
-        this.router.navigate(['/login', {password: 'updated'}])
-      },
-      (errorResponse: HttpErrorResponse) => {
-        this.errors = errorResponse.error.errors
-      }
-    )
+      this.auth.setNewPassword(this.formData, this.verifyToken).subscribe(
+          () => {
+              this.showSwalSuccess()
+          },
+          (errorResponse: HttpErrorResponse) => {
+              this.errors = errorResponse.error.errors
+          }
+      )
+  }
+
+  showSwalSuccess() {
+      Swal.fire({
+          title: 'パスワード更新完了',
+          text: '新しいパスワードでログインできます！',
+          type: 'success',
+          confirmButtonClass: "btn btn-primary btn-lg",
+          buttonsStyling: false
+      }).then(() => {
+          this.modalOpen()
+      })
+  }
+
+  modalOpen() {
+      this.modalService.open(LoginPupupTestComponent)
   }
 }

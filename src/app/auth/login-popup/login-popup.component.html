@@ -1,25 +1,10 @@
-<button 
-    *ngIf="title === 'ログイン'"
-    type="button" 
-    class="btn btn-primary btn-round" 
-    (click)="open(Login)">
-    <i class="nc-icon nc-lock-circle-open"></i> ログイン
-</button>
-<button 
-    *ngIf="title === 'ログインして予約'"
-    type="button" 
-    class="btn btn-primary" 
-    (click)="open(Login)">
-    <i class="nc-icon nc-lock-circle-open"></i> ログインして予約
-</button>
-<ng-template #Login let-c="close" let-d="dismiss">
+<!-- <ng-template #Login let-c="close" let-d="dismiss"> -->
     <div class="modal-header modal-register no-border-header text-center">
-        <button type="button" class="close" (click)="d('Cross click')">
+        <button type="button" class="close" (click)="activeModal.close('Close click')">
             <span aria-hidden="true">&times;</span>
         </button>
         <h6 class="text-muted">Welcome</h6>
-        <h3 class="modal-title text-center">ログインする</h3>
-        <p>SNSでログイン</p>
+        <h3 class="modal-title text-center">SNSでログイン</h3>
     </div>
     <div class="modal-body">
         <div class="social">
@@ -63,6 +48,9 @@
         </form>
     </div>
     <div class="modal-register modal-footer no-border-footer">
-        <a routerLink="/register" class="btn btn-link btn-primary">パスワードをお忘れですか？</a>
+
+        <!-- Wanna use routerLink here.. -->
+        <a [routerLink]="['/login/reset']" (click)="activeModal.close('Close click')" class="btn btn-link btn-primary">パスワードをお忘れですか？</a>
+        <a [routerLink]="['/register']" (click)="activeModal.close('Close click')" class="btn btn-link btn-primary">新規会員登録はこちら</a>
     </div>
-</ng-template>
+<!-- </ng-template> -->
