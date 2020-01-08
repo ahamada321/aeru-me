@@ -66,7 +66,7 @@ export class RentalEditComponent implements OnInit {
       )
     }
 
-    upnpublishRental() {
+    unpublishRental() {
       this.rental.shared = false
       this.rentalService.updateRental(this.rental._id, this.rental).subscribe(
         (updatedRental) => {
