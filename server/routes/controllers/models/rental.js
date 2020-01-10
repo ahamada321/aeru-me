@@ -9,6 +9,7 @@ const rentalSchema = new Schema({
     shared: { type: Boolean, default: false },
     isApproved: { type: Boolean, default: false },
     reasonOfBanned: String,
+    rating: Number,
 
     lineworksURL: String,
     email: {
@@ -19,21 +20,23 @@ const rentalSchema = new Schema({
         required: 'Emailは必須です',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
     },
-    rating: Number,
 
+    birthday: Date,
     rentalname: { type: String, required: true, max: [128, '商品名は最大128文字までです']},
     province: { type: String, required: '都道府県を設定してください' },
     nearStation: { type: String, required: '活動最寄駅を入力してください' },
     hourlyPrice: { type: Number, required: '時給を設定してください' },
 
     selectedCategory: Object,
-    birthday: Date,
     cardDescription: { type: String, required: true },
     description: { type: String, required: true },
-    course60img: String,
-    course90img: String,
-    course60Description: { type: String, required: true },
-    course90Description: String,
+
+    course1Img: String,
+    course1Title: { type: String, required: true },
+    course1Description: { type: String, required: true },
+    course2Title: String,
+    course2Img: String,
+    course2Description: String,
 
     image: { type: String, required: 'プロフィール写真を設定してください' },
     gallery1: String,

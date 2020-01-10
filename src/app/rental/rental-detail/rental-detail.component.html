@@ -24,10 +24,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6  ml-auto mr-auto">
+                    <div class="col-md-5  ml-auto mr-auto">
                         <div class="video-responsive">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/mINgxUgOl28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/3qwhFjwznt0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                        </div>
                     </div>
                 </div>
             </div>
@@ -39,70 +38,69 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
-                            <h2 class="title text-center">コースメニュー</h2>
+                            <h2 class="title text-center">コース内容</h2>
                             <br />
                             <div class="card card-plain card-blog">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="video-responsive">
-                                            <!-- <iframe [src]="safeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/mINgxUgOl28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                        </div>
-                                        <!-- <div *ngIf="!rental.video" class="card-image">
-                                            <img class="img" src="{{ rental.course60img }}" />
-                                        </div> -->
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8 col-11 ml-auto mr-auto">
                                         <div class="card-body">
                                             <h6 class="card-category text-primary">Entry course</h6>
                                             <h3 class="card-title">
-                                                60min Course
+                                                {{ rental.course1Title }}
                                             </h3>
                                             <p class="card-description">
-                                                {{ rental.course60Description }}
+                                                {{ rental.course1Description }}
                                             </p>
-                                            <a *ngIf="!isYourRental()" [routerLink]="['booking', {selectedCourse: '1'}]" class="btn btn-primary">このレッスンを選択</a>
-
                                             <!-- <p class="author">
                                                 by <a href="#pablo"><b>Tim Merel</b></a>, 11 hours ago
                                             </p> -->
                                         </div>
-
+                                    </div>
+                                    <div class="col-md-4 col-10 ml-auto mr-auto">
+                                        <button class="card" data-background="color" data-color="green" (click)="onCourseSelected(1)">
+                                            <div class="card-body text-center">
+                                                <h6 class="card-category">このコースを選ぶ</h6>
+                                                <h2 class="card-title">60min</h2>
+                                                <p class="card-description">60minのパーソナルトレーニングが受けられるチケットです.</p>
+                                                <div class="card-footer">
+                                                    <div class="btn btn-neutral btn-round">{{rental.hourlyPrice}}円 / 60分</div>
+                                                </div>
+                                            </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="card card-plain card-blog">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="video-responsive">
-                                            <!-- <iframe [src]="safeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/mINgxUgOl28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                        </div>
-                                        <!-- <div *ngIf="!rental.video" class="card-image">
-                                            <img class="img" src="{{ rental.course60img }}" />
-                                        </div> -->
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8 col-11 ml-auto mr-auto">
                                         <div class="card-body">
-                                            <h6 class="card-category text-primary">Advanced course</h6>
+                                            <h6 class="card-category text-primary">Recommended course</h6>
                                             <h3 class="card-title">
-                                                90min Course
+                                                {{ rental.course2Title }}
                                             </h3>
                                             <p class="card-description">
-                                                {{ rental.course90Description }}
+                                                {{ rental.course2Description }}
                                             </p>
-                                            <a *ngIf="!isYourRental()" [routerLink]="['booking', {selectedCourse: '2'}]" class="btn btn-primary">このレッスンを選択</a>
-
                                             <!-- <p class="author">
                                                 by <a href="#pablo"><b>Tim Merel</b></a>, 11 hours ago
                                             </p> -->
                                         </div>
-
+                                    </div>
+                                    <div class="col-md-4 col-10 ml-auto mr-auto">
+                                        <button class="card" data-background="color" data-color="blue" (click)="onCourseSelected(2)">
+                                            <div class="card-body text-center">
+                                                <h6 class="card-category">このコースを選ぶ</h6>
+                                                <h2 class="card-title">90min</h2>
+                                                <p class="card-description">90minのパーソナルトレーニングが受けられるチケットです.</p>
+                                                <div class="card-footer">
+                                                    <div class="btn btn-neutral btn-round">{{rental.hourlyPrice * 1.5}}円 / 90分</div>
+                                                </div>
+                                            </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        
                         </div>
                     </div>
                 </div>
@@ -112,7 +110,7 @@
         <!--     *********     Reviews & Comments     *********      -->
         <div class="section section-dark text-center">
             <div class="container">
-                <h2 class="title">Reviews</h2>
+                <h2 class="title">受けてみた感想</h2>
                 <div class="row">
                     <ng-container *ngIf="reviews && reviews.length>0">
                         <div class="col-md-4" *ngFor="let review of reviews">
@@ -145,7 +143,7 @@
                             </div>
                             <div class="card-block">
                                 <div class="author">
-                                    <h4 class="card-title">No reviews yet!</h4>
+                                    <h4 class="card-title">まだ感想はありません！</h4>
                                     <h6 class="card-category"></h6>
                                 </div>
                             </div>
@@ -158,47 +156,6 @@
         </div>
 
         <!--     *********     Photo Gallery      *********      -->
-        <!-- <div class="blog-5">
-            <div class="container">
-                <h2 class="title text-center">Photo Gallery</h2>
-                <div class="row">
-                    <div class="col-7">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery1 + ')' }">
-                            <div class="card-body">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery2 + ')' }">
-                            <div class="card-body">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery3 + ')' }">
-                            <div class="card-body">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-5">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery4 + ')' }">
-                            <div class="card-body">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-7">
-                        <div class="card" data-background="image" [ngStyle]="{'background-image' : 'url(' + rental.gallery5 + ')' }">
-                            <div class="card-body">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <div class="section section-sections">
             <div class="container">
               <div class="col-md-8 ml-auto mr-auto">
@@ -213,25 +170,25 @@
               <div class="section-cols">
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="rental.gallery1">
                       <img src="{{rental.gallery1}}" alt="" />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="rental.gallery2">
                       <img src="{{rental.gallery2}}" alt="" />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="rental.gallery3">
                       <img src="{{rental.gallery3}}" alt="" />
                     </div>
                   </div>
           
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="rental.gallery4">
                       <img src="{{rental.gallery4}}" alt="" />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="rental.gallery5">
                       <img src="{{rental.gallery5}}" alt="" />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="rental.gallery6">
                       <img src="{{rental.gallery6}}" alt="" />
                     </div>
                   </div>

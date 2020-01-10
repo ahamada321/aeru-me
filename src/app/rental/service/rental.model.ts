@@ -27,10 +27,13 @@ export class Rental {
     hourlyPrice: number;
     cardDescription
     description: string;
-    course60img: string;
-    course90img: string;
-    course60Description: string;
-    course90Description: string;
+    
+    course1Img: string;
+    course1Title: string;
+    course1Description: string;
+    course2Title: string;
+    course2Img: string;
+    course2Description: string;
 
     image: string;
     gallery1: string;

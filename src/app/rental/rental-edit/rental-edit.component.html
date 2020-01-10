@@ -86,57 +86,127 @@
                         class="form-control textarea-limited" 
                         placeholder="紹介文を入力できます." 
                         rows="4" 
-                        maxlength="120"
+                        maxlength="200"
                         required
                         ></textarea>
                     <h5><small><span id="textarea-limited-message" class="pull-right">
                       <div *ngIf="!rental.description">
-                          残文字数 120
+                          残文字数 200
                       </div>
                       <div *ngIf="rental.description">
-                          残文字数 {{ 120 - rental.description.length }}
+                          残文字数 {{ 200 - rental.description.length }}
                       </div>
                     </span></small></h5>
                 </div>
+
+                <div class="form-group">
+                  <h6>提供コース１タイトル <span class="icon-danger">*</span></h6>
+                  <textarea 
+                      class="form-control textarea-limited" 
+                      placeholder="提供するコース１タイトルを決めましょう" 
+                      [(ngModel)]="rental.course1Title" 
+                      name="course1Title"
+                      rows="3" 
+                      maxlength="150" 
+                      required></textarea>
+                  <h5><small><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!rental.course1Title">
+                      残文字数 150
+                    </div>
+                    <div *ngIf="rental.course1Title">
+                      残文字数 {{ 150 - rental.course1Title.length }}
+                    </div>
+                  </span></small></h5>
+              </div>
     
                 <div class="form-group">
-                    <h6>提供レッスン１ <span class="icon-danger">*</span></h6>
+                    <h6>提供コース１説明文 <span class="icon-danger">*</span></h6>
                     <textarea 
                         class="form-control textarea-limited" 
                         placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう" 
-                        [(ngModel)]="rental.course60Description" 
-                        name="course60Description"
+                        [(ngModel)]="rental.course1Description" 
+                        name="course1Description"
                         rows="3" 
                         maxlength="150" 
                         required></textarea>
                     <h5><small><span id="textarea-limited-message" class="pull-right">
-                      <div *ngIf="!rental.course60Description">
+                      <div *ngIf="!rental.course1Description">
                         残文字数 150
                       </div>
-                      <div *ngIf="rental.course60Description">
-                        残文字数 {{ 150 - rental.course60Description.length }}
+                      <div *ngIf="rental.course1Description">
+                        残文字数 {{ 150 - rental.course1Description.length }}
                       </div>
                     </span></small></h5>
                 </div>
+
+                <div class="form-group">
+                  <h6>コース１画像を選択</h6>
+                  <div class="row">
+                      <div class="col-md-10 ml-auto mr-auto">
+                          <!-- <app-image-upload></app-image-upload> -->
+                          <app-image-upload-myver 
+                              [inputLabel]="'コース１画像を選択'"
+                              [inputImage]="rental.course1Img"
+                              (imageUploaded)="rental.course1Img=$event;isTouched=true"
+                              >
+                          </app-image-upload-myver>
+                      </div>
+                  </div>
+                </div>
     
                 <div class="form-group">
-                  <h6>提供レッスン２（任意）</h6>
+                  <h6>提供コース２タイトル（任意）</h6>
                   <textarea 
                       class="form-control textarea-limited" 
-                      placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう" 
-                      [(ngModel)]="rental.course90Description" 
-                      name="course90Description"
+                      placeholder="提供するコース２タイトルを決めましょう" 
+                      [(ngModel)]="rental.course2Title" 
+                      name="course2Title"
                       rows="3" 
                       maxlength="150" ></textarea>
                   <h5><small><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!rental.course90Description">
+                    <div *ngIf="!rental.course2Title">
                       残文字数 150
                     </div>
-                    <div *ngIf="rental.course90Description">
-                      残文字数 {{ 150 - rental.course90Description.length }}
+                    <div *ngIf="rental.course2Title">
+                      残文字数 {{ 150 - rental.course2Title.length }}
                     </div>
                   </span></small></h5>
                 </div>
+
+                <div class="form-group">
+                  <h6>提供コース２説明文（任意）</h6>
+                  <textarea 
+                      class="form-control textarea-limited" 
+                      placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう" 
+                      [(ngModel)]="rental.course2Description" 
+                      name="course2Description"
+                      rows="3" 
+                      maxlength="150" ></textarea>
+                  <h5><small><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!rental.course2Description">
+                      残文字数 150
+                    </div>
+                    <div *ngIf="rental.course2Description">
+                      残文字数 {{ 150 - rental.course2Description.length }}
+                    </div>
+                  </span></small></h5>
+                </div>
+
+                <div class="form-group">
+                  <h6>コース２画像を選択</h6>
+                  <div class="row">
+                      <div class="col-md-10 ml-auto mr-auto">
+                          <!-- <app-image-upload></app-image-upload> -->
+                          <app-image-upload-myver 
+                              [inputLabel]="'コース２画像を選択'"
+                              [inputImage]="rental.course2Img"
+                              (imageUploaded)="rental.course2Img=$event;isTouched=true"
+                              >
+                          </app-image-upload-myver>
+                      </div>
+                  </div>
+                </div>
+
                 <div class="form-group">
                     <h6>Email <span class="icon-danger">*</span></h6>
                     <input 

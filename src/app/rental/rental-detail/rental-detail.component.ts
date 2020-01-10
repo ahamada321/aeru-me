@@ -69,7 +69,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
           this.rental = rental;
           // this.getAvgRating(rental._id)
           this.getReviews(rental._id)
-          this.getSafeUrl(rental.course60img)
+          this.getSafeUrl(rental.course1Img)
         }
       )
     }

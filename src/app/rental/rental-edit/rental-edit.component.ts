@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 })
 export class RentalEditComponent implements OnInit {
     rental: Rental
-    isTouched: boolean
+    isTouched: boolean = true
     errors: any[] = []
 
     data : Date = new Date();
