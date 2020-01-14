@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, HostListener } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Rental } from 'src/app/rental/service/rental.model';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
@@ -21,7 +21,9 @@ var easeInOutQuad = function (t, b, c, d) {
 })
 export class NavbarBottomComponent implements OnInit {
     @Input() rental: Rental;
-    private headerOffset: number = 75; // want to replace like DEFINE HEADER_OFFSET
+    private headerOffset: number = -200; // want to replace like DEFINE HEADER_OFFSET
+    private innerHeight: number // Browser width
+
 
     constructor(
         public location: Location, 
@@ -29,11 +31,13 @@ export class NavbarBottomComponent implements OnInit {
         public auth: MyOriginAuthService,
         ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.innerHeight = window.innerHeight;
+    }
 
     smoothScroll(target) {
         let targetScroll = document.getElementById(target);
-        this.scrollTo(document.scrollingElement || document.documentElement, targetScroll.offsetTop - this.headerOffset, 625); // Updated by Creative Tim support!
+        this.scrollTo(document.scrollingElement || document.documentElement, targetScroll.offsetTop + (this.innerHeight + this.headerOffset), 625); // Updated by Creative Tim support!
       }
       scrollTo(element, to, duration) {
         var start = element.scrollTop,
@@ -50,5 +54,10 @@ export class NavbarBottomComponent implements OnInit {
             }
         }
         animateScroll();
+    }
+
+    @HostListener('window:resize')
+    onResize() {
+      this.innerHeight = window.innerHeight;
     }
 }

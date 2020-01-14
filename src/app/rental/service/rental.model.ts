@@ -44,7 +44,7 @@ export class Rental {
     gallery6: string;
     gallery7: string;
     gallery8: string;
-    video: string;
+    videoLink: string;
 
     businesshour_enabled_sun: boolean
     businesshour_startTime_sun: NgbTimeStruct

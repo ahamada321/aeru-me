@@ -44,6 +44,7 @@ import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-uploa
 import { RentalService } from './service/rental.service';
 import { BookingService } from './rental-detail/rental-detail-booking/services/booking.service';
 import { BookingHelperService } from './rental-detail/rental-detail-booking/services/booking.helper.service';
+import { SafePipe } from '../shared/pipe/safe-pipe/safe-pipe.component';
 
 
 const routes: Routes = [{
@@ -86,7 +87,8 @@ const routes: Routes = [{
         RentalRevenueComponent,
         // RentalDetailUpdateComponent, // This is replaced from RentalEditComponent.
         NavbarBottomComponent,
-        TimePickerModal
+        TimePickerModal,
+        SafePipe
       ],
       imports: [
         //   sharedModule,

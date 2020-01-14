@@ -51,5 +51,4 @@ export class LandingComponent implements OnInit, OnDestroy {
     onResize() {
       this.innerWidth = window.innerWidth;
     }
-
 }

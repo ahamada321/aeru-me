@@ -47,7 +47,7 @@ const rentalSchema = new Schema({
     gallery6: String,
     gallery7: String,
     gallery8: String,
-    youtubeLink: String,
+    videoLink: String,
 
 
     // Wanna be more simlpify menu below

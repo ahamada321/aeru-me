@@ -23,10 +23,11 @@
                         <h5 class="description">{{ rental.description }}</h5>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="rental.videoLink">
                     <div class="col-md-5  ml-auto mr-auto">
                         <div class="video-responsive">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/3qwhFjwznt0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                        </div>
+                            <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/' + rental.videoLink | safe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             </div>

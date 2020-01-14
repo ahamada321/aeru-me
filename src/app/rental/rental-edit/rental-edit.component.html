@@ -100,6 +100,23 @@
                 </div>
 
                 <div class="form-group">
+                  <h6>自己紹介動画（Youtube共有リンク） <span class="icon-danger">*</span></h6>
+                  <div class="input-group border-input">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">https://youtu.be/</span>
+                    </div>
+                    <input 
+                        type="text" 
+                        placeholder="3qwhFjwznt0" 
+                        class="form-control border-input" 
+                        [(ngModel)]="rental.videoLink" 
+                        name="videoLink" 
+                        required
+                        />
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <h6>提供コース１タイトル <span class="icon-danger">*</span></h6>
                   <textarea 
                       class="form-control textarea-limited" 
@@ -319,59 +336,59 @@
                         (imageUploaded)="rental.gallery4=$event;isTouched=true"
                         >
                     </app-image-upload-myver>
-                </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-10 ml-auto mr-auto">
-                  <!-- <app-image-upload></app-image-upload> -->
-                  <app-image-upload-myver 
-                      [inputLabel]="'ギャラリー写真５を選択'"
-                      [inputImage]="rental.gallery5"
-                      (imageUploaded)="rental.gallery5=$event;isTouched=true"
-                      >
-                  </app-image-upload-myver>
+                  </div>
               </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-10 ml-auto mr-auto">
-                <!-- <app-image-upload></app-image-upload> -->
-                <app-image-upload-myver 
-                    [inputLabel]="'ギャラリー写真６を選択'"
-                    [inputImage]="rental.gallery6"
-                    (imageUploaded)="rental.gallery6=$event;isTouched=true"
-                    >
-                </app-image-upload-myver>
             </div>
-        </div>
-      </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <!-- <app-image-upload></app-image-upload> -->
+                    <app-image-upload-myver 
+                        [inputLabel]="'ギャラリー写真５を選択'"
+                        [inputImage]="rental.gallery5"
+                        (imageUploaded)="rental.gallery5=$event;isTouched=true"
+                        >
+                    </app-image-upload-myver>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <!-- <app-image-upload></app-image-upload> -->
+                    <app-image-upload-myver 
+                        [inputLabel]="'ギャラリー写真６を選択'"
+                        [inputImage]="rental.gallery6"
+                        (imageUploaded)="rental.gallery6=$event;isTouched=true"
+                        >
+                    </app-image-upload-myver>
+                </div>
+              </div>
+            </div>
     
-                <div class="row buttons-row">
-                  <div class="col-md-6">
-                      <button 
-                        [disabled]="!rentalForm.form.valid" 
-                        (click)="unpublishRental()"
-                        class="btn btn-outline-default btn-block btn-round">更新＆非公開</button>
-                  </div>
-                  <div class="col-md-6">
-                      <button 
-                        [disabled]="!rentalForm.form.valid" 
-                        (click)="updateRental()"
-                        class="btn btn-primary btn-block btn-round">更新＆公開（申請）</button>
-                  </div>
-                </div>
-              </form>
-              <div class="space-top"></div>
-              <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
-                <p *ngFor="let error of errors">{{ error.detail }}</p>
+            <div class="row buttons-row">
+              <div class="col-md-6">
+                  <button 
+                    [disabled]="!rentalForm.form.valid" 
+                    (click)="unpublishRental()"
+                    class="btn btn-outline-default btn-block btn-round">更新＆非公開</button>
+              </div>
+              <div class="col-md-6">
+                  <button 
+                    [disabled]="!rentalForm.form.valid" 
+                    (click)="updateRental()"
+                    class="btn btn-primary btn-block btn-round">更新＆公開（申請）</button>
               </div>
             </div>
+          </form>
+          <div class="space-top"></div>
+          <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+            <p *ngFor="let error of errors">{{ error.detail }}</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
