@@ -2,7 +2,8 @@
     <div class="container">
         <div class="navbar-translate">
             <div class="navbar-header">
-                <a class="navbar-brand" [routerLink]="['/']"></a>
+                <a *ngIf="!auth.isAuthenticated()" class="navbar-brand" [routerLink]="['/']"></a>
+                <a *ngIf="auth.isAuthenticated()" class="navbar-brand" [routerLink]="['/rentals']"></a>
             </div>
             <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
                 <span class="navbar-toggler-bar bar1"></span>
@@ -36,7 +37,7 @@
                 <ng-container *ngIf="auth.isAuthenticated()">
                     <ng-container *ngIf="auth.getUserRole() === 'User'">
                         <div ngbDropdown class="nav-item">
-                            <a class="nav-link" [routerLink]="['/register']">トレーナーになる</a>
+                            <a class="nav-link" [routerLink]="['/contactus']">トレーナーになる</a>
                         </div>    
                     </ng-container>
                     <ng-container *ngIf="auth.getUserRole() === ('Owner' || 'Teacher')">
