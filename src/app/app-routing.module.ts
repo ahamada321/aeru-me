@@ -20,6 +20,8 @@ import { ContactusComponent } from './static/contactus/contactus.component';
 import { Page404Component } from './static/page404/page404.component';
 import { Page422Component } from './static/page422/page422.component';
 import { Page500Component } from './static/page500/page500.component';
+import { TermsComponent } from './static/terms/terms.component';
+import { PrivacyComponent } from './static/privacy/privacy.component';
 
 
 
@@ -28,8 +30,8 @@ const routes: Routes = [
   { path: 'contactus',   component: ContactusComponent },
 
   // // { path: 'presentation', component: PresentationComponent },
-  // { path: 'terms',        component: TermsOfServiceComponent },
-  // { path: 'privacy',      component: PrivacyPolicyComponent },
+  { path: 'terms',        component: TermsComponent },
+  { path: 'privacy',      component: PrivacyComponent },
   // { path: 'faq',          component: FAQComponent },
   // { path: 'trialform',  component: TrialFormComponent },
   // // { path: 'partnership',  component: PartnershipComponent },
@@ -66,7 +68,9 @@ const routes: Routes = [
     ContactusComponent,
     Page404Component,
     Page422Component,
-    Page500Component
+    Page500Component,
+    TermsComponent,
+    PrivacyComponent
 ]
 })
 export class AppRoutingModule { }
