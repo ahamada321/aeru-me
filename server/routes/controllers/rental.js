@@ -131,25 +131,18 @@ exports.toggleFavourite = function(req, res) {
 }
 
 exports.createRental = function(req, res) {
-    const rental = new Rental(req.body) // if calling Model constractor, data will be automatically saved in db.
+    const rental = new Rental(req.body)
           rental.user = res.locals.user
 
-    User.findByIdAndUpdate(rental.user.id, {$push: {rentals: rental}}, function(err, result){
+    Rental.create(rental, function(err, newRental) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
-        return res.json(result)
+        User.updateOne({_id: rental.user.id}, {$push: {rentals: newRental}}, function(err, result){
+            if(err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
+            return res.json(result)
+        })
     })
-
-    // Rental.create(rental, function(err, newRental) {
-    //     if(err) {
-    //         return res.status(422).send({errors: normalizeErrors(err.errors)})
-    //     }
-    //     User.updateOne({_id: rental.user.id}, {$push: {rentals: newRental}}, function(err, result){
-    //         if(err) {
-    //             return res.status(422).send({errors: normalizeErrors(err.errors)})
-    //         }
-    //         return res.json(result)
-    //     })
-    // })
 }

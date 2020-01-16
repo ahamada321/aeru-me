@@ -15,6 +15,7 @@ import { RentalModule } from './rental/rental.module';
 import { UserModule } from './user/user.module';
 
 import { LandingComponent } from './static/landing/landing.component';
+import { LandingSaasComponent } from './static/landing-saas/landing-saas.component';
 import { AboutusComponent } from './static/aboutus/aboutus.component';
 import { ContactusComponent } from './static/contactus/contactus.component';
 import { Page404Component } from './static/page404/page404.component';
@@ -22,7 +23,6 @@ import { Page422Component } from './static/page422/page422.component';
 import { Page500Component } from './static/page500/page500.component';
 import { TermsComponent } from './static/terms/terms.component';
 import { PrivacyComponent } from './static/privacy/privacy.component';
-
 
 
 const routes: Routes = [
@@ -40,7 +40,8 @@ const routes: Routes = [
   // { path: 'usersvoice',  component: UsersVoiceComponent },
   // { path: 'results',  component: ResultsComponent },
 
-  { path: '',         component: LandingComponent},
+  { path: '',         component: LandingSaasComponent},
+  { path: 'lp',         component: LandingComponent},
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ]
@@ -64,6 +65,7 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [
     LandingComponent,
+    LandingSaasComponent,
     AboutusComponent,
     ContactusComponent,
     Page404Component,
