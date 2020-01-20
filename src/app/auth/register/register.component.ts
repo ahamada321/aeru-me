@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     let navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
 
-
     this.seeFBLoginState()
   }
   
@@ -83,6 +82,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   modalOpen() {
+    this.router.navigate(['/'])
     this.modalService.open(LoginPupupTestComponent)
 }
 }

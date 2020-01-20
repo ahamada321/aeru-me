@@ -20,6 +20,11 @@ const rentalSchema = new Schema({
         required: 'Emailは必須です',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
     },
+    facebook: String,
+    instagram: String,
+    twitter: String,
+    youtube: String,
+    videoLink: String,
 
     birthday: Date,
     rentalname: { type: String, required: true, max: [128, '商品名は最大128文字までです']},
@@ -47,7 +52,6 @@ const rentalSchema = new Schema({
     gallery6: String,
     gallery7: String,
     gallery8: String,
-    videoLink: String,
 
 
     // Wanna be more simlpify menu below

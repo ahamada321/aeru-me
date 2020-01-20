@@ -5,9 +5,42 @@
             <div class="container">
                 <div class="space-110"></div>
                 <div class="row">
-                    <div class="col-md-8 text-left motto">
+                    <div class="col-md-8 text-left">
                         <h1 class="title">{{ rental.rentalname }}</h1>
                         <h5>{{ rental.cardDescription }}</h5>
+                        <h5>{{ rental.description }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 text-left">
+                        <div class="buttons">
+                            <a 
+                                *ngIf="rental.twitter" 
+                                href="{{ rental.twitter }}" 
+                                class="btn btn-neutral btn-link btn-just-icon"
+                                target="_blank"
+                                ><i class="fa fa-twitter"></i>
+                            </a>
+                            <a 
+                                *ngIf="rental.facebook" 
+                                href="{{ rental.facebook }}" 
+                                class="btn btn-neutral btn-link btn-just-icon"
+                                target="_blank"
+                                ><i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a 
+                                *ngIf="rental.instagram" 
+                                href="{{ rental.instagram }}" 
+                                class="btn btn-neutral btn-link btn-just-icon"
+                                ><i class="fa fa-instagram"></i>
+                            </a>
+                            <a 
+                                *ngIf="rental.youtube" 
+                                href="{{ rental.youtube }}" 
+                                class="btn btn-neutral btn-link btn-just-icon"
+                                ><i class="fa fa-youtube"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -15,32 +48,11 @@
     </div>
 
     <div class="wrapper">
-        <div class="section text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 mr-auto ml-auto">
-                        <h2 class="title">自己紹介</h2>
-                        <h5 class="description">{{ rental.description }}</h5>
-                    </div>
-                </div>
-                <div class="row" *ngIf="rental.videoLink">
-                    <div class="col-md-5  ml-auto mr-auto">
-                        <div class="video-responsive">
-                            <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/' + rental.videoLink | safe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--     *********     Detail of lessons      *********      -->
         <div class="section" id="detail-of-lessons">
             <div class="blog-1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
-                            <h2 class="title text-center">コース内容</h2>
-                            <br />
                             <div class="card card-plain card-blog">
                                 <div class="row">
                                     <div class="col-md-8 col-11 ml-auto mr-auto">

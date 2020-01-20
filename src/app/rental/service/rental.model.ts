@@ -14,8 +14,9 @@ export class Rental {
     lineworksURL: string;
     homepage: string;
     facebook: string;
-    instagram: string;
     twitter: string;
+    instagram: string;
+    youtube: string;
     selectedCategory: any[];
     
     rentalname: string;
