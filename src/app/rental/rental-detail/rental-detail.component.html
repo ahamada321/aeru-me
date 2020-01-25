@@ -5,14 +5,14 @@
             <div class="container">
                 <div class="space-110"></div>
                 <div class="row">
-                    <div class="col-md-8 text-left">
+                    <div class="col-md-7 text-left">
                         <h1 class="title">{{ rental.rentalname }}</h1>
                         <h5>{{ rental.cardDescription }}</h5>
                         <h5>{{ rental.description }}</h5>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 text-left">
+                    <div class="col-md-7 text-left">
                         <div class="buttons">
                             <a 
                                 *ngIf="rental.twitter" 
@@ -32,12 +32,14 @@
                                 *ngIf="rental.instagram" 
                                 href="{{ rental.instagram }}" 
                                 class="btn btn-neutral btn-link btn-just-icon"
+                                target="_blank"
                                 ><i class="fa fa-instagram"></i>
                             </a>
                             <a 
                                 *ngIf="rental.youtube" 
                                 href="{{ rental.youtube }}" 
                                 class="btn btn-neutral btn-link btn-just-icon"
+                                target="_blank"
                                 ><i class="fa fa-youtube"></i>
                             </a>
                         </div>
@@ -70,7 +72,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-10 ml-auto mr-auto">
-                                        <button class="card" data-background="color" data-color="green">
+                                        <button *ngIf="!auth.isAuthenticated()" (click)="modalOpen()" class="card" data-background="color" data-color="green">
+                                            <div class="card-body text-center">
+                                                <h6 class="card-category">ログイン後に予約できます</h6>
+                                                <h2 class="card-title">60min</h2>
+                                                <p class="card-description">60minのパーソナルトレーニングが受けられるチケットです.</p>
+                                                <div class="card-footer">
+                                                    <div class="btn btn-neutral btn-round">{{rental.hourlyPrice}}円 / 60分</div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <a *ngIf="auth.isAuthenticated()" class="card" data-background="color" data-color="green">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">このコースを選ぶ</h6>
                                                 <h2 class="card-title">60min</h2>
@@ -79,7 +91,7 @@
                                                     <div class="btn btn-neutral btn-round">{{rental.hourlyPrice}}円 / 60分</div>
                                                 </div>
                                             </div>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +113,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-10 ml-auto mr-auto">
-                                        <button class="card" data-background="color" data-color="blue">
+                                        <a *ngIf="!auth.isAuthenticated()" (click)="modalOpen()" class="card" data-background="color" data-color="blue">
+                                            <div class="card-body text-center">
+                                                <h6 class="card-category">ログイン後に予約できます</h6>
+                                                <h2 class="card-title">90min</h2>
+                                                <p class="card-description">90minのパーソナルトレーニングが受けられるチケットです.</p>
+                                                <div class="card-footer">
+                                                    <div class="btn btn-neutral btn-round">{{rental.hourlyPrice * 1.5}}円 / 90分</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a *ngIf="auth.isAuthenticated()" class="card" data-background="color" data-color="blue">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">このコースを選ぶ</h6>
                                                 <h2 class="card-title">90min</h2>
@@ -110,7 +132,7 @@
                                                     <div class="btn btn-neutral btn-round">{{rental.hourlyPrice * 1.5}}円 / 90分</div>
                                                 </div>
                                             </div>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

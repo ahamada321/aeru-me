@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, Input, HostListener } from '@angular/core
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { LoginPupupTestComponent } from 'src/app/auth/login-popup/login-popup.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Rental } from '../service/rental.model';
 import { Review } from 'src/app/shared/review/service/review.model';
 import { Booking } from './rental-detail-booking/services/booking.model';
@@ -32,6 +34,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     constructor(private route: ActivatedRoute,
                 private rentalService: RentalService,
                 private reviewService: ReviewService,
+                private modalService: NgbModal,
                 public router: Router,
                 public auth: MyOriginAuthService,
                 public sanitizer: DomSanitizer,
@@ -94,4 +97,8 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
         () => { }
       )
     }
+
+    modalOpen() {
+      this.modalService.open(LoginPupupTestComponent)
+  }
 }
