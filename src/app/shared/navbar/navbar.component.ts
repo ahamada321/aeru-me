@@ -14,7 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
-    private sidebarVisible: boolean;
+    private sidebarVisible: boolean = false
 
     constructor(
         public location: Location, 
@@ -23,9 +23,7 @@ export class NavbarComponent implements OnInit {
         public auth: MyOriginAuthService,
         private socialAuthService: AuthService,
         private router: Router,
-        ) {
-            this.sidebarVisible = false;
-    }
+        ) { }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;

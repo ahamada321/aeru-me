@@ -24,9 +24,8 @@ export class BookingSelecterComponent implements OnInit {
   maxDate: NgbDateStruct 
 
   @Input() rental: Rental
-  @Input() chosenCourseTime: number
+  @Input() selectedCourseTime: number
   @Output() newBookingInfo = new EventEmitter()
-  @Output() chosenDateTime = new EventEmitter()
 
   constructor(
     private calendar: NgbCalendar,
@@ -91,7 +90,7 @@ export class BookingSelecterComponent implements OnInit {
         mStartAt.add(30, 'minutes')
     }
     this.timeTables = mTimeTables
-    this.chosenDateTime.emit(false)
+    this.newBookingInfo.emit(null)
   }
 
   private isPastDateTime(startAt) {
@@ -115,7 +114,7 @@ export class BookingSelecterComponent implements OnInit {
     const rentalBookings = this.rental.bookings
 
     const reqStart = moment(startAt)
-    const reqEnd = moment(startAt).add(this.chosenCourseTime, 'minute').subtract(1, 'minute')
+    const reqEnd = moment(startAt).add(this.selectedCourseTime, 'minute').subtract(1, 'minute')
     if(rentalBookings && rentalBookings.length === 0) {
       return true
     } 
@@ -132,12 +131,11 @@ export class BookingSelecterComponent implements OnInit {
 
   selectDateTime(startAt) {
     this.newBooking.startAt = moment(startAt).format()
-    this.newBooking.endAt = moment(startAt).add(this.chosenCourseTime, 'minute').subtract(1, 'minute').format()
+    this.newBooking.endAt = moment(startAt).add(this.selectedCourseTime, 'minute').subtract(1, 'minute').format()
   
-    this.newBooking.courseTime = this.chosenCourseTime
-    this.newBooking.totalPrice = this.rental.hourlyPrice * (this.chosenCourseTime / 60)
+    this.newBooking.courseTime = this.selectedCourseTime
+    this.newBooking.totalPrice = this.rental.hourlyPrice * (this.selectedCourseTime / 60)
   
-    this.chosenDateTime.emit(true)
     this.newBookingInfo.emit(this.newBooking)
   }
 

@@ -82,7 +82,7 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <a *ngIf="auth.isAuthenticated()" class="card" data-background="color" data-color="green">
+                                        <button *ngIf="auth.isAuthenticated()" (click)="modalBookingOpen(60)" class="card" data-background="color" data-color="green">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">このコースを選ぶ</h6>
                                                 <h2 class="card-title">60min</h2>
@@ -91,7 +91,7 @@
                                                     <div class="btn btn-neutral btn-round">{{rental.hourlyPrice}}円 / 60分</div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-10 ml-auto mr-auto">
-                                        <a *ngIf="!auth.isAuthenticated()" (click)="modalOpen()" class="card" data-background="color" data-color="blue">
+                                        <button *ngIf="!auth.isAuthenticated()" (click)="modalOpen()" class="card" data-background="color" data-color="blue">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">ログイン後に予約できます</h6>
                                                 <h2 class="card-title">90min</h2>
@@ -122,8 +122,8 @@
                                                     <div class="btn btn-neutral btn-round">{{rental.hourlyPrice * 1.5}}円 / 90分</div>
                                                 </div>
                                             </div>
-                                        </a>
-                                        <a *ngIf="auth.isAuthenticated()" class="card" data-background="color" data-color="blue">
+                                        </button>
+                                        <button *ngIf="auth.isAuthenticated()" (click)="modalBookingOpen(90)" class="card" data-background="color" data-color="blue">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">このコースを選ぶ</h6>
                                                 <h2 class="card-title">90min</h2>
@@ -132,7 +132,7 @@
                                                     <div class="btn btn-neutral btn-round">{{rental.hourlyPrice * 1.5}}円 / 90分</div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

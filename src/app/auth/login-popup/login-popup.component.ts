@@ -5,7 +5,7 @@ import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 
 
@@ -32,7 +32,6 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
               private socialAuthService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
-              private modalService: NgbModal,
               private ref:ChangeDetectorRef,
               private location: Location ) { }
 
@@ -103,7 +102,7 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
   login() {
     this.auth.login(this.loginForm.value).subscribe(
       (token) => {
-        this.modalService.dismissAll()
+        this.activeModal.close('Close click')
 
         let _locationExamples = this.location.path();
         const isLocationOfRentals = ( _locationExamples.split('/')[1] === 'rentals' );

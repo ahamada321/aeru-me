@@ -13,28 +13,11 @@
 
   <div class="main">
     <div class="section text-center">
-      <div class="container">
+      <div class="container" *ngIf="bookings && bookings.length > 0">
         <ngb-tabset [justify]="'center'" type="pills" class="nav-pills-primary">
           <ngb-tab title="予約一覧">
             <ng-template ngbTabContent>
-              <div class="row">
-                <div class="col-md-12 ml-auto mr-auto">
-                  <h3 class="title">返答待ち</h3>
-                  <h5 class="description">先方の返信待ちです。まだ予約確定していません！</h5>
-                  <div class="space-top"></div>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-12 ml-auto mr-auto">
-                  <h3 class="title">予約確定</h3>
-                  <h5 class="description">待ち合わせ場所等連絡を取り合い、当日は時間に遅れないように注意しましょう。</h5>
-                  <div class="space-top"></div>
-                </div>
-              </div>
-              <div *ngIf="bookings && bookings.length > 0">
-                <!-- <app-user-pending-list [bookings]="bookings"></app-user-pending-list> -->
-              </div>
               <div class="row">
                 <div *ngIf="bookings.length==0" class="col-md-4">
                   <div class="card card-pricing">
@@ -52,35 +35,22 @@
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-md-12 ml-auto mr-auto">
-                  <h3 class="title">いかがでしたか？</h3>
-                  <h5 class="description">良かったところや改善できるところをレビューを残しましょう。</h5>
-                  <div class="space-top"></div>
-                </div>
-              </div>
+              <app-user-mybookings-list-pending [bookings]="bookings"></app-user-mybookings-list-pending>
 
-              <div class="row">
-                <div class="col-md-12 ml-auto mr-auto">
-                  <h3 class="title">終了</h3>
-                  <h5 class="description">終了した予約一覧です。過去12ヶ月分確認できます。</h5>
-                  <div class="space-top"></div>
-                </div>
-              </div>
+              <app-user-mybookings-list-active [bookings]="bookings"></app-user-mybookings-list-active>
+
+              <app-user-mybookings-list-finished [bookings]="bookings"></app-user-mybookings-list-finished>
+
+              <app-user-mybookings-list-reviewed [bookings]="bookings"></app-user-mybookings-list-reviewed>
+
+
             </ng-template>
           </ngb-tab>
           <ngb-tab title="期限切れ">
             <ng-template ngbTabContent>
-              <div class="row">
-                <div class="col-md-12 ml-auto mr-auto">
-                  <h3 class="title">請求されません</h3>
-                  <h5 class="description">時間ぎれにより予約確定できなかったリクエストです。過去3ヶ月分確認できます。</h5>
-                  <div class="space-top"></div>
-                </div>
-              </div>
-              <div *ngIf="bookings && bookings.length > 0">
-                <!-- <app-user-pending-list [filterExpired]="true" [bookings]="bookings"></app-user-pending-list> -->
-              </div>
+
+              <app-user-mybookings-list-expired [bookings]="bookings"></app-user-mybookings-list-expired>
+
             </ng-template>
           </ngb-tab>
         </ngb-tabset>

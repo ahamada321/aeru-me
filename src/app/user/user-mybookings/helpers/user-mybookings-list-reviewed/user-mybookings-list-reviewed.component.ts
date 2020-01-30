@@ -8,12 +8,11 @@ import * as moment from 'moment-timezone';
 
 
 @Component({
-  selector: 'app-user-mybookings-list',
-  templateUrl: './user-mybookings-list.component.html',
-  styleUrls: ['./user-mybookings-list.component.scss']
+  selector: 'app-user-mybookings-list-reviewed',
+  templateUrl: './user-mybookings-list-reviewed.component.html',
+  styleUrls: ['./user-mybookings-list-reviewed.component.scss']
 })
-export class UserMyBookingsListComponent implements OnInit {
-  @Input() filterFinished: boolean = false
+export class UserMyBookingsListReviewedComponent implements OnInit {
   @Input() bookings: Booking[]
   bookingDeleteIndex: number = undefined
 

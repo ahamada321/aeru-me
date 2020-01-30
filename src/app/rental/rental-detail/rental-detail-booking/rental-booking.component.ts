@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {FormGroup} from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { RentalService } from '../../service/rental.service';
@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { MatStepper } from '@angular/material';
 import Swal from 'sweetalert2'
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,18 +21,17 @@ import Swal from 'sweetalert2'
   templateUrl: './rental-booking.component.html',
   styleUrls: ['./rental-booking.component.scss']
 })
-export class RentalBookingComponent implements OnInit, OnDestroy {
+export class RentalBookingComponent implements OnInit {
     isLinear = false;
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
     @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
     isSelectedDateTime: boolean = false
-    chosenCourseTime: number = 60
-
     isChangeBtnClicked: boolean = false
-  
-    rental: Rental
+
+    @Input() selectedCourseTime: number = 60
+    @Input() rental: Rental
     newBooking: Booking
     paymentToken: string
     // stripeCustomerId: string = ""
@@ -44,28 +44,14 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private rentalService: RentalService,
         private router: Router,
-        private _formBuilder: FormBuilder,
         private helper: BookingHelperService,
         private bookingService: BookingService,
         private auth: MyOriginAuthService,
-
+        public activeModal: NgbActiveModal,
     ) { }
 
     ngOnInit() {
-        this.getStripeCustomerInfo()
-        this.route.params.subscribe(
-            (params) => {
-                this.getRental(params['rentalId'])
-                if(params['selectedCourse'] === '1') this.chosenCourseTime = 60
-                else if(params['selectedCourse'] === '2') this.chosenCourseTime = 90
-        })
-    }
-
-    ngOnDestroy() {
-        var navbar = document.getElementsByTagName('nav')[0];
-        if (navbar.classList.contains('nav-up')) {
-            navbar.classList.remove('nav-up');
-        }
+        // this.getStripeCustomerInfo()
     }
 
     getStripeCustomerInfo() {
@@ -79,17 +65,14 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
         )
     }
 
-    getRental(rentalId: string) {
-        this.rentalService.getRentalById(rentalId).subscribe(
-            (rental: Rental) => {
-                this.rental = rental
-            }
-        )
-    }
-
     onBookingReady(newBooking: Booking) {
-        this.newBooking = newBooking
-        this.stepper.next();
+        if (!newBooking) {
+            this.isSelectedDateTime = false
+        } else {
+            this.newBooking = newBooking
+            this.isSelectedDateTime = true
+            this.stepper.next()
+        }
     }
 
     onPaymentConfirmed(paymentToken: string) {
@@ -98,7 +81,9 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
     }
 
     createBooking() {
-        this.newBooking.paymentToken = this.paymentToken
+        if(this.paymentToken) {
+            this.newBooking.paymentToken = this.paymentToken
+        }
 
         this.newBooking.rental = this.rental
         this.bookingService.createBooking(this.newBooking).subscribe(
@@ -121,7 +106,7 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
     showSwalSuccess() {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
-              confirmButton: 'btn btn-danger btn-lg',
+              confirmButton: 'btn btn-primary btn-lg',
               cancelButton: 'btn btn-lg'
             },
             buttonsStyling: false,
@@ -129,13 +114,14 @@ export class RentalBookingComponent implements OnInit, OnDestroy {
 
         swalWithBootstrapButtons.fire({
             title: '予約申込完了！',
-            text: '商品オーナーからのお返事をお待ちください',
+            text: 'トレーナーからのお返事をお待ちください',
             type: 'success',
             // showConfirmButton: false,
             timer: 5000
         }).then((result) => {
             //this.newBookingCreated.emit(newBooking)
-            this.router.navigate(['/user/pending'])
+            this.activeModal.close('Close click')
+            this.router.navigate(['/user/mybookings'])
         })
       }
 }

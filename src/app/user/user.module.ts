@@ -12,10 +12,14 @@ import { BookingSelecterModule } from '../shared/booking-selecter/booking-select
 
 import { UserComponent } from './user.component';
 import { UserMyBookingsComponent } from './user-mybookings/user-mybookings.component';
-import { UserMyBookingsListComponent } from './user-mybookings/user-mybookings-list/user-mybookings-list.component';
 import { UserMyFavouriteComponent } from './user-myfavourite/user-myfavourite.component';
 import { MyfavouriteListItemComponent } from './user-myfavourite/myfavourite-list-item/myfavourite-list-item.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UserMyBookingsListPendingComponent, UserPendingDialog } from './user-mybookings/helpers/user-mybookings-list-pending/user-mybookings-list-pending.component';
+import { UserMyBookingsListActiveComponent } from './user-mybookings/helpers/user-mybookings-list-active/user-mybookings-list-active.component';
+import { UserMyBookingsListFinishedComponent } from './user-mybookings/helpers/user-mybookings-list-finished/user-mybookings-list-finished.component';
+import { UserMyBookingsListReviewedComponent } from './user-mybookings/helpers/user-mybookings-list-reviewed/user-mybookings-list-reviewed.component';
+import { UserMyBookingsListExpiredComponent } from './user-mybookings/helpers/user-mybookings-list-expired/user-mybookings-list-expired.component';
 
 
 const routes: Routes = [{
@@ -34,7 +38,12 @@ const routes: Routes = [{
     MyfavouriteListItemComponent,
     UserMyFavouriteComponent,
     UserMyBookingsComponent, 
-    UserMyBookingsListComponent,
+    UserPendingDialog,
+    UserMyBookingsListPendingComponent,
+    UserMyBookingsListActiveComponent,
+    UserMyBookingsListFinishedComponent,
+    UserMyBookingsListReviewedComponent,
+    UserMyBookingsListExpiredComponent,
     UserSettingsComponent,
   ],
   imports: [

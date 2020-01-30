@@ -8,7 +8,7 @@
     <div class="col-md-7 ml-auto mr-auto">
       <app-booking-selecter
         [rental]="payment.booking.rental" 
-        [chosenCourseTime]="payment.booking.courseTime" 
+        [selectedCourseTime]="payment.booking.courseTime" 
         (newBookingInfo)="onBookingReady($event, payment.booking)" 
         ></app-booking-selecter>
     </div>

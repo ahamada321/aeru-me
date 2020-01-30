@@ -8,6 +8,7 @@ exports.getRentalById = function(req, res) {
 
     Rental.findById(rentalId)
             .populate('user') // Need to consider security in future.
+            .populate('bookings', 'startAt endAt status _id') // Need to consider security in future.
             .exec(function(err, foundRental) {
                 if(err) {
                     return res.status(422).send({errors: {title: "Rental error!", detail: "Could not find Rental!"}})

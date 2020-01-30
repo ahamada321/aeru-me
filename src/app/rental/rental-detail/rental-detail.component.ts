@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LoginPupupTestComponent } from 'src/app/auth/login-popup/login-popup.component';
+import { RentalBookingComponent } from './rental-detail-booking/rental-booking.component';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Rental } from '../service/rental.model';
 import { Review } from 'src/app/shared/review/service/review.model';
@@ -24,81 +26,87 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     rating: number
     reviews: Review[] = []
     safeUrl: SafeResourceUrl
-    newBooking: Booking
     calendarPlugins = [timeGridPlugin]; // important!
     calendarEvents: EventInput[] = []
     calendarBusinessHours: EventInput[] = []
 
     headerOffset: number = 75; // want to replace like DEFINE HEADER_OFFSET
 
-    constructor(private route: ActivatedRoute,
-                private rentalService: RentalService,
-                private reviewService: ReviewService,
-                private modalService: NgbModal,
-                public router: Router,
-                public auth: MyOriginAuthService,
-                public sanitizer: DomSanitizer,
-                ) {}
+    constructor(
+        private route: ActivatedRoute,
+        private rentalService: RentalService,
+        private reviewService: ReviewService,
+        private modalService: NgbModal,
+        public router: Router,
+        public auth: MyOriginAuthService,
+        public sanitizer: DomSanitizer,
+        ) { }
 
     ngOnInit() {
-      let navbar = document.getElementsByTagName('nav')[0];
-          navbar.classList.add('navbar-transparent');
-      let body = document.getElementsByTagName('body')[0];
-          body.classList.add('presentation-page');
-  
-      this.route.params.subscribe(
-        (params) => {
-          this.getRental(params['rentalId'])
-        })
+        let navbar = document.getElementsByTagName('nav')[0];
+            navbar.classList.add('navbar-transparent');
+        let body = document.getElementsByTagName('body')[0];
+            body.classList.add('presentation-page');
+    
+        this.route.params.subscribe(
+            (params) => {
+                this.getRental(params['rentalId'])
+            })
     }
 
     ngOnDestroy() {
-      let navbar = document.getElementsByTagName('nav')[0];
-      navbar.classList.remove('navbar-transparent');
-      let body = document.getElementsByTagName('body')[0];
-      body.classList.remove('presentation-page');
-      if (navbar.classList.contains('nav-up')) {
-        navbar.classList.remove('nav-up');
-      }
+        let navbar = document.getElementsByTagName('nav')[0];
+            navbar.classList.remove('navbar-transparent');
+        let body = document.getElementsByTagName('body')[0];
+            body.classList.remove('presentation-page');
+        if (navbar.classList.contains('nav-up')) {
+            navbar.classList.remove('nav-up');
+        }
     }
 
     isYourRental() {
-      return this.rental.user._id === this.auth.getUserId()
+        return this.rental.user._id === this.auth.getUserId()
     }
 
     getRental(rentalId: string) {
-      this.rentalService.getRentalById(rentalId).subscribe(
-        (rental: Rental) => {
-          this.rental = rental;
-          // this.getAvgRating(rental._id)
-          this.getReviews(rental._id)
-          this.getSafeUrl(rental.course1Img)
-        }
-      )
+        this.rentalService.getRentalById(rentalId).subscribe(
+            (rental: Rental) => {
+                this.rental = rental
+                // this.getAvgRating(rental._id)
+                this.getReviews(rental._id)
+                this.getSafeUrl(rental.course1Img)
+            }
+        )
     }
 
     getSafeUrl(url: string) {
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url)
+        this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url)
     }
 
     getAvgRating(rentalId: string) {
-      this.reviewService.getAvgRating(rentalId).subscribe(
-        (rating: number) => {
-          this.rating = rating
-        }
-      )
+        this.reviewService.getAvgRating(rentalId).subscribe(
+            (rating: number) => {
+                this.rating = rating
+            }
+        )
     }
 
     getReviews(rentalId: string) {
-      this.reviewService.getRentalReviews(rentalId).subscribe(
-        (reviews: Review[]) => {
-          this.reviews = reviews
-        },
-        () => { }
-      )
+        this.reviewService.getRentalReviews(rentalId).subscribe(
+            (reviews: Review[]) => {
+              this.reviews = reviews
+            },
+            () => { }
+        )
     }
 
     modalOpen() {
-      this.modalService.open(LoginPupupTestComponent)
-  }
+        this.modalService.open(LoginPupupTestComponent)
+    }
+
+    modalBookingOpen(selectedCourseTime: number) {
+        const modalRef = this.modalService.open(RentalBookingComponent, { scrollable: true })
+        modalRef.componentInstance.rental = this.rental
+        modalRef.componentInstance.selectedCourseTime = selectedCourseTime
+    }
 }

@@ -226,7 +226,7 @@ exports.createBooking = function(req, res) {
     const { startAt, endAt, days, courseTime, totalPrice, rental, paymentToken } = req.body
     const user = res.locals.user
 
-    const booking = new Booking({ startAt, endAt, days, courseTime, totalPrice })
+    let booking = new Booking({ startAt, endAt, days, courseTime, totalPrice })
 
     Rental.findById(rental._id)
                     .populate('bookings')
@@ -247,28 +247,33 @@ exports.createBooking = function(req, res) {
 
         booking.user = user
         booking.rental = foundRental
-        const { err, payment } = await createPayment(booking, foundRental.user, paymentToken)
 
-        if(err) {
-            return res.status(422).send({errors: [{title: "Payment error!", detail: err}]})
+        if(paymentToken) {
+            const { err, payment } = await createPayment(booking, foundRental.user, paymentToken)
+
+            if(err) {
+                return res.status(422).send({errors: [{title: "Payment error!", detail: err}]})
+            }
+    
+            if(!payment) {
+                return res.status(422).send({errors: [{title: "Payment error!", detail: "No payment data!"}]})
+            }
+    
+            booking.payment = payment
         }
 
-        if(!payment) {
-            return res.status(422).send({errors: [{title: "Payment error!", detail: "No payment data!"}]})
-        }
-
-        booking.payment = payment
         foundRental.bookings.push(booking) // This updates DB side.
         foundRental.user.bookings.push(booking) // This updates DB side.
-
-        // Send notification to both of users.
-        sendEmailTo(user.email, REQUEST_SEND, booking, req.hostname)
-        sendEmailTo(foundRental.user.email, REQUEST_RECIEVED, booking, req.hostname)
+        foundRental.save()
+        User.updateOne({_id: user.id}, {$push: {bookings: booking}})
         
         booking.save(function(err) {
             if(err) {
                 return res.status(422).send({errors: normalizeErrors(err.errors)})
             }
+            sendEmailTo(user.email, REQUEST_SEND, booking, req.hostname)
+            sendEmailTo(foundRental.user.email, REQUEST_RECIEVED, booking, req.hostname)
+    
             return res.json({startAt: booking.startAt, endAt: booking.endAt})
         })
     })
@@ -295,9 +300,12 @@ exports.deleteBooking = function(req, res) { // Under development! Not working c
             if (err) {
                 return res.status(422).send({errors: normalizeErrors(err.errors)})
             }
-            Rental.updateOne({_id: foundBooking.rental.id}, {$pull: {bookings: foundBooking.id}}, ()=>{}) // Delete Booking from Rental
-            User.updateOne({ _id: foundBooking.user.id}, {$pull: {bookings: foundBooking.id}}, ()=>{}) // Delete Booking from User
-            Payment.updateOne({_id: foundBooking.payment.id}, {status: 'canseled by user'}, ()=>{})
+            Rental.updateOne({_id: foundBooking.rental.id}, {$pull: {bookings: foundBooking.id}}) // Delete Booking from Rental
+            User.updateOne({ _id: foundBooking.user.id}, {$pull: {bookings: foundBooking.id}}) // Delete Booking from User
+
+            if(foundBooking.payment) {
+                Payment.updateOne({_id: foundBooking.payment.id}, {status: 'canseled'})
+            }
             return res.json({"status": "deleted"})
         })
     })
