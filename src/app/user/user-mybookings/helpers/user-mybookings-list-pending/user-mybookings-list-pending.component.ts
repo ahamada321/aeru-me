@@ -83,7 +83,26 @@ export class UserMyBookingsListPendingComponent implements OnInit {
               private paymentService: PaymentService,
               public dialogService: MatDialog ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  acceptPayment(payment) {
+    const body = {
+      _id: payment
+    }
+    this.paymentService.acceptPayment(body).subscribe(
+      (json) => {
+        this.bookings.splice(this.bookingDeleteIndex, 1) // Update Frontend
+        Swal.fire({
+          type: 'success',
+          title: '予約が確定しました！',
+          text: '当日は時間に余裕をもってご到着されるようお願いいたします。',
+          confirmButtonClass: 'btn btn-danger btn-lg',
+          buttonsStyling: false,
+          allowOutsideClick: false
+      })
+      },
+      (errorResponse) => { }
+    )
   }
 
   deleteConfirmation(bookingId: string) {
