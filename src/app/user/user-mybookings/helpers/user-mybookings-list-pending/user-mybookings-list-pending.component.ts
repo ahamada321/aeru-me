@@ -116,7 +116,7 @@ export class UserMyBookingsListPendingComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'はい',
       cancelButtonText: 'いいえ',
-      allowOutsideClick: false
+      // allowOutsideClick: false
     }).then((result) => {
       if (result.value) {
         this.deleteBooking(bookingId)

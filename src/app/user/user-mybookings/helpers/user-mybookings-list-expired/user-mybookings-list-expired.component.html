@@ -30,15 +30,13 @@
                   <strong>{{ booking.rental.rentalname }}</strong>
                 </a>
               </td>
-              <td>Expired</td>
-              <td>
+              <td class="text-left">
                 <p>Date: {{ booking.startAt |  date: "yyyy/MM/dd" }}</p>
                 <p>Start: {{ booking.startAt |  date: "HH:mm" }}</p>
                 <p>{{ booking.courseTime }} min</p>
               </td>
-              <td>
-                {{ booking.status }}
-              </td>
+              <td> </td>
+              <td>期限切れ</td>
             </tr>
           </ng-container>
         </tbody>
