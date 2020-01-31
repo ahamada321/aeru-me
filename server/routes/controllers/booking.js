@@ -27,9 +27,9 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
     if(sendMsg === REQUEST_SEND) {
         msg = {
             to: sendTo,
-            from: 'noreply@ap-trainer.com',
+            from: 'noreply@aeru.me',
             subject: '[仮予約完了]予約リクエストを送信しました！',
-            text: '現時点では予約は確定していません。「' + booking.rental.rentalname + ' Trainer」がリクエストを受理された場合に正式予約が完了します。\n\n'
+            text: '現時点では予約は確定していません。「' + booking.rental.rentalname + 'さん」がリクエストを受理された場合に予約が確定します。\n\n'
                 + '予約が確定しない限りご請求が行くことはございません。'
                 + '\n\n\n\n'
                 + 'Aeru.me, Inc'
@@ -37,9 +37,9 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
     } else if (sendMsg === REQUEST_RECIEVED) {
         msg = {
             to: sendTo,
-            from: 'noreply@ap-trainer.com',
-            subject: '「' + booking.rental.rentalname + ' Trainer」に予約リクエストが来ています！',
-            text: '「' + booking.rental.rentalname + ' Trainer」への予約リクエストが以下の日時で来ています。受理されますか？\n\n'
+            from: 'noreply@aeru.me',
+            subject: '「' + booking.rental.rentalname + 'さん」に予約リクエストが来ています！',
+            text: '「' + booking.rental.rentalname + 'さん」への予約リクエストが以下の日時で来ています。受理されますか？\n\n'
                 + '日時：' + startAt + ' 〜 ' + endAt + '\n\n'
                 + '場所：' + booking.rental.province + '\n\n'
                 + '以下のURLからログインして、受理/否認のご連絡をお願いいたします。\n\n'
@@ -51,9 +51,9 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         if(booking.comment) {
             msg = {
                 to: sendTo,
-                from: 'noreply@ap-trainer.com',
-                subject: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが来ています！',
-                text: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
+                from: 'noreply@aeru.me',
+                subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
+                text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
                     + '元のリクエスト日時：' + oldStartAt + ' 〜 ' + oldEndAt + '\n\n'
                     + '場所：' + booking.rental.province + '\n\n'
@@ -66,9 +66,9 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         } else {
             msg = {
                 to: sendTo,
-                from: 'noreply@ap-trainer.com',
-                subject: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが来ています！',
-                text: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
+                from: 'noreply@aeru.me',
+                subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
+                text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
                     + '元のリクエスト日時：' + oldStartAt + ' 〜 ' + oldEndAt + '\n\n'
                     + '場所：' + booking.rental.province + '\n\n'
@@ -82,9 +82,9 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         if(booking.comment) {
             msg = {
                 to: sendTo,
-                from: 'noreply@ap-trainer.com',
-                subject: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが来ています！',
-                text: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
+                from: 'noreply@aeru.me',
+                subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
+                text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
                     + '元のリクエスト日時：' + oldStartAt + ' 〜 ' + oldEndAt + '\n\n'
                     + '場所：' + booking.rental.province + '\n\n'
@@ -97,9 +97,9 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         } else {
             msg = {
                 to: sendTo,
-                from: 'noreply@ap-trainer.com',
-                subject: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが来ています！',
-                text: '「' + booking.rental.rentalname + ' Trainer」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
+                from: 'noreply@aeru.me',
+                subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
+                text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
                     + '元のリクエスト日時：' + oldStartAt + ' 〜 ' + oldEndAt + '\n\n'
                     + '場所：' + booking.rental.province + '\n\n'

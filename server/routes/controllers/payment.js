@@ -26,7 +26,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
         if(comment) {
             msg = {
                 to: sendTo,
-                from: "noreply@ap-trainer.com",
+                from: "noreply@aeru.me",
                 subject: "「" + booking.rental.rentalname + " Trainer」への予約リクエストは受理されませんでした",
                 text: "商品名：" + booking.rental.rentalname + " \n\n"
                     + "日時：" + startAt + ' 〜 ' + endAt + " \n\n"
@@ -39,7 +39,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
         } else {
             msg = {
                 to: sendTo,
-                from: "noreply@ap-trainer.com",
+                from: "noreply@aeru.me",
                 subject: "「" + booking.rental.rentalname + " Trainer」への予約リクエストは受理されませんでした",
                 text: "商品名：" + booking.rental.rentalname + " \n\n"
                     + "日時：" + startAt + ' 〜 ' + endAt + " \n\n"
@@ -54,7 +54,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
     } else if (sendMsg === REQUEST_ACCEPTED_BY_OWNER) {
         msg = {
             to: sendTo,
-            from: "noreply@ap-trainer.com",
+            from: "noreply@aeru.me",
             subject: "[予約確定]「" + booking.rental.rentalname + " Trainer」への予約リクエストが受理されました！",
             text: 'おめでとうございます！「' + booking.rental.rentalname + ' Trainer」への予約リクエストが受理されました！\n\n' 
                 + '日時：' + startAt + ' 〜 ' + endAt + ' \n\n'
@@ -66,7 +66,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
     } else if (sendMsg === REQUEST_ACCEPTED_BY_USER) {
         msg = {
             to: sendTo,
-            from: "noreply@ap-trainer.com",
+            from: "noreply@aeru.me",
             subject: "[予約確定]「" + booking.rental.rentalname + " Trainer」への予約日時変更リクエストが受理されました！",
             text: 'おめでとうございます！「' + booking.rental.rentalname + ' Trainer」の予約日時変更リクエストが受理されました！\n\n' 
                 + '日時：' + startAt + ' 〜 ' + endAt + ' \n\n'
@@ -78,7 +78,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
     } else if (sendMsg === REQUEST_DECLINED_BY_USER) {
         msg = {
             to: sendTo,
-            from: "noreply@ap-trainer.com",
+            from: "noreply@aeru.me",
             subject: "「" + booking.rental.rentalname + " Trainer」への予約日時変更リクエストは受理されませんでした",
             text: "商品名：" + booking.rental.rentalname + " \n\n"
                 + "日時：" + startAt + ' 〜 ' + endAt + " \n\n"
