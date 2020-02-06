@@ -81,6 +81,7 @@ export class RegisterVerificationComponent implements OnInit {
   }
 
   modalOpen() {
+    this.router.navigate(['/'])
     this.modalService.open(LoginPupupTestComponent)
   }
 }
