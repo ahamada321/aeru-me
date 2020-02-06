@@ -103,7 +103,7 @@ exports.FBauth = function(req, res) {//Under development
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
         if(!foundUser) {
-            return res.status(422).send({errors: [{title: "User not found!", detail: "Please sign up before login!"}]})
+            return res.status(422).send({errors: [{title: "User not found!", detail: "先にメンバー登録してください！"}]})
         }
         if(!foundUser.isVerified) {
             return res.status(422).send({errors: [{title: "Not verified user!", detail: "受信メールからからアカウントをアクティベーションしてください！"}]})
@@ -219,25 +219,25 @@ exports.updateUser = function(req, res) {
 
 exports.emailVerification = function (req, res) {
     const verifyToken = req.params.token
-    const decordedToken = jwt.verify(verifyToken, config.SECRET, function(err) {
+    jwt.verify(verifyToken, config.SECRET, function(err, decordedToken) {
         if(err) {
             return res.status(422).send({errors: [{title: "Invalid token!", detail: "Token format is invalid!"}]})
         }
-    })
-    
-    User.findById(decordedToken.userId)
-        .select('-password')
-        .exec(function(err, foundUser) {
-        if(err) {
-            return res.status(422).send({errors: normalizeErrors(err.errors)})
-        }
+        
+        User.findById(decordedToken.userId)
+            .select('-password')
+            .exec(function(err, foundUser) {
+            if(err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
 
-        if(!foundUser) {
-            return res.status(422).send({errors: {title: "No User!", detail: "No user found!"}})
-        }
+            if(!foundUser) {
+                return res.status(422).send({errors: {title: "No User!", detail: "No user found!"}})
+            }
 
-        foundUser.isVerified = true
-        return res.json({'registered': true});
+            foundUser.isVerified = true
+            return res.json({'registered': true});
+        })
     })
 }
 

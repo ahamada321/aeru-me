@@ -48,6 +48,7 @@ export class RegisterVerificationComponent implements OnInit {
       (errorResponse: HttpErrorResponse) => {
         this.showSwal('failed')
         this.errors = errorResponse.error.errors
+        console.error(this.errors)
       }
     )
   }
