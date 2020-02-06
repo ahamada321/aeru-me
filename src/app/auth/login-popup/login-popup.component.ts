@@ -58,6 +58,7 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
     } else {
       this.auth.FBlogin(this.user).subscribe(
         (token) => {
+          this.activeModal.close('Close click')
           this.router.navigate(['/rentals'])
         },
         (errorResponse: HttpErrorResponse) => {
