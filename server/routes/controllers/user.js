@@ -236,6 +236,7 @@ exports.emailVerification = function (req, res) {
             }
 
             foundUser.isVerified = true
+            foundUser.save()
             return res.json({'registered': true});
         })
     })
