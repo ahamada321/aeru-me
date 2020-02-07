@@ -133,7 +133,8 @@ exports.register = function(req, res) {
     const password = req.body.password
     const passwordConfirmation = req.body.passwordConfirmation
     */
-   const { FBuserID, username, email, password, passwordConfirmation } = req.body
+    const { FBuserID, username, email, password, passwordConfirmation } = req.body
+    let isVerified = false
 
     if(!password || !email) {
         return res.status(422).send({errors: [{title: "Data missing!", detail: "フォームに正しく入力してください"}]})
@@ -143,76 +144,56 @@ exports.register = function(req, res) {
         return res.status(422).send({errors: [{title: "Invalid password!", detail: "パスワードとパスワード確認が異なります"}]})
     }
 
-    if(!FBuserID) {
-        User.findOne({email}, function(err, existingUser) {
-            if(err) {
-                return res.status(422).send({errors: normalizeErrors(err.errors)})
-            }
-            if(existingUser) {
-                return res.status(422).send({errors: [{title: "Invalid email!", detail: "このメールアドレスは既に登録されています！"}]})
-            }
-    
-            // Filling user infomation with ../models/user.js format
-            const user = new User({
-                username,
-                email,
-                password,
-    
-                /* It is same as above
-                username: username,
-                email: email,
-                password: password
-                */
-            })
-    
-            User.create(user, function(err, newUser) {
-                if(err) {
-                    return res.status(422).send({errors: normalizeErrors(err.errors)})
-                }
-    
-                const token = jwt.sign({
-                    userId: newUser.id,
-                    //username: newUser.username
-                  }, config.SECRET, { expiresIn: '2h' })
-                
-                sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
-                return res.json({'isVerivied': 'false'});
-            })
-        })
-    } else {
-        User.findOne({FBuserID}, function(err, existingUser) {
-            if(err) {
-                return res.status(422).send({errors: normalizeErrors(err.errors)})
-            }
-            if(existingUser) {
-                return res.status(422).send({errors: [{title: "Already exist!", detail: "このFacebook IDは既に登録されています！ログインページからログインしてください！"}]})
-            }
+    await User.findOne({email}, function(err, existingUser) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        if(existingUser) {
+            return res.status(422).send({errors: [{title: "Invalid email!", detail: "このメールアドレスは既に登録されています！"}]})
+        }
+    })
 
-            // Filling user infomation with ../models/user.js format
-            const user = new User({
-                FBuserID,
-                username,
-                email,
-                password,
-                isVerified: true
-    
-                /* It is same as above
-                FBuserID: FBuserID,
-                username: username,
-                email: email,
-                password: password
-                isVerified: isVerified
-                */
-            })
-    
-            User.create(user, function(err, newUser) {
-                if(err) {
-                    return res.status(422).send({errors: normalizeErrors(err.errors)})
-                }
-                return res.json({'isVerivied': 'true'});
-            })
-        })
-    }
+    await User.findOne({FBuserID}, function(err, existingUser) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        if(existingUser) {
+            return res.status(422).send({errors: [{title: "Already exist!", detail: "このFacebook IDは既に登録されています！ログインページからログインしてください！"}]})
+        }
+        isVerified = true
+    })
+
+    // Filling user infomation with ../models/user.js format
+    const user = new User({
+        FBuserID,
+        username,
+        email,
+        password,
+        isVerified
+
+        /* It is same as above
+        FBuserID: FBuserID,
+        username: username,
+        email: email,
+        password: password
+        isVerified: isVerified
+        */
+    })
+
+    User.create(user, function(err, newUser) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        if(!isVerified) {
+            const token = jwt.sign({
+                userId: newUser.id,
+                //username: newUser.username
+              }, config.SECRET, { expiresIn: '2h' })
+            
+            sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
+        }
+        return res.json({'isVerivied': isVerified});
+    })
 }
 
 exports.updateUser = function(req, res) {
