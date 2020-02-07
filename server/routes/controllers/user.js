@@ -79,19 +79,18 @@ exports.auth = function(req, res) {
             return res.status(422).send({errors: [{title: "Not verified user!", detail: "受信メールからからアカウントをアクティベーションしてください！"}]})
         }
 
-        if(user.hasSamePassword(password)) {
-            // return JWT token
-            const token = jwt.sign({
-                userId: user.id,
-                username: user.username,
-                userRole: user.userRole,
-              }, config.SECRET, { expiresIn: '24h' })
-
-            return res.json(token)
-            
-        } else {
-            return res.status(422).send({errors: [{title: "Invalid Data!", detail: "Wrong email or password!"}]})
+        if(!user.hasSamePassword(password)) {
+            return res.status(422).send({errors: [{title: "Invalid Data!", detail: "メールアドレスまたはパスワードが間違っています！"}]})
         }
+
+        // return JWT token
+        const token = jwt.sign({
+            userId: user.id,
+            username: user.username,
+            userRole: user.userRole,
+            }, config.SECRET, { expiresIn: '24h' })
+
+        return res.json(token)
     })
 }
 
@@ -110,19 +109,14 @@ exports.FBauth = function(req, res) {//Under development
         }
 
         // if(user.hasSamePassword(password)) {
-            // return JWT token
-            const token = jwt.sign({
-                userId: foundUser.id,
-                username: foundUser.username,
-                userRole: foundUser.userRole,
-              }, config.SECRET, { expiresIn: '24h' })
+        // return JWT token
+        const token = jwt.sign({
+            userId: foundUser.id,
+            username: foundUser.username,
+            userRole: foundUser.userRole,
+            }, config.SECRET, { expiresIn: '24h' })
 
-            return res.json(token)
-
-        // } 
-        // else {
-            // return res.status(422).send({errors: [{title: "Invalid Data!", detail: "Wrong email or password!"}]})
-        // }
+        return res.json(token)
     })
 }
 
@@ -153,15 +147,17 @@ exports.register = function(req, res) {
         }
     })
 
-    await User.findOne({FBuserID}, function(err, existingUser) {
-        if(err) {
-            return res.status(422).send({errors: normalizeErrors(err.errors)})
-        }
-        if(existingUser) {
-            return res.status(422).send({errors: [{title: "Already exist!", detail: "このFacebook IDは既に登録されています！ログインページからログインしてください！"}]})
-        }
-        isVerified = true
-    })
+    if(FBuserID) {
+        await User.findOne({FBuserID}, function(err, existingUser) {
+            if(err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
+            if(existingUser) {
+                return res.status(422).send({errors: [{title: "Already exist!", detail: "このFacebook IDは既に登録されています！ログインページからログインしてください！"}]})
+            }
+            isVerified = true
+        })
+    }
 
     // Filling user infomation with ../models/user.js format
     const user = new User({
