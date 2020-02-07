@@ -50,12 +50,13 @@
                                     type="username"
                                     class="form-control"
                                     id="username"
-                                    placeholder="Username" (focus)="focus=true" (blur)="focus=false"
+                                    placeholder="ユーザー名" (focus)="focus=true" (blur)="focus=false"
                                     required
                                     />
 
                                 <input 
                                     [(ngModel)]="formData.email"
+                                    [disabled] = "formData.FBuserID ? 'true' : 'false'"
                                     name="email"
                                     type="email"
                                     class="form-control"
@@ -70,7 +71,7 @@
                                     type="password"
                                     class="form-control"
                                     id="password"
-                                    placeholder="Password" (focus)="focus2=true" (blur)="focus2=false"
+                                    placeholder="パスワード" (focus)="focus2=true" (blur)="focus2=false"
                                     required
                                     />
 
@@ -80,7 +81,7 @@
                                     type="password"
                                     class="form-control"
                                     id="passwordConfirmation"
-                                    placeholder="Confirm Password" (focus)="focus3=true" (blur)="focus3=false"
+                                    placeholder="パスワード（確認）" (focus)="focus3=true" (blur)="focus3=false"
                                     required
                                     />
 

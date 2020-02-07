@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router'
 import { User } from 'src/app/user/service/user.model';
 import { LoginPupupTestComponent } from '../login-popup/login-popup.component';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -72,8 +73,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   register() {
     this.auth.register(this.formData).subscribe(
-      () => {
-        this.router.navigate(['/register/sent'])
+      (isVerified) => {
+        if(!isVerified) {
+          this.router.navigate(['/register/sent'])
+        } else {
+          this.showSwalSuccess()
+        }
       },
       (errorResponse: HttpErrorResponse) => {
         this.errors = errorResponse.error.errors
@@ -81,8 +86,21 @@ export class RegisterComponent implements OnInit, OnDestroy {
     )
   }
 
+  showSwalSuccess() {
+    Swal.fire({
+          title: 'メンバー登録完了',
+          text: '無事にログイン出来るようになりました！',
+          type: 'success',
+          confirmButtonClass: "btn btn-primary btn-lg",
+          buttonsStyling: false,
+          allowOutsideClick: false
+      }).then(() => {
+          this.modalOpen()
+      })
+  }
+
   modalOpen() {
     this.router.navigate(['/'])
     this.modalService.open(LoginPupupTestComponent)
-}
+  }
 }
