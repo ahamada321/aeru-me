@@ -138,57 +138,87 @@ exports.register = function(req, res) {
         return res.status(422).send({errors: [{title: "Invalid password!", detail: "パスワードとパスワード確認が異なります"}]})
     }
 
-    await User.findOne({email}, function(err, existingUser) {
+
+    User.findOne({email}, async function(err, existingUser) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
         if(existingUser) {
             return res.status(422).send({errors: [{title: "Invalid email!", detail: "このメールアドレスは既に登録されています！"}]})
         }
-    })
 
-    if(FBuserID) {
-        await User.findOne({FBuserID}, function(err, existingUser) {
-            if(err) {
-                return res.status(422).send({errors: normalizeErrors(err.errors)})
-            }
-            if(existingUser) {
-                return res.status(422).send({errors: [{title: "Already exist!", detail: "このFacebook IDは既に登録されています！ログインページからログインしてください！"}]})
-            }
-            isVerified = true
-        })
-    }
+        if(FBuserID) {
+            User.findOne({FBuserID}).exec(function(err, existingUser) {
+                if(err) {
+                    return res.status(422).send({errors: normalizeErrors(err.errors)})
+                }
+                if(existingUser) {
+                    return res.status(422).send({errors: [{title: "Already exist!", detail: "このFacebook IDは既に登録されています！ログインページからログインしてください！"}]})
+                }
+                isVerified = true
 
-    // Filling user infomation with ../models/user.js format
-    const user = new User({
-        FBuserID,
-        username,
-        email,
-        password,
-        isVerified
+                // Filling user infomation with ../models/user.js format
+                const user = new User({
+                    FBuserID,
+                    username,
+                    email,
+                    password,
+                    isVerified
 
-        /* It is same as above
-        FBuserID: FBuserID,
-        username: username,
-        email: email,
-        password: password
-        isVerified: isVerified
-        */
-    })
+                    /* It is same as above
+                    FBuserID: FBuserID,
+                    username: username,
+                    email: email,
+                    password: password
+                    isVerified: isVerified
+                    */
+                })
 
-    User.create(user, function(err, newUser) {
-        if(err) {
-            return res.status(422).send({errors: normalizeErrors(err.errors)})
+                User.create(user, function(err, newUser) {
+                    if(err) {
+                        return res.status(422).send({errors: normalizeErrors(err.errors)})
+                    }
+                    if(!isVerified) {
+                        const token = jwt.sign({
+                            userId: newUser.id,
+                            //username: newUser.username
+                        }, config.SECRET, { expiresIn: '2h' })
+                        
+                        sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
+                    }
+                    return res.json({'isVerivied': isVerified});
+                })
+            })
+
+        } else {
+            // Filling user infomation with ../models/user.js format
+            const user = new User({
+                username,
+                email,
+                password,
+
+                /* It is same as above
+                username: username,
+                email: email,
+                password: password
+                */
+            })
+
+            User.create(user, function(err, newUser) {
+                if(err) {
+                    return res.status(422).send({errors: normalizeErrors(err.errors)})
+                }
+                if(!isVerified) {
+                    const token = jwt.sign({
+                        userId: newUser.id,
+                        //username: newUser.username
+                    }, config.SECRET, { expiresIn: '2h' })
+                    
+                    sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
+                }
+                return res.json({'isVerivied': isVerified});
+            })
         }
-        if(!isVerified) {
-            const token = jwt.sign({
-                userId: newUser.id,
-                //username: newUser.username
-              }, config.SECRET, { expiresIn: '2h' })
-            
-            sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
-        }
-        return res.json({'isVerivied': isVerified});
     })
 }
 
