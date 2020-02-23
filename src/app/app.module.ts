@@ -10,10 +10,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment'; // This is using in Angular-calender
 import * as moment from 'moment';
 
-export function momentAdapterFactory() {
+export function momentAdapterFactory() { // This is using in Angular-calender
   return adapterFactory(moment);
 };
 
