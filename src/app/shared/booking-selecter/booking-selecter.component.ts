@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter, NgbCalendar, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import * as moment from 'moment-timezone';
+import { ActivatedRoute } from '@angular/router';
+import { DateTimeAdapter } from 'ng-pick-datetime';
 import { BookingService } from 'src/app/rental/rental-detail/rental-detail-booking/services/booking.service';
 import { Rental } from 'src/app/rental/service/rental.model';
 import { Booking } from 'src/app/rental/rental-detail/rental-detail-booking/services/booking.model';
-import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment-timezone';
+
 
 
 @Component({
@@ -19,68 +20,67 @@ export class BookingSelecterComponent implements OnInit {
   isDateBlock_flg: boolean = false
 
   // Date picker params
-  selectedDate: NgbDateStruct
-  minDate: NgbDateStruct
-  maxDate: NgbDateStruct 
+  selectedDate: Date
+  minDate = new Date()
+  maxDate = new Date() 
 
   @Input() rental: Rental
   @Input() selectedCourseTime: number
   @Output() newBookingInfo = new EventEmitter()
 
   constructor(
-    private calendar: NgbCalendar,
     private bookingService: BookingService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dateTimeAdapter: DateTimeAdapter<any>
   ) {
-    // Initilize ngbDatepicker
-    this.selectedDate = calendar.getToday()
-    this.minDate = calendar.getToday()
-    this.maxDate = calendar.getNext(calendar.getToday(), 'd', 14 - 1 )
+    // Initiate Datepicker
+    dateTimeAdapter.setLocale('ja-JP')
+    this.selectedDate = new Date()
+    this.maxDate.setDate(this.maxDate.getDate() + 8) // Enables to post before 6 days.
+    this.maxDate = new Date(this.maxDate.getFullYear(), this.maxDate.getMonth(), this.maxDate.getDate()) // Convert to date format
   }
 
   ngOnInit() {
     this.onDateSelect(this.selectedDate)
     this.newBooking = new Booking()
-
   }
 
-  onDateSelect(date: NgbDateStruct) {
+  onDateSelect(date: Date) {
     this.isDateBlock_flg = false
     this.iskDateBlock(date)
-    const d = new Date(date.year, date.month -1, date.day)
-    const selectedDay = d.getDay()
+    const selectedDay = date.getDay()
 
     let mTimeTables = []
     let mEndAt = null
     let mStartAt = null
 
     if(selectedDay==0 && this.rental.businesshour_enabled_sun) { // Sunday
-      mEndAt = moment(this.rental.businesshour_endTime_sun).set({'year': date.year, 'month': date.month -1, 'date': date.day})
-      mStartAt = moment(this.rental.businesshour_startTime_sun).set({'year': date.year, 'month': date.month -1, 'date': date.day})
+      mEndAt = moment(this.rental.businesshour_endTime_sun).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
+      mStartAt = moment(this.rental.businesshour_startTime_sun).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
     }
     if(selectedDay==1 && this.rental.businesshour_enabled_mon) { // Monday
-      mEndAt = moment(this.rental.businesshour_endTime_mon).set({'year': date.year, 'month': date.month -1, 'date': date.day})
-      mStartAt = moment(this.rental.businesshour_startTime_mon).set({'year': date.year, 'month': date.month -1, 'date': date.day})
+      mEndAt = moment(this.rental.businesshour_endTime_mon).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
+      mStartAt = moment(this.rental.businesshour_startTime_mon).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
     }
     if(selectedDay==2 && this.rental.businesshour_enabled_tue) {
-      mEndAt = moment(this.rental.businesshour_endTime_tue).set({'year': date.year, 'month': date.month -1, 'date': date.day})
-      mStartAt = moment(this.rental.businesshour_startTime_tue).set({'year': date.year, 'month': date.month -1, 'date': date.day})
+      mEndAt = moment(this.rental.businesshour_endTime_tue).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
+      mStartAt = moment(this.rental.businesshour_startTime_tue).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
     }
     if(selectedDay==3 && this.rental.businesshour_enabled_wed) {
-      mEndAt = moment(this.rental.businesshour_endTime_wed).set({'year': date.year, 'month': date.month -1, 'date': date.day})
-      mStartAt = moment(this.rental.businesshour_startTime_wed).set({'year': date.year, 'month': date.month -1, 'date': date.day})
+      mEndAt = moment(this.rental.businesshour_endTime_wed).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
+      mStartAt = moment(this.rental.businesshour_startTime_wed).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
     }
     if(selectedDay==4 && this.rental.businesshour_enabled_thu) {
-      mEndAt = moment(this.rental.businesshour_endTime_thu).set({'year': date.year, 'month': date.month -1, 'date': date.day})
-      mStartAt = moment(this.rental.businesshour_startTime_thu).set({'year': date.year, 'month': date.month -1, 'date': date.day})
+      mEndAt = moment(this.rental.businesshour_endTime_thu).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
+      mStartAt = moment(this.rental.businesshour_startTime_thu).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
     }
     if(selectedDay==5 && this.rental.businesshour_enabled_fri) {
-      mEndAt = moment(this.rental.businesshour_endTime_fri).set({'year': date.year, 'month': date.month -1, 'date': date.day})
-      mStartAt = moment(this.rental.businesshour_startTime_fri).set({'year': date.year, 'month': date.month -1, 'date': date.day})
+      mEndAt = moment(this.rental.businesshour_endTime_fri).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
+      mStartAt = moment(this.rental.businesshour_startTime_fri).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
     }
     if(selectedDay==6 && this.rental.businesshour_enabled_sat) {
-      mEndAt = moment(this.rental.businesshour_endTime_sat).set({'year': date.year, 'month': date.month -1, 'date': date.day})
-      mStartAt = moment(this.rental.businesshour_startTime_sat).set({'year': date.year, 'month': date.month -1, 'date': date.day})
+      mEndAt = moment(this.rental.businesshour_endTime_sat).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
+      mStartAt = moment(this.rental.businesshour_startTime_sat).set({'year': date.getFullYear(), 'month': date.getMonth(), 'date': date.getDate()})
     }
 
     while(mStartAt < mEndAt) {
@@ -97,7 +97,7 @@ export class BookingSelecterComponent implements OnInit {
     return moment(startAt).diff(moment()) < 0 // Attention: just "moment()" is already applied timezone!
   }
 
-  iskDateBlock (selectedDate: NgbDateStruct) {
+  iskDateBlock (selectedDate: Date) {
     const selected_date = moment(selectedDate).subtract(1, 'month').format('YYYY-MM-DD') // Subtract 1 month to adapt NgbDateStruct to moment()
 
     for(let booking of this.rental.bookings) {
@@ -131,7 +131,7 @@ export class BookingSelecterComponent implements OnInit {
 
   selectDateTime(startAt) {
     this.newBooking.startAt = moment(startAt).format()
-    this.newBooking.endAt = moment(startAt).add(this.selectedCourseTime, 'minute').subtract(1, 'minute').format()
+    this.newBooking.endAt = moment(startAt).add(this.selectedCourseTime -1, 'minute').format()
   
     this.newBooking.courseTime = this.selectedCourseTime
     this.newBooking.totalPrice = this.rental.hourlyPrice * (this.selectedCourseTime / 60)

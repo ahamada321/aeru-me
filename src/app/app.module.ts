@@ -9,6 +9,13 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import * as moment from 'moment';
+
+export function momentAdapterFactory() {
+  return adapterFactory(moment);
+};
 
 
 @NgModule({
@@ -23,7 +30,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NgbModule, // Using in Navbar
-    SweetAlert2Module.forRoot(),
+    SweetAlert2Module.forRoot(), 
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: momentAdapterFactory }), // amgular-calendar not using now
   ],
   providers: [],
   bootstrap: [AppComponent]

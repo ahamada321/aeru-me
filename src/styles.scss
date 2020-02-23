@@ -3,6 +3,23 @@
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/timegrid/main.css';
 @import '~ngx-bar-rating/themes/br-stars-theme';
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.owl-dt-calendar-table {
+  .owl-dt-calendar-cell-selected {
+    background-color: #FF5A5F;
+  }
+  .owl-dt-calendar-cell-content {
+    font-size: 1.1em
+  }
+}
+.owl-dt-container {
+  font-size: .9rem;
+}
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important; // Adding due to mobile header has broken when opened owl calendar.
+}
