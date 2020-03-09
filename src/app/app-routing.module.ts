@@ -16,6 +16,7 @@ import { UserModule } from './user/user.module';
 
 import { LandingComponent } from './static/landing/landing.component';
 import { LandingSaasComponent } from './static/landing-saas/landing-saas.component';
+import { LandingAptrainerComponent } from './static/landing-aptrainer/landing-aptrainer.component';
 import { AboutusComponent } from './static/aboutus/aboutus.component';
 import { ContactusComponent } from './static/contactus/contactus.component';
 import { Page404Component } from './static/page404/page404.component';
@@ -42,6 +43,7 @@ const routes: Routes = [
 
   { path: '',         component: LandingSaasComponent},
   { path: 'lp',         component: LandingComponent},
+  { path: 'aptrainer',         component: LandingAptrainerComponent},
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ]
@@ -66,6 +68,7 @@ const routes: Routes = [
   declarations: [
     LandingComponent,
     LandingSaasComponent,
+    LandingAptrainerComponent,
     AboutusComponent,
     ContactusComponent,
     Page404Component,

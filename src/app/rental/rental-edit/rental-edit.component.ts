@@ -53,6 +53,9 @@ export class RentalEditComponent implements OnInit {
     ngOnDestroy(){
       let navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.remove('navbar-transparent');
+      if (navbar.classList.contains('nav-up')) {
+          navbar.classList.remove('nav-up');
+      }
       let body = document.getElementsByTagName('body')[0];
       body.classList.remove('add-product');
     }

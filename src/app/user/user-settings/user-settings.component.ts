@@ -24,18 +24,20 @@ export class UserSettingsComponent implements OnInit {
       private router: Router ) { }
 
     ngOnInit() {
-        this.getUser()
-
-        let body = document.getElementsByTagName('body')[0];
-        body.classList.add('settings-page');
         let navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.add('navbar-transparent');
+        let body = document.getElementsByTagName('body')[0];
+        body.classList.add('settings-page');
+        this.getUser()
     }
     ngOnDestroy(){
-        let body = document.getElementsByTagName('body')[0];
-        body.classList.remove('settings-page');
         let navbar = document.getElementsByTagName('nav')[0];
         navbar.classList.remove('navbar-transparent');
+        if (navbar.classList.contains('nav-up')) {
+            navbar.classList.remove('nav-up');
+        }
+        let body = document.getElementsByTagName('body')[0];
+        body.classList.remove('settings-page');
     }
 
     getUser() {

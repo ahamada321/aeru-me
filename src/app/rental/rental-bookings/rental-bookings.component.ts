@@ -15,19 +15,22 @@ export class RentalBookingsComponent implements OnInit, OnDestroy {
   constructor(private paymentService: PaymentService) { }
 
   ngOnInit() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.add('settings');
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('settings');
 
     this.getPaidPayments()
   }
 
   ngOnDestroy() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.remove('settings');
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
+    if (navbar.classList.contains('nav-up')) {
+        navbar.classList.remove('nav-up');
+    }
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.remove('settings');
   }
 
   getPaidPayments() {

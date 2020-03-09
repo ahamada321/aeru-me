@@ -21,10 +21,10 @@ export class RentalManageComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.add('settings');
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('settings');
 
     this.rentalService.getOwnerRentals().subscribe(
       (rentals: Rental[]) => {
@@ -37,10 +37,13 @@ export class RentalManageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.remove('settings');
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
+    if (navbar.classList.contains('nav-up')) {
+        navbar.classList.remove('nav-up');
+    }
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.remove('settings');
   }
 
   deleteRental(rentalId: string) {
