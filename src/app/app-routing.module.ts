@@ -41,9 +41,8 @@ const routes: Routes = [
   // { path: 'usersvoice',  component: UsersVoiceComponent },
   // { path: 'results',  component: ResultsComponent },
 
-  { path: '',         component: LandingSaasComponent},
+  { path: '',         component: LandingAptrainerComponent},
   { path: 'lp',         component: LandingComponent},
-  { path: 'aptrainer',         component: LandingAptrainerComponent},
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ]
