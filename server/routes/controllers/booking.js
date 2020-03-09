@@ -27,7 +27,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
     if(sendMsg === REQUEST_SEND) {
         msg = {
             to: sendTo,
-            from: 'noreply@aeru.me',
+            from: 'noreply@ap-trainer.com',
             subject: '[仮予約完了]予約リクエストを送信しました！',
             text: '現時点では予約は確定していません。「' + booking.rental.rentalname + 'さん」がリクエストを受理された場合に予約が確定します。\n\n'
                 + '予約が確定しない限りご請求が行くことはございません。'
@@ -37,7 +37,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
     } else if (sendMsg === REQUEST_RECIEVED) {
         msg = {
             to: sendTo,
-            from: 'noreply@aeru.me',
+            from: 'noreply@ap-trainer.com',
             subject: '「' + booking.rental.rentalname + 'さん」に予約リクエストが来ています！',
             text: '「' + booking.rental.rentalname + 'さん」への予約リクエストが以下の日時で来ています。受理されますか？\n\n'
                 + '日時：' + startAt + ' 〜 ' + endAt + '\n\n'
@@ -51,7 +51,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         if(booking.comment) {
             msg = {
                 to: sendTo,
-                from: 'noreply@aeru.me',
+                from: 'noreply@ap-trainer.com',
                 subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
                 text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
@@ -66,7 +66,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         } else {
             msg = {
                 to: sendTo,
-                from: 'noreply@aeru.me',
+                from: 'noreply@ap-trainer.com',
                 subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
                 text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
@@ -82,7 +82,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         if(booking.comment) {
             msg = {
                 to: sendTo,
-                from: 'noreply@aeru.me',
+                from: 'noreply@ap-trainer.com',
                 subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
                 text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
@@ -97,7 +97,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname) {
         } else {
             msg = {
                 to: sendTo,
-                from: 'noreply@aeru.me',
+                from: 'noreply@ap-trainer.com',
                 subject: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが来ています！',
                 text: '「' + booking.rental.rentalname + 'さん」の予約再調整リクエストが以下の日時で来ています。受理されますか？\n\n'
                     + '新しい提案日時：' + startAt + ' 〜 ' + endAt + '\n\n'
