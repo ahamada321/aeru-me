@@ -147,7 +147,7 @@ exports.register = function(req, res) {
             return res.status(422).send({errors: [{title: "Invalid email!", detail: "このメールアドレスは既に登録されています！"}]})
         }
 
-        if(FBuserID) {
+        if(FBuserID) { // Register by Facebook
             User.findOne({FBuserID}).exec(function(err, existingUser) {
                 if(err) {
                     return res.status(422).send({errors: normalizeErrors(err.errors)})
@@ -158,12 +158,12 @@ exports.register = function(req, res) {
                 isVerified = true
 
                 // Filling user infomation with ../models/user.js format
-                const user = new User({
+                const newUser = new User({
                     FBuserID,
                     username,
                     email,
                     password,
-                    isVerified
+                    isVerified // true
 
                     /* It is same as above
                     FBuserID: FBuserID,
@@ -174,49 +174,35 @@ exports.register = function(req, res) {
                     */
                 })
 
-                User.save(user, function(err, newUser) {
+                newUser.save(function(err) {
                     if(err) {
                         return res.status(422).send({errors: normalizeErrors(err.errors)})
                     }
-                    if(!isVerified) {
-                        const token = jwt.sign({
-                            userId: newUser.id,
-                            //username: newUser.username
-                        }, config.SECRET, { expiresIn: '2h' })
-                        
-                        sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
-                    }
-                    return res.json({'isVerivied': isVerified});
+                    return res.json(newUser)
                 })
             })
 
-        } else {
+        } else { // Register by email
             // Filling user infomation with ../models/user.js format
-            const user = new User({
+            const newUser = new User({
                 username,
                 email,
                 password,
-
-                /* It is same as above
-                username: username,
-                email: email,
-                password: password
-                */
+                isVerified // false
             })
 
-            User.save(user, function(err, newUser) {
+            newUser.save(function(err) {
                 if(err) {
                     return res.status(422).send({errors: normalizeErrors(err.errors)})
                 }
-                if(!isVerified) {
-                    const token = jwt.sign({
-                        userId: newUser.id,
-                        //username: newUser.username
-                    }, config.SECRET, { expiresIn: '2h' })
-                    
-                    sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
-                }
-                return res.json({'isVerivied': isVerified});
+
+                const token = jwt.sign({ // Not recommend to use JWT for making loginURL.
+                    userId: newUser.id,
+                    //username: newUser.username
+                }, config.SECRET, { expiresIn: '2h' })
+                
+                sendEmailTo(newUser.email, VERIFICATION_EMAIL, token, req.hostname)
+                return res.json(newUser)
             })
         }
     })

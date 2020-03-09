@@ -13,13 +13,16 @@ export class User {
     }
     description: string
     rating: number
-    isVerified: boolean
     phone: number
     postalcode: number
     address: string
     idOfPhoto1: string
     idOfPhoto2: string
     bankAccount: string
+
+    isVerified: boolean
+    isLocked: boolean
+    isBanned: boolean
     userRole: string
     status: string
     affiliateCode: string
