@@ -80,11 +80,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   register() {
     this.auth.register(this.formData).subscribe(
-      (isVerified) => {
-        if(!isVerified) {
-          this.router.navigate(['/register/sent'])
-        } else {
+      (newUser: User) => {
+        if(newUser.isVerified) {
           this.showSwalSuccess()
+        } else {
+          this.router.navigate(['/register/sent'])
         }
       },
       (errorResponse: HttpErrorResponse) => {
