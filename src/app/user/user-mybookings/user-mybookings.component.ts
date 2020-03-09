@@ -14,6 +14,10 @@ import * as moment from 'moment-timezone';
 })
 export class UserMyBookingsComponent implements OnInit, OnDestroy {
   bookings: Booking[] = []
+  pendingBookings: Booking[] = []
+  expiredBookings: Booking[] = []
+  acceptedBookings: Booking[] = []
+  finishedBookings: Booking[] = []
   bookingDeleteIndex: number = undefined
 
   constructor(private bookingService: BookingService,
@@ -24,7 +28,10 @@ export class UserMyBookingsComponent implements OnInit, OnDestroy {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
 
-    this.getUserBookings()
+    this.getUserPendingBookings()
+    this.getUserExpiredBookings()
+    this.getUserAcceptedBookings()
+    this.getUserFinishedBookings()
   }
 
   ngOnDestroy() {
@@ -32,10 +39,37 @@ export class UserMyBookingsComponent implements OnInit, OnDestroy {
     navbar.classList.remove('navbar-transparent');
   }
 
-  getUserBookings() {
-    this.bookingService.getUserBookings().subscribe(
-      (bookings: Booking[]) => {
-        this.bookings = bookings
+  getUserPendingBookings() {
+    this.bookingService.getUserPendingBookings().subscribe(
+      (pendingBookings: Booking[]) => {
+        this.pendingBookings = pendingBookings
+      },
+      () => { }
+    )
+  }
+
+  getUserExpiredBookings() {
+    this.bookingService.getUserExpiredBookings().subscribe(
+      (expiredBookings: Booking[]) => {
+        this.expiredBookings = expiredBookings
+      },
+      () => { }
+    )
+  }
+
+  getUserAcceptedBookings() {
+    this.bookingService.getUserAcceptedBookings().subscribe(
+      (acceptedBookings: Booking[]) => {
+        this.acceptedBookings = acceptedBookings
+      },
+      () => { }
+    )
+  }
+
+  getUserFinishedBookings() {
+    this.bookingService.getUserFinishedBookings().subscribe(
+      (finishedBookings: Booking[]) => {
+        this.finishedBookings = finishedBookings
       },
       () => { }
     )

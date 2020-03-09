@@ -68,26 +68,26 @@ exports.auth = function(req, res) {
         return res.status(422).send({errors: [{title: "Data missing!", detail: "Provide email and password!"}]})
     }
 
-    User.findOne({email}, function(err, user) {
+    User.findOne({email}, function(err, foundUser) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
-        if(!user) {
+        if(!foundUser) {
             return res.status(422).send({errors: [{title: "Invalid user!", detail: "先にユーザー登録してください！"}]})
         }
-        if(!user.isVerified) {
+        if(!foundUser.isVerified) {
             return res.status(422).send({errors: [{title: "Not verified user!", detail: "受信メールからからアカウントをアクティベーションしてください！"}]})
         }
 
-        if(!user.hasSamePassword(password)) {
+        if(!foundUser.hasSamePassword(password)) {
             return res.status(422).send({errors: [{title: "Invalid Data!", detail: "メールアドレスまたはパスワードが間違っています！"}]})
         }
 
         // return JWT token
         const token = jwt.sign({
-            userId: user.id,
-            username: user.username,
-            userRole: user.userRole,
+            userId: foundUser.id,
+            username: foundUser.username,
+            userRole: foundUser.userRole,
             }, config.SECRET, { expiresIn: '24h' })
 
         return res.json(token)
@@ -130,11 +130,11 @@ exports.register = function(req, res) {
     const { FBuserID, username, email, password, passwordConfirmation } = req.body
     let isVerified = false
 
-    if(!password || !email) {
+    if(!username || !email || !password) {
         return res.status(422).send({errors: [{title: "Data missing!", detail: "フォームに正しく入力してください"}]})
     }
 
-    if(password != passwordConfirmation) {
+    if(password !== passwordConfirmation) {
         return res.status(422).send({errors: [{title: "Invalid password!", detail: "パスワードとパスワード確認が異なります"}]})
     }
 
@@ -174,7 +174,7 @@ exports.register = function(req, res) {
                     */
                 })
 
-                User.create(user, function(err, newUser) {
+                User.save(user, function(err, newUser) {
                     if(err) {
                         return res.status(422).send({errors: normalizeErrors(err.errors)})
                     }
@@ -204,7 +204,7 @@ exports.register = function(req, res) {
                 */
             })
 
-            User.create(user, function(err, newUser) {
+            User.save(user, function(err, newUser) {
                 if(err) {
                     return res.status(422).send({errors: normalizeErrors(err.errors)})
                 }
@@ -231,7 +231,7 @@ exports.updateUser = function(req, res) {
         return res.status(422).send({errors: {title: "Invalid user!", detail: "Cannot edit other user profile!"}})
     }
 
-    User.findByIdAndUpdate(user.id, userData, function(err) {
+    User.updateOne({_id: user.id}, userData, function(err) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
@@ -239,7 +239,7 @@ exports.updateUser = function(req, res) {
         const token = jwt.sign({
               userId: user.id,
               username: userData.username,
-              userRole: user.userRole,
+              userRole: userData.userRole || user.userRole,
               }, config.SECRET, { expiresIn: '12h' })
     
         return res.json(token)

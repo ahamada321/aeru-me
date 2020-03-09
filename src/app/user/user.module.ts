@@ -6,11 +6,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from '../auth/service/auth.guard';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
+import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
 import { ReviewModule } from '../shared/review/review.module';
 import { MaterialModule } from '../shared/modules/matmodule/matmodule';
 import { BookingSelecterModule } from '../shared/booking-selecter/booking-selecter.module';
 
 import { UserComponent } from './user.component';
+import { UserActivatorComponent } from './user-activator/user-activator.component';
 import { UserMyBookingsComponent } from './user-mybookings/user-mybookings.component';
 import { UserMyFavouriteComponent } from './user-myfavourite/user-myfavourite.component';
 import { MyfavouriteListItemComponent } from './user-myfavourite/myfavourite-list-item/myfavourite-list-item.component';
@@ -28,6 +30,7 @@ const routes: Routes = [{
   children: [
     { path: 'myfavourite', component: UserMyFavouriteComponent, canActivate: [AuthGuard] },
     { path: 'mybookings', component: UserMyBookingsComponent, canActivate: [AuthGuard] },
+    { path: 'activator', component: UserActivatorComponent, canActivate: [AuthGuard] },
     { path: '', component: UserSettingsComponent, canActivate: [AuthGuard] },
   ]
 }]
@@ -35,6 +38,7 @@ const routes: Routes = [{
 @NgModule({
   declarations: [
     UserComponent,
+    UserActivatorComponent,
     MyfavouriteListItemComponent,
     UserMyFavouriteComponent,
     UserMyBookingsComponent, 
@@ -54,6 +58,7 @@ const routes: Routes = [{
     NgbModule,
     JwBootstrapSwitchNg2Module,
     ImageUploadModule,
+    ImageUploadMyverModule,
     MaterialModule,
     ReviewModule,
     BookingSelecterModule

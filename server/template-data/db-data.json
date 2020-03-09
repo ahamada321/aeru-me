@@ -1,7 +1,7 @@
 {
     "rentals": [
         {
-            "shared": true,
+            "isShared": true,
             "isApproved": true,
             "businesshour_enabled_sun": true,
             "businesshour_enabled_mon": true,
@@ -33,7 +33,7 @@
             "hourlyPrice": 10000
         },
         {
-            "shared": true,
+            "isShared": true,
             "isApproved": false,
             "businesshour_enabled_sun": true,
             "businesshour_enabled_mon": true,

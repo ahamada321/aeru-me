@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RentalService } from '../service/rental.service';
+import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Rental } from '../service/rental.model';
 import Swal from 'sweetalert2'
@@ -34,7 +35,8 @@ export class RentalEditComponent implements OnInit {
     constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private rentalService: RentalService
+      private rentalService: RentalService,
+      public auth: MyOriginAuthService
     ) { }
 
     ngOnInit() {
@@ -67,7 +69,7 @@ export class RentalEditComponent implements OnInit {
     }
 
     unpublishRental() {
-      this.rental.shared = false
+      this.rental.isShared = false
       this.rentalService.updateRental(this.rental._id, this.rental).subscribe(
         (updatedRental) => {
           this.showSwalSuccess()
@@ -79,7 +81,7 @@ export class RentalEditComponent implements OnInit {
     }
 
     updateRental() {
-      this.rental.shared = true
+      this.rental.isShared = true
       this.rentalService.updateRental(this.rental._id, this.rental).subscribe(
         (updatedRental) => {
           this.showSwalSuccess()

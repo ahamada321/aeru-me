@@ -350,7 +350,83 @@ exports.updateBooking = function(req, res) {
 exports.getUserBookings = function(req,res) {
     const user = res.locals.user
 
-    Booking.where({user})
+    Booking.find({user})
+            // .populate('rental')
+            .populate({
+                // populate 'rental' and 'bookings' in 'rental'
+                path: 'rental',
+                populate: { path: 'bookings' } // This is using for re-proposal dates window.
+            })
+            .sort({ "startAt": -1 })
+            .exec(function(err, foundBookings) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(foundBookings)
+    })
+}
+
+exports.getUserPendingBookings = function(req,res) {
+    const user = res.locals.user
+
+    Booking.find({user, status: 'pending', startAt: {$gt: moment().tz("Asia/Tokyo")}})
+            // .populate('rental')
+            .populate({
+                // populate 'rental' and 'bookings' in 'rental'
+                path: 'rental',
+                populate: { path: 'bookings' } // This is using for re-proposal dates window.
+            })
+            .sort({ "startAt": -1 })
+            .exec(function(err, foundBookings) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(foundBookings)
+    })
+}
+
+exports.getUserExpiredBookings = function(req,res) {
+    const user = res.locals.user
+
+    Booking.find({user, status: 'pending', startAt: {$lte: moment().tz("Asia/Tokyo")}})
+            // .populate('rental')
+            .populate({
+                // populate 'rental' and 'bookings' in 'rental'
+                path: 'rental',
+                populate: { path: 'bookings' } // This is using for re-proposal dates window.
+            })
+            .sort({ "startAt": -1 })
+            .exec(function(err, foundBookings) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(foundBookings)
+    })
+}
+
+exports.getUserAcceptedBookings = function(req,res) {
+    const user = res.locals.user
+
+    Booking.find({user, status: 'active', startAt: {$gt: moment().tz("Asia/Tokyo")}})
+            // .populate('rental')
+            .populate({
+                // populate 'rental' and 'bookings' in 'rental'
+                path: 'rental',
+                populate: { path: 'bookings' } // This is using for re-proposal dates window.
+            })
+            .sort({ "startAt": -1 })
+            .exec(function(err, foundBookings) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(foundBookings)
+    })
+}
+
+exports.getUserFinishedBookings = function(req,res) {
+    const user = res.locals.user
+
+    Booking.find({user, status: 'active', startAt: {$lte: moment().tz("Asia/Tokyo")}})
             // .populate('rental')
             .populate({
                 // populate 'rental' and 'bookings' in 'rental'

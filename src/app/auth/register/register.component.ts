@@ -4,7 +4,7 @@ import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { User } from 'src/app/user/service/user.model';
 import { LoginPupupTestComponent } from '../login-popup/login-popup.component';
 import Swal from 'sweetalert2'
@@ -31,7 +31,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private auth: MyOriginAuthService, 
     private socialAuthService: AuthService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
@@ -42,6 +43,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
         navbar.classList.add('navbar-transparent');
 
     this.seeFBLoginState()
+    this.route.params.subscribe(
+      (params) => {
+          if(params['as'] == 'trainer') {
+              this.showSwalNotification()
+          }
+      })
   }
   
   ngOnDestroy() {
@@ -97,6 +104,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
       }).then(() => {
           this.modalOpen()
       })
+  }
+
+  showSwalNotification() {
+    Swal.fire({
+        type: 'info',
+        text: '新規会員登録後にトレーナー登録できます。',
+        confirmButtonClass: "btn btn-primary btn-lg",
+        buttonsStyling: false,
+    })
   }
 
   modalOpen() {

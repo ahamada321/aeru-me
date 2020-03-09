@@ -12,6 +12,23 @@ export class BookingService {
         return this.http.get('/api/v1/bookings')
     }
 
+    public getUserPendingBookings(): Observable<any> {
+        return this.http.get('/api/v1/bookings/pending')
+    }
+
+    public getUserExpiredBookings(): Observable<any> {
+        return this.http.get('/api/v1/bookings/expired')
+    }
+
+    public getUserAcceptedBookings(): Observable<any> {
+        return this.http.get('/api/v1/bookings/accepted')
+    }
+
+    public getUserFinishedBookings(): Observable<any> {
+        return this.http.get('/api/v1/bookings/finished')
+    }
+
+
     public createBooking(bookingData: Booking): Observable<any> {
         return this.http.post('/api/v1/bookings', bookingData)
     }

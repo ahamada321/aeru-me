@@ -82,7 +82,17 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button *ngIf="auth.isAuthenticated()" (click)="modalBookingOpen(60)" class="card" data-background="color" data-color="green">
+                                        <button *ngIf="isYourRental()" class="card" data-background="color" data-color="gray">
+                                            <div class="card-body text-center">
+                                                <h6 class="card-category">自分のコースは選べません</h6>
+                                                <h2 class="card-title">60min</h2>
+                                                <p class="card-description">自分のコースは予約できません</p>
+                                                <div class="card-footer">
+                                                    <div class="btn btn-neutral btn-round">{{rental.hourlyPrice}}円 / 60分</div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <button *ngIf="!isYourRental() && auth.isAuthenticated()" (click)="modalBookingOpen(60)" class="card" data-background="color" data-color="green">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">このコースを選ぶ</h6>
                                                 <h2 class="card-title">60min</h2>
@@ -96,7 +106,7 @@
                                 </div>
                             </div>
 
-                            <div class="card card-plain card-blog">
+                            <div *ngIf="rental.course2Title && rental.course2Description" class="card card-plain card-blog">
                                 <div class="row">
                                     <div class="col-md-8 col-11 ml-auto mr-auto">
                                         <div class="card-body">
@@ -123,7 +133,17 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button *ngIf="auth.isAuthenticated()" (click)="modalBookingOpen(90)" class="card" data-background="color" data-color="blue">
+                                        <button *ngIf="isYourRental()" class="card" data-background="color" data-color="gray">
+                                            <div class="card-body text-center">
+                                                <h6 class="card-category">自分のコースは選べません</h6>
+                                                <h2 class="card-title">90min</h2>
+                                                <p class="card-description">自分のコースは予約できません</p>
+                                                <div class="card-footer">
+                                                    <div class="btn btn-neutral btn-round">{{rental.hourlyPrice * 1.5}}円 / 90分</div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <button *ngIf="!isYourRental() && auth.isAuthenticated()" (click)="modalBookingOpen(90)" class="card" data-background="color" data-color="blue">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">このコースを選ぶ</h6>
                                                 <h2 class="card-title">90min</h2>
@@ -136,6 +156,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -191,7 +212,7 @@
         </div>
 
         <!--     *********     Photo Gallery      *********      -->
-        <div class="section section-sections">
+        <div *ngIf="rental.gallery1" class="section section-sections">
             <div class="container">
               <div class="col-md-8 ml-auto mr-auto">
                 <div class="section-description text-center">

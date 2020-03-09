@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RentalService } from '../service/rental.service';
+import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { Router } from '@angular/router';
 import { Rental } from '../service/rental.model';
 import Swal from 'sweetalert2'
@@ -32,12 +33,16 @@ export class RentalNewComponent implements OnInit, OnDestroy {
 
   constructor(
     private rentalService: RentalService, 
-    private router: Router
+    private router: Router,
+    public auth: MyOriginAuthService
   ) { }
 
   ngOnInit() {
     this.newRental = new Rental()
     this.newRental.image = "assets/img/image_placeholder.jpg"
+    if(this.auth.getUserRole() === 'Trainer') {
+      this.newRental.rentalname = this.auth.getUsername()
+    }
 
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
@@ -53,7 +58,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   }
 
   createUnpublishedRental() {
-    this.newRental.shared = false
+    this.newRental.isShared = false
     this.rentalService.createRental(this.newRental).subscribe(
       (rental: Rental) => {
           this.showSwalSuccess()
@@ -68,7 +73,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     if(!this.isTouched) {
       this.errors.push({detail: "プロフィール写真の選択と切り抜きを先に押してください"})
     } else {
-      this.newRental.shared = true
+      this.newRental.isShared = true
       this.rentalService.createRental(this.newRental).subscribe(
         (rental: Rental) => {
           this.showSwalSuccess()

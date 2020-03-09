@@ -31,10 +31,18 @@ const userSchema = new Schema({
     rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
     // favouriteRentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
 
+    phone: Number,
+    postalcode: Number,
+    address: String,
+    idOfPhoto1: String,
+    idOfPhoto2: String,
+    bankAccount: String,
+    affiliateCode: String,
+
     isVerified: { type: Boolean, default: false },
     isLocked: { type: Boolean, default: false }, // If user missed password too much
     isBanned: { type: Boolean, default: false }, // If user was not appropriate for our service
-    userRole:  { type: String, default: "User" }, // User, Teacher, Owner, Admin, SuperAdmin
+    userRole:  { type: String, default: "User" }, // User, PendingTrainer, Trainer, Owner, Admin, SuperAdmin
     
     customer: { // Stripe
         id: { type: String, default: '' },
@@ -43,15 +51,17 @@ const userSchema = new Schema({
 })
 
 userSchema.methods.hasSamePassword = function(requestPassword) {
-    return bcrypt.compareSync(requestPassword, this.password)
+    const user = this
+    return bcrypt.compareSync(requestPassword, user.password)
 }
 
 userSchema.pre('save', function(next) {
+    const saltRounds = 10
     const user = this
 
     // Skip if user didn't update user password
     if(user.password){
-        bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.genSalt(saltRounds, function(err, salt) {
             bcrypt.hash(user.password, salt, function(err, hash) {
                 // Store hash in your password DB.
                 user.password = hash

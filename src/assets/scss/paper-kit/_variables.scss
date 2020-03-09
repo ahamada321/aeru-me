@@ -64,6 +64,9 @@ $purple-states-color:        darken($purple-color, 8%) !default;
 $brown-color:                #dcb285 !default;
 $brown-states-color:         darken($brown-color, 8%) !default;
 
+// Added by Hamada
+$dark-gray-color:                #9A9A9A !default; 
+$dark-gray-states-color:         darken($dark-gray-color, 8%) !default;
 
 
 
@@ -234,6 +237,7 @@ $bg-warning:            lighten($warning-color, 7%) !default;
 $bg-danger:             lighten($danger-color, 7%) !default;
 $bg-brown:              lighten($brown-color, 7%) !default;
 $bg-purple:             lighten($purple-color, 7%) !default;
+$bg-dark-gray:          lighten($dark-gray-color, 7%) !default; // Added by Hamada
 
 $preloader-color:          #D8D1C9 !default;
 

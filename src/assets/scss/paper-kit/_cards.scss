@@ -492,6 +492,9 @@
     &[data-color="orange"]{
         background: $bg-danger;
     }
+    &[data-color="gray"]{ // Added by Hamada
+        background: $bg-dark-gray;
+    }
 }
 
 .btn-center{

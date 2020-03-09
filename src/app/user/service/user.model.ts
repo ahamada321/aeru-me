@@ -14,7 +14,13 @@ export class User {
     description: string
     rating: number
     isVerified: boolean
+    phone: number
+    postalcode: number
+    address: string
+    idOfPhoto1: string
+    idOfPhoto2: string
+    bankAccount: string
     userRole: string
     status: string
-
+    affiliateCode: string
 }

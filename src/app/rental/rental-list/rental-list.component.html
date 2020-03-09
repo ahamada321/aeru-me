@@ -4,6 +4,8 @@
       <div class="container">
         <div class="space-50"></div>
         <h1 class="title">少し憧れだった人に会おう</h1>
+
+
         <!-- <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-raised card-form-horizontal no-transition">
@@ -35,6 +37,7 @@
               </div>
           </div>
         </div> -->
+
     </div>
   </div>
 </div>
@@ -49,6 +52,30 @@
           </ng-container>
         </div>
     </div>
+
+    <!--     *********    CALL TO ACTION    *********      -->
+    <ng-container *ngIf="!auth.getUserRole() || auth.getUserRole() === 'User'">
+      <div class="separator"></div>
+      <div class="subscribe-line">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-9 col-sm-8">
+                      <h3>自分を出品しませんか？</h3>
+                      <h5>
+                          自ら考えたサービスを自分のスケジュールに合わせて出品できます。<br/>
+                      </h5>
+                  </div>
+                  <div class="col-md-3 col-sm-4">
+                      <br />
+                      <br />
+                      <a *ngIf="!auth.getUserRole()" [routerLink]="['/register', {as: 'trainer'}]" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
+                      <a *ngIf="auth.getUserRole() === 'User'" [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </ng-container>
+
   </div>
 </div>
 

@@ -99,30 +99,62 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
 exports.getPendingPayments = function(req, res) {
     const user = res.locals.user
 
-    Payment.where({toUser: user, status: 'pending'})
-            .populate('fromUser')
-            .populate({
-                // populate both 'booking' and 'rental'
-                path: 'booking',
-                // options: {sort: {'startAt': -1}}, // This not works
-                populate: {
-                    path: 'rental',
-                    populate: {path: 'bookings'} // Using for reproposal booking date from rental owner.
-                }
-            })
-            .sort( {'booking.startAt': -1} ) // This not works
-            .exec(function(err, foundPayments) {
+    Payment.aggregate([ // Need to check it works as expected.
+        {"$match": {"toUser": user, "status": 'pending'}},
+        {"$unwind": "$booking"},
+        {"$match": { "startAt": { "$gt": Date.now } }},
+        {"$sort": { "startAt": -1 } }
+    ], function(err, foundPendingPayments) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
-        return res.json(foundPayments)
+        return res.json(foundPendingPayments)
+    })
+
+    // Payment.find({toUser: user, status: 'pending'})
+    //         .populate('fromUser')
+    //         .populate({
+    //             // populate both 'booking' and 'rental'
+    //             path: 'booking',
+    //             // options: {sort: {'startAt': -1}}, // This not works
+    //             populate: {
+    //                 path: 'rental',
+    //                 populate: {path: 'bookings'} // Using for reproposal booking date from rental owner.
+    //             }
+    //         })
+    //         .sort( {'booking.startAt': -1} ) // This not works
+    //         .exec(function(err, foundPayments) {
+    //     if(err) {
+    //         return res.status(422).send({errors: normalizeErrors(err.errors)})
+    //     }
+    //     return res.json(foundPayments)
+    // })
+
+}
+
+exports.getExpiredPayments = function(req, res) {
+    const user = res.locals.user
+
+    Payment.aggregate([ // Need to check it works as expected.
+        {"$match": {"toUser": user, "status": 'pending'}},
+        {"$unwind": "$booking"},
+        {"$match": { "startAt": { "$lte": Date.now } }},
+        {"$sort": { "startAt": -1 } }
+    ], function(err, foundExpiredPayments) {
+        if(err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(foundExpiredPayments)
     })
 }
+
+
+
 
 exports.getPaidPayments = function(req, res) {
     const user = res.locals.user
 
-    Payment.where({toUser: user, status: 'paid'})
+    Payment.find({toUser: user, status: 'paid'})
             .populate('fromUser')
             .populate({
                 // populate both 'booking' and 'rental'

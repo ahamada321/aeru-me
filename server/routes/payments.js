@@ -7,7 +7,13 @@ const PaymentCtrl = require('./controllers/payment')
 
 router.get('', UserCtrl.authMiddleware, PaymentCtrl.getPendingPayments)
 
-router.get('/paid', UserCtrl.authMiddleware, PaymentCtrl.getPaidPayments)
+router.get('/expired', UserCtrl.authMiddleware, PaymentCtrl.getExpiredPayments)
+
+
+router.get('/paid', UserCtrl.authMiddleware, PaymentCtrl.getPaidPayments) // All
+
+// router.get('/finished', UserCtrl.authMiddleware, PaymentCtrl.getFinishedPayments)
+
 
 router.post('/accept', UserCtrl.authMiddleware, PaymentCtrl.acceptPayment)
 

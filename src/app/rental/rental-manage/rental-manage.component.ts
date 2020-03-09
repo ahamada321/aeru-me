@@ -17,7 +17,7 @@ export class RentalManageComponent implements OnInit, OnDestroy {
 
   constructor(
     private rentalService: RentalService,
-    public auth: MyOriginAuthService,
+    public auth: MyOriginAuthService
     ) { }
 
   ngOnInit() {

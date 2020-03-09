@@ -6,9 +6,10 @@ const rentalSchema = new Schema({
     createdAt: { type: Date, default: Date.now },
     lastLogin: { type: Date, default: Date.now },
     
-    shared: { type: Boolean, default: false },
-    isApproved: { type: Boolean, default: false },
-    reasonOfBanned: String,
+    isBanned: Boolean,
+    isApproved: Boolean,
+    isShared: Boolean,
+
     rating: Number,
 
     lineworksURL: String,
@@ -17,7 +18,6 @@ const rentalSchema = new Schema({
         max: [32, '32文字以下で入力してください'],
         min: [4, '4文字以上で入力してください'],
         lowercase: true,
-        required: 'Emailは必須です',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
     },
     facebook: String,

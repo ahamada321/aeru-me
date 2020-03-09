@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RentalService } from '../service/rental.service';
 import { Rental } from '../service/rental.model';
+import { RentalService } from '../service/rental.service';
+import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 
 @Component({
   selector: 'app-rental-list',
@@ -11,7 +12,10 @@ export class RentalListComponent implements OnInit, OnDestroy {
 
   rentals: Rental[] = []
 
-  constructor(private rentalService: RentalService) { }
+  constructor(
+    private rentalService: RentalService,
+    public auth: MyOriginAuthService
+  ) { }
 
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];

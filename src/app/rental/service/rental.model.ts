@@ -7,8 +7,9 @@ export class Rental {
     lastLogin: string;
 
     static readonly CATEGORIES = ["カテゴリ1", "カテゴリ2"];
-    shared: boolean;
+    isShared: boolean;
     isApproved: boolean;
+    isBanned: boolean;
     reasonOfBanned: string;
 
     lineworksURL: string;

@@ -18,7 +18,7 @@ exports.getRentalById = function(req, res) {
 }
 
 exports.getRentals = function(req, res) {
-    Rental.find({shared: true}, function(err, foundRentals) {
+    Rental.find({isShared: true}, function(err, foundRentals) {
         return res.json(foundRentals)
     })
 }
