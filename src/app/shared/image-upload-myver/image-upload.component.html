@@ -1,7 +1,7 @@
 <div class="text-center" >
     <div class="space-top"></div>
     <label *ngIf="!imageChangedEvent" class="btn btn-outline-default btn-file btn-round">
-        {{ inputLabel }}
+        {{ inputLabel }} <span *ngIf="isMust" class="icon-danger">*</span>
         <input 
             type="file"
             accept="image/*"

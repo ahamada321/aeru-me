@@ -30,7 +30,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
                 subject: "「" + booking.rental.rentalname + " Trainer」への予約リクエストは受理されませんでした",
                 text: "商品名：" + booking.rental.rentalname + " \n\n"
                     + "日時：" + startAt + ' 〜 ' + endAt + " \n\n"
-                    + "場所：" + booking.rental.province + "\n\n"
+                    + "場所：" + booking.rental.province[0].itemName + "\n\n"
                     + "への予約リクエストは受理されませんでした。\n\n"
                     + '先生からのコメント：' + comment
                     + '\n\n\n\n'
@@ -43,7 +43,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
                 subject: "「" + booking.rental.rentalname + " Trainer」への予約リクエストは受理されませんでした",
                 text: "商品名：" + booking.rental.rentalname + " \n\n"
                     + "日時：" + startAt + ' 〜 ' + endAt + " \n\n"
-                    + "場所：" + booking.rental.province + "\n\n"
+                    + "場所：" + booking.rental.province[0].itemName + "\n\n"
                     + "への予約リクエストは受理されませんでした。\n\n"
                     + "たまたま「" + booking.rental.rentalname + " Trainer」の都合がつかなかった場合もありますので、また別の日程で予約にチャレンジしてみてください！\n\n"
                     + "他の商品の方が予約しやすい場合もあります。"
@@ -58,7 +58,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
             subject: "[予約確定]「" + booking.rental.rentalname + " Trainer」への予約リクエストが受理されました！",
             text: 'おめでとうございます！「' + booking.rental.rentalname + ' Trainer」への予約リクエストが受理されました！\n\n' 
                 + '日時：' + startAt + ' 〜 ' + endAt + ' \n\n'
-                + '場所：' + booking.rental.province + '\n\n'
+                + '場所：' + booking.rental.province[0].itemName + '\n\n'
                 + 'これ以降のキャンセルはできません。時間に余裕を持って目的地に到着されるようお願いいたします。'
                 + '\n\n\n\n'
                 + 'Aeru.me, Inc'
@@ -70,7 +70,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
             subject: "[予約確定]「" + booking.rental.rentalname + " Trainer」への予約日時変更リクエストが受理されました！",
             text: 'おめでとうございます！「' + booking.rental.rentalname + ' Trainer」の予約日時変更リクエストが受理されました！\n\n' 
                 + '日時：' + startAt + ' 〜 ' + endAt + ' \n\n'
-                + '場所：' + booking.rental.province + '\n\n'
+                + '場所：' + booking.rental.province[0].itemName + '\n\n'
                 + 'これ以降のキャンセルはできません。生徒に満足される最高のおもてなしをしましょう！'
                 + '\n\n\n\n'
                 + 'Aeru.me, Inc'
@@ -82,7 +82,7 @@ function sendEmailTo(sendTo, sendMsg, booking, hostname, comment) {
             subject: "「" + booking.rental.rentalname + " Trainer」への予約日時変更リクエストは受理されませんでした",
             text: "商品名：" + booking.rental.rentalname + " \n\n"
                 + "日時：" + startAt + ' 〜 ' + endAt + " \n\n"
-                + "場所：" + booking.rental.province + "\n\n"
+                + "場所：" + booking.rental.province[0].itemName + "\n\n"
                 + "への予約日時変更リクエストは受理されませんでした。\n\n"
                 + "せっかくの予約機会を逃さぬよう、受付不可日はなるべく早めに予約ブロック機能で事前にブロックしておきましょう。\n\n"
                 + "予約ブロック機能はTrainer管理ページ内で設定できます。"

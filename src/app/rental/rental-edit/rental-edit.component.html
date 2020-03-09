@@ -63,17 +63,18 @@
                       </div>
                   </span></small></h5>
                 </div>
-    
+
                 <div class="form-group">
-                    <h6>活動都道府県 <span class="icon-danger">*</span></h6>
-                    <input type="text" 
-                        class="form-control border-input" 
-                        placeholder="都道府県" 
-                        [(ngModel)]="rental.province" 
-                        name="province"
-                        required
-                        />
+                  <h6>活動都道府県 <span class="icon-danger">*</span></h6>
+                  <angular2-multiselect 
+                      [data]="dropdownPrefectureList" 
+                      [settings]="dropdownPrefectureSettings" 
+                      [(ngModel)]="rental.province"
+                      name="province"
+                      required
+                      ></angular2-multiselect>
                 </div>
+  
                 <div class="form-group">
                     <h6>活動最寄駅 <span class="icon-danger">*</span></h6>
                     <div class="input-group border-input">
@@ -292,10 +293,10 @@
               </div>
     
                 <div class="form-group">
-                  <h6>提供サービス時給 <span class="icon-danger">*</span></h6>
+                  <h6>提供サービス時給（1万円以上推薦） <span class="icon-danger">*</span></h6>
                   <div class="input-group border-input">
                       <input 
-                        type="text" 
+                        type="number" 
                         placeholder="時給を任意に設定できます" 
                         class="form-control border-input" 
                         [(ngModel)]="rental.hourlyPrice" 

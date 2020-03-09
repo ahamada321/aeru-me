@@ -18,13 +18,13 @@ export class Rental {
     twitter: string;
     instagram: string;
     youtube: string;
-    selectedCategory: any[];
+    selectedCategory: any[]
     
     rentalname: string;
     email: string;
     birthday: Date;
 
-    province: string;
+    province: any[]
     nearStation: string;
     hourlyPrice: number;
     cardDescription

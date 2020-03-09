@@ -55,7 +55,7 @@
     </div>
 
     <!--     *********    CALL TO ACTION    *********      -->
-    <ng-container *ngIf="!auth.getUserRole() || auth.getUserRole() === 'User'">
+    <ng-container *ngIf="auth.isAuthenticated() && auth.getUserRole() === 'User'">
       <div class="separator"></div>
       <div class="subscribe-line">
           <div class="container">
