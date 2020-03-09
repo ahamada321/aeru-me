@@ -54,7 +54,7 @@
     </div>
 
     <!--     *********    CALL TO ACTION    *********      -->
-    <ng-container *ngIf="!auth.getUserRole() || auth.getUserRole() === 'User'">
+    <ng-container *ngIf="auth.isAuthenticated() && auth.getUserRole() === 'User'">
       <div class="separator"></div>
       <div class="subscribe-line">
           <div class="container">
@@ -68,8 +68,7 @@
                   <div class="col-md-3 col-sm-4">
                       <br />
                       <br />
-                      <a *ngIf="!auth.getUserRole()" [routerLink]="['/register', {as: 'trainer'}]" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
-                      <a *ngIf="auth.getUserRole() === 'User'" [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
+                      <a [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-block btn-primary">自分を出品する</a>
                   </div>
               </div>
           </div>
