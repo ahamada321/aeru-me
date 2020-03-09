@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { MyOriginAuthService }      from './auth.service';
+import { MyOriginAuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     if(this.isLoginOrRegisterdPage()) {
       return true
     }
-    this.router.navigate(['/login'])
+    this.router.navigate(['/register'])
     return false
   }
 
