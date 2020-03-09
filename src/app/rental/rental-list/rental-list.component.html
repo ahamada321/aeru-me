@@ -69,8 +69,8 @@
                   <div class="col-md-3 col-sm-4">
                       <br />
                       <br />
-                      <a *ngIf="!auth.getUserRole()" [routerLink]="['/register', {as: 'trainer'}]" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
-                      <a *ngIf="auth.getUserRole() === 'User'" [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
+                      <a *ngIf="!auth.isAuthenticated()" [routerLink]="['/register', {as: 'trainer'}]" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
+                      <a *ngIf="auth.isAuthenticated() && auth.getUserRole() === 'User'" [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-block btn-primary">トレーナーになる</a>
                   </div>
               </div>
           </div>
