@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
           <div class="space-top"></div>
-          <app-image-upload-myver (imageUploaded)="imageChange($event)"></app-image-upload-myver>
+          <app-image-upload-myver (imageUploaded)="imageChange($event)" [isMust]="true"></app-image-upload-myver>
           <form #rentalForm="ngForm">
           <!--<form [formGroup]="myGroup" action="" method="">-->
             <div class="form-group">
@@ -68,14 +68,15 @@
 
             <div class="form-group">
                 <h6>活動都道府県 <span class="icon-danger">*</span></h6>
-                <input type="text" 
-                    class="form-control border-input" 
-                    placeholder="都道府県" 
-                    [(ngModel)]="newRental.province" 
+                <angular2-multiselect 
+                    [data]="dropdownPrefectureList" 
+                    [settings]="dropdownPrefectureSettings" 
+                    [(ngModel)]="newRental.province"
                     name="province"
                     required
-                    />
+                    ></angular2-multiselect>
             </div>
+
             <div class="form-group">
                 <h6>活動最寄駅 <span class="icon-danger">*</span></h6>
                 <div class="input-group border-input">
@@ -238,10 +239,10 @@
             </div>
 
             <div class="form-group">
-              <h6>提供サービス時給 <span class="icon-danger">*</span></h6>
+              <h6>提供サービス時給（1万円以上推薦） <span class="icon-danger">*</span></h6>
               <div class="input-group border-input">
                   <input 
-                    type="text" 
+                    type="number" 
                     placeholder="時給を任意に設定できます" 
                     class="form-control border-input" 
                     [(ngModel)]="newRental.hourlyPrice" 

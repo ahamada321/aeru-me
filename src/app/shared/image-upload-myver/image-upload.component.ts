@@ -16,6 +16,7 @@ class FileSnippet {
   styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadMyverComponent implements OnInit {
+  @Input() isMust: boolean
   @Input() inputImage: string
   @Input() inputLabel: string = 'プロフィール写真を選択'
   @Output() imageUploaded = new EventEmitter()

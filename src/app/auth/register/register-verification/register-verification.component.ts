@@ -57,7 +57,7 @@ export class RegisterVerificationComponent implements OnInit {
     if (type == 'success') {
       Swal.fire({
             title: 'アクティベーション完了',
-            text: '無事にログイン出来るようになりました！',
+            text: 'ログイン出来るようになりました！',
             type: 'success',
             confirmButtonClass: "btn btn-primary btn-lg",
             buttonsStyling: false,

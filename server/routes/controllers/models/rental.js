@@ -28,7 +28,7 @@ const rentalSchema = new Schema({
 
     birthday: Date,
     rentalname: { type: String, required: true, max: [128, '商品名は最大128文字までです']},
-    province: { type: String, required: '都道府県を設定してください' },
+    province: { type: Object, required: '都道府県を設定してください' },
     nearStation: { type: String, required: '活動最寄駅を入力してください' },
     hourlyPrice: { type: Number, required: '時給を設定してください' },
 
