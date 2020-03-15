@@ -93,8 +93,8 @@ export class RentalBookingComponent implements OnInit {
             this.showSwalSuccess()
           },
           (errorResponse: HttpErrorResponse) => {
-            this.errors = errorResponse.error.errors
-            
+            console.error(errorResponse)
+            this.errors = errorResponse.error.errors    
           }
         )
     }

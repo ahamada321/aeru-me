@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyOriginAuthService } from '../../service/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2'
-import { LoginPupupTestComponent } from '../../login-popup/login-popup.component';
+import { LoginPupupComponent } from '../../login-popup/login-popup.component';
 
 
 @Component({
@@ -15,7 +14,6 @@ import { LoginPupupTestComponent } from '../../login-popup/login-popup.component
 })
 export class RegisterVerificationComponent implements OnInit {
 
-  loginForm: FormGroup
   errors: any[] = []
   notifyMessage: string = ''
 
@@ -31,7 +29,7 @@ export class RegisterVerificationComponent implements OnInit {
 
     this.route.params.subscribe(
       (params) => {
-        if(params['registered'] == 'success') {
+        if(params['registered'] === 'success') {
           this.notifyMessage = "You have been successfully registerd. You can login now!"
         }
 
@@ -46,9 +44,8 @@ export class RegisterVerificationComponent implements OnInit {
         
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse)
         this.showSwal('failed')
-        this.errors = errorResponse.error.errors
-        console.error(this.errors)
       }
     )
   }
@@ -82,6 +79,6 @@ export class RegisterVerificationComponent implements OnInit {
 
   modalOpen() {
     this.router.navigate(['/'])
-    this.modalService.open(LoginPupupTestComponent)
+    this.modalService.open(LoginPupupComponent)
   }
 }

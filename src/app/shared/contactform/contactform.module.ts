@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactFormService } from './service/contactform.service';
 import { ContactFormComponent } from './contactform.component';
@@ -12,7 +12,6 @@ import { ContactFormComponent } from './contactform.component';
     ],
     imports: [
         CommonModule,
-        FormsModule,
         ReactiveFormsModule,
         RouterModule,
     ],

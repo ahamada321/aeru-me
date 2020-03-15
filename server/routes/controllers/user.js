@@ -139,20 +139,20 @@ exports.register = function(req, res) {
     }
 
 
-    User.findOne({email}, async function(err, existingUser) {
+    User.findOne({email}, async function(err, foundUser) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)})
         }
-        if(existingUser) {
+        if(foundUser) {
             return res.status(422).send({errors: [{title: "Invalid email!", detail: "このメールアドレスは既に登録されています！"}]})
         }
 
         if(FBuserID) { // Register by Facebook
-            User.findOne({FBuserID}).exec(function(err, existingUser) {
+            User.findOne({FBuserID}).exec(function(err, foundUser) {
                 if(err) {
                     return res.status(422).send({errors: normalizeErrors(err.errors)})
                 }
-                if(existingUser) {
+                if(foundUser) {
                     return res.status(422).send({errors: [{title: "Already exist!", detail: "このFacebook IDは既に登録されています！ログインページからログインしてください！"}]})
                 }
                 isVerified = true

@@ -74,10 +74,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['/rentals'])
         },
         (errorResponse: HttpErrorResponse) => {
-          // this.zone.run(() => { // In order to detect changes here immidiately.
-          //   this.errors = errorResponse.error.errors
-          // })
-          this.errors = errorResponse.error.errors
+          console.error(errorResponse)
+          this.errors = errorResponse.error.errors  
           this.ref.detectChanges() // In order to detect changes here immidiately.
         }
       )
@@ -118,6 +116,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/rentals'])
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse)
         this.errors = errorResponse.error.errors
       }
     )

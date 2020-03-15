@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { DateTimeAdapter } from 'ng-pick-datetime';
 import { BookingService } from 'src/app/rental/rental-detail/rental-detail-booking/services/booking.service';
 import { Rental } from 'src/app/rental/service/rental.model';
@@ -30,7 +29,6 @@ export class BookingSelecterComponent implements OnInit {
 
   constructor(
     private bookingService: BookingService,
-    private route: ActivatedRoute,
     private dateTimeAdapter: DateTimeAdapter<any>
   ) {
     // Initiate Datepicker

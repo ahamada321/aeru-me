@@ -38,6 +38,7 @@ export class UserMyFavouriteComponent implements OnInit, OnDestroy {
         this.favouriteRentals = foundRentals
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse)
         this.errors = errorResponse.error.errors
       }
     )

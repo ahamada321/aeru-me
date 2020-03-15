@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { LoginComponent } from './login/login.component';
-import { LoginPupupTestComponent } from './login-popup/login-popup.component';
+import { LoginPupupComponent } from './login-popup/login-popup.component';
 import { LoginResetpasswordComponent } from './login/login-resetpassword/login-resetpassword.component';
 import { LoginResetpasswordSentComponent } from './login/login-resetpassword/login-resetpassword-sent/login-resetpassword-sent.component';
 import { LoginNewPasswordComponent } from './login/login-resetpassword/login-newpassword/login-newpassword.component';
@@ -47,7 +47,7 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     LoginComponent,
-    LoginPupupTestComponent,
+    LoginPupupComponent,
     LoginResetpasswordComponent,
     LoginResetpasswordSentComponent,
     LoginNewPasswordComponent,
@@ -62,9 +62,9 @@ export function provideConfig() {
     CommonModule,
     SocialLoginModule
   ],
-  exports: [RouterModule, LoginPupupTestComponent],
+  exports: [RouterModule, LoginPupupComponent],
 
-  entryComponents: [LoginPupupTestComponent],
+  entryComponents: [LoginPupupComponent],
 
   providers: [
     MyOriginAuthService,

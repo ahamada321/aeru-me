@@ -7,9 +7,7 @@
                     <div class="form-group">
                         <input 
                             formControlName="username"
-                            type="username" 
-                            name="username"
-                            id="username"
+                            type="text" 
                             class="form-control" 
                             placeholder="お名前" 
                             required 
@@ -22,11 +20,10 @@
                         <input 
                             formControlName="email"
                             type="email" 
-                            name="email"
-                            id="email"
                             class="form-control" 
                             placeholder="返信先メールアドレス" 
-                            required 
+                            pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                            required
                             />
                     </div>
                 </div>
@@ -36,11 +33,11 @@
                 <textarea 
                     formControlName="msg"
                     type="text"
-                    name="msg"
-                    id="msg"
                     class="form-control" 
                     rows="4" 
-                    placeholder="操作に関するご質問やご意見・ご要望・その他お問い合わせ内容を入力してください." >
+                    placeholder="操作に関するご質問やご意見・ご要望・その他お問い合わせ内容を入力してください." 
+                    required
+                    >
                 </textarea>
             </div>
             <div *ngIf="isInvlidForm('username')" class="alert alert-danger">

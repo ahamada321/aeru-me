@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input, HostListener } from '@angular/core
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { LoginPupupTestComponent } from 'src/app/auth/login-popup/login-popup.component';
+import { LoginPupupComponent } from 'src/app/auth/login-popup/login-popup.component';
 import { RentalBookingComponent } from './rental-detail-booking/rental-booking.component';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -101,7 +101,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     }
 
     modalOpen() {
-        this.modalService.open(LoginPupupTestComponent)
+        this.modalService.open(LoginPupupComponent)
     }
 
     modalBookingOpen(selectedCourseTime: number) {

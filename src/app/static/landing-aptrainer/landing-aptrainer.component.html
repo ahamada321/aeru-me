@@ -134,8 +134,7 @@
             </div>
         </div>
 
-
-        <div class="section section-dark" *ngIf="!auth.getUserRole()">
+        <div class="section section-dark" *ngIf="!auth.isAuthenticated()">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
@@ -148,7 +147,7 @@
             </div>
         </div>
 
-        <div class="section section-dark" *ngIf="!auth.getUserRole() || auth.getUserRole() === 'User'">
+        <div class="section section-dark" *ngIf="!auth.isAuthenticated() || (auth.isAuthenticated() && auth.getUserRole() === 'User')">
             <div class="container text-center">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
@@ -157,8 +156,8 @@
                             現在はクローズド期間の為、紹介コードがあるトレーナーのみ登録申請できます.
                         </p>
                         <br>
-                        <a *ngIf="!auth.getUserRole()" [routerLink]="['/register', {as: 'trainer'}]" class="btn btn-round btn-lg btn-warning">トレーナーになる</a>
-                        <a *ngIf="auth.getUserRole() === 'User'" [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-warning">トレーナーになる</a>
+                        <a *ngIf="!auth.isAuthenticated()" [routerLink]="['/register', {as: 'trainer'}]" class="btn btn-round btn-lg btn-warning">トレーナーになる</a>
+                        <a *ngIf="auth.isAuthenticated() && auth.getUserRole() === 'User'" [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-warning">トレーナーになる</a>
                     </div>
                 </div>
                 <!-- <div class="row justify-content-md-center sharing-area text-center">

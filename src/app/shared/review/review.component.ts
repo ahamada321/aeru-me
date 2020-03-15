@@ -36,6 +36,7 @@ export class ReviewComponent implements OnInit {
         this.reviewSubmitted.emit(review)
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse)
         this.errors = errorResponse.error.errors
       }
     )

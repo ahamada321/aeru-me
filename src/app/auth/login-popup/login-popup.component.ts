@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
@@ -15,9 +15,7 @@ import { Location } from '@angular/common';
   templateUrl: './login-popup.component.html',
   styleUrls: ['./login-popup.component.scss']
 })
-export class LoginPupupTestComponent implements OnInit, OnDestroy {
-  @Output() click = new EventEmitter()
-  
+export class LoginPupupComponent implements OnInit, OnDestroy {  
   isFBloggedIn: boolean
   pressedFBButton: boolean = false
   user: any
@@ -31,7 +29,6 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
               private auth: MyOriginAuthService,
               private socialAuthService: AuthService,
               private router: Router,
-              private route: ActivatedRoute,
               private ref:ChangeDetectorRef,
               private location: Location ) { }
 
@@ -42,7 +39,6 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
 
     this.seeFBLoginState()
     this.initForm()
-    this.click.emit(true)
   }
 
   ngOnDestroy() {
@@ -62,9 +58,7 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
           this.router.navigate(['/rentals'])
         },
         (errorResponse: HttpErrorResponse) => {
-          // this.zone.run(() => { // In order to detect changes here immidiately.
-          //   this.errors = errorResponse.error.errors
-          // })
+          console.error(errorResponse)
           this.errors = errorResponse.error.errors
           this.ref.detectChanges() // In order to detect changes here immidiately.
         }
@@ -85,12 +79,8 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', 
-      [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-      ]],
-      password: ['', Validators.required]
+      email: [''],
+      password: ['']
     })
   }
 
@@ -112,6 +102,7 @@ export class LoginPupupTestComponent implements OnInit, OnDestroy {
         }
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse)
         this.errors = errorResponse.error.errors
       }
     )

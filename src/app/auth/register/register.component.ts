@@ -6,7 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router'
 import { User } from 'src/app/user/service/user.model';
-import { LoginPupupTestComponent } from '../login-popup/login-popup.component';
+import { LoginPupupComponent } from '../login-popup/login-popup.component';
 import Swal from 'sweetalert2'
 
 
@@ -88,6 +88,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         }
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse)
         this.errors = errorResponse.error.errors
       }
     )
@@ -117,6 +118,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   modalOpen() {
     this.router.navigate(['/'])
-    this.modalService.open(LoginPupupTestComponent)
+    this.modalService.open(LoginPupupComponent)
   }
 }

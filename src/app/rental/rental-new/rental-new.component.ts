@@ -114,7 +114,8 @@ export class RentalNewComponent implements OnInit, OnDestroy {
           this.showSwalSuccess()
       },
       (errorResponse: HttpErrorResponse) => {
-          this.errors = errorResponse.error.errors
+        console.error(errorResponse)
+        this.errors = errorResponse.error.errors
       }
     )
   }
@@ -129,7 +130,8 @@ export class RentalNewComponent implements OnInit, OnDestroy {
           this.showSwalSuccess()
         },
         (errorResponse: HttpErrorResponse) => {
-          this.errors = errorResponse.error.errors
+          console.error(errorResponse)
+          this.errors = errorResponse.error.errors  
         }
       )
     }

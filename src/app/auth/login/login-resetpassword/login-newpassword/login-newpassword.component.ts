@@ -3,7 +3,7 @@ import { MyOriginAuthService } from '../../../service/auth.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { Router, ActivatedRoute } from '@angular/router'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { LoginPupupTestComponent } from 'src/app/auth/login-popup/login-popup.component'
+import { LoginPupupComponent } from 'src/app/auth/login-popup/login-popup.component'
 import Swal from 'sweetalert2'
 
 
@@ -51,14 +51,15 @@ export class LoginNewPasswordComponent implements OnInit, OnDestroy {
   }
 
   setNewPassword() {
-      this.auth.setNewPassword(this.formData, this.verifyToken).subscribe(
-          () => {
-              this.showSwalSuccess()
-          },
-          (errorResponse: HttpErrorResponse) => {
-              this.errors = errorResponse.error.errors
-          }
-      )
+        this.auth.setNewPassword(this.formData, this.verifyToken).subscribe(
+            () => {
+                this.showSwalSuccess()
+            },
+            (errorResponse: HttpErrorResponse) => {
+                console.error(errorResponse)
+                this.errors = errorResponse.error.errors
+            }
+        )
   }
 
   showSwalSuccess() {
@@ -74,6 +75,6 @@ export class LoginNewPasswordComponent implements OnInit, OnDestroy {
   }
 
   modalOpen() {
-      this.modalService.open(LoginPupupTestComponent)
+      this.modalService.open(LoginPupupComponent)
   }
 }

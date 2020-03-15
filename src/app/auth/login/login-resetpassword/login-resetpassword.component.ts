@@ -59,6 +59,7 @@ export class LoginResetpasswordComponent implements OnInit, OnDestroy {
         this.router.navigate(['/login/reset/sent'])
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse)
         this.errors = errorResponse.error.errors
       }
     )

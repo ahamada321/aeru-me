@@ -31,13 +31,9 @@ export class ContactFormComponent implements OnInit {
 
     initForm() {
         this.contactForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            email: ['', 
-            [
-              Validators.required,
-              Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-            ]],
-            msg: ['', Validators.required]
+            username: [''],
+            email: [''],
+            msg: ['']
         })
     }
 
