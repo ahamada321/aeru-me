@@ -263,7 +263,8 @@
                 </div>
             </div>
         </div>
-        <app-googlemaps [location]="rental.province[0].itemName + ', ' + rental.nearStation"></app-googlemaps>
+        <!-- <app-googlemaps [location]="rental.province[0].itemName + ', ' + rental.nearStation"></app-googlemaps> -->
+        <app-googlemaps [location]="rental.nearStation"></app-googlemaps>
     </div>
     <app-bottom-navbar [rental]="rental"></app-bottom-navbar>
 </section>
