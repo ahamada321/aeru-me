@@ -59,18 +59,13 @@ userSchema.pre('save', function(next) {
     const saltRounds = 10
     const user = this
 
-    // Skip if user didn't update user password
-    if(user.password){
-        bcrypt.genSalt(saltRounds, function(err, salt) {
-            bcrypt.hash(user.password, salt, function(err, hash) {
-                // Store hash in your password DB.
-                user.password = hash
-                next()
-            });
-        });
-    } else {
-        next()
-    }
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            // Store hash in your password DB.
+            user.password = hash
+            next()
+        })
+    })
 })
 
 module.exports = mongoose.model('User', userSchema)

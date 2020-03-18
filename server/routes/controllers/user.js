@@ -88,7 +88,7 @@ exports.auth = function(req, res) {
             userId: foundUser.id,
             username: foundUser.username,
             userRole: foundUser.userRole,
-            }, config.SECRET, { expiresIn: '24h' })
+            }, config.SECRET, { expiresIn: '10h' })
 
         return res.json(token)
     })
@@ -114,7 +114,7 @@ exports.FBauth = function(req, res) {//Under development
             userId: foundUser.id,
             username: foundUser.username,
             userRole: foundUser.userRole,
-            }, config.SECRET, { expiresIn: '24h' })
+            }, config.SECRET, { expiresIn: '10h' })
 
         return res.json(token)
     })
@@ -209,27 +209,53 @@ exports.register = function(req, res) {
 }
 
 exports.updateUser = function(req, res) {
-    const userData = req.body
-    const reqUserId = req.params.id
     const user = res.locals.user // This is logined user infomation.
+    const { username, password, passwordConfirmation, description, coupon_switch } = req.body // coupon_switch is not used yet.
+
+    const reqUserId = req.params.id
 
     if(reqUserId !== user.id) {
         return res.status(422).send({errors: {title: "Invalid user!", detail: "Cannot edit other user profile!"}})
     }
 
-    User.updateOne({_id: user.id}, userData, function(err) {
-        if(err) {
-            return res.status(422).send({errors: normalizeErrors(err.errors)})
+    if(!password) {
+        User.updateOne({_id: user.id}, {username, description}, function(err) {
+            if(err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
+    
+            const token = jwt.sign({
+                  userId: user.id,
+                  username: username,
+                  userRole: user.userRole,
+                  }, config.SECRET, { expiresIn: '10h' })
+        
+            return res.json(token)
+        })
+    } else {
+        if(password !== passwordConfirmation) {
+            return res.status(422).send({errors: [{title: "Invalid password!", detail: "パスワードとパスワード確認が異なります"}]})
         }
 
-        const token = jwt.sign({
-              userId: user.id,
-              username: userData.username,
-              userRole: userData.userRole || user.userRole,
-              }, config.SECRET, { expiresIn: '12h' })
+        User.findById(user.id, function(err, foundUser) {
+            if(err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
+
+            foundUser.username = username
+            foundUser.password = password
+            foundUser.description = description
+            foundUser.save()
     
-        return res.json(token)
-    })
+            const token = jwt.sign({
+                  userId: user.id,
+                  username: username,
+                  userRole: user.userRole,
+                  }, config.SECRET, { expiresIn: '10h' })
+        
+            return res.json(token)
+        })
+    }
 }
 
 exports.emailVerification = function (req, res) {

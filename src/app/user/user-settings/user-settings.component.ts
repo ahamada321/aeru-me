@@ -15,7 +15,7 @@ export class UserSettingsComponent implements OnInit {
     userData: User
     state_info = true;
     state_info1 = true;
-    third_switch = true;
+    coupon_switch = true;
 
     data : Date = new Date();
 

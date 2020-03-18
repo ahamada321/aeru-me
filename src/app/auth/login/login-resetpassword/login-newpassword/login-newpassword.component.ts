@@ -75,6 +75,6 @@ export class LoginNewPasswordComponent implements OnInit, OnDestroy {
   }
 
   modalOpen() {
-      this.modalService.open(LoginPupupComponent)
+      this.modalService.open(LoginPupupComponent, {backdrop: 'static'})
   }
 }

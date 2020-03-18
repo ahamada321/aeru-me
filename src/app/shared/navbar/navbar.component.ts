@@ -60,7 +60,7 @@ export class NavbarComponent implements OnInit {
 
     modalOpen() {
         this.sidebarClose()
-        this.modalService.open(LoginPupupComponent)
+        this.modalService.open(LoginPupupComponent, {backdrop: 'static'})
     }
 
     isHome() {
