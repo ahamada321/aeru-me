@@ -82,7 +82,7 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button *ngIf="isYourRental()" class="card" data-background="color" data-color="gray">
+                                        <button *ngIf="isYourRental() && auth.isAuthenticated()" class="card" data-background="color" data-color="gray">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">自分のコースは選べません</h6>
                                                 <h2 class="card-title">60min</h2>
@@ -133,7 +133,7 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button *ngIf="isYourRental()" class="card" data-background="color" data-color="gray">
+                                        <button *ngIf="isYourRental() && auth.isAuthenticated()" class="card" data-background="color" data-color="gray">
                                             <div class="card-body text-center">
                                                 <h6 class="card-category">自分のコースは選べません</h6>
                                                 <h2 class="card-title">90min</h2>
@@ -263,8 +263,7 @@
                 </div>
             </div>
         </div>
-        <!-- <app-googlemaps [location]="rental.province[0].itemName + ', ' + rental.nearStation"></app-googlemaps> -->
-        <app-googlemaps [location]="rental.nearStation"></app-googlemaps>
+        <app-googlemaps [location]="rental.province[0].itemName + ', ' + rental.nearStation"></app-googlemaps>
     </div>
     <app-bottom-navbar [rental]="rental"></app-bottom-navbar>
 </section>
