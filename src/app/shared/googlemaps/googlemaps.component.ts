@@ -32,22 +32,24 @@ export class GoogleMapsComponent {
             (coodinates) => {
                 this.lat = coodinates.lat
                 this.lng = coodinates.lng
-                this.places = [{
-                    lat: this.lat +0.001,
-                    lng: this.lng +0.001,
-                    placeName: 'アイウエオスタジオ',
-                    tel: '03-1234-1234',
-                    address: '東京都新宿区歌舞伎町1-1-1',
-                    nearStation: '新宿駅'
-                },
-                {
-                    lat: 35.6988495,
-                    lng: 139.7055201,
-                    placeName: 'かきくけこスタジオ',
-                    tel: '03-1234-1234',
-                    address: '東京都新宿区歌舞伎町3-3-3',
-                    nearStation: '新宿駅'
-                }]
+                this.places = [
+                    //     {
+                    //     lat: this.lat +0.001,
+                    //     lng: this.lng +0.001,
+                    //     placeName: 'アイウエオスタジオ',
+                    //     tel: '03-1234-1234',
+                    //     address: '東京都新宿区歌舞伎町1-1-1',
+                    //     nearStation: '新宿駅'
+                    // },
+                    // {
+                    //     lat: 35.6988495,
+                    //     lng: 139.7055201,
+                    //     placeName: 'かきくけこスタジオ',
+                    //     tel: '03-1234-1234',
+                    //     address: '東京都新宿区歌舞伎町3-3-3',
+                    //     nearStation: '新宿駅'
+                    // }
+                ]
                 // this.getPlaces()
 
                 this.ref.detectChanges()

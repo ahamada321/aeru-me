@@ -6,14 +6,15 @@ import { HttpClient } from '@angular/common/http'
 import * as moment from 'moment'
 import { JwtHelperService } from '@auth0/angular-jwt'
 
-const jwt = new JwtHelperService();
+const jwt = new JwtHelperService()
 
 
 class DecodedToken {
-    exp: number = 0
+    userId: string = ''
     username: string = ''
+    userRole: string = ''
+    exp: number = 0
 }
-
 
 @Injectable()
 export class MyOriginAuthService {
@@ -21,8 +22,14 @@ export class MyOriginAuthService {
 
     constructor(private http: HttpClient) {
         this.decodedToken = JSON.parse(localStorage.getItem('app-meta')) || new DecodedToken()
+        if(!this.isAuthenticated) { this.logout() }
     }
 
+    public logout() {
+        localStorage.removeItem('app-auth')
+        localStorage.removeItem('app-meta')
+        this.decodedToken = new DecodedToken()
+    }
 
     private saveToken(token: string):string {
         this.decodedToken = jwt.decodeToken(token)
@@ -30,34 +37,6 @@ export class MyOriginAuthService {
         localStorage.setItem('app-meta', JSON.stringify(this.decodedToken))
 
         return token
-    }
-
-    private getExpiration() {
-        return moment.unix(this.decodedToken.exp)
-    }
-
-    public getUserId():string {
-        return this.decodedToken.userId
-    }
-
-    public getUsername():string {
-        return this.decodedToken.username
-    }
-
-    public getUserRole():string {
-        return this.decodedToken.userRole
-    }
-
-    public isAuthenticated():boolean {
-        return moment().isBefore(this.getExpiration())
-    }
-
-    public getAuthToken():string {
-        return localStorage.getItem('app-auth')
-    }
-
-    public register(userData: any): Observable<any> {
-        return this.http.post('api/v1/users/register', userData)
     }
 
     public login(userData: any): Observable<any> {
@@ -75,10 +54,28 @@ export class MyOriginAuthService {
             (token: string) => this.saveToken(token)))
     }
 
-    public logout() {
-        localStorage.removeItem('app-auth')
-        localStorage.removeItem('app-meta')
-        this.decodedToken = new DecodedToken()
+    public isAuthenticated():boolean {
+        return moment().isBefore(moment.unix(this.decodedToken.exp))
+    }
+
+    public getAuthToken():string {
+        return localStorage.getItem('app-auth')
+    }
+
+    public getUserId():string {
+        return this.decodedToken.userId
+    }
+
+    public getUsername():string {
+        return this.decodedToken.username
+    }
+
+    public getUserRole():string {
+        return this.decodedToken.userRole
+    }
+
+    public register(userData: any): Observable<any> {
+        return this.http.post('api/v1/users/register', userData)
     }
 
     public sendPasswordResetLink(userData: any): Observable<any> {
