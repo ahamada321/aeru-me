@@ -9,7 +9,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 
 
-
 @Component({
   selector: 'app-login-popup',
   templateUrl: './login-popup.component.html',

@@ -5,9 +5,6 @@ const UserCtrl = require('./controllers/user')
 const RentalCtrl = require('./controllers/rental')
 
 
-router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
-    res.json({"secret": true})
-})
 
 router.get('/favourite', UserCtrl.authMiddleware, RentalCtrl.getUserFavouriteRentals)
 

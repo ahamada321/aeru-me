@@ -24,6 +24,7 @@ import { Page422Component } from './static/page422/page422.component';
 import { Page500Component } from './static/page500/page500.component';
 import { TermsComponent } from './static/terms/terms.component';
 import { PrivacyComponent } from './static/privacy/privacy.component';
+import { MembersLandingComponent } from './static/members-landing/members-landing.component';
 
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
 
   { path: '',         component: LandingSaasComponent},
   { path: 'lp',         component: LandingComponent},
-  { path: 'aptrainer',         component: LandingAptrainerComponent},
+  { path: 'apt',         component: LandingAptrainerComponent},
+  { path: 'members',         component: MembersLandingComponent},
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ]
@@ -75,7 +77,8 @@ const routes: Routes = [
     Page422Component,
     Page500Component,
     TermsComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    MembersLandingComponent
 ]
 })
 export class AppRoutingModule { }

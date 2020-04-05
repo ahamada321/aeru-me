@@ -1,8 +1,6 @@
 const User = require('./models/user')
-const Token = require('./models/token')
 const { normalizeErrors } = require('./helpers/mongoose')
 const jwt = require('jsonwebtoken')
-const crypto = require('crypto');
 const config = require('../../config')
 
 const sgMail = require('@sendgrid/mail')
@@ -340,33 +338,34 @@ exports.setNwePassword = function(req, res) {
     })
 }
 
-function parseToken(token) {
-    // split token string [Bearer XXXXXXXXX] with ' ' and return XXXXXXXXX
-    return jwt.verify(token.split(' ')[1], config.SECRET)
-}
-
 function notAuthorized(res) {
     return res.status(401).send({errors: [{title: "Not authorized!", detail: "You need to login to get access!"}]})
 }
 
 exports.authMiddleware = function(req, res, next) {
     const token = req.headers.authorization
-    const user = parseToken(token)
 
     if(!token) {
         return notAuthorized(res)
     }
-    
-    User.findById(user.userId, function(err, foundUser) {
+
+    // split token string [Bearer XXXXXXXXX] with ' ' and return XXXXXXXXX
+    jwt.verify(token.split(' ')[1], config.SECRET, function(err, decodedToken) {
         if(err) {
-            return res.status(422).send({errors: normalizeErrors(err.errors)})
+            return res.status(401).send({errors: [{title: "Not authorized!", detail: "Invalid token!"}]})
         }
 
-        if(!foundUser) {
-            return notAuthorized(res)
-        }
+        User.findById(decodedToken.userId, function(err, foundUser) {
+            if(err) {
+                return res.status(401).send({errors: normalizeErrors(err.errors)})
+            }
+    
+            if(!foundUser) {
+                return notAuthorized(res)
+            }
 
-        res.locals.user = foundUser
-        next()
+            res.locals.user = foundUser
+            return next()
+        })
     })
 }

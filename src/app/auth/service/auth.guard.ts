@@ -4,43 +4,32 @@ import { MyOriginAuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  private url: string
+    private url: string
 
-  constructor(private MyOriginAuthService: MyOriginAuthService, 
-              private router: Router) {}
+    constructor(private auth: MyOriginAuthService, private router: Router) { }
 
-  private handleAuthState(): boolean {
-    if(this.isLoginOrRegisterdPage()) {
-      this.router.navigate(['/rentals'])
-      return false
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        this.url = state.url
+
+        if(!this.auth.isAuthenticated()) {
+            if(this.isLoginOrRegisterdPage()) {
+                return true
+            }
+            this.router.navigate(['/'])
+            return false
+        }
+
+        if(this.isLoginOrRegisterdPage()) {
+            this.router.navigate(['/rentals'])
+            return false
+        }
+        return true
     }
-    return true
-  }
 
-  private handleNotAuthState(): boolean {
-    if(this.isLoginOrRegisterdPage()) {
-      return true
+    private isLoginOrRegisterdPage(): boolean {
+        if(this.url.includes('login') || this.url.includes('register')) {
+            return true
+        }
+        return false
     }
-    this.router.navigate(['/register'])
-    return false
-  }
-
-  private isLoginOrRegisterdPage(): boolean {
-    if(this.url.includes('login') || this.url.includes('register')) {
-      return true
-    }
-    return false
-  }
-
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-
-    this.url = state.url;
-    if(this.MyOriginAuthService.isAuthenticated()) {
-      return this.handleAuthState()
-    }
-    return this.handleNotAuthState()
-  }
-
 }
