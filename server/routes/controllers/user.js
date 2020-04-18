@@ -274,9 +274,12 @@ exports.emailVerification = function (req, res) {
                 return res.status(422).send({errors: {title: "No User!", detail: "No user found!"}})
             }
 
-            foundUser.isVerified = true
-            foundUser.save()
-            return res.json({'registered': true});
+            foundUser.updateOne({isVerified: true}, function(err) {
+                if (err) {
+                    return res.status(422).send({errors: normalizeErrors(err.errors)})
+                }
+                return res.json({"status": "updated"})
+            })
         })
     })
 }
