@@ -40,12 +40,12 @@ export class MyOriginAuthService {
     }
 
     public login(userData: any): Observable<any> {
-        return this.http.post('api/v1/users/auth', userData).pipe(map(
+        return this.http.post('/api/v1/users/auth', userData).pipe(map(
             (token: string) => this.saveToken(token)))
     }
 
     public FBlogin(authResponse: any): Observable<any> {
-        return this.http.post('api/v1/users/fb-auth', authResponse).pipe(map(
+        return this.http.post('/api/v1/users/fb-auth', authResponse).pipe(map(
             (token: string) => this.saveToken(token)))
     }
 
