@@ -10,7 +10,7 @@ import { TagInputModule } from 'ngx-chips';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 
 import { AuthModule } from './auth/auth.module';
-import { ContactFormModule } from './shared/contactform/contactform.module';
+import { ContactFormModule } from './common/contactform/contactform.module';
 import { RentalModule } from './rental/rental.module';
 import { UserModule } from './user/user.module';
 

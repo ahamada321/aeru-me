@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { LoginPupupComponent } from './login-popup/login-popup.component';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { LoginResetpasswordComponent } from './login-popup/login-resetpassword/login-resetpassword.component';
 import { LoginResetpasswordSentComponent } from './login-popup/login-resetpassword/login-resetpassword-sent/login-resetpassword-sent.component';
 import { LoginNewPasswordComponent } from './login-popup/login-newpassword/login-newpassword.component';
@@ -44,7 +44,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    LoginPupupComponent,
+    LoginPopupComponent,
     LoginResetpasswordComponent,
     LoginResetpasswordSentComponent,
     LoginNewPasswordComponent,
@@ -59,9 +59,9 @@ export function provideConfig() {
     CommonModule,
     SocialLoginModule
   ],
-  exports: [RouterModule, LoginPupupComponent],
+  exports: [RouterModule, LoginPopupComponent],
 
-  entryComponents: [LoginPupupComponent],
+  entryComponents: [LoginPopupComponent],
 
   providers: [
     MyOriginAuthService,

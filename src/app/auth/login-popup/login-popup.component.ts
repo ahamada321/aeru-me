@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
   templateUrl: './login-popup.component.html',
   styleUrls: ['./login-popup.component.scss']
 })
-export class LoginPupupComponent implements OnInit, OnDestroy {  
+export class LoginPopupComponent implements OnInit, OnDestroy {
   isFBloggedIn: boolean
   pressedFBButton: boolean = false
   user: any
@@ -24,12 +24,12 @@ export class LoginPupupComponent implements OnInit, OnDestroy {
   notifyMessage: string = ''
 
   constructor(public activeModal: NgbActiveModal,
-              private formBuilder: FormBuilder,
-              private auth: MyOriginAuthService,
-              private socialAuthService: AuthService,
-              private router: Router,
-              private ref:ChangeDetectorRef,
-              private location: Location ) { }
+    private formBuilder: FormBuilder,
+    private auth: MyOriginAuthService,
+    private socialAuthService: AuthService,
+    private router: Router,
+    private ref: ChangeDetectorRef,
+    private location: Location) { }
 
   ngOnInit() {
     var body = document.getElementsByTagName('body')[0];
@@ -42,12 +42,12 @@ export class LoginPupupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
-  //   body.classList.remove('full-screen');
+    //   body.classList.remove('full-screen');
     body.classList.remove('login-popup');
   }
 
   signInWithFB() {
-    if(!this.user) {
+    if (!this.user) {
       this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
       this.pressedFBButton = true
     } else {
@@ -63,14 +63,14 @@ export class LoginPupupComponent implements OnInit, OnDestroy {
         }
       )
     }
-  } 
+  }
 
   seeFBLoginState() {
     return this.socialAuthService.authState.subscribe((user) => {
       this.user = user
       this.isFBloggedIn = (this.user != null);
 
-      if(this.pressedFBButton && this.user) {
+      if (this.pressedFBButton && this.user) {
         this.signInWithFB()
       }
     })
@@ -83,10 +83,10 @@ export class LoginPupupComponent implements OnInit, OnDestroy {
     })
   }
 
-  isInvlidForm(fieldname): boolean {
-    return this.loginForm.controls[fieldname].invalid && 
-           (this.loginForm.controls[fieldname].dirty || 
-           this.loginForm.controls[fieldname].touched)
+  isInvalidForm(fieldname): boolean {
+    return this.loginForm.controls[fieldname].invalid &&
+      (this.loginForm.controls[fieldname].dirty ||
+        this.loginForm.controls[fieldname].touched)
   }
 
   login() {
@@ -95,8 +95,8 @@ export class LoginPupupComponent implements OnInit, OnDestroy {
         this.activeModal.close('Close click')
 
         let _locationExamples = this.location.path();
-        const isLocationOfRentals = ( _locationExamples.split('/')[1] === 'rentals' );
-        if(!isLocationOfRentals){
+        const isLocationOfRentals = (_locationExamples.split('/')[1] === 'rentals');
+        if (!isLocationOfRentals) {
           this.router.navigate(['/rentals'])
         }
       },

@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
-import { MaterialModule } from '../shared/modules/matmodule/matmodule';
+import { MaterialModule } from '../common/modules/matmodule/matmodule';
 import { ChartsModule } from 'ng2-charts';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AuthGuard } from '../auth/service/auth.guard';
@@ -31,20 +31,20 @@ import { RentalBookingsListComponent } from './rental-bookings/rental-bookings-l
 import { RentalNewComponent } from './rental-new/rental-new.component';
 import { RentalRevenueComponent } from './rental-revenue/rental-revenue.component';
 // import { RentalDetailUpdateComponent } from './rental-detail/rental-detail-update/rental-detail-update.component';
-import { NavbarBottomComponent } from '../shared/navbar-bottom/navbar-bottom.component';
-import { GoogleMapsModule } from '../shared/googlemaps/googlemaps.module';
-import { PaymentModule } from '../shared/payment/payment.module';
-import { ReviewModule } from '../shared/review/review.module';
+import { NavbarBottomComponent } from '../common/navbar-bottom/navbar-bottom.component';
+import { GoogleMapsModule } from '../common/googlemaps/googlemaps.module';
+import { PaymentModule } from '../common/payment/payment.module';
+import { ReviewModule } from '../common/review/review.module';
 // import { EditableModule } from '../shared/editable/editable.module';
-import { BookingSelecterModule } from '../shared/booking-selecter/booking-selecter.module';
-import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
-import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
+import { BookingSelecterModule } from '../common/booking-selecter/booking-selecter.module';
+import { ImageUploadModule } from '../common/image-upload/image-upload.module';
+import { ImageUploadMyverModule } from '../common/image-upload-myver/image-upload-myver.module';
 
 
 import { RentalService } from './service/rental.service';
 import { BookingService } from './rental-detail/rental-detail-booking/services/booking.service';
 import { BookingHelperService } from './rental-detail/rental-detail-booking/services/booking.helper.service';
-import { SafePipe } from '../shared/pipe/safe-pipe/safe-pipe.component';
+import { SafePipe } from '../common/pipe/safe-pipe/safe-pipe.component';
 
 
 const routes: Routes = [{

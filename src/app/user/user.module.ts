@@ -5,11 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from '../auth/service/auth.guard';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
-import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
-import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
-import { ReviewModule } from '../shared/review/review.module';
-import { MaterialModule } from '../shared/modules/matmodule/matmodule';
-import { BookingSelecterModule } from '../shared/booking-selecter/booking-selecter.module';
+import { ImageUploadModule } from '../common/image-upload/image-upload.module';
+import { ImageUploadMyverModule } from '../common/image-upload-myver/image-upload-myver.module';
+import { ReviewModule } from '../common/review/review.module';
+import { MaterialModule } from '../common/modules/matmodule/matmodule';
+import { BookingSelecterModule } from '../common/booking-selecter/booking-selecter.module';
 
 import { UserComponent } from './user.component';
 import { UserActivatorComponent } from './user-activator/user-activator.component';
