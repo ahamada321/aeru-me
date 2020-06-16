@@ -3,7 +3,7 @@ import { Booking } from 'src/app/rental/rental-detail/rental-detail-booking/serv
 import { Review } from 'src/app/common/review/service/review.model';
 import { BookingService } from 'src/app/rental/rental-detail/rental-detail-booking/services/booking.service';
 import { PaymentService } from 'src/app/common/payment/services/payment.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment-timezone';
 import Swal from 'sweetalert2';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { PaymentService } from 'src/app/common/payment/services/payment.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as moment from "moment"
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

@@ -1,12 +1,15 @@
-<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/lp/back-image.jpg');">
-    <div class="filter"></div>
-    <div class="content-center">
-      <div class="container">
-        <div class="space-50"></div>
-        <h1 class="title">少し憧れだった人に会おう</h1>
+<div
+  class="page-header page-header-xs"
+  data-parallax="true"
+  style="background-image: url('./assets/img/lp/back-image.jpg');"
+>
+  <div class="filter"></div>
+  <div class="content-center">
+    <div class="container">
+      <div class="space-50"></div>
+      <h1 class="title">商品を自由に並べられます</h1>
 
-
-        <!-- <div class="row">
+      <!-- <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-raised card-form-horizontal no-transition">
                   <div class="card-body">
@@ -37,44 +40,47 @@
               </div>
           </div>
         </div> -->
-
     </div>
   </div>
 </div>
 <div class="main">
   <div class="section text-center">
     <div class="container">
-        <div class="row">
-          <ng-container *ngFor="let rental of rentals">
-            <div class="col-md-3 col-6">
-              <app-rental-list-item [rental]="rental"></app-rental-list-item>
-            </div>
-          </ng-container>
-        </div>
+      <div class="row">
+        <ng-container *ngFor="let rental of rentals">
+          <div class="col-md-3 col-6">
+            <app-rental-list-item [rental]="rental"></app-rental-list-item>
+          </div>
+        </ng-container>
+      </div>
     </div>
 
     <!--     *********    CALL TO ACTION    *********      -->
-    <ng-container *ngIf="auth.isAuthenticated() && auth.getUserRole() === 'User'">
+    <ng-container
+      *ngIf="auth.isAuthenticated() && auth.getUserRole() === 'User'"
+    >
       <div class="separator"></div>
       <div class="subscribe-line">
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-9 col-sm-8">
-                      <h3>自分を出品しませんか？</h3>
-                      <h5>
-                          自ら考えたサービスを自分のスケジュールに合わせて出品できます。<br/>
-                      </h5>
-                  </div>
-                  <div class="col-md-3 col-sm-4">
-                      <br />
-                      <br />
-                      <a [routerLink]="['/user/activator']" class="btn btn-round btn-lg btn-block btn-primary">自分を出品する</a>
-                  </div>
-              </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-sm-8">
+              <h3>自分を出品しませんか？</h3>
+              <h5>
+                自ら考えたサービスを自分のスケジュールに合わせて出品できます。<br />
+              </h5>
+            </div>
+            <div class="col-md-3 col-sm-4">
+              <br />
+              <br />
+              <a
+                [routerLink]="['/user/activator']"
+                class="btn btn-round btn-lg btn-block btn-primary"
+                >自分を出品する</a
+              >
+            </div>
           </div>
+        </div>
       </div>
     </ng-container>
-
   </div>
 </div>
-

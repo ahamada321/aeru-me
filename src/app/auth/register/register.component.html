@@ -1,101 +1,129 @@
 <div class="wrapper">
-    <div class="page-header" style="background-image: url('./assets/img/lp/back-image.jpg');">
-        <div class="filter"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-7 col-12 ml-auto">
-                        <div class="info info-horizontal">
-                            <div class="icon">
-                                <i class="fa fa-id-card"></i>
-                            </div>
-                            <div class="description">
-                                <h3> Verified Trainers </h3>
-                                <p>厳しい認証を突破した希少なトレーナーたちがあなたの自己実現をサポートします.</p>
-                            </div>
-                        </div>
-                        <div class="info info-horizontal">
-                            <div class="icon">
-                                <i class="fa fa-handshake-o"></i>
-                            </div>
-                            <div class="description">
-                                <h3> Easy Booking </h3>
-                                <p>気に入ったトレーナーを見つけてから予約まで、最短４クリックで完了します.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-5 col-12 mr-auto">
-                        <div class="card card-register">
-                            <h3 class="card-title text-center">新規会員登録する</h3>
-                            <div class="social">
-                                <button (click)="signInWithFB()" class="btn btn-just-icon btn-facebook mr-1"><i class="fa fa-facebook"></i></button>
-                                <!-- <button href="javascript:void(0)" class="btn btn-just-icon btn-google mr-1"><i class="fa fa-google"></i></button> -->
-                                <!-- <button href="javascript:void(0)" class="btn btn-just-icon btn-twitter mr-1"><i class="fa fa-twitter"></i></button> -->
-                            </div>
-
-                            <div class="division">
-                                <div class="line l"></div>
-                                <span>or</span>
-                                <div class="line r"></div>
-                            </div>
-
-                            <div *ngIf="errors.length > 0" class="alert alert-danger">
-                                <p *ngFor="let error of errors">{{error.detail}}</p>
-                            </div>
-
-                            <form class="register-form" #registerForm="ngForm" (ngSubmit)="register()">
-
-                                <input 
-                                    class="form-control"
-                                    placeholder="ユーザー名"
-                                    type="text"
-                                    [(ngModel)]="formData.username"
-                                    name="username"
-                                    (focus)="focus=true" (blur)="focus=false"
-                                    required
-                                    />
-
-                                <input 
-                                    class="form-control"
-                                    placeholder="Email"
-                                    type="email"
-                                    [disabled] = "formData.FBuserID ? 'true' : 'false'"
-                                    [(ngModel)]="formData.email"
-                                    name="email"
-                                    (focus)="focus1=true" (blur)="focus1=false"
-                                    required 
-                                    />
-
-                                <input 
-                                    class="form-control"
-                                    placeholder="パスワード" 
-                                    type="password"
-                                    [(ngModel)]="formData.password"
-                                    name="password"
-                                    (focus)="focus2=true" (blur)="focus2=false"
-                                    required
-                                    />
-
-                                <input 
-                                    class="form-control"
-                                    placeholder="パスワード（確認）" 
-                                    type="password"
-                                    [(ngModel)]="formData.passwordConfirmation"
-                                    name="passwordConfirmation"
-                                    (focus)="focus3=true" (blur)="focus3=false"
-                                    required
-                                    />
-
-                                <button [disabled]="!registerForm.valid" type="submit" class="btn btn-block btn-round btn-primary">メンバー登録する</button>
-                            </form>
-                            <div class="text-center">
-                                <button class="btn btn-link btn-primary" (click)="modalOpen()">ログインはこちら</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div
+    class="page-header"
+    style="background-image: url('./assets/img/lp/back-image.jpg');"
+  >
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-7 col-12 ml-auto">
+          <div class="info info-horizontal">
+            <div class="icon">
+              <i class="fa fa-id-card"></i>
             </div>
-        <div class="demo-footer text-center">
-            <h6>&copy; {{data | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> by Aeru.me</h6>
+            <div class="description">
+              <h3>顧客をオンライン管理できます</h3>
+              <p>
+                登録会員はログインすることで再予約が簡単に行えるようになります.
+              </p>
+            </div>
+          </div>
+          <div class="info info-horizontal">
+            <div class="icon">
+              <i class="fa fa-handshake-o"></i>
+            </div>
+            <div class="description">
+              <h3>Easy Booking</h3>
+              <p>日時を選んで予約受付まで最短４クリックで完了します.</p>
+            </div>
+          </div>
         </div>
+        <div class="col-lg-6 col-md-6 col-sm-5 col-12 mr-auto">
+          <div class="card card-register">
+            <h3 class="card-title text-center">新規会員登録する</h3>
+            <div class="social">
+              <button
+                (click)="signInWithFB()"
+                class="btn btn-just-icon btn-facebook mr-1"
+              >
+                <i class="fa fa-facebook"></i>
+              </button>
+              <!-- <button href="javascript:void(0)" class="btn btn-just-icon btn-google mr-1"><i class="fa fa-google"></i></button> -->
+              <!-- <button href="javascript:void(0)" class="btn btn-just-icon btn-twitter mr-1"><i class="fa fa-twitter"></i></button> -->
+            </div>
+
+            <div class="division">
+              <div class="line l"></div>
+              <span>or</span>
+              <div class="line r"></div>
+            </div>
+
+            <div *ngIf="errors.length > 0" class="alert alert-danger">
+              <p *ngFor="let error of errors">{{ error.detail }}</p>
+            </div>
+
+            <form
+              class="register-form"
+              #registerForm="ngForm"
+              (ngSubmit)="register()"
+            >
+              <input
+                class="form-control"
+                placeholder="ユーザー名"
+                type="text"
+                [(ngModel)]="formData.username"
+                name="username"
+                (focus)="focus = true"
+                (blur)="focus = false"
+                required
+              />
+
+              <input
+                class="form-control"
+                placeholder="Email"
+                type="email"
+                [disabled]="formData.FBuserID ? 'true' : 'false'"
+                [(ngModel)]="formData.email"
+                name="email"
+                (focus)="focus1 = true"
+                (blur)="focus1 = false"
+                required
+              />
+
+              <input
+                class="form-control"
+                placeholder="パスワード"
+                type="password"
+                [(ngModel)]="formData.password"
+                name="password"
+                (focus)="focus2 = true"
+                (blur)="focus2 = false"
+                required
+              />
+
+              <input
+                class="form-control"
+                placeholder="パスワード（確認）"
+                type="password"
+                [(ngModel)]="formData.passwordConfirmation"
+                name="passwordConfirmation"
+                (focus)="focus3 = true"
+                (blur)="focus3 = false"
+                required
+              />
+
+              <button
+                [disabled]="!registerForm.valid"
+                type="submit"
+                class="btn btn-block btn-round btn-primary"
+              >
+                メンバー登録する
+              </button>
+            </form>
+            <div class="text-center">
+              <button class="btn btn-link btn-primary" (click)="modalOpen()">
+                ログインはこちら
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="demo-footer text-center">
+      <h6>
+        &copy; {{ data | date: "yyyy" }}, made with
+        <i class="fa fa-heart heart"></i> by Aeru.me
+      </h6>
+    </div>
+  </div>
 </div>
