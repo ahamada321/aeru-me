@@ -16,41 +16,41 @@ export class LoginResetpasswordComponent implements OnInit, OnDestroy {
   errors: any[] = []
 
   constructor(private formBuilder: FormBuilder,
-              private auth: MyOriginAuthService,
-              private router: Router) { }
+    private auth: MyOriginAuthService,
+    private router: Router) { }
 
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.add('navbar-transparent');
+    navbar.classList.add('navbar-transparent');
     let body = document.getElementsByTagName('body')[0];
-        body.classList.add('full-screen');
-        body.classList.add('register-page');
+    body.classList.add('full-screen');
+    body.classList.add('register-page');
 
     this.initForm()
   }
 
   ngOnDestroy() {
     let navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.remove('navbar-transparent');
+    navbar.classList.remove('navbar-transparent');
     let body = document.getElementsByTagName('body')[0];
-        body.classList.remove('full-screen');
-        body.classList.remove('register-page');
+    body.classList.remove('full-screen');
+    body.classList.remove('register-page');
   }
 
   initForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', 
-      [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-      ]]
+      email: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        ]]
     })
   }
 
-  isInvlidForm(fieldname): boolean {
-    return this.loginForm.controls[fieldname].invalid && 
-           (this.loginForm.controls[fieldname].dirty || 
-           this.loginForm.controls[fieldname].touched)
+  isInvalidForm(fieldname): boolean {
+    return this.loginForm.controls[fieldname].invalid &&
+      (this.loginForm.controls[fieldname].dirty ||
+        this.loginForm.controls[fieldname].touched)
   }
 
   sendResetEmail() {

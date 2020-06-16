@@ -3,7 +3,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { AuthService } from "angularx-social-login";
 import { Router } from '@angular/router';
-import { LoginPupupComponent } from 'src/app/auth/login-popup/login-popup.component';
+import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -60,7 +60,7 @@ export class NavbarComponent implements OnInit {
 
     modalOpen() {
         this.sidebarClose()
-        this.modalService.open(LoginPupupComponent, {backdrop: 'static'})
+        this.modalService.open(LoginPopupComponent, {backdrop: 'static'})
     }
 
     isHome() {

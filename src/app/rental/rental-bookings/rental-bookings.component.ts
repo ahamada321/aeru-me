@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PaymentService } from 'src/app/shared/payment/services/payment.service';
+import { PaymentService } from 'src/app/common/payment/services/payment.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as moment from "moment"
 

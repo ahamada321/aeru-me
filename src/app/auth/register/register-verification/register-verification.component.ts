@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2'
-import { LoginPupupComponent } from '../../login-popup/login-popup.component';
+import { LoginPopupComponent } from '../../login-popup/login-popup.component';
 
 
 @Component({
@@ -79,6 +79,6 @@ export class RegisterVerificationComponent implements OnInit {
 
   modalOpen() {
     this.router.navigate(['/'])
-    this.modalService.open(LoginPupupComponent, {backdrop: 'static'})
+    this.modalService.open(LoginPopupComponent, {backdrop: 'static'})
   }
 }

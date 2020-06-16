@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Booking } from 'src/app/rental/rental-detail/rental-detail-booking/services/booking.model';
-import { Review } from 'src/app/shared/review/service/review.model';
+import { Review } from 'src/app/common/review/service/review.model';
 import { BookingService } from 'src/app/rental/rental-detail/rental-detail-booking/services/booking.service';
-import { PaymentService } from 'src/app/shared/payment/services/payment.service';
+import { PaymentService } from 'src/app/common/payment/services/payment.service';
 import { MatDialog } from '@angular/material';
 import * as moment from 'moment-timezone';
 

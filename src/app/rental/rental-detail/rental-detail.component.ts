@@ -2,15 +2,15 @@ import { Component, OnInit, OnDestroy, Input, HostListener } from '@angular/core
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/service/auth.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { LoginPupupComponent } from 'src/app/auth/login-popup/login-popup.component';
+import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 import { RentalBookingComponent } from './rental-detail-booking/rental-booking.component';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Rental } from '../service/rental.model';
-import { Review } from 'src/app/shared/review/service/review.model';
+import { Review } from 'src/app/common/review/service/review.model';
 import { Booking } from './rental-detail-booking/services/booking.model';
 import { RentalService } from '../service/rental.service';
-import { ReviewService } from 'src/app/shared/review/service/review.service';
+import { ReviewService } from 'src/app/common/review/service/review.service';
 import { EventInput } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
@@ -101,7 +101,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     }
 
     modalOpen() {
-        this.modalService.open(LoginPupupComponent)
+        this.modalService.open(LoginPopupComponent)
     }
 
     modalBookingOpen(selectedCourseTime: number) {

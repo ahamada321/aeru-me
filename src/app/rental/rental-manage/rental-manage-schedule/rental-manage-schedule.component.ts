@@ -100,7 +100,7 @@ export class TimePickerModal {
   styleUrls: ['./rental-manage-schedule.component.scss']
 })
 export class RentalManageScheduleComponent implements OnInit, OnDestroy {
-  @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent // This refering #calendar in frontend html
+  @ViewChild('calendar') calendarComponent: FullCalendarComponent // This refering #calendar in frontend html
   calendarPlugins = [dayGridPlugin, interactionPlugin]; // important!
   calendarEvents: EventInput[] = []
   calendarBusinessHours: EventInput[] = []

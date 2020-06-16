@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from 'src/app/shared/payment/services/payment.service';
+import { PaymentService } from 'src/app/common/payment/services/payment.service';
 import * as moment from "moment"
 import { Router, NavigationEnd } from '@angular/router';
 

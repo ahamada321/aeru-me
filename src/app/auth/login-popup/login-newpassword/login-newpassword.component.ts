@@ -3,7 +3,7 @@ import { MyOriginAuthService } from '../../service/auth.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { Router, ActivatedRoute } from '@angular/router'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { LoginPupupComponent } from 'src/app/auth/login-popup/login-popup.component'
+import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component'
 import Swal from 'sweetalert2'
 
 
@@ -77,6 +77,6 @@ export class LoginNewPasswordComponent implements OnInit, OnDestroy {
 
     modalOpen() {
         this.router.navigate(['/'])
-        this.modalService.open(LoginPupupComponent, {backdrop: 'static'})
+        this.modalService.open(LoginPopupComponent, {backdrop: 'static'})
     }
 }

@@ -25,7 +25,7 @@ export class RentalBookingComponent implements OnInit {
     isLinear = false;
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
-    @ViewChild('stepper', {static: false}) stepper: MatStepper;
+    @ViewChild('stepper') stepper: MatStepper;
 
     isSelectedDateTime: boolean = false
     isChangeBtnClicked: boolean = false

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BookingService } from '../../rental-detail/rental-detail-booking/services/booking.service';
-import { PaymentService } from 'src/app/shared/payment/services/payment.service';
+import { PaymentService } from 'src/app/common/payment/services/payment.service';
 import { Booking } from '../../rental-detail/rental-detail-booking/services/booking.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import Swal from 'sweetalert2'
