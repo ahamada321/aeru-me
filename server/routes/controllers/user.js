@@ -35,16 +35,14 @@ function sendEmailTo(sendTo, sendMsg, token, hostname) {
         token,
     };
   } else {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          {
-            title: "Could not send email!",
-            detail: "Please select appropriate email content!",
-          },
-        ],
-      });
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Could not send email!",
+          detail: "Please select appropriate email content!",
+        },
+      ],
+    });
   }
 
   sgMail.send(msg);
@@ -80,13 +78,11 @@ exports.auth = function (req, res) {
   const { email, password } = req.body;
 
   if (!password || !email) {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          { title: "Data missing!", detail: "Provide email and password!" },
-        ],
-      });
+    return res.status(422).send({
+      errors: [
+        { title: "Data missing!", detail: "Provide email and password!" },
+      ],
+    });
   }
 
   User.findOne({ email }, function (err, foundUser) {
@@ -94,42 +90,36 @@ exports.auth = function (req, res) {
       return res.status(422).send({ errors: normalizeErrors(err.errors) });
     }
     if (!foundUser) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "Invalid user!",
-              detail: "先にユーザー登録してください！",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Invalid user!",
+            detail: "先にユーザー登録してください！",
+          },
+        ],
+      });
     }
     if (!foundUser.isVerified) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "Not verified user!",
-              detail:
-                "受信メールからからアカウントをアクティベーションしてください！",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Not verified user!",
+            detail:
+              "受信メールからからアカウントをアクティベーションしてください！",
+          },
+        ],
+      });
     }
 
     if (!foundUser.hasSamePassword(password)) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "Invalid Data!",
-              detail: "メールアドレスまたはパスワードが間違っています！",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Invalid Data!",
+            detail: "メールアドレスまたはパスワードが間違っています！",
+          },
+        ],
+      });
     }
 
     // return JWT token
@@ -156,29 +146,25 @@ exports.FBauth = function (req, res) {
       return res.status(422).send({ errors: normalizeErrors(err.errors) });
     }
     if (!foundUser) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "User not found!",
-              detail: "先にメンバー登録してください！",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "User not found!",
+            detail: "先にメンバー登録してください！",
+          },
+        ],
+      });
     }
     if (!foundUser.isVerified) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "Not verified user!",
-              detail:
-                "受信メールからからアカウントをアクティベーションしてください！",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Not verified user!",
+            detail:
+              "受信メールからからアカウントをアクティベーションしてください！",
+          },
+        ],
+      });
     }
 
     // if(user.hasSamePassword(password)) {
@@ -214,29 +200,25 @@ exports.register = function (req, res) {
   let isVerified = false;
 
   if (!username || !email || !password) {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          {
-            title: "Data missing!",
-            detail: "フォームに正しく入力してください",
-          },
-        ],
-      });
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Data missing!",
+          detail: "フォームに正しく入力してください",
+        },
+      ],
+    });
   }
 
   if (password !== passwordConfirmation) {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          {
-            title: "Invalid password!",
-            detail: "パスワードとパスワード確認が異なります",
-          },
-        ],
-      });
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Invalid password!",
+          detail: "パスワードとパスワード確認が異なります",
+        },
+      ],
+    });
   }
 
   User.findOne({ email }, async function (err, foundUser) {
@@ -244,16 +226,14 @@ exports.register = function (req, res) {
       return res.status(422).send({ errors: normalizeErrors(err.errors) });
     }
     if (foundUser) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "Invalid email!",
-              detail: "このメールアドレスは既に登録されています！",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Invalid email!",
+            detail: "このメールアドレスは既に登録されています！",
+          },
+        ],
+      });
     }
 
     if (FBuserID) {
@@ -263,17 +243,15 @@ exports.register = function (req, res) {
           return res.status(422).send({ errors: normalizeErrors(err.errors) });
         }
         if (foundUser) {
-          return res
-            .status(422)
-            .send({
-              errors: [
-                {
-                  title: "Already exist!",
-                  detail:
-                    "このFacebook IDは既に登録されています！ログインページからログインしてください！",
-                },
-              ],
-            });
+          return res.status(422).send({
+            errors: [
+              {
+                title: "Already exist!",
+                detail:
+                  "このFacebook IDは既に登録されています！ログインページからログインしてください！",
+              },
+            ],
+          });
         }
         isVerified = true;
 
@@ -348,14 +326,12 @@ exports.updateUser = function (req, res) {
   const reqUserId = req.params.id;
 
   if (reqUserId !== user.id) {
-    return res
-      .status(422)
-      .send({
-        errors: {
-          title: "Invalid user!",
-          detail: "Cannot edit other user profile!",
-        },
-      });
+    return res.status(422).send({
+      errors: {
+        title: "Invalid user!",
+        detail: "Cannot edit other user profile!",
+      },
+    });
   }
 
   if (!password) {
@@ -378,16 +354,14 @@ exports.updateUser = function (req, res) {
     });
   } else {
     if (password !== passwordConfirmation) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "Invalid password!",
-              detail: "パスワードとパスワード確認が異なります",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Invalid password!",
+            detail: "パスワードとパスワード確認が異なります",
+          },
+        ],
+      });
     }
 
     User.findById(user.id, function (err, foundUser) {
@@ -419,13 +393,11 @@ exports.emailVerification = function (req, res) {
   const verifyToken = req.params.token;
   jwt.verify(verifyToken, config.SECRET, function (err, decordedToken) {
     if (err) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            { title: "Invalid token!", detail: "Token format is invalid!" },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          { title: "Invalid token!", detail: "Token format is invalid!" },
+        ],
+      });
     }
 
     User.findById(decordedToken.userId)
@@ -467,11 +439,9 @@ exports.sendPasswordResetLink = function (req, res) {
       return res.status(422).send({ errors: normalizeErrors(err.errors) });
     }
     if (!foundUser) {
-      return res
-        .status(422)
-        .send({
-          errors: [{ title: "Invalid user!", detail: "User does not exist!" }],
-        });
+      return res.status(422).send({
+        errors: [{ title: "Invalid user!", detail: "User does not exist!" }],
+      });
     }
 
     const token = jwt.sign(
@@ -489,50 +459,42 @@ exports.setNwePassword = function (req, res) {
   const verifyToken = req.params.token;
 
   if (!password || !email) {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          { title: "Data missing!", detail: "Provide email and password!" },
-        ],
-      });
+    return res.status(422).send({
+      errors: [
+        { title: "Data missing!", detail: "Provide email and password!" },
+      ],
+    });
   }
 
   if (password != passwordConfirmation) {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          {
-            title: "Invalid password!",
-            detail: "Password is not as same as confirmation!",
-          },
-        ],
-      });
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Invalid password!",
+          detail: "Password is not as same as confirmation!",
+        },
+      ],
+    });
   }
 
   jwt.verify(verifyToken, config.SECRET, function (err, decordedToken) {
     if (err) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            { title: "Invalid token!", detail: "Token format is invalid!" },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          { title: "Invalid token!", detail: "Token format is invalid!" },
+        ],
+      });
     }
 
     if (email !== decordedToken.email) {
-      return res
-        .status(422)
-        .send({
-          errors: [
-            {
-              title: "email is incorrect!",
-              detail: "Email is incorrect as we sent!",
-            },
-          ],
-        });
+      return res.status(422).send({
+        errors: [
+          {
+            title: "email is incorrect!",
+            detail: "Email is incorrect as we sent!",
+          },
+        ],
+      });
     }
 
     User.findById(decordedToken.userId, function (err, foundUser) {
@@ -550,10 +512,11 @@ exports.setNwePassword = function (req, res) {
   });
 };
 
-function notAuthorized(res) {
-  return res
-    .status(400)
-    .send({
+exports.authMiddleware = function (req, res, next) {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(400).send({
       errors: [
         {
           title: "Not authorized!",
@@ -561,23 +524,14 @@ function notAuthorized(res) {
         },
       ],
     });
-}
-
-exports.authMiddleware = function (req, res, next) {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    return notAuthorized(res);
   }
 
   // split token string [Bearer XXXXXXXXX] with ' ' and return XXXXXXXXX
   jwt.verify(token.split(" ")[1], config.SECRET, function (err, decodedToken) {
     if (err) {
-      return res
-        .status(401)
-        .send({
-          errors: [{ title: "Not authorized!", detail: "Invalid token!" }],
-        });
+      return res.status(401).send({
+        errors: [{ title: "Not authorized!", detail: "Invalid token!" }],
+      });
     }
 
     User.findById(decodedToken.userId, function (err, foundUser) {
@@ -586,7 +540,9 @@ exports.authMiddleware = function (req, res, next) {
       }
 
       if (!foundUser) {
-        return notAuthorized(res);
+        return res.status(401).send({
+          errors: [{ title: "Not authorized!", detail: "User not found!" }],
+        });
       }
 
       res.locals.user = foundUser;
