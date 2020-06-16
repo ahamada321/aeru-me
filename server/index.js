@@ -43,29 +43,26 @@ app.use("/api/v1/contactforms", contactformRoutes);
 app.use("/api/v1", imageUploadRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  const appPath = path.join(__dirname, "..", "dist", "aeru-me");
+  app.all(/.*/, function (req, res, next) {
+    if (req.headers.host.match(/^www\..*/i)) {
+      return next();
+    } else {
+      return res.redirect(301, "https://www." + req.headers.host + req.url);
+    }
+  });
+
   const https_redirect = function () {
     return function (req, res, next) {
       if (req.headers["x-forwarded-proto"] !== "https") {
-        return res.redirect("https://" + req.headers.host + req.url);
+        return res.redirect(301, "https://" + req.headers.host + req.url);
       } else {
         return next();
       }
     };
   };
-  const www_redirect = function () {
-    return function (req, res, next) {
-      if (req.headers.host.match(/^www/) !== null) {
-        res.redirect(
-          "http://" + req.headers.host.replace(/^www\./, "") + req.url
-        );
-      } else {
-        next();
-      }
-    };
-  };
   app.use(https_redirect());
-  app.use(www_redirect());
+
+  const appPath = path.join(__dirname, "..", "dist", "aeru-me");
   app.use(express.static(appPath));
   // app.set('view cache', true) // Enable cache for user
   app.get("*", function (req, res) {
