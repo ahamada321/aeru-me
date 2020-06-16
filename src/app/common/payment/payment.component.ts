@@ -19,9 +19,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
   validatingCardFlag: boolean = false
   error: string
 
-  @ViewChild('cardNumber', {static: false}) cardNumRef: ElementRef
-  @ViewChild('cardExpiry', {static: false}) cardExpiryRef: ElementRef
-  @ViewChild('cardCvc', {static: false}) cardCvcRef: ElementRef
+  @ViewChild('cardNumber') cardNumRef: ElementRef
+  @ViewChild('cardExpiry') cardExpiryRef: ElementRef
+  @ViewChild('cardCvc') cardCvcRef: ElementRef
   @Output() paymentComfirmed = new EventEmitter()
 
   cardNumber: any

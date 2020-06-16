@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener, Renderer2 } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators'
@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
     url: string;
-    @ViewChild(NavbarComponent, {static: false}) navbar: NavbarComponent;
+    @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
-    constructor( private renderer : Renderer, private router: Router, private element : ElementRef, public location: Location) {}
+    constructor( private renderer : Renderer2, private router: Router, private element : ElementRef, public location: Location) {}
 
     @HostListener('window:scroll')
     hasScrolled() {
@@ -81,25 +81,24 @@ export class AppComponent implements OnInit {
         this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
             this.navbar.sidebarClose();
 
-            this.renderer.listenGlobal('window', 'scroll', (event) => {
-                const number = window.scrollY;
-                var _locationSections = this.location.path();
-                _locationSections = _locationSections.split('#')[0];
-                if (_locationSections !== '/sections') {
-                  var _locationExamples = this.location.path();
-                  const isLocationOfBooking = ( _locationExamples.split('/')[3] === 'booking' );
-                    _locationExamples = _locationExamples.split('/')[2];
-
-                    
-                    if (number > 150 || window.pageYOffset > 150) {
-                        // add logic
-                        navbar.classList.remove('navbar-transparent');
-                    } else if (_locationExamples !== 'addproduct' && _locationExamples !== 'blogposts' && !isLocationOfBooking) {
-                        // remove logic
-                        navbar.classList.add('navbar-transparent');
-                    }
-                }
-            });
+            this.renderer.listen('window', 'scroll', (event) => {
+    const number = window.scrollY;
+    var _locationSections = this.location.path();
+    _locationSections = _locationSections.split('#')[0];
+    if (_locationSections !== '/sections') {
+        var _locationExamples = this.location.path();
+        const isLocationOfBooking = (_locationExamples.split('/')[3] === 'booking');
+        _locationExamples = _locationExamples.split('/')[2];
+        if (number > 150 || window.pageYOffset > 150) {
+            // add logic
+            navbar.classList.remove('navbar-transparent');
+        }
+        else if (_locationExamples !== 'addproduct' && _locationExamples !== 'blogposts' && !isLocationOfBooking) {
+            // remove logic
+            navbar.classList.add('navbar-transparent');
+        }
+    }
+});
         });
 
         var ua = window.navigator.userAgent;
