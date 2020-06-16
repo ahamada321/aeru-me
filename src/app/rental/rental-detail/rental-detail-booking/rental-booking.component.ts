@@ -10,7 +10,7 @@ import { Rental } from '../../service/rental.model';
 import { Booking } from './services/booking.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { MatStepper } from '@angular/material';
+import { MatStepper } from '@angular/material/stepper';
 import Swal from 'sweetalert2'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 

@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BookingService } from '../../rental-detail/rental-detail-booking/services/booking.service';
 import { PaymentService } from 'src/app/common/payment/services/payment.service';
 import { Booking } from '../../rental-detail/rental-detail-booking/services/booking.model';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2'
 import * as moment from "moment"
 
