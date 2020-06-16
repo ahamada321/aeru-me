@@ -53,10 +53,10 @@ if (process.env.NODE_ENV === "production") {
 
   const https_redirect = function () {
     return function (req, res, next) {
-      if (req.headers["x-forwarded-proto"] !== "https") {
-        return res.redirect(301, "https://" + req.headers.host + req.url);
-      } else {
+      if (req.headers["x-forwarded-proto"] === "https") {
         return next();
+      } else {
+        return res.redirect(301, "https://" + req.headers.host + req.url);
       }
     };
   };
