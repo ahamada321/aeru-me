@@ -26,6 +26,7 @@ import { Page500Component } from "./static/page500/page500.component";
 import { TermsComponent } from "./static/terms/terms.component";
 import { PrivacyComponent } from "./static/privacy/privacy.component";
 import { MembersLandingComponent } from "./static/members-landing/members-landing.component";
+import { LandingRpaComponent } from "./static/landing-rpa/landing-rpa.component";
 
 const routes: Routes = [
   { path: "aboutus", component: AboutusComponent },
@@ -44,6 +45,8 @@ const routes: Routes = [
 
   { path: "", component: LineupComponent },
   { path: "online-booking", component: LandingSaasComponent },
+  { path: "rpa", component: LandingRpaComponent },
+
   { path: "lp", component: LandingComponent },
   { path: "apt", component: LandingAptrainerComponent },
   { path: "members", component: MembersLandingComponent },
@@ -71,6 +74,7 @@ const routes: Routes = [
   declarations: [
     LineupComponent,
     LandingComponent,
+    LandingRpaComponent,
     LandingSaasComponent,
     LandingAptrainerComponent,
     AboutusComponent,
