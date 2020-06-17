@@ -1,54 +1,60 @@
-import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  ElementRef,
+} from "@angular/core";
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  selector: "app-landing",
+  templateUrl: "./landing.component.html",
+  styleUrls: ["./landing.component.scss"],
 })
 export class LandingComponent implements OnInit, OnDestroy {
-    data : Date = new Date()
-    innerWidth: number // Browser width
+  data: Date = new Date();
+  innerWidth: number; // Browser width
 
-    constructor(public el: ElementRef) { }
+  constructor(public el: ElementRef) {}
 
-    ngOnInit() {
-        var navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.add('navbar-transparent');
-        var body = document.getElementsByTagName('body')[0];
-        body.classList.add('landing-page');
-        body.classList.add('presentation-page'); // tempolary
+  ngOnInit() {
+    var navbar = document.getElementsByTagName("nav")[0];
+    navbar.classList.add("navbar-transparent");
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.add("landing-page");
+    body.classList.add("presentation-page"); // temporary
 
-        this.innerWidth = window.innerWidth;
+    this.innerWidth = window.innerWidth;
+  }
+  ngOnDestroy() {
+    var navbar = document.getElementsByTagName("nav")[0];
+    navbar.classList.remove("navbar-transparent");
+    if (navbar.classList.contains("nav-up")) {
+      navbar.classList.remove("nav-up");
     }
-    ngOnDestroy(){
-        var navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.remove('navbar-transparent');
-        if (navbar.classList.contains('nav-up')) {
-            navbar.classList.remove('nav-up');
-        }
-        var body = document.getElementsByTagName('body')[0];
-        body.classList.remove('landing-page');
-        body.classList.remove('presentation-page'); // tempolary
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.remove("landing-page");
+    body.classList.remove("presentation-page"); // temporary
+  }
 
-    }
+  @HostListener("window:scroll")
+  checkScroll() {
+    const componentPosition = document.getElementsByClassName("add-animation");
+    const scrollPosition = window.pageYOffset;
 
-    @HostListener('window:scroll')
-    checkScroll() {
-       const componentPosition = document.getElementsByClassName('add-animation');
-       const scrollPosition = window.pageYOffset;
-       
-       for(var i = 0; i < componentPosition.length; i++) {
-           var rec = componentPosition[i].getBoundingClientRect().top + window.scrollY + 100;
-           if ( scrollPosition + window.innerHeight >= rec ) {
-               componentPosition[i].classList.add('animated');
-           } else if ( scrollPosition + window.innerHeight * 0.8 < rec ) {
-               componentPosition[i].classList.remove('animated');
-           }
-       }
+    for (var i = 0; i < componentPosition.length; i++) {
+      var rec =
+        componentPosition[i].getBoundingClientRect().top + window.scrollY + 100;
+      if (scrollPosition + window.innerHeight >= rec) {
+        componentPosition[i].classList.add("animated");
+      } else if (scrollPosition + window.innerHeight * 0.8 < rec) {
+        componentPosition[i].classList.remove("animated");
+      }
     }
+  }
 
-    @HostListener('window:resize')
-    onResize() {
-      this.innerWidth = window.innerWidth;
-    }
+  @HostListener("window:resize")
+  onResize() {
+    this.innerWidth = window.innerWidth;
+  }
 }

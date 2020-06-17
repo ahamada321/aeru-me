@@ -22,7 +22,7 @@ export class LineupComponent implements OnInit, OnDestroy {
     navbar.classList.add("navbar-transparent");
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("landing-page");
-    body.classList.add("presentation-page"); // tempolary
+    body.classList.add("presentation-page"); // temporary
 
     this.innerWidth = window.innerWidth;
   }
@@ -34,7 +34,7 @@ export class LineupComponent implements OnInit, OnDestroy {
     }
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("landing-page");
-    body.classList.remove("presentation-page"); // tempolary
+    body.classList.remove("presentation-page"); // temporary
   }
 
   @HostListener("window:scroll")

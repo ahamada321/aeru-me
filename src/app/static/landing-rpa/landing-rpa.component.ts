@@ -7,11 +7,11 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "app-landing-saas",
-  templateUrl: "./landing-saas.component.html",
-  styleUrls: ["./landing-saas.component.scss"],
+  selector: "app-landing-rpa",
+  templateUrl: "./landing-rpa.component.html",
+  styleUrls: ["./landing-rpa.component.scss"],
 })
-export class LandingSaasComponent implements OnInit, OnDestroy {
+export class LandingRpaComponent implements OnInit, OnDestroy {
   data: Date = new Date();
   innerWidth: number; // Browser width
 
