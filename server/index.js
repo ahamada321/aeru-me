@@ -51,20 +51,16 @@ if (process.env.NODE_ENV === "production") {
     }
   });
 
-  const https_redirect = function () {
-    return function (req, res, next) {
-      if (req.headers["x-forwarded-proto"] === "https") {
-        return next();
-      } else {
-        return res.redirect(301, "https://" + req.headers.host + req.url);
-      }
-    };
-  };
-  app.use(https_redirect());
+  app.use(function (req, res, next) {
+    if (req.headers["x-forwarded-proto"] === "https") {
+      return next();
+    } else {
+      return res.redirect(301, "https://" + req.headers.host + req.url);
+    }
+  });
 
   const appPath = path.join(__dirname, "..", "dist", "aeru-me");
   app.use(express.static(appPath));
-  // app.set('view cache', true) // Enable cache for user
   app.get("*", function (req, res) {
     res.sendFile(path.resolve(appPath, "index.html"));
   });
