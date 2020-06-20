@@ -2163,9 +2163,10 @@ pre.prettyprint {
   padding: 180px 0;
 }
 
-.presentation-page .section-icons [class*="col-"]:nth-child(2) {
+/* Deleted by Hamada 
+  .presentation-page .section-icons [class*="col-"]:nth-child(2) {
   padding: 0 70px;
-}
+} */
 
 .presentation-page .section-icons .icons-nucleo .nc-icon {
   position: absolute;
@@ -2326,7 +2327,7 @@ pre.prettyprint {
 
 .presentation-page .section-components .title {
   margin-top: 60px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; Disabled by Hamada */
 }
 
 .presentation-page .section-components .description {
