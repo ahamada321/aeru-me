@@ -2160,7 +2160,7 @@ pre.prettyprint {
 }
 
 .presentation-page .section-icons {
-  padding: 180px 0;
+  padding: 90px 0 180px; /* Edited by Hamada */
 }
 
 /* Deleted by Hamada 
