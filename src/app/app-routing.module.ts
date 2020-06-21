@@ -29,10 +29,13 @@ import { MembersLandingComponent } from "./static/members-landing/members-landin
 import { LandingRpaComponent } from "./static/landing-rpa/landing-rpa.component";
 
 const routes: Routes = [
+  { path: "", component: LandingRpaComponent },
+  { path: "online-booking", component: LandingSaasComponent },
+  { path: "rpa", component: LandingRpaComponent },
+  { path: "lineup", component: LineupComponent },
+
   { path: "aboutus", component: AboutusComponent },
   { path: "contactus", component: ContactusComponent },
-
-  // // { path: 'presentation', component: PresentationComponent },
   { path: "terms", component: TermsComponent },
   { path: "privacy", component: PrivacyComponent },
   // { path: 'faq',          component: FAQComponent },
@@ -42,10 +45,6 @@ const routes: Routes = [
   // { path: 'userguide',  component: UserguideComponent },
   // { path: 'usersvoice',  component: UsersVoiceComponent },
   // { path: 'results',  component: ResultsComponent },
-
-  { path: "", component: LineupComponent },
-  { path: "online-booking", component: LandingSaasComponent },
-  { path: "rpa", component: LandingRpaComponent },
 
   { path: "lp", component: LandingComponent },
   { path: "apt", component: LandingAptrainerComponent },
