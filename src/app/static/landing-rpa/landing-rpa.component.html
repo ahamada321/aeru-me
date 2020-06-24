@@ -1,18 +1,18 @@
 <div class="wrapper">
   <div
-    class="page-header page-header-small"
+    class="page-header page-header-xs"
     style="background-image: url('./assets/img/lp/back-image.jpg');"
   >
     <div class="filter"></div>
     <div class="content-center">
+      <div class="space-top"></div>
       <div class="container">
         <div class="row">
           <div class="col-md-6 text-left">
             <h1 class="title">業務自動化支援</h1>
-            <h5 class="description">
-              日常業務の面倒な部分をテクノロジーの力で自動化します。<br />
-              これによりヒューマンエラー抑制と組織全体の生産性が飛躍的に向上します。
-            </h5>
+            <h3 class="description">
+              約70%のバックオフィス業務を自動化できます
+            </h3>
           </div>
         </div>
       </div>
@@ -22,6 +22,26 @@
   <!--     *********     PROBLEM      *********      -->
   <div class="section section-dark">
     <div class="container">
+      <div class="row">
+        <div class="col-md-6 mr-auto ml-auto">
+          <div class="card no-transition">
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas
+                  baseChart
+                  id="barChartSimpleGradientsNumbers"
+                  [datasets]="lineChartGradientsNumbersData"
+                  [labels]="lineChartGradientsNumbersLabels"
+                  [colors]="lineChartGradientsNumbersColors"
+                  [options]="lineChartGradientsNumbersOptions"
+                  [chartType]="lineChartGradientsNumbersType"
+                ></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="text-center ml-auto mr-auto">
           <h2 class="title">このような経験ございませんか？</h2>
@@ -70,7 +90,7 @@
             </div>
             <div class="description">
               <h4 class="info-title">
-                業務を自動化しようにも技術ノウハウがない
+                業務を自動化するための技術ノウハウがない
               </h4>
             </div>
           </div>

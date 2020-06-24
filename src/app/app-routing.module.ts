@@ -27,6 +27,7 @@ import { TermsComponent } from "./static/terms/terms.component";
 import { PrivacyComponent } from "./static/privacy/privacy.component";
 import { MembersLandingComponent } from "./static/members-landing/members-landing.component";
 import { LandingRpaComponent } from "./static/landing-rpa/landing-rpa.component";
+import { ChartsModule } from "ng2-charts";
 
 const routes: Routes = [
   { path: "", component: LineupComponent },
@@ -63,7 +64,7 @@ const routes: Routes = [
     NouisliderModule,
     TagInputModule,
     JwBootstrapSwitchNg2Module,
-
+    ChartsModule,
     AuthModule,
     ContactFormModule,
     RentalModule,

@@ -15,8 +15,8 @@
 
  */
 
-@import 'paper-kit/variables';
-@import 'paper-kit/mixins';
+@import "paper-kit/variables";
+@import "paper-kit/mixins";
 
 // Plugins CSS
 @import "paper-kit/plugins/plugin-bootstrap-switch";
@@ -24,8 +24,8 @@
 @import "paper-kit/plugins/plugin-tagsinput";
 @import "paper-kit/plugins/plugin-fileupload";
 @import "paper-kit/plugins/plugin-datetimepicker";
-@import "paper-kit/plugins/fullcalendar"; 
-@import 'paper-kit/plugins/fullcalendar-scheduler';
+@import "paper-kit/plugins/fullcalendar";
+@import "paper-kit/plugins/fullcalendar-scheduler";
 
 // Core CSS
 @import "paper-kit/nucleo-outline";
@@ -64,6 +64,7 @@
 @import "paper-kit/cards";
 @import "paper-kit/cards/card-background";
 @import "paper-kit/cards/card-blog";
+@import "paper-kit/cards/card-chart";
 @import "paper-kit/cards/card-contact";
 @import "paper-kit/cards/card-image";
 @import "paper-kit/cards/card-register";
@@ -93,7 +94,6 @@
 // Nucleo Icons
 @import "paper-kit/nucleo-icons";
 @import "paper-kit/icons";
-
 
 // Angular Differences
 @import "paper-kit/angular-differences/presentation";
