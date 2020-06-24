@@ -29,67 +29,52 @@
   </div>
 
   <!--     *********    RPA SYSTEM     *********      -->
-  <div class="section section-components section-dark">
-    <div class="row">
-      <div class="col-md-12 ml-auto mr-auto text-center">
-        <h2 class="title">業務自動化システム</h2>
-        <h6 class="category">Our Another Service</h6>
-      </div>
-    </div>
-    <div class="space-top"></div>
-    <div class="row">
-      <div class="col-md-12 col-lg-6">
-        <div class="image-container">
-          <img
-            class="components-macbook"
-            src="./assets/img/lp/laptop-automation.png"
-            alt=""
-          />
-          <img
-            class="table-img"
-            src="./assets/img/presentation-page/reporting.jpg"
-            alt=""
-          />
-          <img
-            class="share-btn-img"
-            src="./assets/img/presentation-page/login-btn.png"
-            alt=""
-          />
-          <img
-            class="coloured-card-btn-img"
-            src="./assets/img/presentation-page/coloured-card-with-btn.png"
-            alt=""
-          />
-          <img
-            class="coloured-card-img"
-            src="./assets/img/presentation-page/coloured-card.png"
-            alt=""
-          />
-          <img
-            class="social-img"
-            src="./assets/img/presentation-page/social-row.png"
-            alt=""
-          />
-          <img
-            class="pin-btn-img"
-            src="./assets/img/presentation-page/pin-btn.png"
-            alt=""
-          />
+  <div class="section section-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto text-center">
+          <h1 class="title">業務自動化システム</h1>
+          <h6 class="category">Our Another Service</h6>
         </div>
       </div>
-      <div class="col-md-10 col-lg-4 ml-auto mr-auto">
-        <div class="container basic-container">
-          <h3 class="title">バックオフィス業務を大幅に効率化できます</h3>
-          <h6 class="category">
-            従業員の業務負荷低減に貢献できます
-          </h6>
-          <h5 class="description">
-            日常業務の面倒な部分をテクノロジーの力で自動化します。
-            これによりヒューマンエラーの抑制と組織全体の生産性が飛躍的に向上します。
-            従業員を他の重要な業務へアサインできるようになります。
-          </h5>
-          <br />
-          <a class="btn btn-lg btn-primary" [routerLink]="['/rpa']">
+      <div class="space-top"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card no-transition">
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas
+                  baseChart
+                  id="barChartSimpleGradientsNumbers"
+                  [datasets]="lineChartGradientsNumbersData"
+                  [labels]="lineChartGradientsNumbersLabels"
+                  [colors]="lineChartGradientsNumbersColors"
+                  [options]="lineChartGradientsNumbersOptions"
+                  [chartType]="lineChartGradientsNumbersType"
+                ></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 ml-auto mr-auto">
+          <div class="container">
+            <h3 class="title">約70%のバックオフィス業務を自動化できます</h3>
+            <h5 class="description">
+              ITテクノロジーの力で日常業務の多くを自動化します。<br />
+              組織全体の生産性が飛躍的に向上します。
+            </h5>
+            <br />
+            <h6 class="category">
+              (※業務効率化割合は企業毎異なります)
+            </h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-50"></div>
+      <div class="row">
+        <div class="col-11 col-md-7 ml-auto mr-auto">
+          <a class="btn btn-block btn-lg btn-primary" [routerLink]="['/rpa']">
             <i class="fa fa-search"></i> 詳細はこちら
           </a>
         </div>
