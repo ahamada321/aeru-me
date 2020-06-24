@@ -29,7 +29,7 @@ import { MembersLandingComponent } from "./static/members-landing/members-landin
 import { LandingRpaComponent } from "./static/landing-rpa/landing-rpa.component";
 
 const routes: Routes = [
-  { path: "", component: LandingRpaComponent },
+  { path: "", component: LineupComponent },
   { path: "online-booking", component: LandingSaasComponent },
   { path: "rpa", component: LandingRpaComponent },
   { path: "lineup", component: LineupComponent },
