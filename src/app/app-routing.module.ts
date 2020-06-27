@@ -14,6 +14,7 @@ import { ContactFormModule } from "./common/contactform/contactform.module";
 import { RentalModule } from "./rental/rental.module";
 import { UserModule } from "./user/user.module";
 
+import { TopComponent } from "./static/top/top.component";
 import { LineupComponent } from "./static/lineup/lineup.component";
 import { LandingComponent } from "./static/landing/landing.component";
 import { LandingSaasComponent } from "./static/landing-saas/landing-saas.component";
@@ -30,7 +31,7 @@ import { LandingRpaComponent } from "./static/landing-rpa/landing-rpa.component"
 import { ChartsModule } from "ng2-charts";
 
 const routes: Routes = [
-  { path: "", component: LineupComponent },
+  { path: "", component: TopComponent },
   { path: "online-booking", component: LandingSaasComponent },
   { path: "rpa", component: LandingRpaComponent },
   { path: "lineup", component: LineupComponent },
@@ -72,6 +73,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   declarations: [
+    TopComponent,
     LineupComponent,
     LandingComponent,
     LandingRpaComponent,

@@ -1,0 +1,52 @@
+.title-brand {
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  display: block;
+
+  .type {
+    position: absolute;
+    font-size: 20px;
+    background: #132026;
+    padding: 6px 10px;
+    border-radius: 4px;
+    top: 0;
+    font-weight: 600;
+    margin-top: 10px;
+    right: -15px;
+  }
+}
+
+.logo {
+  margin: 70px 40px 45px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.presentation-title {
+  font-size: 8em;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  // background: #fbf8ec;
+  background: -moz-linear-gradient(to bottom, #ffffff 35%, #4e6773 100%);
+  background: -webkit-linear-gradient(to bottom, #ffffff 35%, #4e6773 100%);
+  background: -ms-linear-gradient(to bottom, #ffffff 35%, #4e6773 100%);
+  background: -o-linear-gradient(to bottom, #ffffff 35%, #4e6773 100%);
+  background: linear-gradient(to bottom, #ffffff 35%, #4e6773 100%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.presentation-subtitle {
+  font-size: 1.7em;
+  color: #ffffff;
+}
+
+.category-absolute {
+  z-index: 3;
+}
