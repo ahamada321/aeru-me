@@ -2334,7 +2334,7 @@ pre.prettyprint {
 }
 
 .presentation-page .section-components .image-container {
-  height: 560px;
+  height: 500px;
   position: relative;
 }
 
@@ -2538,7 +2538,7 @@ pre.prettyprint {
 }
 
 .presentation-page .section-content .image-container .info-img {
-  top: 40%;
+  top: 35%;
   left: -35%;
   height: 350px;
   width: 280px;
