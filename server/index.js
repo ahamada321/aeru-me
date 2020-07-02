@@ -44,10 +44,10 @@ app.use("/api/v1", imageUploadRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.all(/.*/, function (req, res, next) {
-    if (req.headers.host.match(/^www\..*/i)) {
+    if (req.headers.host.match(/^staging*/i)) {
       return next();
     }
-    if (req.headers.host.match(/^staging*/i)) {
+    if (req.headers.host.match(/^www\..*/i)) {
       return next();
     } else {
       return res.redirect(301, "https://www." + req.headers.host + req.url);
