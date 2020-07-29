@@ -16,7 +16,6 @@ import { UserModule } from "./user/user.module";
 
 import { TopComponent } from "./static/top/top.component";
 import { LineupComponent } from "./static/lineup/lineup.component";
-import { LandingComponent } from "./static/landing/landing.component";
 import { LandingSaasComponent } from "./static/landing-saas/landing-saas.component";
 import { LandingAptrainerComponent } from "./static/landing-aptrainer/landing-aptrainer.component";
 import { AboutusComponent } from "./static/aboutus/aboutus.component";
@@ -26,31 +25,20 @@ import { Page422Component } from "./static/page422/page422.component";
 import { Page500Component } from "./static/page500/page500.component";
 import { TermsComponent } from "./static/terms/terms.component";
 import { PrivacyComponent } from "./static/privacy/privacy.component";
-import { MembersLandingComponent } from "./static/members-landing/members-landing.component";
-import { LandingRpaComponent } from "./static/landing-rpa/landing-rpa.component";
-import { ChartsModule } from "ng2-charts";
 
 const routes: Routes = [
   { path: "", component: TopComponent },
-  { path: "online-booking", component: LandingSaasComponent },
-  { path: "rpa", component: LandingRpaComponent },
   { path: "lineup", component: LineupComponent },
+  { path: "online-booking", component: LandingSaasComponent },
 
   { path: "aboutus", component: AboutusComponent },
   { path: "contactus", component: ContactusComponent },
+  // { path: 'trialform',  component: TrialFormComponent },
   { path: "terms", component: TermsComponent },
   { path: "privacy", component: PrivacyComponent },
   // { path: 'faq',          component: FAQComponent },
-  // { path: 'trialform',  component: TrialFormComponent },
-  // // { path: 'partnership',  component: PartnershipComponent },
-  // { path: 'partnership',  component: PresentationComponent },
-  // { path: 'userguide',  component: UserguideComponent },
-  // { path: 'usersvoice',  component: UsersVoiceComponent },
-  // { path: 'results',  component: ResultsComponent },
 
-  { path: "lp", component: LandingComponent },
-  { path: "apt", component: LandingAptrainerComponent },
-  { path: "members", component: MembersLandingComponent },
+  { path: "ap-trainer", component: LandingAptrainerComponent },
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ];
@@ -65,7 +53,6 @@ const routes: Routes = [
     NouisliderModule,
     TagInputModule,
     JwBootstrapSwitchNg2Module,
-    ChartsModule,
     AuthModule,
     ContactFormModule,
     RentalModule,
@@ -75,8 +62,6 @@ const routes: Routes = [
   declarations: [
     TopComponent,
     LineupComponent,
-    LandingComponent,
-    LandingRpaComponent,
     LandingSaasComponent,
     LandingAptrainerComponent,
     AboutusComponent,
@@ -86,7 +71,6 @@ const routes: Routes = [
     Page500Component,
     TermsComponent,
     PrivacyComponent,
-    MembersLandingComponent,
   ],
 })
 export class AppRoutingModule {}
