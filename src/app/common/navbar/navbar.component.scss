@@ -1,14 +1,14 @@
 .navbar {
-  .navbar-brand{
-    background: url('src/assets/img/logo/logo-w.svg') 0 0 no-repeat;
+  .navbar-brand {
+    background: url("/assets/img/logo/logo-w.svg") 0 0 no-repeat;
     margin-left: 10px;
     margin-top: 7px;
     width: 150px;
     height: auto;
   }
-  &.navbar-transparent{
+  &.navbar-transparent {
     .navbar-brand {
-      background: url('src/assets/img/logo/logo-w-wh.svg') 0 0 no-repeat !important;
+      background: url("/assets/img/logo/logo-w-wh.svg") 0 0 no-repeat !important;
       margin-left: 10px;
       margin-top: 7px;
       width: 150px;
