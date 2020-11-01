@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private element: ElementRef,
     public location: Location
-  ) {}
+  ) { }
 
   @HostListener("window:scroll")
   hasScrolled() {
@@ -133,7 +133,7 @@ export class AppComponent implements OnInit {
   removeFooter() {
     let _location = this.location.path();
     const titlee = _location.split("/")[1];
-    if (titlee === "register" || titlee === "login") {
+    if (titlee === "register" || titlee === "login" || titlee === "maintenance") {
       return false;
     } else {
       return true;
