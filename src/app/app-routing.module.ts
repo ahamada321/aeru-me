@@ -25,6 +25,7 @@ import { Page422Component } from "./static/page422/page422.component";
 import { Page500Component } from "./static/page500/page500.component";
 import { TermsComponent } from "./static/terms/terms.component";
 import { PrivacyComponent } from "./static/privacy/privacy.component";
+import { MaintenanceComponent } from './static/maintenance/maintenance.component';
 
 const routes: Routes = [
   { path: "", component: TopComponent },
@@ -33,12 +34,12 @@ const routes: Routes = [
 
   { path: "aboutus", component: AboutusComponent },
   { path: "contactus", component: ContactusComponent },
-  // { path: 'trialform',  component: TrialFormComponent },
   { path: "terms", component: TermsComponent },
   { path: "privacy", component: PrivacyComponent },
   // { path: 'faq',          component: FAQComponent },
 
   { path: "ap-trainer", component: LandingAptrainerComponent },
+  { path: 'maintenance', component: MaintenanceComponent },
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ];
@@ -66,6 +67,7 @@ const routes: Routes = [
     LandingAptrainerComponent,
     AboutusComponent,
     ContactusComponent,
+    MaintenanceComponent,
     Page404Component,
     Page422Component,
     Page500Component,
@@ -73,4 +75,4 @@ const routes: Routes = [
     PrivacyComponent,
   ],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
