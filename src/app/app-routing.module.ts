@@ -26,6 +26,7 @@ import { Page500Component } from "./static/page500/page500.component";
 import { TermsComponent } from "./static/terms/terms.component";
 import { PrivacyComponent } from "./static/privacy/privacy.component";
 import { MaintenanceComponent } from './static/maintenance/maintenance.component';
+import { ELearningComponent } from './static/e-learning/e-learning.component';
 
 const routes: Routes = [
   { path: "", component: TopComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
 
   { path: "ap-trainer", component: LandingAptrainerComponent },
   { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'e-learning', component: ELearningComponent },
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ];

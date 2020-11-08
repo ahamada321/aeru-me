@@ -1,9 +1,6 @@
 <section id="rentalDetail" *ngIf="rental">
-  <div
-    class="page-header page-header-small"
-    data-parallax="true"
-    [ngStyle]="{ 'background-image': 'url(' + rental.image + ')' }"
-  >
+  <div class="page-header page-header-small" data-parallax="true"
+    [ngStyle]="{ 'background-image': 'url(' + rental.image + ')' }">
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
@@ -18,33 +15,17 @@
         <div class="row">
           <div class="col-md-7 text-left">
             <div class="buttons">
-              <a
-                *ngIf="rental.twitter"
-                href="{{ rental.twitter }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-twitter"></i>
+              <a *ngIf="rental.twitter" href="{{ rental.twitter }}" class="btn btn-neutral btn-link btn-just-icon"
+                target="_blank"><i class="fa fa-twitter"></i>
               </a>
-              <a
-                *ngIf="rental.facebook"
-                href="{{ rental.facebook }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-facebook-square"></i>
+              <a *ngIf="rental.facebook" href="{{ rental.facebook }}" class="btn btn-neutral btn-link btn-just-icon"
+                target="_blank"><i class="fa fa-facebook-square"></i>
               </a>
-              <a
-                *ngIf="rental.instagram"
-                href="{{ rental.instagram }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-instagram"></i>
+              <a *ngIf="rental.instagram" href="{{ rental.instagram }}" class="btn btn-neutral btn-link btn-just-icon"
+                target="_blank"><i class="fa fa-instagram"></i>
               </a>
-              <a
-                *ngIf="rental.youtube"
-                href="{{ rental.youtube }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-youtube"></i>
+              <a *ngIf="rental.youtube" href="{{ rental.youtube }}" class="btn btn-neutral btn-link btn-just-icon"
+                target="_blank"><i class="fa fa-youtube"></i>
               </a>
             </div>
           </div>
@@ -71,9 +52,7 @@
         <div class="col-md-3 ml-auto mr-auto">
           <h3 class="title">直接連絡をとる</h3>
           <div class="line-icon-img">
-            <a href="{{ rental.lineworksURL }}"
-              ><img src="./assets/img/icons/line-messenger.svg" alt="..."
-            /></a>
+            <a href="{{ rental.lineworksURL }}"><img src="./assets/img/icons/line-messenger.svg" alt="..." /></a>
           </div>
         </div>
       </div>
@@ -81,6 +60,47 @@
       <div class="space-100"></div>
       <div class="blog-1">
         <div class="container">
+          <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+              <div class="card card-plain card-blog">
+                <div class="row">
+                  <div class="col-md-8 col-11 ml-auto mr-auto">
+                    <div class="card-body">
+                      <h6 class="card-category text-primary">E-learning</h6>
+                      <h3 class="card-title">
+                        動画コンテンツで学ぶ
+                      </h3>
+                      <p class="card-description">
+                        動画コンテンツで学ぶことができます。Youtubeのサーバー側に
+                        限定公開動画として登録することで、このサイトからのみ該当の
+                        動画を視聴することができます。
+                      </p>
+                      <!-- <p class="author">
+                          by <a href="#pablo"><b>Tim Merel</b></a>, 11 hours ago
+                      </p> -->
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-10 ml-auto mr-auto">
+                    <a [routerLink]="['/e-learning']" class="card" data-background="color" data-color="blue">
+                      <div class="card-body text-center">
+                        <h6 class="card-category">動画をみる</h6>
+                        <h2 class="card-title">Let's start!</h2>
+                        <p class="card-description">
+                          動画教材で学習することができます
+                        </p>
+                        <div class="card-footer">
+                          <div class="btn btn-neutral btn-round">
+                            学習スタート
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-plain card-blog">
@@ -100,13 +120,8 @@
                     </div>
                   </div>
                   <div class="col-md-4 col-10 ml-auto mr-auto">
-                    <button
-                      *ngIf="!auth.isAuthenticated()"
-                      (click)="modalOpen()"
-                      class="card"
-                      data-background="color"
-                      data-color="green"
-                    >
+                    <button *ngIf="!auth.isAuthenticated()" (click)="modalOpen()" class="card" data-background="color"
+                      data-color="green">
                       <div class="card-body text-center">
                         <h6 class="card-category">ログイン後に予約できます</h6>
                         <h2 class="card-title">60min</h2>
@@ -120,12 +135,8 @@
                         </div>
                       </div>
                     </button>
-                    <button
-                      *ngIf="isYourRental() && auth.isAuthenticated()"
-                      class="card"
-                      data-background="color"
-                      data-color="gray"
-                    >
+                    <button *ngIf="isYourRental() && auth.isAuthenticated()" class="card" data-background="color"
+                      data-color="gray">
                       <div class="card-body text-center">
                         <h6 class="card-category">自分のコースは選べません</h6>
                         <h2 class="card-title">60min</h2>
@@ -139,13 +150,8 @@
                         </div>
                       </div>
                     </button>
-                    <button
-                      *ngIf="!isYourRental() && auth.isAuthenticated()"
-                      (click)="modalBookingOpen(60)"
-                      class="card"
-                      data-background="color"
-                      data-color="green"
-                    >
+                    <button *ngIf="!isYourRental() && auth.isAuthenticated()" (click)="modalBookingOpen(60)"
+                      class="card" data-background="color" data-color="green">
                       <div class="card-body text-center">
                         <h6 class="card-category">このコースを選ぶ</h6>
                         <h2 class="card-title">60min</h2>
@@ -177,22 +183,13 @@
             <div class="col-md-4" *ngFor="let review of reviews">
               <div class="card card-profile card-plain">
                 <div class="card-avatar">
-                  <a href="#avatar"
-                    ><img
-                      src="./assets/img/faces/clem-onojeghuo-3.jpg"
-                      alt="..."
-                  /></a>
+                  <a href="#avatar"><img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="..." /></a>
                 </div>
                 <div class="card-block">
                   <div class="author">
                     <h4 class="card-title">{{ review.user.username }}</h4>
                     <h6 class="card-category">Product Manager</h6>
-                    <bar-rating
-                      [rate]="review.rating"
-                      [max]="5"
-                      [theme]="'stars'"
-                      [readOnly]="true"
-                    ></bar-rating>
+                    <bar-rating [rate]="review.rating" [max]="5" [theme]="'stars'" [readOnly]="true"></bar-rating>
                   </div>
                   <p class="card-description text-center">
                     {{ review.comment }}
@@ -205,9 +202,7 @@
           <ng-container *ngIf="!reviews || reviews.length == 0">
             <div class="card card-profile card-plain ml-auto mr-auto">
               <div class="card-avatar">
-                <a href="#avatar"
-                  ><img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="..."
-                /></a>
+                <a href="#avatar"><img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="..." /></a>
               </div>
               <div class="card-block">
                 <div class="author">
@@ -274,9 +269,7 @@
         </div>
       </div>
     </div>
-    <app-googlemaps
-      [location]="rental.province[0].itemName + ', ' + rental.nearStation"
-    ></app-googlemaps>
+    <app-googlemaps [location]="rental.province[0].itemName + ', ' + rental.nearStation"></app-googlemaps>
   </div>
   <app-bottom-navbar [rental]="rental"></app-bottom-navbar>
 </section>
