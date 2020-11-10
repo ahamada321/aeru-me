@@ -12,8 +12,8 @@ const routes: Routes = [
     path: "form",
     component: ContactFormComponent,
     children: [
-      { path: "trial", component: ContactFormTrialComponent },
       { path: "contactus", component: ContactFormContactusComponent },
+      { path: "trial", component: ContactFormTrialComponent },
     ],
   },
 ];

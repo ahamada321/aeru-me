@@ -47,6 +47,8 @@ export class ContactFormTrialComponent implements OnInit, OnDestroy {
     this.trialForm = this.formBuilder.group({
       username: [''],
       email: [''],
+      company: [''],
+      position: [''],
       msg: ['']
     })
   }
@@ -75,7 +77,7 @@ export class ContactFormTrialComponent implements OnInit, OnDestroy {
     Swal.fire({
       type: 'success',
       title: '送信されました',
-      text: '数日以内にお返事させていただきます',
+      text: '数日以内にトライアルIDを発行致します',
       confirmButtonClass: "btn btn-primary btn-lg",
       buttonsStyling: false,
       timer: 5000

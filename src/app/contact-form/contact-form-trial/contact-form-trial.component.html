@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-8 mr-auto ml-auto">
         <div class="card card-contact no-transition">
-          <h3 class="card-title text-center">Contact Us</h3>
+          <h3 class="card-title text-center">トライアル用のIDをお送りします</h3>
           <div class="card-body">
             <form class="contact-form" [formGroup]="trialForm" (ngSubmit)="sendMessage(trialForm)">
               <div class="row">
@@ -33,15 +33,29 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Your company</label>
+                  <div class="form-group">
+                    <input formControlName="company" type="text" class="form-control" placeholder="貴社名" required />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Position</label>
+                  <div class="form-group">
+                    <input formControlName="position" type="text" class="form-control" placeholder="役職" />
+                  </div>
+                </div>
+              </div>
               <div class="form-group">
-                <label>Message</label>
+                <label>ご利用目的</label>
                 <textarea formControlName="msg" type="text" class="form-control" rows="4"
-                  placeholder="システム導入に関するご相談・その他お問い合わせ内容を入力してください." required>
-            </textarea>
+                  placeholder="ご利用予定のユースケース詳細を教えてください" required>
+                </textarea>
               </div>
               <div *ngIf="isInvalidForm('username')" class="alert alert-danger">
                 <div *ngIf="trialForm.controls['username'].errors.required">
-                  名前は必須です.
+                  お名前は必須です.
                 </div>
               </div>
               <div *ngIf="isInvalidForm('email')" class="alert alert-danger">
@@ -52,9 +66,14 @@
                   Emailを正しく入力してください.
                 </div>
               </div>
+              <div *ngIf="isInvalidForm('company')" class="alert alert-danger">
+                <div *ngIf="trialForm.controls['company'].errors.required">
+                  貴社名は必須です.
+                </div>
+              </div>
               <div *ngIf="isInvalidForm('msg')" class="alert alert-danger">
                 <div *ngIf="trialForm.controls['msg'].errors.required">
-                  メッセージを入力してください.
+                  ご利用目的を記入してください.
                 </div>
               </div>
               <div *ngIf="errorResponse" class="alert alert-danger">

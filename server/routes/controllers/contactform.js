@@ -3,7 +3,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(config.SENDGRID_API_KEY);
 
 exports.sendFormMessage = function (req, res) {
-  const { username, email, msg } = req.body;
+  const { username, email, company, position, msg } = req.body;
 
   if (!username || !email) {
     return res
@@ -32,7 +32,10 @@ exports.sendFormMessage = function (req, res) {
     to: "support@aeru.me",
     from: email,
     subject: "[" + username + " 様]から以下の問い合わせがきました",
-    text: msg,
+    text: '社名：' + company + '\n\n'
+      + '役職：' + position + '\n\n'
+      + '氏名：' + username + '\n\n'
+      + '利用用途：' + msg + '\n\n'
   };
   sgMail.send(sendMsg);
 
