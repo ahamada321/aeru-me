@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ContactForm } from './service/contactform.model';
-import { ContactFormService } from './service/contactform.service';
+import { ContactForm } from '../service/contactform.model';
+import { ContactFormService } from '../service/contactform.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-contactform',
-  templateUrl: './contactform.component.html',
-  styleUrls: ['./contactform.component.scss']
+  selector: 'app-contact-form-trial',
+  templateUrl: './contact-form-trial.component.html',
+  styleUrls: ['./contact-form-trial.component.scss']
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormTrialComponent implements OnInit, OnDestroy {
   focus1: boolean
   focus2: boolean
-  contactForm: FormGroup
+  trialForm: FormGroup
   formData: ContactForm
   errorResponse: HttpErrorResponse
 
@@ -26,11 +26,25 @@ export class ContactFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
+    var body = document.getElementsByTagName('body')[0];
+    body.classList.add('contact-page');
+
     this.initForm()
+  }
+  ngOnDestroy() {
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.remove('navbar-transparent');
+    if (navbar.classList.contains('nav-up')) {
+      navbar.classList.remove('nav-up');
+    }
+    var body = document.getElementsByTagName('body')[0];
+    body.classList.remove('contact-page');
   }
 
   initForm() {
-    this.contactForm = this.formBuilder.group({
+    this.trialForm = this.formBuilder.group({
       username: [''],
       email: [''],
       msg: ['']
@@ -38,17 +52,17 @@ export class ContactFormComponent implements OnInit {
   }
 
   isInvalidForm(fieldname): boolean {
-    return this.contactForm.controls[fieldname].invalid &&
-      this.contactForm.controls[fieldname].touched
+    return this.trialForm.controls[fieldname].invalid &&
+      this.trialForm.controls[fieldname].touched
     //  (this.contactForm.controls[fieldname].dirty || 
     //  this.contactForm.controls[fieldname].touched)
   }
 
 
-  sendMessage(contactForm) {
-    this.contactformService.sendFormMsg(contactForm.value).subscribe(
+  sendMessage(trialForm) {
+    this.contactformService.sendFormMsg(trialForm.value).subscribe(
       (Message) => {
-        contactForm.reset()
+        trialForm.reset()
         this.showSwalSuccess()
       },
       (errorResponse: HttpErrorResponse) => {
