@@ -54,9 +54,9 @@ const routes: Routes = [
     TagInputModule,
     JwBootstrapSwitchNg2Module,
     AuthModule,
-    ContactFormModule,
     RentalModule,
     UserModule,
+    ContactFormModule
   ],
   exports: [RouterModule],
   declarations: [
