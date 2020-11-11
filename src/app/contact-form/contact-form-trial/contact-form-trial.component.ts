@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContactForm } from '../service/contactform.model';
 import { ContactFormService } from '../service/contactform.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -22,6 +24,7 @@ export class ContactFormTrialComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
+    private modalService: NgbModal,
     private contactformService: ContactFormService
   ) { }
 
@@ -49,7 +52,8 @@ export class ContactFormTrialComponent implements OnInit, OnDestroy {
       email: [''],
       company: [''],
       position: [''],
-      msg: ['']
+      msg: [''],
+      terms: [false]
     })
   }
 
@@ -71,6 +75,10 @@ export class ContactFormTrialComponent implements OnInit, OnDestroy {
         this.errorResponse = errorResponse
       }
     )
+  }
+
+  modalOpen(content) {
+    this.modalService.open(content, { backdrop: 'static' })
   }
 
   private showSwalSuccess() {

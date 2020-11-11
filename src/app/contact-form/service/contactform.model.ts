@@ -4,4 +4,5 @@ export class ContactForm {
   company: string
   position: string
   msg: string
+  terms: boolean
 }

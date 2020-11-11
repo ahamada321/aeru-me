@@ -6,6 +6,8 @@ import { ContactFormService } from './service/contactform.service';
 import { ContactFormComponent } from './contact-form.component';
 import { ContactFormContactusComponent } from './contact-form-contactus/contact-form-contactus.component';
 import { ContactFormTrialComponent } from './contact-form-trial/contact-form-trial.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 
 const routes: Routes = [
   {
@@ -29,6 +31,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
+    NgbModule,
+    JwBootstrapSwitchNg2Module
   ],
   providers: [ContactFormService]
 })
