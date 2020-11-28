@@ -15,6 +15,8 @@
           <div class="space-top"></div>
           <app-image-upload-myver
             (imageUploaded)="rental.image = $event; isTouched = true"
+            placement="top"
+            ngbTooltip="顔が写っているものを設定"
           ></app-image-upload-myver>
           <form #rentalForm="ngForm">
             <!--<form [formGroup]="myGroup" action="" method="">-->
@@ -108,46 +110,7 @@
               </h5>
             </div>
 
-            <div class="form-group">
-              <h6>ひとこと紹介 <span class="icon-danger">*</span></h6>
-              <textarea
-                [(ngModel)]="rental.description"
-                name="description"
-                class="form-control textarea-limited"
-                placeholder="ひとこと紹介文を入力できます."
-                rows="4"
-                maxlength="200"
-                required
-              ></textarea>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!rental.description">残文字数 200</div>
-                    <div *ngIf="rental.description">
-                      残文字数 {{ 200 - rental.description.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
-            </div>
-
-            <div class="form-group">
-              <h6>LINE URL</h6>
-              <div class="input-group border-input">
-                <!-- <div class="input-group-prepend">
-                  <span class="input-group-text">https://youtu.be/</span>
-                </div> -->
-                <input
-                  type="text"
-                  placeholder="https://line.me/ti/p/bxXpv_XExM"
-                  class="form-control border-input"
-                  [(ngModel)]="rental.lineworksURL"
-                  name="lineworksURL"
-                />
-              </div>
-            </div>
-
-            <div class="form-group">
+            <!-- <div class="form-group">
               <h6>自己紹介動画（Youtube共有リンク）</h6>
               <div class="input-group border-input">
                 <div class="input-group-prepend">
@@ -161,10 +124,33 @@
                   name="videoLink"
                 />
               </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
-              <h6>本文タイトル <span class="icon-danger">*</span></h6>
+              <h6>自己紹介文 <span class="icon-danger">*</span></h6>
+              <textarea
+                [(ngModel)]="rental.description"
+                name="description"
+                class="form-control textarea-limited"
+                placeholder="自己紹介文を入力できます."
+                rows="4"
+                maxlength="2000"
+                required
+              ></textarea>
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!rental.description">残文字数 2000</div>
+                    <div *ngIf="rental.description">
+                      残文字数 {{ 2000 - rental.description.length }}
+                    </div>
+                  </span></small
+                >
+              </h5>
+            </div>
+
+            <!-- <div class="form-group">
+              <h6>コース１タイトル <span class="icon-danger">*</span></h6>
               <textarea
                 class="form-control textarea-limited"
                 placeholder="提供するコースタイトルを決めましょう"
@@ -184,10 +170,10 @@
                   </span></small
                 >
               </h5>
-            </div>
+            </div> -->
 
-            <div class="form-group">
-              <h6>本文詳細説明 <span class="icon-danger">*</span></h6>
+            <!-- <div class="form-group">
+              <h6>コース１説明 <span class="icon-danger">*</span></h6>
               <textarea
                 class="form-control textarea-limited"
                 placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう"
@@ -207,13 +193,12 @@
                   </span></small
                 >
               </h5>
-            </div>
+            </div> -->
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <h6>コース１画像を選択</h6>
               <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
-                  <!-- <app-image-upload></app-image-upload> -->
                   <app-image-upload-myver
                     [inputLabel]="'コース１画像を選択'"
                     [inputImage]="rental.course1Img"
@@ -224,9 +209,9 @@
                   </app-image-upload-myver>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <h6>提供コース２タイトル（任意）</h6>
               <textarea
                 class="form-control textarea-limited"
@@ -246,9 +231,9 @@
                   </span></small
                 >
               </h5>
-            </div>
+            </div> -->
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <h6>提供コース２説明文（任意）</h6>
               <textarea
                 class="form-control textarea-limited"
@@ -274,7 +259,6 @@
               <h6>コース２画像を選択</h6>
               <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
-                  <!-- <app-image-upload></app-image-upload> -->
                   <app-image-upload-myver
                     [inputLabel]="'コース２画像を選択'"
                     [inputImage]="rental.course2Img"
@@ -284,6 +268,29 @@
                   >
                   </app-image-upload-myver>
                 </div>
+              </div>
+            </div> -->
+
+            <div class="form-group">
+              <h6>
+                LINE URL <span class="icon-danger">*</span>
+                <a
+                  href="https://mag.app-liv.jp/archive/128587/"
+                  target="_blank"
+                  class="link-info"
+                  >（LineURLの出し方）</a
+                >
+              </h6>
+
+              <div class="input-group border-input">
+                <input
+                  type="text"
+                  placeholder="https://line.me/ti/p/bxXpv_XExM"
+                  class="form-control border-input"
+                  [(ngModel)]="rental.lineURL"
+                  name="lineworksURL"
+                  required
+                />
               </div>
             </div>
 
@@ -328,7 +335,7 @@
               />
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <h6>
                 提供サービス時給（1万円以上推薦）
                 <span class="icon-danger">*</span>
@@ -346,7 +353,7 @@
                   <span class="input-group-text">円</span>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <h6>ギャラリー写真</h6>
@@ -440,7 +447,7 @@
                   (click)="unpublishRental()"
                   class="btn btn-outline-default btn-block btn-round"
                 >
-                  更新＆非公開
+                  下書き保存＆外部非公開
                 </button>
               </div>
               <div class="col-md-6">
@@ -449,7 +456,7 @@
                   (click)="updateRental()"
                   class="btn btn-primary btn-block btn-round"
                 >
-                  更新＆公開（申請）
+                  更新＆外部公開
                 </button>
               </div>
             </div>
