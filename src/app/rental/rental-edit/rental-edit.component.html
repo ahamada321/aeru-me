@@ -72,6 +72,18 @@
             </div>
 
             <div class="form-group">
+              <h6>活動住所（任意）</h6>
+              <input
+                [(ngModel)]="rental.address"
+                name="address"
+                type="text"
+                class="form-control"
+                placeholder="新宿区新宿1-1-1"
+                required
+              />
+            </div>
+
+            <div class="form-group">
               <h6>活動最寄駅 <span class="icon-danger">*</span></h6>
               <div class="input-group border-input">
                 <input
