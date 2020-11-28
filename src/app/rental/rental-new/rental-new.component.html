@@ -111,29 +111,6 @@
               </h5>
             </div>
 
-            <!-- <div class="form-group">
-              <h6>コース１タイトル <span class="icon-danger">*</span></h6>
-              <textarea
-                class="form-control textarea-limited"
-                placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう"
-                [(ngModel)]="newRental.course1Title"
-                name="course1Title"
-                rows="3"
-                maxlength="150"
-                required
-              ></textarea>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.course1Title">残文字数 150</div>
-                    <div *ngIf="newRental.course1Title">
-                      残文字数 {{ 150 - newRental.course1Title.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
-            </div> -->
-
             <div class="form-group">
               <h6>自己紹介文 <span class="icon-danger">*</span></h6>
               <textarea
@@ -157,14 +134,37 @@
               </h5>
             </div>
 
-            <!-- <div class="form-group">
-              <h6>コース１説明 <span class="icon-danger">*</span></h6>
+            <div class="form-group">
+              <h6>提供サービスタイトル <span class="icon-danger">*</span></h6>
+              <input
+                [(ngModel)]="newRental.course1Title"
+                name="course1Title"
+                type="text"
+                class="form-control"
+                placeholder="提供サービスタイトルを決めよう"
+                maxlength="150"
+                required
+              />
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!newRental.course1Title">残文字数 150</div>
+                    <div *ngIf="newRental.course1Title">
+                      残文字数 {{ 150 - newRental.course1Title.length }}
+                    </div>
+                  </span></small
+                >
+              </h5>
+            </div>
+
+            <div class="form-group">
+              <h6>提供サービス説明 <span class="icon-danger">*</span></h6>
               <textarea
                 class="form-control textarea-limited"
-                placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう"
+                placeholder="提供サービス内容を出来る限り簡潔に魅力的に書こう"
                 [(ngModel)]="newRental.course1Description"
                 name="course1Description"
-                rows="3"
+                rows="4"
                 maxlength="150"
                 required
               ></textarea>
@@ -180,7 +180,7 @@
                   </span></small
                 >
               </h5>
-            </div> -->
+            </div>
 
             <!-- <div class="form-group">
               <h6>提供コース２タイトル（任意）</h6>
