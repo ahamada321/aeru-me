@@ -69,18 +69,8 @@
         </div>
         <br />
       </div>
-      <div class="container text-center">
-        <div class="col-md-3 ml-auto mr-auto">
-          <h3 class="title">直接連絡をとる</h3>
-          <div class="line-icon-img">
-            <a href="{{ rental.lineURL }}"
-              ><img src="./assets/img/icons/line-messenger.svg" alt="..."
-            /></a>
-          </div>
-        </div>
-      </div>
 
-      <!-- <div class="space-100"></div>
+      <div class="space-100"></div>
       <div class="blog-1">
         <div class="container">
           <div class="row">
@@ -89,33 +79,22 @@
                 <div class="row">
                   <div class="col-md-8 col-11 ml-auto mr-auto">
                     <div class="card-body">
-                      <h6 class="card-category text-primary">E-learning</h6>
-                      <h3 class="card-title">動画コンテンツで学ぶ</h3>
+                      <h6 class="card-category text-primary">
+                        Lineで予約しよう
+                      </h6>
+                      <h3 class="card-title">{{ rental.course1Title }}</h3>
                       <p class="card-description">
-                        動画コンテンツで学ぶことができます。Youtubeのサーバー側に
-                        限定公開動画として登録することで、このサイトからのみ該当の
-                        動画を視聴することができます。
-                      </p>->
+                        {{ rental.course1Description }}
+                      </p>
                     </div>
                   </div>
-                  <div class="col-md-4 col-10 ml-auto mr-auto">
-                    <a
-                      [routerLink]="['/e-learning']"
-                      class="card"
-                      data-background="color"
-                      data-color="blue"
-                    >
-                      <div class="card-body text-center">
-                        <h6 class="card-category">動画をみる</h6>
-                        <h2 class="card-title">Let's start!</h2>
-                        <p class="card-description">
-                          動画教材で学習することができます
-                        </p>
-                        <div class="card-footer">
-                          <div class="btn btn-neutral btn-round">
-                            学習スタート
-                          </div>
-                        </div>
+                  <div class="col-md-4 ml-auto mr-auto">
+                    <a href="{{ rental.lineURL }}">
+                      <div class="line-icon-img">
+                        <img
+                          src="./assets/img/icons/line-messenger.svg"
+                          alt="..."
+                        />
                       </div>
                     </a>
                   </div>
@@ -123,7 +102,8 @@
               </div>
             </div>
           </div>
-          <div class="row">
+
+          <!-- <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-plain card-blog">
                 <div class="row">
@@ -202,9 +182,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
-      </div> -->
+      </div>
     </div>
 
     <!--     *********     Reviews & Comments     *********      -->

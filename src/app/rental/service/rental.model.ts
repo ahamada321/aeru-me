@@ -25,6 +25,7 @@ export class Rental {
   birthday: Date;
 
   province: any[];
+  address: string;
   nearStation: string;
   hourlyPrice: number;
   cardDescription;
