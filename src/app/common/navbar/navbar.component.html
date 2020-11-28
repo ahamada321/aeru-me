@@ -52,7 +52,7 @@
           </li>
         </ng-container>
         <ng-container *ngIf="auth.isAuthenticated()">
-          <ng-container *ngIf="auth.getUserRole() === 'User'">
+          <!-- <ng-container *ngIf="auth.getUserRole() === 'User'">
             <div ngbDropdown class="nav-item">
               <a class="nav-link" [routerLink]="['/user/activator']"
                 >トレーナーになる</a
@@ -63,7 +63,7 @@
             <div ngbDropdown class="nav-item">
               <a class="nav-link">トレーナー申請中です</a>
             </div>
-          </ng-container>
+          </ng-container> -->
           <ng-container *ngIf="auth.getUserRole() === 'Owner'">
             <div ngbDropdown class="nav-item dropdown">
               <div class="nav-link dropdown-toggle" ngbDropdownToggle>
@@ -73,7 +73,7 @@
                 ngbDropdownMenu
                 class="dropdown-menu dropdown-menu-right dropdown-primary"
               >
-                <a
+                <!-- <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/incoming']"
                   ><i class="nc-icon nc-bell-55"></i>&nbsp;
@@ -84,15 +84,15 @@
                   [routerLink]="['/rentals/manage/bookings']"
                   ><i class="nc-icon nc-bullet-list-67"></i>&nbsp;
                   スケジュール確認</a
-                >
+                > -->
                 <a class="dropdown-item" [routerLink]="['/rentals/manage']"
                   ><i class="nc-icon nc-album-2"></i>&nbsp; 商品管理</a
                 >
-                <a
+                <!-- <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/revenue']"
                   ><i class="nc-icon nc-chart-bar-32"></i>&nbsp; 収益レポート</a
-                >
+                > -->
               </div>
             </div>
           </ng-container>
@@ -105,7 +105,7 @@
                 ngbDropdownMenu
                 class="dropdown-menu dropdown-menu-right dropdown-primary"
               >
-                <a
+                <!-- <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/incoming']"
                   ><i class="nc-icon nc-bell-55"></i>&nbsp;
@@ -116,15 +116,15 @@
                   [routerLink]="['/rentals/manage/bookings']"
                   ><i class="nc-icon nc-bullet-list-67"></i>&nbsp;
                   スケジュール確認</a
-                >
+                > -->
                 <a class="dropdown-item" [routerLink]="['/rentals/manage']"
                   ><i class="nc-icon nc-album-2"></i>&nbsp; 商品管理</a
                 >
-                <a
+                <!-- <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/revenue']"
                   ><i class="nc-icon nc-chart-bar-32"></i>&nbsp; 売上レポート</a
-                >
+                > -->
               </div>
             </div>
           </ng-container>
@@ -136,12 +136,12 @@
               ngbDropdownMenu
               class="dropdown-menu dropdown-menu-right dropdown-primary"
             >
-              <a class="dropdown-item" [routerLink]="['/user/myfavourite']"
+              <!-- <a class="dropdown-item" [routerLink]="['/user/myfavourite']"
                 ><i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入り</a
-              >
-              <a class="dropdown-item" [routerLink]="['/user/mybookings']"
+              > -->
+              <!-- <a class="dropdown-item" [routerLink]="['/user/mybookings']"
                 ><i class="nc-icon nc-bullet-list-67"></i>&nbsp; 予約一覧</a
-              >
+              > -->
               <a class="dropdown-item" [routerLink]="['/user']"
                 ><i class="nc-icon nc-settings-gear-65"></i>&nbsp; 設定</a
               >
