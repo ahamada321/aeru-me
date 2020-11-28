@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 export class RegisterComponent implements OnInit, OnDestroy {
   data: Date = new Date();
   isFBloggedIn: boolean;
+  isTermsAgreed: boolean = false;
 
   focus: any;
   focus1: any;
@@ -117,5 +118,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
   modalOpen() {
     this.router.navigate(["/"]);
     this.modalService.open(LoginPopupComponent, { backdrop: "static" });
+  }
+
+  termsOpen(content) {
+    this.modalService.open(content, { backdrop: "static" });
   }
 }
