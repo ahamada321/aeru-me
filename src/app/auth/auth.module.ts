@@ -1,43 +1,45 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import { LoginPopupComponent } from './login-popup/login-popup.component';
-import { LoginResetpasswordComponent } from './login-popup/login-resetpassword/login-resetpassword.component';
-import { LoginResetpasswordSentComponent } from './login-popup/login-resetpassword/login-resetpassword-sent/login-resetpassword-sent.component';
-import { LoginNewPasswordComponent } from './login-popup/login-newpassword/login-newpassword.component';
-import { RegisterComponent } from './register/register.component';
-import { RegisterVerificationComponent } from './register/register-verification/register-verification.component';
-import { RegisterSentComponent } from './register/register-sent/register-sent.component';
+import { LoginPopupComponent } from "./login-popup/login-popup.component";
+import { LoginResetpasswordComponent } from "./login-popup/login-resetpassword/login-resetpassword.component";
+import { LoginResetpasswordSentComponent } from "./login-popup/login-resetpassword/login-resetpassword-sent/login-resetpassword-sent.component";
+import { LoginNewPasswordComponent } from "./login-popup/login-newpassword/login-newpassword.component";
+import { RegisterComponent } from "./register/register.component";
+import { RegisterVerificationComponent } from "./register/register-verification/register-verification.component";
+import { RegisterSentComponent } from "./register/register-sent/register-sent.component";
 
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
-import { environment } from 'src/environments/environment';
+import { environment } from "src/environments/environment";
 
-
-import { MyOriginAuthService } from './service/auth.service';
-import { AuthGuard } from './service/auth.guard';
-import { TokenInterceptor } from './service/token.interceptor';
-
+import { MyOriginAuthService } from "./service/auth.service";
+import { AuthGuard } from "./service/auth.guard";
+import { TokenInterceptor } from "./service/token.interceptor";
+import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
 
 const routes: Routes = [
-    { path: 'login/reset', component: LoginResetpasswordComponent },
-    { path: 'login/reset/sent', component: LoginResetpasswordSentComponent },
-    { path: 'login/reset/newpassword/:verifyToken', component: LoginNewPasswordComponent },
-    { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-    { path: 'register/sent', component: RegisterSentComponent },
-    { path: 'register/:verifyToken', component: RegisterVerificationComponent }
+  { path: "login/reset", component: LoginResetpasswordComponent },
+  { path: "login/reset/sent", component: LoginResetpasswordSentComponent },
+  {
+    path: "login/reset/newpassword/:verifyToken",
+    component: LoginNewPasswordComponent,
+  },
+  { path: "register", component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: "register/sent", component: RegisterSentComponent },
+  { path: "register/:verifyToken", component: RegisterVerificationComponent },
 ];
 
 const config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider(environment.FACEBOOK_APP_ID)
-  }
-])
- 
+    provider: new FacebookLoginProvider(environment.FACEBOOK_APP_ID),
+  },
+]);
+
 export function provideConfig() {
   return config;
 }
@@ -57,7 +59,8 @@ export function provideConfig() {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    SocialLoginModule
+    SocialLoginModule,
+    JwBootstrapSwitchNg2Module,
   ],
   exports: [RouterModule, LoginPopupComponent],
 
@@ -69,12 +72,12 @@ export function provideConfig() {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+      useFactory: provideConfig,
+    },
   ],
 })
-export class AuthModule { }
+export class AuthModule {}
