@@ -89,7 +89,7 @@
                     </div>
                   </div>
                   <div class="col-md-4 ml-auto mr-auto">
-                    <a href="{{ rental.lineURL }}">
+                    <a (click)="onLineClicked(rental.lineURL)">
                       <div class="line-icon-img">
                         <img
                           src="./assets/img/icons/line-messenger.svg"

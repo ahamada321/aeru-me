@@ -4,7 +4,6 @@
     data-parallax="true"
     [ngStyle]="{ 'background-image': 'url(' + rental.image + ')' }"
   >
-    >
     <div class="filter"></div>
   </div>
 
@@ -63,9 +62,9 @@
             <div class="form-group">
               <h6>活動都道府県 <span class="icon-danger">*</span></h6>
               <angular2-multiselect
+                [(ngModel)]="rental.province"
                 [data]="dropdownPrefectureList"
                 [settings]="dropdownPrefectureSettings"
-                [(ngModel)]="rental.province"
                 name="province"
                 required
               ></angular2-multiselect>
@@ -79,7 +78,6 @@
                 type="text"
                 class="form-control"
                 placeholder="新宿区新宿1-1-1"
-                required
               />
             </div>
 
@@ -87,11 +85,11 @@
               <h6>活動最寄駅 <span class="icon-danger">*</span></h6>
               <div class="input-group border-input">
                 <input
+                  [(ngModel)]="rental.nearStation"
+                  name="nearStation"
                   type="text"
                   placeholder="新宿"
                   class="form-control border-input"
-                  [(ngModel)]="rental.nearStation"
-                  name="nearStation"
                   required
                 />
                 <div class="input-group-append">
@@ -300,7 +298,7 @@
                   placeholder="https://line.me/ti/p/bxXpv_XExM"
                   class="form-control border-input"
                   [(ngModel)]="rental.lineURL"
-                  name="lineworksURL"
+                  name="lineURL"
                   required
                 />
               </div>
