@@ -22,7 +22,7 @@ const routes: Routes = [
         component: SubscriptionLessonReporterComponent,
       },
       {
-        path: "it",
+        path: "it-consulting",
         component: SubscriptionItClassComponent,
       },
     ],
