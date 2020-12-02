@@ -23,9 +23,10 @@ import { Page422Component } from "./static/page422/page422.component";
 import { Page500Component } from "./static/page500/page500.component";
 import { TermsComponent } from "./static/terms/terms.component";
 import { PrivacyComponent } from "./static/privacy/privacy.component";
-import { MaintenanceComponent } from './static/maintenance/maintenance.component';
-import { ELearningComponent } from './static/e-learning/e-learning.component';
-import { ContactFormModule } from './contact-form/contact-form.module';
+import { MaintenanceComponent } from "./static/maintenance/maintenance.component";
+import { ELearningComponent } from "./static/e-learning/e-learning.component";
+import { ContactFormModule } from "./contact-form/contact-form.module";
+import { SubscriptionModule } from "./subscription/subscription.module";
 
 const routes: Routes = [
   { path: "", component: TopComponent },
@@ -38,8 +39,8 @@ const routes: Routes = [
   // { path: 'faq',          component: FAQComponent },
 
   { path: "ap-trainer", component: LandingAptrainerComponent },
-  { path: 'maintenance', component: MaintenanceComponent },
-  { path: 'e-learning', component: ELearningComponent },
+  { path: "maintenance", component: MaintenanceComponent },
+  { path: "e-learning", component: ELearningComponent },
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ];
@@ -55,8 +56,9 @@ const routes: Routes = [
     JwBootstrapSwitchNg2Module,
     AuthModule,
     RentalModule,
+    SubscriptionModule,
     UserModule,
-    ContactFormModule
+    ContactFormModule,
   ],
   exports: [RouterModule],
   declarations: [
@@ -73,4 +75,4 @@ const routes: Routes = [
     PrivacyComponent,
   ],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

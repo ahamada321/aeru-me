@@ -8,19 +8,33 @@ import { ImageUploadModule } from "../common/image-upload/image-upload.module";
 import { ImageUploadMyverModule } from "../common/image-upload-myver/image-upload-myver.module";
 import { MaterialModule } from "../common/modules/matmodule/matmodule";
 import { SubscriptionComponent } from "./subscription.component";
+import { SubscriptionLessonReporterComponent } from "./subscription-lesson-reporter/subscription-lesson-reporter.component";
+import { SubscriptionService } from "./service/subscription.service";
+import { SubscriptionItClassComponent } from "./subscription-it-class/subscription-it-class.component";
 
 const routes: Routes = [
   {
     path: "subscription",
     component: SubscriptionComponent,
-    // children: [
-    //   { path: "", component: UserSettingsComponent, canActivate: [AuthGuard] },
-    // ],
+    children: [
+      {
+        path: "",
+        component: SubscriptionLessonReporterComponent,
+      },
+      {
+        path: "it-consulting",
+        component: SubscriptionItClassComponent,
+      },
+    ],
   },
 ];
 
 @NgModule({
-  declarations: [SubscriptionComponent],
+  declarations: [
+    SubscriptionComponent,
+    SubscriptionItClassComponent,
+    SubscriptionLessonReporterComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -35,7 +49,7 @@ const routes: Routes = [
   entryComponents: [
     // UserPendingDialog
   ],
-  providers: [],
+  providers: [SubscriptionService],
   bootstrap: [],
 })
-export class UserModule {}
+export class SubscriptionModule {}
