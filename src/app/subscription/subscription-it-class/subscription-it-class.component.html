@@ -142,8 +142,8 @@
                   formControlName="msg"
                   type="text"
                   class="form-control"
-                  rows="4"
-                  placeholder="グループ招待リンクの案内を「PayPalメールアドレス以外」を希望の場合はここに案内送付用のメールアドレスをご入力ください。退会希望時はここに退会希望と記入して送信してください。"
+                  rows="5"
+                  placeholder="案内メールを「PayPalメールアドレス以外」希望の場合はここに案内受診用メールアドレスを入力ください。退会希望時はここに退会希望と記入して送信してください。"
                 >
                 </textarea>
               </div>
@@ -191,6 +191,13 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="space-top"></div>
+    <div class="text-center">
+      <a [routerLink]="['/form/contactus']" class="btn btn-link btn-lg">
+        ご不明点・ご質問等はこちら
+      </a>
     </div>
   </div>
 </div>
