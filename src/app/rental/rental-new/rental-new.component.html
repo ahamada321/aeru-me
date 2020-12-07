@@ -71,14 +71,14 @@
                 class="form-control textarea-limited"
                 placeholder="商品カードのコピー文が入力できます。"
                 rows="1"
-                maxlength="20"
+                maxlength="12"
               ></textarea>
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.cardDescription">残文字数 20</div>
+                    <div *ngIf="!newRental.cardDescription">残文字数 12</div>
                     <div *ngIf="newRental.cardDescription">
-                      残文字数 {{ 20 - newRental.cardDescription.length }}
+                      残文字数 {{ 12 - newRental.cardDescription.length }}
                     </div>
                   </span></small
                 >
