@@ -52,19 +52,23 @@
           </li>
         </ng-container>
         <ng-container *ngIf="auth.isAuthenticated()">
-          <!-- <ng-container *ngIf="auth.getUserRole() === 'User'">
-            <div ngbDropdown class="nav-item">
-              <a class="nav-link" [routerLink]="['/user/activator']"
-                >トレーナーになる</a
-              >
-            </div>
-          </ng-container>
-          <ng-container *ngIf="auth.getUserRole() === 'PendingTrainer'">
-            <div ngbDropdown class="nav-item">
-              <a class="nav-link">トレーナー申請中です</a>
-            </div>
-          </ng-container> -->
-          <ng-container *ngIf="auth.getUserRole() === 'Owner'">
+          <li class="nav-item clickable">
+            <a class="nav-link" [routerLink]="['/rentals/manage']"
+              ><i class="nc-icon nc-album-2"></i>&nbsp; 商品管理</a
+            >
+          </li>
+          <li class="nav-item clickable">
+            <a class="nav-link" [routerLink]="['/user']"
+              ><i class="nc-icon nc-settings-gear-65"></i>&nbsp; 設定</a
+            >
+          </li>
+          <li class="nav-item clickable">
+            <a class="nav-link" (click)="logout()"
+              ><i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログアウト</a
+            >
+          </li>
+
+          <!-- <ng-container *ngIf="auth.getUserRole() === 'Owner'">
             <div ngbDropdown class="nav-item dropdown">
               <div class="nav-link dropdown-toggle" ngbDropdownToggle>
                 オーナー機能
@@ -73,7 +77,7 @@
                 ngbDropdownMenu
                 class="dropdown-menu dropdown-menu-right dropdown-primary"
               >
-                <!-- <a
+                <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/incoming']"
                   ><i class="nc-icon nc-bell-55"></i>&nbsp;
@@ -84,26 +88,16 @@
                   [routerLink]="['/rentals/manage/bookings']"
                   ><i class="nc-icon nc-bullet-list-67"></i>&nbsp;
                   スケジュール確認</a
-                > -->
-                <a class="dropdown-item" [routerLink]="['/rentals/manage']"
-                  ><i class="nc-icon nc-album-2"></i>&nbsp; 商品管理</a
                 >
-                <!-- <a
+                <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/revenue']"
                   ><i class="nc-icon nc-chart-bar-32"></i>&nbsp; 収益レポート</a
-                > -->
-                <a class="dropdown-item" [routerLink]="['/user']"
-                  ><i class="nc-icon nc-settings-gear-65"></i>&nbsp; 設定</a
-                >
-                <a class="dropdown-item clickable" (click)="logout()"
-                  ><i class="nc-icon nc-lock-circle-open"></i>&nbsp;
-                  ログアウト</a
                 >
               </div>
             </div>
-          </ng-container>
-          <ng-container *ngIf="auth.getUserRole() === 'Trainer'">
+          </ng-container> -->
+          <!-- <ng-container *ngIf="auth.getUserRole() === 'Trainer'">
             <div ngbDropdown class="nav-item dropdown">
               <div class="nav-link dropdown-toggle" ngbDropdownToggle>
                 トレーナー機能
@@ -112,7 +106,7 @@
                 ngbDropdownMenu
                 class="dropdown-menu dropdown-menu-right dropdown-primary"
               >
-                <!-- <a
+                 <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/incoming']"
                   ><i class="nc-icon nc-bell-55"></i>&nbsp;
@@ -123,18 +117,15 @@
                   [routerLink]="['/rentals/manage/bookings']"
                   ><i class="nc-icon nc-bullet-list-67"></i>&nbsp;
                   スケジュール確認</a
-                > -->
-                <a class="dropdown-item" [routerLink]="['/rentals/manage']"
-                  ><i class="nc-icon nc-album-2"></i>&nbsp; 商品管理</a
                 >
-                <!-- <a
+                <a
                   class="dropdown-item"
                   [routerLink]="['/rentals/manage/revenue']"
                   ><i class="nc-icon nc-chart-bar-32"></i>&nbsp; 売上レポート</a
-                > -->
+                > 
               </div>
             </div>
-          </ng-container>
+          </ng-container> -->
           <!-- <div ngbDropdown class="nav-item dropdown">
             <div class="nav-link dropdown-toggle" ngbDropdownToggle>
               {{ auth.getUsername() }}さん

@@ -21,11 +21,11 @@
             <div class="line l"></div>
             <span>or</span>
             <div class="line r"></div>
-        </div>
-
-        <div *ngIf="errors && errors.length>0" class="alert alert-danger">
-            <p *ngFor="let error of errors">{{error.detail}}</p>
         </div> -->
+
+  <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+    <p *ngFor="let error of errors">{{ error.detail }}</p>
+  </div>
 
   <div class="space-top"></div>
   <form class="register-form" [formGroup]="loginForm" (ngSubmit)="login()">
