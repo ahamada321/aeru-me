@@ -115,13 +115,16 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
 
   onLineClicked(url) {
     Swal.fire({
-      title: "Aeru（アエル）を見た",
-      text: "とLineメッセージすると予約がスムーズです",
-      type: "info",
+      title: "QRコードを保存してLineの友達追加から読み込ませられます",
+      text: "Aeru（会える）をみたと伝えて会話を始めましょう",
+      imageUrl: "assets/img/clients/qr_tsuji.jpg",
+      imageWidth: 200,
+      imageHeight: 200,
+      imageAlt: "Custom image",
       confirmButtonClass: "btn btn-primary btn-lg",
       buttonsStyling: false,
     }).then(() => {
-      window.open(url, "_blank");
+      // window.open(url, "_blank");
     });
   }
 }
