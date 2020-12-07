@@ -190,9 +190,10 @@
     <!--     *********     Reviews & Comments     *********      -->
     <div class="section section-dark text-center">
       <div class="container">
-        <h2 class="title">受けてみた感想</h2>
+        <h2 class="title">求めていること</h2>
+        <h4 class="title">従業員募集・同志づくり</h4>
         <div class="row">
-          <ng-container *ngIf="reviews && reviews.length > 0">
+          <!-- <ng-container *ngIf="reviews && reviews.length > 0">
             <div class="col-md-4" *ngFor="let review of reviews">
               <div class="card card-profile card-plain">
                 <div class="card-avatar">
@@ -236,7 +237,7 @@
               </div>
               <div class="card-footer text-center"></div>
             </div>
-          </ng-container>
+          </ng-container> -->
         </div>
       </div>
     </div>
@@ -294,7 +295,9 @@
       </div>
     </div>
     <app-googlemaps
-      [location]="rental.province[0].itemName + ', ' + rental.nearStation"
+      [location]="
+        rental.province[0].itemName + ', ' + rental.address1 + rental.address2
+      "
     ></app-googlemaps>
   </div>
   <!-- <app-bottom-navbar [rental]="rental"></app-bottom-navbar> -->

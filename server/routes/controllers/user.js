@@ -199,7 +199,8 @@ exports.register = function (req, res) {
   } = req.body;
   let isVerified = false;
 
-  if (!username || !email || !password) {
+  // if (!username || !email || !password) {
+  if (!email || !password) {
     return res.status(422).send({
       errors: [
         {

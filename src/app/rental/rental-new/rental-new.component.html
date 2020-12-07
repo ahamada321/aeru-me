@@ -23,13 +23,15 @@
             <!--<form [formGroup]="myGroup" action="" method="">-->
             <div class="form-group">
               <ng-container *ngIf="auth.getUserRole() === 'Owner'">
-                <h6>商品名 <span class="icon-danger">*</span></h6>
+                <h6>
+                  商品名（個人名を推薦） <span class="icon-danger">*</span>
+                </h6>
                 <input
                   [(ngModel)]="newRental.rentalname"
                   name="rentalname"
                   type="text"
                   class="form-control"
-                  placeholder="商品名"
+                  placeholder="木村太郎"
                   maxlength="20"
                   required
                 />
@@ -59,46 +61,6 @@
                   disabled
                 />
               </ng-container>
-            </div>
-
-            <div class="form-group">
-              <h6>活動都道府県 <span class="icon-danger">*</span></h6>
-              <angular2-multiselect
-                [data]="dropdownPrefectureList"
-                [settings]="dropdownPrefectureSettings"
-                [(ngModel)]="newRental.province"
-                name="province"
-                required
-              ></angular2-multiselect>
-            </div>
-
-            <div class="form-group">
-              <h6>活動住所（任意）</h6>
-              <input
-                [(ngModel)]="newRental.address"
-                name="address"
-                type="text"
-                class="form-control"
-                placeholder="新宿区新宿1-1-1"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <h6>活動最寄駅 <span class="icon-danger">*</span></h6>
-              <div class="input-group border-input">
-                <input
-                  type="text"
-                  placeholder="新宿"
-                  class="form-control border-input"
-                  [(ngModel)]="newRental.nearStation"
-                  name="nearStation"
-                  required
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">駅</span>
-                </div>
-              </div>
             </div>
 
             <div class="form-group">
@@ -194,6 +156,29 @@
               </h5>
             </div>
 
+            <div class="form-group">
+              <h6>求めていること <span class="icon-danger">*</span></h6>
+              <input
+                [(ngModel)]="newRental.memo"
+                name="memo"
+                type="text"
+                class="form-control"
+                placeholder="従業員募集・同志づくり"
+                maxlength="100"
+                required
+              />
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!newRental.memo">残文字数 100</div>
+                    <div *ngIf="newRental.memo">
+                      残文字数 {{ 100 - newRental.memo.length }}
+                    </div>
+                  </span></small
+                >
+              </h5>
+            </div>
+
             <!-- <div class="form-group">
               <h6>提供コース２タイトル（任意）</h6>
               <textarea
@@ -238,6 +223,56 @@
                   </span></small
                 >
               </h5>
+            </div> -->
+
+            <div class="form-group">
+              <h6>活動都道府県 <span class="icon-danger">*</span></h6>
+              <angular2-multiselect
+                [data]="dropdownPrefectureList"
+                [settings]="dropdownPrefectureSettings"
+                [(ngModel)]="newRental.province"
+                name="province"
+                required
+              ></angular2-multiselect>
+            </div>
+
+            <div class="form-group">
+              <h6>市区町村 <span class="icon-danger">*</span></h6>
+              <input
+                [(ngModel)]="newRental.address1"
+                name="address1"
+                type="text"
+                class="form-control"
+                placeholder="新宿区新宿"
+              />
+            </div>
+
+            <div class="form-group">
+              <h6>番地・ビル名等（任意）</h6>
+              <input
+                [(ngModel)]="newRental.address2"
+                name="address2"
+                type="text"
+                class="form-control"
+                placeholder="1-1-1 ○○ビル3F"
+              />
+            </div>
+
+            <!-- <div class="form-group">
+              <h6>活動最寄駅 <span class="icon-danger">*</span></h6>
+              <div class="input-group border-input">
+                <input
+                  type="text"
+                  placeholder="新宿"
+                  class="form-control border-input"
+                  [(ngModel)]="newRental.nearStation"
+                  name="nearStation"
+                  required
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text">駅</span>
+                </div>
+              </div>
             </div> -->
 
             <div class="form-group">
