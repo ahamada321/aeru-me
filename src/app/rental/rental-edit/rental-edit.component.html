@@ -13,6 +13,7 @@
         <div class="col-md-6 ml-auto mr-auto">
           <div class="space-top"></div>
           <app-image-upload-myver
+            [isMust]="true"
             (imageUploaded)="rental.image = $event; isTouched = true"
             placement="top"
             ngbTooltip="顔が写っているものを設定"

@@ -19,7 +19,7 @@ export class RentalEditComponent implements OnInit {
   data: Date = new Date();
 
   // Select category
-  dropdownCategoryLists = ["経営者", "個人事業主", "お店", "社会人・学生"];
+  dropdownCategoryLists = ["経営者", "個人事業主", "サービス", "社会人・学生"];
 
   // Select province
   dropdownPrefectureList = [

@@ -117,7 +117,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     Swal.fire({
       title: "QRコードを保存してLineの友達追加から読み込ませられます",
       text: "Aeru（会える）を見たと伝えて会話を始めましょう",
-      imageUrl: "assets/img/clients/qr_tsuji.jpg",
+      imageUrl: url,
       imageWidth: 200,
       imageHeight: 200,
       imageAlt: "Custom image",
