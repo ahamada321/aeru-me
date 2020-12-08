@@ -5,12 +5,12 @@
         <a
           *ngIf="!auth.isAuthenticated()"
           class="navbar-brand"
-          [routerLink]="['/rentals']"
+          [routerLink]="['/']"
         ></a>
         <a
           *ngIf="auth.isAuthenticated()"
           class="navbar-brand"
-          [routerLink]="['/rentals']"
+          [routerLink]="['/']"
         ></a>
       </div>
       <button
