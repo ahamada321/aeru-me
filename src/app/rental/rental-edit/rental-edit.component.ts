@@ -18,6 +18,13 @@ export class RentalEditComponent implements OnInit {
 
   data: Date = new Date();
 
+  // Select category
+  dropdownCategoryLists = [
+    { id: 1, itemName: "経営者（個人事業主含む）" },
+    { id: 2, itemName: "お店" },
+    { id: 3, itemName: "社会人・学生" },
+  ];
+
   // Select province
   dropdownPrefectureList = [
     { id: 1, itemName: "北海道" },

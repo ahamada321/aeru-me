@@ -17,6 +17,9 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   rentalCategories = Rental.CATEGORIES;
   errors: any[] = [];
 
+  // Select category
+  dropdownCategoryLists = ["経営者", "個人事業主", "お店", "社会人・学生"];
+
   // Select province
   dropdownPrefectureList = [
     { id: 1, itemName: "北海道" },

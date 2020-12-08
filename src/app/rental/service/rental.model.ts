@@ -18,7 +18,7 @@ export class Rental {
   twitter: string;
   instagram: string;
   youtube: string;
-  selectedCategory: any[];
+  selectedCategory: string;
 
   rentalname: string;
   email: string;
