@@ -28,7 +28,7 @@ const rentalSchema = new Schema({
   // hourlyPrice: { type: Number, required: "時給を設定してください" },
   hourlyPrice: { type: Number, default: 5000 },
 
-  selectedCategory: Object,
+  selectedCategory: String,
   cardDescription: { type: String, required: true },
   description: { type: String, required: true },
 
