@@ -1,26 +1,14 @@
 .title-brand {
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 350px;
+  margin: 70px auto 0 !important;
   position: relative;
   text-align: center;
   color: #ffffff;
   display: block;
-
-  .type {
-    position: absolute;
-    font-size: 20px;
-    background: #132026;
-    padding: 6px 10px;
-    border-radius: 4px;
-    top: 0;
-    font-weight: 600;
-    margin-top: 10px;
-    right: -15px;
-  }
 }
 
 .logo {
-  margin: 20px 70px 20px;
+  margin: 20px 70px 10px;
 
   img {
     width: 100%;
@@ -30,7 +18,7 @@
 .presentation-title {
   font-size: 8em;
   font-weight: 700;
-  margin: 0;
+  margin-top: 30px;
   color: #ffffff;
   // background: #fbf8ec;
   background: -moz-linear-gradient(to bottom, #ffffff 35%, #4e6773 100%);
@@ -43,6 +31,7 @@
   -webkit-text-fill-color: transparent;
 }
 .presentation-subtitle {
+  margin-top: 30px;
   font-size: 1.7em;
   color: #ffffff;
 }
