@@ -51,6 +51,7 @@ import { RentalService } from "./service/rental.service";
 import { BookingService } from "./rental-detail/rental-detail-booking/services/booking.service";
 import { BookingHelperService } from "./rental-detail/rental-detail-booking/services/booking.helper.service";
 import { SafePipe } from "../common/pipe/safe-pipe/safe-pipe.component";
+import { ImageUploadQrCodeModule } from "../common/image-upload-qr-code/image-upload-qr-code.module";
 
 const routes: Routes = [
   {
@@ -147,6 +148,7 @@ const routes: Routes = [
     BookingSelecterModule,
     ImageUploadModule,
     ImageUploadMyverModule,
+    ImageUploadQrCodeModule,
     FullCalendarModule,
     JwBootstrapSwitchNg2Module,
     TagInputModule,

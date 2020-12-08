@@ -277,25 +277,12 @@
             </div> -->
 
             <div class="form-group">
-              <h6>
-                LINE URL <span class="icon-danger">*</span>
-                <a
-                  href="https://mag.app-liv.jp/archive/128587/"
-                  target="_blank"
-                  class="link-info"
-                  >（LineURLの出し方）</a
-                >
-              </h6>
-              <div class="input-group border-input">
-                <input
-                  type="text"
-                  placeholder="https://line.me/ti/p/bxXpv_XExM"
-                  class="form-control border-input"
-                  [(ngModel)]="newRental.lineURL"
-                  name="lineURL"
-                  required
-                />
-              </div>
+              <h6>LINE QRコード画像 <span class="icon-danger">*</span></h6>
+              <app-image-upload-qr-code
+                [inputImage]="newRental.lineURL"
+                (imageUploaded)="newRental.lineURL = $event"
+              >
+              </app-image-upload-qr-code>
             </div>
 
             <div class="form-group">
@@ -361,7 +348,7 @@
               </div>
               <div class="col-md-6">
                 <button
-                  [disabled]="!rentalForm.form.valid"
+                  [disabled]="!rentalForm.form.valid || !newRental.lineURL"
                   (click)="createRental()"
                   class="btn btn-primary btn-block btn-round"
                 >
