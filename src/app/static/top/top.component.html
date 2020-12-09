@@ -54,6 +54,9 @@
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
+                    [queryParams]="{
+                      selectedCategory: 'サービス'
+                    }"
                     class="btn btn-info btn-move-right btn-round"
                   >
                     <i class="nc-icon nc-minimal-right"></i> 見に行く
@@ -79,6 +82,9 @@
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
+                    [queryParams]="{
+                      selectedCategory: ['経営者', '個人事業主']
+                    }"
                     class="btn btn-success btn-move-right btn-round"
                   >
                     <i class="nc-icon nc-minimal-right"></i> 見に行く
@@ -101,6 +107,9 @@
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
+                    [queryParams]="{
+                      selectedCategory: ['社会人', '学生']
+                    }"
                     class="btn btn-warning btn-move-right btn-round"
                   >
                     <i class="nc-icon nc-minimal-right"></i> 見に行く
