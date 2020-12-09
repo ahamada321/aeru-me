@@ -109,16 +109,16 @@
                 name="description"
                 class="form-control textarea-limited"
                 placeholder="自己紹介文を入力できます."
-                rows="4"
-                maxlength="2000"
+                rows="7"
+                maxlength="1500"
                 required
               ></textarea>
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.description">残文字数 2000</div>
+                    <div *ngIf="!newRental.description">残文字数 1500</div>
                     <div *ngIf="newRental.description">
-                      残文字数 {{ 2000 - newRental.description.length }}
+                      残文字数 {{ 1500 - newRental.description.length }}
                     </div>
                   </span></small
                 >
