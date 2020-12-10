@@ -22,6 +22,8 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     "経営者",
     "個人事業主",
     "サービス",
+    "士業",
+    "営業",
     "社会人",
     "学生",
   ];
