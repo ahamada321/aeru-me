@@ -77,6 +77,59 @@
               "
             >
               <div class="card-body">
+                <h3 class="card-title">士業</h3>
+                <p class="card-description">税理士・弁護士など</p>
+                <div class="card-footer">
+                  <a
+                    [routerLink]="['/rentals']"
+                    [queryParams]="{
+                      selectedCategory: ['士業']
+                    }"
+                    class="btn btn-success btn-move-right btn-round"
+                  >
+                    <i class="nc-icon nc-minimal-right"></i> 見に行く
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-sm-5 mr-auto">
+            <div
+              class="card"
+              data-background="image"
+              style="
+                background-image: url('assets/img/sections/rawpixel-com.jpg');
+              "
+            >
+              <div class="card-body">
+                <h3 class="card-title">営業</h3>
+                <p class="card-description">一般営業/法人営業など</p>
+                <div class="card-footer">
+                  <a
+                    [routerLink]="['/rentals']"
+                    [queryParams]="{
+                      selectedCategory: '営業'
+                    }"
+                    class="btn btn-warning btn-move-right btn-round"
+                  >
+                    <i class="nc-icon nc-minimal-right"></i> 見に行く
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6 col-sm-5 ml-auto">
+            <div
+              class="card"
+              data-background="image"
+              style="
+                background-image: url('assets/img/sections/rawpixel-com.jpg');
+              "
+            >
+              <div class="card-body">
                 <h3 class="card-title">経営者</h3>
                 <p class="card-description">経営者・個人事業主など</p>
                 <div class="card-footer">
@@ -85,7 +138,7 @@
                     [queryParams]="{
                       selectedCategory: ['経営者', '個人事業主']
                     }"
-                    class="btn btn-success btn-move-right btn-round"
+                    class="btn btn-danger btn-move-right btn-round"
                   >
                     <i class="nc-icon nc-minimal-right"></i> 見に行く
                   </a>
@@ -110,7 +163,7 @@
                     [queryParams]="{
                       selectedCategory: ['社会人', '学生']
                     }"
-                    class="btn btn-warning btn-move-right btn-round"
+                    class="btn btn-default btn-move-right btn-round"
                   >
                     <i class="nc-icon nc-minimal-right"></i> 見に行く
                   </a>
