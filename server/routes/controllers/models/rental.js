@@ -29,7 +29,7 @@ const rentalSchema = new Schema({
   hourlyPrice: { type: Number, default: 5000 },
 
   selectedCategory: String,
-  cardDescription: { type: String, required: true },
+  cardDescription: { type: String, required: "「ひとこと」をしてください" },
   description: { type: String, required: true },
 
   course1Img: String,
