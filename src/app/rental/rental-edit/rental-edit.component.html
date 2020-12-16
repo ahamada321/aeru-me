@@ -338,14 +338,16 @@
             </div> -->
 
             <div class="form-group">
-              <h6>LINE QRコード画像 <span class="icon-danger">*</span></h6>
-              <app-image-upload-qr-code
-                [inputImage]="rental.lineURL"
-                (imageUploaded)="rental.lineURL = $event"
-              >
-              </app-image-upload-qr-code>
+              <h6>Instagram <span class="icon-danger">*</span></h6>
+              <input
+                type="text"
+                class="form-control border-input"
+                placeholder="InstagramURLが入力できます"
+                [(ngModel)]="rental.instagram"
+                name="instagram"
+                required
+              />
             </div>
-
             <div class="form-group">
               <h6>Facebook（任意）</h6>
               <input
@@ -364,16 +366,6 @@
                 placeholder="TwitterURLが入力できます"
                 [(ngModel)]="rental.twitter"
                 name="twitter"
-              />
-            </div>
-            <div class="form-group">
-              <h6>Instagram（任意）</h6>
-              <input
-                type="text"
-                class="form-control border-input"
-                placeholder="InstagramURLが入力できます"
-                [(ngModel)]="rental.instagram"
-                name="instagram"
               />
             </div>
             <div class="form-group">
