@@ -338,44 +338,69 @@
             </div> -->
 
             <div class="form-group">
-              <h6>Instagram <span class="icon-danger">*</span></h6>
+              <h6>Instagram ID <span class="icon-danger">*</span></h6>
+              <div
+                class="input-group"
+                [ngClass]="{ 'input-group-focus': focus === true }"
+              >
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fa fa-instagram"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="rental.instagram"
+                  name="instagram"
+                  placeholder="Instagram ID"
+                  (focus)="focus = true"
+                  (blur)="focus = false"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <h6>Twitter ID（任意）</h6>
+              <div
+                class="input-group"
+                [ngClass]="{ 'input-group-focus': focus2 === true }"
+              >
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fa fa-twitter"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="rental.twitter"
+                  name="twitter"
+                  placeholder="Instagram ID"
+                  (focus)="focus2 = true"
+                  (blur)="focus2 = false"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <h6>Youtube URL（任意）</h6>
               <input
                 type="text"
                 class="form-control border-input"
-                placeholder="InstagramURLが入力できます"
-                [(ngModel)]="rental.instagram"
-                name="instagram"
-                required
+                placeholder="Youtube URLが入力できます"
+                [(ngModel)]="rental.youtube"
+                name="youtube"
               />
             </div>
             <div class="form-group">
-              <h6>Facebook（任意）</h6>
+              <h6>Facebook URL（任意）</h6>
               <input
                 type="text"
                 class="form-control border-input"
                 placeholder="FacebookURLが入力できます"
                 [(ngModel)]="rental.facebook"
                 name="facebook"
-              />
-            </div>
-            <div class="form-group">
-              <h6>Twitter（任意）</h6>
-              <input
-                type="text"
-                class="form-control border-input"
-                placeholder="TwitterURLが入力できます"
-                [(ngModel)]="rental.twitter"
-                name="twitter"
-              />
-            </div>
-            <div class="form-group">
-              <h6>Youtube（任意）</h6>
-              <input
-                type="text"
-                class="form-control border-input"
-                placeholder="TwitterURLが入力できます"
-                [(ngModel)]="rental.youtube"
-                name="youtube"
               />
             </div>
 

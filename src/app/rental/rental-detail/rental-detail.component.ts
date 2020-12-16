@@ -128,7 +128,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  onInstagramClicked(url) {
+  onInstagramClicked(instagramId) {
     Swal.fire({
       type: "info",
       text: "Aeru（会える）を見たと伝えてDMするとスムーズです",
@@ -136,7 +136,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
       buttonsStyling: false,
     }).then((result) => {
       if (!result.dismiss) {
-        window.location.href = url;
+        window.location.href = "https://www.instagram.com/" + instagramId;
       }
     });
   }

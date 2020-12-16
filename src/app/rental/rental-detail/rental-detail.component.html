@@ -19,25 +19,18 @@
           <div class="col-md-7 text-left">
             <div class="buttons">
               <a
-                *ngIf="rental.twitter"
-                href="{{ rental.twitter }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-twitter"></i>
-              </a>
-              <a
-                *ngIf="rental.facebook"
-                href="{{ rental.facebook }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-facebook-square"></i>
-              </a>
-              <a
                 *ngIf="rental.instagram"
-                href="{{ rental.instagram }}"
+                href="https://www.instagram.com/{{ rental.instagram }}"
                 class="btn btn-neutral btn-link btn-just-icon"
                 target="_blank"
                 ><i class="fa fa-instagram"></i>
+              </a>
+              <a
+                *ngIf="rental.twitter"
+                href="https://twitter.com/{{ rental.twitter }}"
+                class="btn btn-neutral btn-link btn-just-icon"
+                target="_blank"
+                ><i class="fa fa-twitter"></i>
               </a>
               <a
                 *ngIf="rental.youtube"
@@ -45,6 +38,13 @@
                 class="btn btn-neutral btn-link btn-just-icon"
                 target="_blank"
                 ><i class="fa fa-youtube"></i>
+              </a>
+              <a
+                *ngIf="rental.facebook"
+                href="{{ rental.facebook }}"
+                class="btn btn-neutral btn-link btn-just-icon"
+                target="_blank"
+                ><i class="fa fa-facebook-square"></i>
               </a>
             </div>
           </div>
