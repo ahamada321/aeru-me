@@ -82,28 +82,6 @@
             </div>
 
             <div class="form-group">
-              <h6>ひとこと <span class="icon-danger">*</span></h6>
-              <textarea
-                [(ngModel)]="newRental.cardDescription"
-                name="cardDescription"
-                class="form-control textarea-limited"
-                placeholder="商品カードのコピー文が入力できます。"
-                rows="1"
-                maxlength="12"
-              ></textarea>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.cardDescription">残文字数 12</div>
-                    <div *ngIf="newRental.cardDescription">
-                      残文字数 {{ 12 - newRental.cardDescription.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
-            </div>
-
-            <div class="form-group">
               <h6>自己紹介文 <span class="icon-danger">*</span></h6>
               <textarea
                 [(ngModel)]="newRental.description"
