@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Rental } from "../service/rental.model";
 import { RentalService } from "../service/rental.service";
 import { MyOriginAuthService } from "src/app/auth/service/auth.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-rental-list",
@@ -15,6 +15,7 @@ export class RentalListComponent implements OnInit, OnDestroy {
   constructor(
     private rentalService: RentalService,
     public auth: MyOriginAuthService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -23,13 +24,21 @@ export class RentalListComponent implements OnInit, OnDestroy {
     navbar.classList.add("navbar-transparent");
 
     this.route.queryParams.subscribe((keywords) => {
-      console.log(keywords);
       this.rentalService.getRentals(keywords).subscribe(
         (rentals: Rental[]) => {
           this.rentals = rentals;
         },
         (err) => {}
       );
+    });
+  }
+
+  filterByRentalName(rentalname: string) {
+    this.router.navigate(["/rentals"], {
+      queryParams: {
+        rentalname,
+      },
+      queryParamsHandling: "merge", // Preserve current queryParams
     });
   }
 
