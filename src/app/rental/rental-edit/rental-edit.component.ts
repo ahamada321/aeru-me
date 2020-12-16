@@ -15,6 +15,7 @@ export class RentalEditComponent implements OnInit {
   rental: Rental;
   isTouched: boolean = false;
   focus: boolean;
+  focus2: boolean;
   errors: any[] = [];
 
   data: Date = new Date();
