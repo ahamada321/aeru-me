@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 export class RentalNewComponent implements OnInit, OnDestroy {
   newRental: Rental;
   isTouched: boolean = false;
+  focus: boolean;
   rentalCategories = Rental.CATEGORIES;
   errors: any[] = [];
 

@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 export class RentalEditComponent implements OnInit {
   rental: Rental;
   isTouched: boolean = false;
+  focus: boolean;
   errors: any[] = [];
 
   data: Date = new Date();

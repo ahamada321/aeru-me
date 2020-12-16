@@ -10,12 +10,12 @@ const rentalSchema = new Schema({
   isShared: Boolean,
   rating: Number,
 
-  lineURL: { type: String, required: "LineQRコードを設定してください" },
-  facebook: String,
-  instagram: String,
-  twitter: String,
-  youtube: String,
-  videoLink: String,
+  lineURL: String,
+  facebook: { type: String, lowercase: true },
+  instagram: { type: String, lowercase: true },
+  twitter: { type: String, lowercase: true },
+  youtube: { type: String, lowercase: true },
+  videoLink: { type: String, lowercase: true },
 
   rentalname: {
     type: String,
