@@ -127,4 +127,17 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
       // window.open(url, "_blank");
     });
   }
+
+  onInstagramClicked(url) {
+    Swal.fire({
+      type: "info",
+      text: "Aeru（会える）を見たと伝えてDMするとスムーズです",
+      confirmButtonClass: "btn btn-primary btn-lg",
+      buttonsStyling: false,
+    }).then((result) => {
+      if (!result.dismiss) {
+        window.location.href = url;
+      }
+    });
+  }
 }

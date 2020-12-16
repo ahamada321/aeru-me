@@ -88,12 +88,24 @@
                     </div>
                   </div>
                   <div class="col-md-4 ml-auto mr-auto">
-                    <a (click)="onLineClicked(rental.lineURL)">
+                    <a
+                      *ngIf="rental.lineURL && !rental.instagram"
+                      (click)="onLineClicked(rental.lineURL)"
+                    >
                       <div class="line-icon-img">
                         <img
                           src="./assets/img/icons/line-messenger.svg"
                           alt="..."
                         />
+                      </div>
+                    </a>
+
+                    <a
+                      *ngIf="rental.instagram"
+                      (click)="onInstagramClicked(rental.instagram)"
+                    >
+                      <div class="line-icon-img">
+                        <img src="./assets/img/icons/instagram.svg" alt="..." />
                       </div>
                     </a>
                   </div>
