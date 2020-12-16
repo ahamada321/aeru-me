@@ -52,6 +52,7 @@ import { BookingService } from "./rental-detail/rental-detail-booking/services/b
 import { BookingHelperService } from "./rental-detail/rental-detail-booking/services/booking.helper.service";
 import { SafePipe } from "../common/pipe/safe-pipe/safe-pipe.component";
 import { ImageUploadQrCodeModule } from "../common/image-upload-qr-code/image-upload-qr-code.module";
+import { SearchbarModule } from "../common/searchbar/searchbar.module";
 
 const routes: Routes = [
   {
@@ -145,6 +146,7 @@ const routes: Routes = [
     PaymentModule,
     ReviewModule,
     BarRatingModule,
+    SearchbarModule,
     BookingSelecterModule,
     ImageUploadModule,
     ImageUploadMyverModule,

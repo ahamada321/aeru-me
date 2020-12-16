@@ -22,12 +22,66 @@ exports.getRentalById = function (req, res) {
 };
 
 exports.getRentals = function (req, res) {
-  let keywords = req.body;
-  keywords.isShared = true;
+  const { selectedCategory, rentalname } = req.body;
 
-  Rental.find(keywords, function (err, foundRentals) {
-    return res.json(foundRentals);
-  });
+  if (selectedCategory) {
+    if (rentalname) {
+      Rental.aggregate(
+        [
+          {
+            $match: {
+              rentalname: {
+                $regex: rentalname,
+                $options: "i",
+              },
+              selectedCategory,
+              isShared: true,
+            },
+          },
+        ],
+        function (err, foundRentals) {
+          return res.json(foundRentals);
+        }
+      );
+    } else {
+      Rental.aggregate(
+        [
+          {
+            $match: {
+              selectedCategory,
+              isShared: true,
+            },
+          },
+        ],
+        function (err, foundRentals) {
+          return res.json(foundRentals);
+        }
+      );
+    }
+  } else {
+    if (rentalname) {
+      Rental.aggregate(
+        [
+          {
+            $match: {
+              rentalname: {
+                $regex: rentalname,
+                $options: "i",
+              },
+              isShared: true,
+            },
+          },
+        ],
+        function (err, foundRentals) {
+          return res.json(foundRentals);
+        }
+      );
+    } else {
+      Rental.find({ isShared: true }, function (err, foundRentals) {
+        return res.json(foundRentals);
+      });
+    }
+  }
 };
 
 exports.getOwnerRentals = function (req, res) {
