@@ -15,6 +15,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   newRental: Rental;
   isTouched: boolean = false;
   focus: boolean;
+  focus2: boolean;
   rentalCategories = Rental.CATEGORIES;
   errors: any[] = [];
 
