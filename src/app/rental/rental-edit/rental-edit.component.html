@@ -88,14 +88,14 @@
                 class="form-control textarea-limited"
                 placeholder="商品カードのコピー文が入力できます。"
                 rows="1"
-                maxlength="12"
+                maxlength="14"
               ></textarea>
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!rental.cardDescription">残文字数 12</div>
+                    <div *ngIf="!rental.cardDescription">残文字数 14</div>
                     <div *ngIf="rental.cardDescription">
-                      残文字数 {{ 12 - rental.cardDescription.length }}
+                      残文字数 {{ 14 - rental.cardDescription.length }}
                     </div>
                   </span></small
                 >
@@ -270,7 +270,7 @@
                 name="memo"
                 type="text"
                 class="form-control"
-                placeholder="従業員募集・同志づくり"
+                placeholder="従業員募集など"
                 maxlength="100"
                 required
               />
@@ -376,7 +376,7 @@
                   class="form-control"
                   [(ngModel)]="rental.twitter"
                   name="twitter"
-                  placeholder="Instagram ID"
+                  placeholder="Twitter ID"
                   (focus)="focus2 = true"
                   (blur)="focus2 = false"
                 />
