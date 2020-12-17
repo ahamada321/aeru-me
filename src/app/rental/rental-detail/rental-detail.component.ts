@@ -136,7 +136,10 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
       buttonsStyling: false,
     }).then((result) => {
       if (!result.dismiss) {
-        window.location.href = "https://www.instagram.com/" + instagramId;
+        window.open(
+          "https://www.instagram.com/" + instagramId,
+          "_blank" // Open in a new window.
+        );
       }
     });
   }
