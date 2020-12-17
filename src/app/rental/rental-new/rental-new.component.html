@@ -372,7 +372,7 @@
               </div>
               <div class="col-md-6">
                 <button
-                  [disabled]="!rentalForm.form.valid || !newRental.lineURL"
+                  [disabled]="!rentalForm.form.valid"
                   (click)="createRental()"
                   class="btn btn-primary btn-block btn-round"
                 >
