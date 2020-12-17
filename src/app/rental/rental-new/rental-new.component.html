@@ -105,13 +105,15 @@
             </div>
 
             <div class="form-group">
-              <h6>提供サービスタイトル <span class="icon-danger">*</span></h6>
+              <h6>
+                提供するサービスタイトル <span class="icon-danger">*</span>
+              </h6>
               <input
                 [(ngModel)]="newRental.course1Title"
                 name="course1Title"
                 type="text"
                 class="form-control"
-                placeholder="提供サービスタイトルを設定"
+                placeholder="提供するサービスタイトルを設定"
                 maxlength="150"
                 required
               />
@@ -128,10 +130,10 @@
             </div>
 
             <div class="form-group">
-              <h6>提供サービス説明 <span class="icon-danger">*</span></h6>
+              <h6>提供するサービス説明 <span class="icon-danger">*</span></h6>
               <textarea
                 class="form-control textarea-limited"
-                placeholder="提供サービス内容を出来る限り簡潔に魅力的に書こう"
+                placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう"
                 [(ngModel)]="newRental.course1Description"
                 name="course1Description"
                 rows="4"
