@@ -24,62 +24,38 @@ exports.getRentalById = function (req, res) {
 exports.getRentals = function (req, res) {
   const { selectedCategory, rentalname } = req.body;
 
-  if (selectedCategory) {
-    if (rentalname) {
-      Rental.aggregate(
-        [
-          {
-            $match: {
-              rentalname: {
-                $regex: rentalname,
-                $options: "i",
-              },
-              selectedCategory,
-              isShared: true,
-            },
-          },
-        ],
-        function (err, foundRentals) {
-          return res.json(foundRentals);
-        }
-      );
+  if (!rentalname) {
+    if (!selectedCategory) {
+      Rental.find({ isShared: true }, function (err, foundRentals) {
+        return res.json(foundRentals);
+      });
     } else {
-      Rental.aggregate(
-        [
-          {
-            $match: {
-              selectedCategory,
-              isShared: true,
-            },
-          },
-        ],
+      Rental.find(
+        { isShared: true, selectedCategory },
         function (err, foundRentals) {
           return res.json(foundRentals);
         }
       );
     }
   } else {
-    if (rentalname) {
-      Rental.aggregate(
-        [
-          {
-            $match: {
-              rentalname: {
-                $regex: rentalname,
-                $options: "i",
-              },
-              isShared: true,
-            },
-          },
-        ],
+    if (!selectedCategory) {
+      Rental.find(
+        { isShared: true, rentalname: { $regex: rentalname, $options: "i" } },
         function (err, foundRentals) {
           return res.json(foundRentals);
         }
       );
     } else {
-      Rental.find({ isShared: true }, function (err, foundRentals) {
-        return res.json(foundRentals);
-      });
+      Rental.find(
+        {
+          isShared: true,
+          selectedCategory,
+          rentalname: { $regex: rentalname, $options: "i" },
+        },
+        function (err, foundRentals) {
+          return res.json(foundRentals);
+        }
+      );
     }
   }
 };
