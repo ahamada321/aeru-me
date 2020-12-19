@@ -82,14 +82,14 @@
 
             <div class="form-group">
               <h6>ひとこと</h6>
-              <textarea
+              <input
                 [(ngModel)]="rental.cardDescription"
                 name="cardDescription"
-                class="form-control textarea-limited"
+                type="text"
+                class="form-control"
                 placeholder="商品カードのコピー文が入力できます。"
-                rows="1"
                 maxlength="12"
-              ></textarea>
+              />
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
