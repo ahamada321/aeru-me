@@ -20,6 +20,7 @@ import { MyOriginAuthService } from "./service/auth.service";
 import { AuthGuard } from "./service/auth.guard";
 import { TokenInterceptor } from "./service/token.interceptor";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
+import { TermsTextModule } from "../static/terms/helpers/terms-text/terms-text.module";
 
 const routes: Routes = [
   { path: "login/reset", component: LoginResetpasswordComponent },
@@ -61,6 +62,7 @@ export function provideConfig() {
     CommonModule,
     SocialLoginModule,
     JwBootstrapSwitchNg2Module,
+    TermsTextModule,
   ],
   exports: [RouterModule, LoginPopupComponent],
 
