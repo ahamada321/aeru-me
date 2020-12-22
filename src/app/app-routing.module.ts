@@ -27,6 +27,7 @@ import { MaintenanceComponent } from "./static/maintenance/maintenance.component
 import { ELearningComponent } from "./static/e-learning/e-learning.component";
 import { ContactFormModule } from "./contact-form/contact-form.module";
 import { SubscriptionModule } from "./subscription/subscription.module";
+import { TermsTextModule } from "./static/terms/helpers/terms-text/terms-text.module";
 
 const routes: Routes = [
   { path: "", component: TopComponent },
@@ -59,6 +60,7 @@ const routes: Routes = [
     SubscriptionModule,
     UserModule,
     ContactFormModule,
+    TermsTextModule,
   ],
   exports: [RouterModule],
   declarations: [
