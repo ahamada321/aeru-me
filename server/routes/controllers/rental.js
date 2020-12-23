@@ -63,14 +63,25 @@ exports.getRentals = function (req, res) {
 exports.getOwnerRentals = function (req, res) {
   const user = res.locals.user;
 
-  Rental.find({ user })
-    .populate("bookings")
-    .exec(function (err, foundRentals) {
-      if (err) {
-        return res.status(422).send({ errors: normalizeErrors(err.errors) });
-      }
-      return res.json(foundRentals);
-    });
+  if (user.userRole === "Admin") {
+    Rental.find({})
+      .populate("bookings")
+      .exec(function (err, foundRentals) {
+        if (err) {
+          return res.status(422).send({ errors: normalizeErrors(err.errors) });
+        }
+        return res.json(foundRentals);
+      });
+  } else {
+    Rental.find({ user })
+      .populate("bookings")
+      .exec(function (err, foundRentals) {
+        if (err) {
+          return res.status(422).send({ errors: normalizeErrors(err.errors) });
+        }
+        return res.json(foundRentals);
+      });
+  }
 };
 
 exports.getUserFavouriteRentals = function (req, res) {
@@ -135,7 +146,7 @@ exports.updateRental = function (req, res) {
       if (err) {
         return res.status(422).send({ errors: normalizeErrors(err.errors) });
       }
-      if (foundRental.user.id !== user.id) {
+      if (user.userRole !== "Admin" && foundRental.user.id !== user.id) {
         return res.status(422).send({
           errors: {
             title: "Invalid user!",
