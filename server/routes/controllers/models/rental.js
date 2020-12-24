@@ -19,7 +19,7 @@ const rentalSchema = new Schema({
 
   rentalname: {
     type: String,
-    required: true,
+    required: "商品名を入力してください",
     max: [128, "商品名は最大128文字までです"],
   },
   province: { type: Object, required: "都道府県を設定してください" },
@@ -30,11 +30,11 @@ const rentalSchema = new Schema({
 
   selectedCategory: String,
   cardDescription: { type: String, default: "New member" },
-  description: { type: String, required: true },
+  description: { type: String, required: "自己紹介文を入力してください" },
 
   course1Img: String,
-  course1Title: { type: String, required: true },
-  course1Description: { type: String, required: true },
+  course1Title: { type: String, default: "Coming soon" },
+  course1Description: { type: String, default: "Coming soon" },
   course2Title: String,
   course2Img: String,
   course2Description: String,
