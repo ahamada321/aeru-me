@@ -87,7 +87,7 @@
                 [(ngModel)]="newRental.description"
                 name="description"
                 class="form-control textarea-limited"
-                placeholder="自己紹介文を入力できます."
+                placeholder="自己紹介文を入力できます。具代的に書くことで初見の人があなたに興味を持ち、メッセージを送りやすくなります。"
                 rows="7"
                 maxlength="1500"
                 required
@@ -363,7 +363,6 @@
             <div class="row buttons-row">
               <div class="col-md-6">
                 <button
-                  [disabled]="!rentalForm.form.valid"
                   (click)="createUnpublishedRental()"
                   class="btn btn-outline-default btn-block btn-round"
                 >
