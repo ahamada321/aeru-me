@@ -66,8 +66,14 @@ export class RentalManageComponent implements OnInit, OnDestroy {
       () => {
         const index = this.rentals.findIndex((x) => x._id === rentalId);
         this.rentals.splice(index, 1);
+        Swal.fire({
+          text: "商品を削除しました",
+          confirmButtonClass: "btn btn-danger btn-lg",
+          buttonsStyling: false,
+        });
       },
       (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse.error.errors);
         // Expecting to show error if try to dalete rental which has active bookings
         // this.toastr.error(errorResponse.error.errors[0].detail, 'Failed!')
       }

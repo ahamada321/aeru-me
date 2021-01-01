@@ -110,7 +110,7 @@ exports.deleteRental = function (req, res) {
       if (err) {
         return res.status(422).send({ errors: normalizeErrors(err.errors) });
       }
-      if (user.id != foundRental.user.id) {
+      if (user.userRole !== "Admin" && user.id !== foundRental.user.id) {
         return res.status(422).send({
           errors: {
             title: "Invalid user!",
