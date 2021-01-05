@@ -97,13 +97,12 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
       (token) => {
         this.activeModal.close("Close click");
 
-        // let _locationExamples = this.location.path();
-        // const isLocationOfRentals =
-        //   _locationExamples.split("/")[1] === "rentals";
-        // if (!isLocationOfRentals) {
-        //   this.router.navigate(["/rentals/manage"]);
-        // }
-        this.router.navigate(["/rentals/manage"]);
+        let _locationExamples = this.location.path();
+        const isLocationOfRentals =
+          _locationExamples.split("/")[1] === "rentals";
+        if (!isLocationOfRentals) {
+          this.router.navigate(["/rentals/manage"]);
+        }
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
