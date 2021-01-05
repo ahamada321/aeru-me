@@ -521,7 +521,7 @@
               </div>
               <div class="col-md-6">
                 <button
-                  [disabled]="!rentalForm.form.valid || isClicked"
+                  [disabled]="!rentalForm.form.valid && isClicked"
                   (click)="updateRental()"
                   class="btn btn-primary btn-block btn-round"
                 >
