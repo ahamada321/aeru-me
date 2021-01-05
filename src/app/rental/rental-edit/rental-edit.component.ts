@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 export class RentalEditComponent implements OnInit {
   rental: Rental;
   isTouched: boolean = false;
+  isClicked: boolean = false;
   focus: boolean;
   focus2: boolean;
   errors: any[] = [];
@@ -24,11 +25,11 @@ export class RentalEditComponent implements OnInit {
   dropdownCategoryLists = [
     "経営者",
     "個人事業主",
-    "サービス",
     "士業",
     "営業",
     "社会人",
     "学生",
+    "その他",
   ];
 
   // Select province
@@ -148,13 +149,16 @@ export class RentalEditComponent implements OnInit {
 
   updateRental() {
     this.rental.isShared = true;
+    this.isClicked = true;
     this.rentalService.updateRental(this.rental._id, this.rental).subscribe(
       (updatedRental) => {
+        this.isClicked = false;
         this.showSwalSuccess();
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
+        this.isClicked = false;
       }
     );
   }
