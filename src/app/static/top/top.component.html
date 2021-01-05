@@ -48,13 +48,13 @@
               "
             >
               <div class="card-body">
-                <h3 class="card-title">サービス</h3>
-                <p class="card-description">サービス・店舗など</p>
+                <h3 class="card-title">経営者</h3>
+                <p class="card-description">経営者・個人事業主など</p>
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
                     [queryParams]="{
-                      selectedCategory: 'サービス'
+                      selectedCategory: ['経営者', '個人事業主']
                     }"
                     class="btn btn-info btn-move-right btn-round"
                     >見に行く
@@ -126,13 +126,13 @@
               "
             >
               <div class="card-body">
-                <h3 class="card-title">経営者</h3>
-                <p class="card-description">経営者・個人事業主など</p>
+                <h3 class="card-title">社会人/学生</h3>
+                <p class="card-description">これから起業・価値提供したい</p>
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
                     [queryParams]="{
-                      selectedCategory: ['経営者', '個人事業主']
+                      selectedCategory: ['社会人', '学生']
                     }"
                     class="btn btn-danger btn-move-right btn-round"
                     >見に行く
@@ -150,13 +150,13 @@
               "
             >
               <div class="card-body">
-                <h3 class="card-title">社会人/学生</h3>
-                <p class="card-description">これから起業・価値提供したい</p>
+                <h3 class="card-title">その他</h3>
+                <p class="card-description">それ以外の方</p>
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
                     [queryParams]="{
-                      selectedCategory: ['社会人', '学生']
+                      selectedCategory: ['その他']
                     }"
                     class="btn btn-default btn-move-right btn-round"
                     >見に行く
