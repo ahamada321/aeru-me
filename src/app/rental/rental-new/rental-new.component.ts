@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 export class RentalNewComponent implements OnInit, OnDestroy {
   newRental: Rental;
   isClicked: boolean = false;
+  isImage: boolean = false;
   focus: boolean;
   focus2: boolean;
   rentalCategories = Rental.CATEGORIES;
@@ -133,19 +134,24 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   }
 
   createRental() {
-    this.newRental.isShared = true;
-    this.isClicked = true;
-    this.rentalService.createRental(this.newRental).subscribe(
-      (rental: Rental) => {
-        this.showSwalSuccess();
-        this.isClicked = false;
-      },
-      (errorResponse: HttpErrorResponse) => {
-        console.error(errorResponse);
-        this.errors = errorResponse.error.errors;
-        this.isClicked = false;
-      }
-    );
+    if (!this.isImage) {
+      this.errors.push({
+        detail: "プロフィール写真の選択と切り抜きを先に押してください",
+      });
+    } else {
+      this.newRental.isShared = true;
+      this.isClicked = true;
+      this.rentalService.createRental(this.newRental).subscribe(
+        (rental: Rental) => {
+          this.showSwalSuccess();
+        },
+        (errorResponse: HttpErrorResponse) => {
+          console.error(errorResponse);
+          this.errors = errorResponse.error.errors;
+          this.isClicked = false;
+        }
+      );
+    }
   }
 
   private showSwalSuccess() {
@@ -162,6 +168,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   }
 
   imageChange(uploadedImage) {
+    this.isImage = true;
     this.newRental.image = uploadedImage;
   }
 }

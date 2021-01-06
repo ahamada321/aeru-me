@@ -152,7 +152,6 @@ export class RentalEditComponent implements OnInit {
     this.isClicked = true;
     this.rentalService.updateRental(this.rental._id, this.rental).subscribe(
       (updatedRental) => {
-        this.isClicked = false;
         this.showSwalSuccess();
       },
       (errorResponse: HttpErrorResponse) => {
