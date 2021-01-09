@@ -1,15 +1,26 @@
 .phone-top {
-    // margin: 0 auto;
-    img{
-        margin-top: 15px;
-        position:relative;
-        z-index: 3;
-        width: 100%;
-        height: auto;
-        margin-bottom: 15px;
-    }
+  // margin: 0 auto;
+  img {
+    margin-top: 15px;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
 }
 
 .title-top {
-    margin-top: 160px;
+  margin-top: 160px;
+}
+
+.card-results {
+  img {
+    margin-top: 15px;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
 }
