@@ -32,7 +32,7 @@ import { TermsTextModule } from "./static/terms/helpers/terms-text/terms-text.mo
 const routes: Routes = [
   { path: "", component: TopComponent },
   { path: "lineup", component: LineupComponent },
-  { path: "online-booking", component: LandingSaasComponent },
+  { path: "saas", component: LandingSaasComponent },
 
   { path: "aboutus", component: AboutusComponent },
   { path: "terms", component: TermsComponent },
