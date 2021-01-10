@@ -5,6 +5,8 @@ import {
   HostListener,
   ElementRef,
 } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { LoginPopupComponent } from "src/app/auth/login-popup/login-popup.component";
 
 @Component({
   selector: "app-top",
@@ -14,7 +16,10 @@ import {
 export class TopComponent implements OnInit, OnDestroy {
   data: Date = new Date();
 
-  constructor(public el: ElementRef) {}
+  constructor(
+    public el: ElementRef,         
+    private modalService: NgbModal,
+    ) {}
 
   ngOnInit() {
     var navbar = document.getElementsByTagName("nav")[0];
@@ -33,5 +38,9 @@ export class TopComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("landing-page");
     body.classList.remove("presentation-page"); // temporary
+  }
+
+  modalOpen() {
+    this.modalService.open(LoginPopupComponent, {backdrop: 'static'})
   }
 }
