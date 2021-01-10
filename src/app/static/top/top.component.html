@@ -126,13 +126,13 @@
               "
             >
               <div class="card-body">
-                <h3 class="card-title">社会人/学生</h3>
+                <h3 class="card-title">社会人</h3>
                 <p class="card-description">これから起業・価値提供したい</p>
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
                     [queryParams]="{
-                      selectedCategory: ['社会人', '学生']
+                      selectedCategory: ['社会人']
                     }"
                     class="btn btn-danger btn-move-right btn-round"
                     >見に行く
@@ -150,13 +150,13 @@
               "
             >
               <div class="card-body">
-                <h3 class="card-title">その他</h3>
-                <p class="card-description">それ以外の方</p>
+                <h3 class="card-title">学生</h3>
+                <p class="card-description">これから起業・価値提供したい</p>
                 <div class="card-footer">
                   <a
                     [routerLink]="['/rentals']"
                     [queryParams]="{
-                      selectedCategory: ['その他']
+                      selectedCategory: ['学生']
                     }"
                     class="btn btn-default btn-move-right btn-round"
                     >見に行く
@@ -166,6 +166,29 @@
             </div>
           </div>
         </div>
+
+        <div class="space-top"></div>
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <a
+            [routerLink]="['/register']"
+            class="btn btn-primary btn-round btn-lg"
+            >
+              新規会員登録する
+            </a>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <button
+            (click)="modalOpen()"
+            class="btn btn-primary btn-link btn-lg"
+            >
+              ログインはこちら
+            </button>
+          </div>
+        </div>  
       </div>
     </div>
   </div>
