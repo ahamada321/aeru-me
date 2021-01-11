@@ -26,7 +26,7 @@
             >
               <div class="row">
                 <div class="col-md-6">
-                  <label>Name</label>
+                  <label>お名前 <span class="icon-danger">*</span></label>
                   <div class="form-group">
                     <input
                       formControlName="username"
@@ -38,7 +38,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <label>Email</label>
+                  <label>Email <span class="icon-danger">*</span></label>
                   <div class="form-group">
                     <input
                       formControlName="email"
@@ -51,14 +51,38 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>御社名</label>
+                  <div class="form-group">
+                    <input
+                      formControlName="company"
+                      type="text"
+                      class="form-control"
+                      placeholder="御社名"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>役職</label>
+                  <div class="form-group">
+                    <input
+                      formControlName="position"
+                      type="text"
+                      class="form-control"
+                      placeholder="役職"
+                    />
+                  </div>
+                </div>
+              </div>
               <div class="form-group">
-                <label>Message</label>
+                <label>お問い合わせ内容 <span class="icon-danger">*</span></label>
                 <textarea
                   formControlName="msg"
                   type="text"
                   class="form-control"
                   rows="4"
-                  placeholder="お問い合わせ内容を入力してください."
+                  placeholder="オンラインDemoの希望日時（第2~3候補程度まで）、その他お問い合わせ内容を入力してください."
                   required
                 >
                 </textarea>

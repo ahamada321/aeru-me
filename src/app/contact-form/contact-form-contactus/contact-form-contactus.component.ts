@@ -47,6 +47,8 @@ export class ContactFormContactusComponent implements OnInit, OnDestroy {
     this.contactusForm = this.formBuilder.group({
       username: [''],
       email: [''],
+      company: [''],
+      position: [''],
       msg: ['']
     })
   }
@@ -75,7 +77,7 @@ export class ContactFormContactusComponent implements OnInit, OnDestroy {
     Swal.fire({
       type: 'success',
       title: '送信されました',
-      text: '数日以内にお返事させていただきます',
+      text: '確認次第折り返しご連絡させていただきます',
       confirmButtonClass: "btn btn-primary btn-lg",
       buttonsStyling: false,
       timer: 5000
