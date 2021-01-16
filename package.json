@@ -2,8 +2,8 @@
   "name": "aeru-me",
   "version": "0.0.0",
   "engines": {
-    "node": "12.18.2",
-    "npm": "6.14.5"
+    "node": "14.15.4",
+    "npm": "6.14.10"
   },
   "scripts": {
     "ng": "ng",
@@ -40,9 +40,9 @@
     "@sweetalert2/ngx-sweetalert2": "^6.0.1",
     "@types/stripe": "^7.13.25",
     "angular-calendar": "^0.28.22",
-    "angular2-multiselect-dropdown": "^4.6.7",
+    "angular2-multiselect-dropdown": "^4.6.9",
     "angularx-social-login": "^2.3.1",
-    "aws-sdk": "^2.820.0",
+    "aws-sdk": "^2.828.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
@@ -57,7 +57,7 @@
     "jw-bootstrap-switch-ng2": "^2.0.5",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
-    "mongoose": "^5.11.9",
+    "mongoose": "^5.11.12",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
     "ng-pick-datetime": "^7.0.0",
@@ -74,7 +74,7 @@
     "rxjs": "~6.6.3",
     "stripe": "^7.63.1",
     "sweetalert2": "^8.19.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.1.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -84,7 +84,7 @@
     "@angular/language-service": "^10.2.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.19.11",
+    "@types/node": "^12.19.14",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
