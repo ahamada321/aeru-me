@@ -12,7 +12,10 @@ import { RegisterComponent } from "./register/register.component";
 import { RegisterVerificationComponent } from "./register/register-verification/register-verification.component";
 import { RegisterSentComponent } from "./register/register-sent/register-sent.component";
 
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { environment } from "src/environments/environment";
 
@@ -33,17 +36,6 @@ const routes: Routes = [
   { path: "register/sent", component: RegisterSentComponent },
   { path: "register/:verifyToken", component: RegisterVerificationComponent },
 ];
-
-const config = new AuthServiceConfig([
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider(environment.FACEBOOK_APP_ID),
-  },
-]);
-
-export function provideConfig() {
-  return config;
-}
 
 @NgModule({
   declarations: [
@@ -77,8 +69,16 @@ export function provideConfig() {
       multi: true,
     },
     {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig,
+      provide: "SocialAuthServiceConfig",
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(environment.FACEBOOK_APP_ID),
+          },
+        ],
+      } as SocialAuthServiceConfig,
     },
   ],
 })

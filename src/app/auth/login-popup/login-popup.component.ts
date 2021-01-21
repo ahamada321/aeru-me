@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MyOriginAuthService } from "src/app/auth/service/auth.service";
-import { AuthService } from "angularx-social-login";
+import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -26,7 +26,7 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private auth: MyOriginAuthService,
-    private socialAuthService: AuthService,
+    private socialAuthService: SocialAuthService,
     private router: Router,
     private ref: ChangeDetectorRef,
     private location: Location
