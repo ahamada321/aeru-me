@@ -161,6 +161,5 @@ const routes: Routes = [
     TimePickerModal,
   ],
   providers: [RentalService, BookingService, BookingHelperService],
-  bootstrap: [],
 })
 export class RentalModule {}

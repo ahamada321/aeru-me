@@ -50,6 +50,5 @@ const routes: Routes = [
     // UserPendingDialog
   ],
   providers: [SubscriptionService],
-  bootstrap: [],
 })
 export class SubscriptionModule {}
