@@ -3,12 +3,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  FBuserID: String,
+  createdAt: { type: Date, default: Date.now },
+  lastLogin: { type: Date, default: Date.now },
+
   username: {
     type: String,
-    // max: [32, "32文字以下で入力してください"],
-    // min: [4, "4文字以上で入力してください"],
+    max: [64, "64文字以下で入力してください"],
+    min: [3, "3文字以上で入力してください"],
   },
+  FBuserID: String,
   email: {
     type: String,
     max: [32, "32文字以下で入力してください"],

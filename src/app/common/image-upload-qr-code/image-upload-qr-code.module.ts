@@ -10,6 +10,5 @@ import { ImageUploadService } from "../image-upload/service/image-upload.service
   imports: [CommonModule, ImageCropperModule],
   exports: [ImageUploadQrCodeComponent],
   providers: [ImageUploadService],
-  bootstrap: [],
 })
 export class ImageUploadQrCodeModule {}

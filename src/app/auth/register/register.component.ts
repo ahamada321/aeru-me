@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { MyOriginAuthService } from "../service/auth.service";
-import { AuthService } from "angularx-social-login";
+import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { HttpErrorResponse } from "@angular/common/http";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private auth: MyOriginAuthService,
-    private socialAuthService: AuthService,
+    private socialAuthService: SocialAuthService,
     private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute
