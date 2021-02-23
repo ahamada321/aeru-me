@@ -14,6 +14,10 @@ export class RentalManageComponent implements OnInit, OnDestroy {
   rentals: Rental[] = [];
   rentalDeleteIndex: number = undefined;
 
+  pageIndex: number = 1;
+  pageSize: number = 40; // Displaying contents per page.
+  pageCollectionSize: number = 1;
+
   constructor(
     private rentalService: RentalService,
     public auth: MyOriginAuthService
@@ -25,12 +29,7 @@ export class RentalManageComponent implements OnInit, OnDestroy {
     let body = document.getElementsByTagName("body")[0];
     body.classList.add("settings");
 
-    this.rentalService.getOwnerRentals().subscribe(
-      (rentals: Rental[]) => {
-        this.rentals = rentals;
-      },
-      () => {}
-    );
+    this.getOwnerRentals();
   }
 
   ngOnDestroy() {
@@ -78,5 +77,22 @@ export class RentalManageComponent implements OnInit, OnDestroy {
         // this.toastr.error(errorResponse.error.errors[0].detail, 'Failed!')
       }
     );
+  }
+
+  getOwnerRentals() {
+    this.rentalService.getOwnerRentals(this.pageIndex, this.pageSize).subscribe(
+      (result) => {
+        this.rentals = result[0].foundRentals;
+        this.pageCollectionSize = result[0].metadata[0].total;
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+  }
+
+  pageChange() {
+    this.rentals = null;
+    this.getOwnerRentals();
   }
 }

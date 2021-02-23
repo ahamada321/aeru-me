@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class RentalListComponent implements OnInit, OnDestroy {
   rentals: Rental[] = [];
   pageIndex: number = 1;
-  pageSize: number = 50; // Displaying contents per page.
+  pageSize: number = 40; // Displaying contents per page.
   pageCollectionSize: number = 1;
 
   constructor(
@@ -39,12 +39,17 @@ export class RentalListComponent implements OnInit, OnDestroy {
 
   getRentals() {
     this.route.queryParams.subscribe((keywords) => {
-      this.rentalService.getRentals(keywords).subscribe(
-        (rentals: Rental[]) => {
-          this.rentals = rentals;
-        },
-        (err) => {}
-      );
+      this.rentalService
+        .getRentals(keywords, this.pageIndex, this.pageSize)
+        .subscribe(
+          (result) => {
+            this.rentals = result[0].foundRentals;
+            this.pageCollectionSize = result[0].metadata[0].total;
+          },
+          (err) => {
+            console.error(err);
+          }
+        );
     });
   }
 

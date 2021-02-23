@@ -11,8 +11,15 @@ export class RentalService {
     return this.http.get("/api/v1/rentals/" + rentalId);
   }
 
-  public getRentals(keywords: any): Observable<any> {
-    return this.http.post("/api/v1/rentals", keywords);
+  public getRentals(
+    keywords: any,
+    pageIndex: number,
+    pageSize: number
+  ): Observable<any> {
+    return this.http.post(
+      `/api/v1/rentals?page=${pageIndex}&limit=${pageSize}`,
+      keywords
+    );
   }
 
   public createRental(rentalData: Rental): Observable<any> {
@@ -27,8 +34,10 @@ export class RentalService {
     return this.http.patch("/api/v1/rentals/" + rentalId, rentalData);
   }
 
-  public getOwnerRentals(): Observable<any> {
-    return this.http.get("/api/v1/rentals/manage");
+  public getOwnerRentals(pageIndex: number, pageSize: number): Observable<any> {
+    return this.http.get(
+      `/api/v1/rentals/manage?page=${pageIndex}&limit=${pageSize}`
+    );
   }
 
   public getUserFavouriteRentals(): Observable<any> {
