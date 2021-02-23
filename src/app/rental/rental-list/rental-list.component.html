@@ -28,6 +28,18 @@
       </div>
     </div>
 
+    <div class="pagination-area pagination-primary text-center">
+      <ngb-pagination
+        [collectionSize]="pageCollectionSize"
+        [(page)]="pageIndex"
+        [pageSize]="pageSize"
+        [maxSize]="5"
+        [boundaryLinks]="true"
+        aria-label="Default pagination"
+        (pageChange)="pageChange()"
+      ></ngb-pagination>
+    </div>
+
     <!--     *********    CALL TO ACTION    *********      -->
     <ng-container
       *ngIf="!auth.isAuthenticated() || auth.getUserRole() === 'User'"

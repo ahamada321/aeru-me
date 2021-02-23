@@ -11,6 +11,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class RentalListComponent implements OnInit, OnDestroy {
   rentals: Rental[] = [];
+  pageIndex: number = 1;
+  pageSize: number = 50; // Displaying contents per page.
+  pageCollectionSize: number = 1;
 
   constructor(
     private rentalService: RentalService,
@@ -23,6 +26,18 @@ export class RentalListComponent implements OnInit, OnDestroy {
     let navbar = document.getElementsByTagName("nav")[0];
     navbar.classList.add("navbar-transparent");
 
+    this.getRentals();
+  }
+
+  ngOnDestroy() {
+    let navbar = document.getElementsByTagName("nav")[0];
+    navbar.classList.remove("navbar-transparent");
+    if (navbar.classList.contains("nav-up")) {
+      navbar.classList.remove("nav-up");
+    }
+  }
+
+  getRentals() {
     this.route.queryParams.subscribe((keywords) => {
       this.rentalService.getRentals(keywords).subscribe(
         (rentals: Rental[]) => {
@@ -42,11 +57,8 @@ export class RentalListComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    let navbar = document.getElementsByTagName("nav")[0];
-    navbar.classList.remove("navbar-transparent");
-    if (navbar.classList.contains("nav-up")) {
-      navbar.classList.remove("nav-up");
-    }
+  pageChange() {
+    this.rentals = null;
+    this.getRentals();
   }
 }
