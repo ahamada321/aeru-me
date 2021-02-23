@@ -22,38 +22,124 @@ exports.getRentalById = function (req, res) {
 };
 
 exports.getRentals = function (req, res) {
+  const { page, limit } = req.query;
   const { selectedCategory, rentalname } = req.body;
 
   if (!rentalname) {
     if (!selectedCategory) {
-      Rental.find({ isShared: true }, function (err, foundRentals) {
-        return res.json(foundRentals);
-      });
+      Rental.aggregate(
+        [
+          { $match: { isShared: true } }, // Filtering to teachers
+          {
+            $facet: {
+              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+              foundRentals: [
+                { $skip: (page - 1) * limit },
+                { $limit: Number(limit) },
+              ],
+            },
+          },
+        ],
+        function (err, result) {
+          if (err) {
+            return res
+              .status(422)
+              .send({ errors: normalizeErrors(err.errors) });
+          }
+          return res.json(result);
+        }
+      );
     } else {
-      Rental.find(
-        { isShared: true, selectedCategory },
-        function (err, foundRentals) {
-          return res.json(foundRentals);
+      Rental.aggregate(
+        [
+          {
+            $match: {
+              isShared: true,
+              selectedCategory: { $in: selectedCategory },
+            },
+          },
+          {
+            $facet: {
+              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+              foundRentals: [
+                { $skip: (page - 1) * limit },
+                { $limit: Number(limit) },
+              ],
+            },
+          },
+        ],
+        function (err, result) {
+          if (err) {
+            return res
+              .status(422)
+              .send({ errors: normalizeErrors(err.errors) });
+          }
+          return res.json(result);
         }
       );
     }
   } else {
     if (!selectedCategory) {
-      Rental.find(
-        { isShared: true, rentalname: { $regex: rentalname, $options: "i" } },
-        function (err, foundRentals) {
-          return res.json(foundRentals);
+      Rental.aggregate(
+        [
+          {
+            $match: {
+              isShared: true,
+              rentalname: {
+                $regex: rentalname,
+                $options: "i",
+              },
+            },
+          },
+          {
+            $facet: {
+              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+              foundRentals: [
+                { $skip: (page - 1) * limit },
+                { $limit: Number(limit) },
+              ],
+            },
+          },
+        ],
+        function (err, result) {
+          if (err) {
+            return res
+              .status(422)
+              .send({ errors: normalizeErrors(err.errors) });
+          }
+          return res.json(result);
         }
       );
     } else {
-      Rental.find(
-        {
-          isShared: true,
-          selectedCategory,
-          rentalname: { $regex: rentalname, $options: "i" },
-        },
-        function (err, foundRentals) {
-          return res.json(foundRentals);
+      Rental.aggregate(
+        [
+          {
+            $match: {
+              isShared: true,
+              selectedCategory: { $in: selectedCategory },
+              rentalname: {
+                $regex: rentalname,
+                $options: "i",
+              },
+            },
+          },
+          {
+            $facet: {
+              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+              foundRentals: [
+                { $skip: (page - 1) * limit },
+                { $limit: Number(limit) },
+              ],
+            },
+          },
+        ],
+        function (err, result) {
+          if (err) {
+            return res
+              .status(422)
+              .send({ errors: normalizeErrors(err.errors) });
+          }
+          return res.json(result);
         }
       );
     }
@@ -62,25 +148,65 @@ exports.getRentals = function (req, res) {
 
 exports.getOwnerRentals = function (req, res) {
   const user = res.locals.user;
+  const { page, limit } = req.query;
 
   if (user.userRole === "Admin") {
-    Rental.find({})
-      .populate("bookings")
-      .exec(function (err, foundRentals) {
+    // Rental.find({})
+    //   .populate("bookings")
+    //   .exec(function (err, foundRentals) {
+    //     if (err) {
+    //       return res.status(422).send({ errors: normalizeErrors(err.errors) });
+    //     }
+    //     return res.json(foundRentals);
+    //   });
+    Rental.aggregate(
+      [
+        {
+          $facet: {
+            metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+            foundRentals: [
+              { $skip: (page - 1) * limit },
+              { $limit: Number(limit) },
+            ],
+          },
+        },
+      ],
+      function (err, result) {
         if (err) {
           return res.status(422).send({ errors: normalizeErrors(err.errors) });
         }
-        return res.json(foundRentals);
-      });
+        return res.json(result);
+      }
+    );
   } else {
-    Rental.find({ user })
-      .populate("bookings")
-      .exec(function (err, foundRentals) {
+    // Rental.find({ user })
+    //   .populate("bookings")
+    //   .exec(function (err, foundRentals) {
+    //     if (err) {
+    //       return res.status(422).send({ errors: normalizeErrors(err.errors) });
+    //     }
+    //     return res.json(foundRentals);
+    //   });
+    Rental.aggregate(
+      [
+        { $match: { user: user._id } }, // Filtering to teachers
+        {
+          $facet: {
+            metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+            foundRentals: [
+              { $skip: (page - 1) * limit },
+              { $limit: Number(limit) },
+            ],
+          },
+        },
+      ],
+      function (err, result) {
         if (err) {
           return res.status(422).send({ errors: normalizeErrors(err.errors) });
         }
-        return res.json(foundRentals);
-      });
+        return res.json(result);
+      }
+    );
   }
 };
 
