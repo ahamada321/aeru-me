@@ -81,7 +81,10 @@
               (ngSubmit)="sendBooking(contactusForm)"
             >
               <div class="description">オンラインデモ希望日時：</div>
-              <div class="description">
+              <div class="alert alert-danger" *ngIf="!isSelectedDateTime">
+                希望日時を先に選択してください
+              </div>
+              <div class="alert alert-success" *ngIf="isSelectedDateTime">
                 {{
                   contactusForm.value.bookingDate
                     | date: "yyyy/ MM/ dd - HH:mm スタート"
