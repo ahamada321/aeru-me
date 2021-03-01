@@ -107,15 +107,7 @@ export class BookingDemoComponent implements OnInit {
   }
 
   selectDateTime(startAt, stepper) {
-    // this.newBooking.startAt = moment(startAt).format();
-    // this.newBooking.endAt = moment(startAt)
-    //   .add(this.selectedCourseTime - 1, "minute")
-    //   .format();
-    // this.newBooking.courseTime = this.selectedCourseTime;
-    // this.newBooking.totalPrice =
-    //   this.rental.hourlyPrice * (this.selectedCourseTime / 60);
-    // this.newBookingInfo.emit(this.newBooking);
-
+    this.isSelectedDateTime = true;
     this.contactusForm.patchValue({
       bookingDate: moment(startAt).set({
         year: this.selectedDate.getFullYear(),
