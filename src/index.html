@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <title>Aeru（会える）| 起業・経営者マッチングアプリ</title>
     <base href="/" />
-
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
@@ -27,22 +26,9 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <app-root></app-root>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-157529878-1"
-    ></script>
-    <script *ngIf="environment.production">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-157529878-1");
-    </script>
   </body>
 </html>

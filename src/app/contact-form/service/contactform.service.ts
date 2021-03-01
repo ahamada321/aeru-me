@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
-import { ContactForm } from './contactform.model'
-import { HttpClient } from '@angular/common/http'
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { ContactForm } from "./contactform.model";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class ContactFormService {
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  public sendFormMsg(formData: ContactForm): Observable<any> {
+    return this.http.post("/api/v1/contactforms", formData);
+  }
 
-    public sendFormMsg(formData: ContactForm): Observable<any> {
-        return this.http.post('/api/v1/contactforms', formData)
-    }
-  
+  public sendDemoRequest(formData: any): Observable<any> {
+    return this.http.post("/api/v1/contactforms/demo", formData);
+  }
 }

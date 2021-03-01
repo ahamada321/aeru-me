@@ -22,7 +22,7 @@ export class BookingSelecterComponent implements OnInit {
   maxDate = new Date();
 
   @Input() rental: Rental;
-  @Input() selectedCourseTime: number;
+  @Input() selectedCourseTime: number = 60;
   @Output() newBookingInfo = new EventEmitter();
 
   constructor(

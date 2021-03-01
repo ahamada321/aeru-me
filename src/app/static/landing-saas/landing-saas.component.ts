@@ -23,7 +23,6 @@ export class LandingSaasComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("landing-page");
     body.classList.add("presentation-page"); // temporary
-
     this.innerWidth = window.innerWidth;
   }
   ngOnDestroy() {

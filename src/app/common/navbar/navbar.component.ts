@@ -61,7 +61,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  modalOpen() {
+  modalLoginOpen() {
     this.sidebarClose();
     this.modalService.open(LoginPopupComponent, { backdrop: "static" });
   }

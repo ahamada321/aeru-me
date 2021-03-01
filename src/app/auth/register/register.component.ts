@@ -102,7 +102,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       buttonsStyling: false,
       allowOutsideClick: false,
     }).then(() => {
-      this.modalOpen();
+      this.modalLoginOpen();
     });
   }
 
@@ -115,7 +115,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     });
   }
 
-  modalOpen() {
+  modalLoginOpen() {
     this.router.navigate(["/"]);
     this.modalService.open(LoginPopupComponent, { backdrop: "static" });
   }
