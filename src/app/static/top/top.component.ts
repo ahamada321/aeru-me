@@ -16,10 +16,7 @@ import { LoginPopupComponent } from "src/app/auth/login-popup/login-popup.compon
 export class TopComponent implements OnInit, OnDestroy {
   data: Date = new Date();
 
-  constructor(
-    public el: ElementRef,         
-    private modalService: NgbModal,
-    ) {}
+  constructor(public el: ElementRef, private modalService: NgbModal) {}
 
   ngOnInit() {
     var navbar = document.getElementsByTagName("nav")[0];
@@ -40,7 +37,7 @@ export class TopComponent implements OnInit, OnDestroy {
     body.classList.remove("presentation-page"); // temporary
   }
 
-  modalOpen() {
-    this.modalService.open(LoginPopupComponent, {backdrop: 'static'})
+  modalLoginOpen() {
+    this.modalService.open(LoginPopupComponent, { backdrop: "static" });
   }
 }

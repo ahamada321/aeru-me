@@ -43,7 +43,7 @@ export class RentalListItemComponent implements OnInit {
     );
   }
 
-  modalOpen() {
+  modalLoginOpen() {
     this.modalService.open(LoginPopupComponent, { backdrop: "static" });
   }
 }

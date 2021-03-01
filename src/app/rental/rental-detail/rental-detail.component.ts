@@ -101,7 +101,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  modalOpen() {
+  modalLoginOpen() {
     this.modalService.open(LoginPopupComponent);
   }
 

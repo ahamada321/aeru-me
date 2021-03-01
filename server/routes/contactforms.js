@@ -1,10 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const ContactformCtrl = require('./controllers/contactform')
+const ContactformCtrl = require("./controllers/contactform");
 
+router.post("/demo", ContactformCtrl.requestDemo);
 
-router.post('', ContactformCtrl.sendFormMessage)
+router.post("", ContactformCtrl.sendFormMessage);
 
-
-module.exports = router
+module.exports = router;
