@@ -49,9 +49,9 @@ export class BookingDemoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.minDate.setDate(this.minDate.getDate() + 1);
+    this.minDate.setDate(this.minDate.getDate() + 2);
     this.minDate.setHours(0, 0, 0, 0);
-    this.maxDate.setDate(this.maxDate.getDate() + 15);
+    this.maxDate.setDate(this.maxDate.getDate() + 16);
     this.maxDate.setHours(0, 0, 0, 0);
 
     this.initForm();
