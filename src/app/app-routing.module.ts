@@ -5,7 +5,6 @@ import { AuthModule } from "./auth/auth.module";
 import { RentalModule } from "./rental/rental.module";
 import { UserModule } from "./user/user.module";
 import { ContactFormModule } from "./contact-form/contact-form.module";
-import { SubscriptionModule } from "./subscription/subscription.module";
 import { StaticModule } from "./static/static.module";
 
 const routes: Routes = [];
@@ -17,7 +16,6 @@ const routes: Routes = [];
     AuthModule,
     RentalModule,
     UserModule,
-    SubscriptionModule,
     ContactFormModule,
     StaticModule,
   ],
