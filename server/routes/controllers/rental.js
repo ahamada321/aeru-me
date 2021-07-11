@@ -9,7 +9,7 @@ exports.getRentalById = function (req, res) {
     .populate("user") // Need to consider security in future.
     .populate("bookings", "startAt endAt status _id") // Need to consider security in future.
     .exec(function (err, foundRental) {
-      if (err) {
+      if (err || !foundRental) {
         return res.status(422).send({
           errors: {
             title: "Rental error!",
