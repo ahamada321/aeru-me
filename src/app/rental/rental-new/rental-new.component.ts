@@ -158,7 +158,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     Swal.fire({
       // title: 'User infomation has been updated!',
       icon: "success",
-      text: "商品を新規登録しました！",
+      text: "新規登録しました！",
       customClass: {
         confirmButton: "btn btn-primary btn-lg",
       },

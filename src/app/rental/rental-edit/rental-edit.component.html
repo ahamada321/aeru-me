@@ -40,9 +40,7 @@
 
             <div class="form-group">
               <ng-container *ngIf="auth.getUserRole() === 'Owner'">
-                <h6>
-                  商品名（個人名を推薦） <span class="icon-danger">*</span>
-                </h6>
+                <h6>名前（個人名を推薦） <span class="icon-danger">*</span></h6>
                 <input
                   [(ngModel)]="rental.rentalname"
                   name="rentalname"
@@ -65,7 +63,7 @@
               </ng-container>
               <ng-container *ngIf="auth.getUserRole() === 'Trainer'">
                 <h6>
-                  商品名（ユーザー名と連動します）
+                  名前（ユーザー名と連動します）
                   <span class="icon-danger">*</span>
                 </h6>
                 <input
@@ -73,7 +71,7 @@
                   name="rentalname"
                   type="text"
                   class="form-control"
-                  placeholder="商品名"
+                  placeholder="田中 太郎"
                   maxlength="20"
                   disabled
                 />
@@ -87,7 +85,7 @@
                 name="cardDescription"
                 type="text"
                 class="form-control"
-                placeholder="商品カードのコピー文が入力できます。"
+                placeholder="ひとこと文を入力できます。"
                 maxlength="12"
               />
               <h5>

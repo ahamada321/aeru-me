@@ -9,8 +9,8 @@
       <div class="container">
         <div class="space-50"></div>
         <div class="motto text-center">
-          <h1>商品管理</h1>
-          <h3>提供するサービスを編集できます</h3>
+          <h1>プロフィール管理</h1>
+          <h3>自分のプロフィールを編集できます</h3>
           <br />
         </div>
       </div>
@@ -32,14 +32,12 @@
                     <!-- <i class="nc-icon nc-simple-add"></i> -->
                   </div>
                   <!-- <h3 class="card-title">新規追加</h3> -->
-                  <p class="card-description">
-                    ここから新しく商品を追加できます
-                  </p>
+                  <p class="card-description">ここから新しく追加できます</p>
                   <div class="card-footer">
                     <a
                       class="btn btn-primary btn-block btn-round"
                       [routerLink]="['/rentals/new']"
-                      >商品を追加</a
+                      >追加する</a
                     >
                   </div>
                 </div>
@@ -71,7 +69,7 @@
                         class="btn btn-primary btn-block btn-round"
                         routerLink="/rentals/{{ rental._id }}/edit"
                       >
-                        商品編集
+                        編集する
                       </button>
                     </p>
                     <!-- <p><button class="btn btn-outline-default btn-block btn-round" routerLink="/rentals/{{rental._id}}/editschedule">受付日時管理</button></p> -->
@@ -110,7 +108,7 @@
                         class="btn btn-primary btn-block btn-round"
                         routerLink="/rentals/{{ rental._id }}/edit"
                       >
-                        商品編集
+                        編集する
                       </button>
                     </p>
                     <!-- <p><button class="btn btn-outline-default btn-block btn-round" routerLink="/rentals/{{rental._id}}/editschedule">受付日時管理</button></p> -->
