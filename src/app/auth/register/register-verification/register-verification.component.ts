@@ -51,10 +51,12 @@ export class RegisterVerificationComponent implements OnInit {
   showSwal(type) {
     if (type == "success") {
       Swal.fire({
+        icon: "success",
         title: "アクティベーション完了",
         text: "ログイン出来るようになりました！",
-        type: "success",
-        confirmButtonClass: "btn btn-primary btn-lg",
+        customClass: {
+          confirmButton: "btn btn-primary btn-lg",
+        },
         buttonsStyling: false,
         allowOutsideClick: false,
       }).then(() => {
@@ -63,10 +65,12 @@ export class RegisterVerificationComponent implements OnInit {
     } else if (type == "failed") {
       // Maybe won't need URL expired pattern.
       Swal.fire({
-        title: "Faild",
+        icon: "error",
+        title: "Failed",
         text: "URLが期限切れです",
-        type: "error",
-        confirmButtonClass: "btn btn-danger btn-lg",
+        customClass: {
+          confirmButton: "btn btn-danger btn-lg",
+        },
         buttonsStyling: false,
         allowOutsideClick: false,
       }).then(() => {

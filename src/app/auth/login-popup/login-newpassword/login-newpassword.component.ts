@@ -63,10 +63,12 @@ export class LoginNewPasswordComponent implements OnInit, OnDestroy {
 
   showSwalSuccess() {
     Swal.fire({
+      icon: "success",
       title: "パスワード更新完了",
       text: "新しいパスワードでログインできます！",
-      type: "success",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
     }).then(() => {
       this.modalLoginOpen();

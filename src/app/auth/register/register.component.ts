@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { MyOriginAuthService } from "../service/auth.service";
-import { SocialAuthService } from "angularx-social-login";
-import { FacebookLoginProvider } from "angularx-social-login";
 import { HttpErrorResponse } from "@angular/common/http";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -29,7 +27,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private auth: MyOriginAuthService,
-    private socialAuthService: SocialAuthService,
+    // private socialAuthService: SocialAuthService,
     private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute
@@ -42,7 +40,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     let navbar = document.getElementsByTagName("nav")[0];
     navbar.classList.add("navbar-transparent");
 
-    this.seeFBLoginState();
+    // this.seeFBLoginState();
     this.route.params.subscribe((params) => {
       if (params["as"] == "trainer") {
         this.showSwalNotification();
@@ -61,20 +59,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  signInWithFB(): void {
-    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
+  // signInWithFB(): void {
+  //   this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  // }
 
-  seeFBLoginState() {
-    return this.socialAuthService.authState.subscribe((user) => {
-      if (user) {
-        this.formData.FBuserID = user.id;
-        this.formData.username = user.name;
-        this.formData.email = user.email;
-      }
-      this.isFBloggedIn = user != null;
-    });
-  }
+  // seeFBLoginState() {
+  //   return this.socialAuthService.authState.subscribe((user) => {
+  //     if (user) {
+  //       this.formData.FBuserID = user.id;
+  //       this.formData.username = user.name;
+  //       this.formData.email = user.email;
+  //     }
+  //     this.isFBloggedIn = user != null;
+  //   });
+  // }
 
   register() {
     this.formData.userRole = "Owner";
@@ -95,10 +93,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   showSwalSuccess() {
     Swal.fire({
+      icon: "success",
       title: "メンバー登録完了",
       text: "無事にログイン出来るようになりました！",
-      type: "success",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
       allowOutsideClick: false,
     }).then(() => {
@@ -108,9 +108,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   showSwalNotification() {
     Swal.fire({
-      type: "info",
+      icon: "info",
       text: "新規会員登録後に出品できます。",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
     });
   }

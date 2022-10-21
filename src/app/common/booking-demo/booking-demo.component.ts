@@ -6,7 +6,6 @@ import {
   EventEmitter,
   ViewChild,
 } from "@angular/core";
-import { DateTimeAdapter } from "ng-pick-datetime";
 import { BookingService } from "src/app/rental/rental-detail/rental-detail-booking/services/booking.service";
 import { Rental } from "src/app/rental/service/rental.model";
 import { Booking } from "src/app/rental/rental-detail/rental-detail-booking/services/booking.model";
@@ -151,10 +150,12 @@ export class BookingDemoComponent implements OnInit {
 
   private showSwalSuccess() {
     Swal.fire({
-      type: "success",
+      icon: "success",
       title: "送信されました",
       text: "確認次第ZoomURLをお送りさせていただきます",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
     }).then(() => {
       // this.router.navigate(['/'])

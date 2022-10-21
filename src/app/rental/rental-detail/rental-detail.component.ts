@@ -121,7 +121,9 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
       imageWidth: 200,
       imageHeight: 200,
       imageAlt: "Custom image",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
     }).then(() => {
       // window.open(url, "_blank");
@@ -130,9 +132,11 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
 
   onInstagramClicked(instagramId) {
     Swal.fire({
-      type: "info",
+      icon: "info",
       text: "Aeru（会える）を見たと伝えてDMするとスムーズです",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
     }).then((result) => {
       if (!result.dismiss) {

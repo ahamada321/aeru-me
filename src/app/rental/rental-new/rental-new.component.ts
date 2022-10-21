@@ -157,9 +157,11 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   private showSwalSuccess() {
     Swal.fire({
       // title: 'User infomation has been updated!',
+      icon: "success",
       text: "商品を新規登録しました！",
-      type: "success",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
       timer: 5000,
     }).then(() => {

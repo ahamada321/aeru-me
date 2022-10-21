@@ -52,36 +52,33 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    UserActivatorComponent,
-    MyfavouriteListItemComponent,
-    UserMyFavouriteComponent,
-    UserMyBookingsComponent,
-    UserPendingDialog,
-    UserMyBookingsListPendingComponent,
-    UserMyBookingsListActiveComponent,
-    UserMyBookingsListFinishedComponent,
-    UserMyBookingsListReviewedComponent,
-    UserMyBookingsListExpiredComponent,
-    UserSettingsComponent,
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    JwBootstrapSwitchNg2Module,
-    ImageUploadModule,
-    ImageUploadMyverModule,
-    MaterialModule,
-    ReviewModule,
-    BookingSelecterModule,
-  ],
-  entryComponents: [
-    // UserPendingDialog
-  ],
-  providers: [],
+    declarations: [
+        UserComponent,
+        UserActivatorComponent,
+        MyfavouriteListItemComponent,
+        UserMyFavouriteComponent,
+        UserMyBookingsComponent,
+        UserPendingDialog,
+        UserMyBookingsListPendingComponent,
+        UserMyBookingsListActiveComponent,
+        UserMyBookingsListFinishedComponent,
+        UserMyBookingsListReviewedComponent,
+        UserMyBookingsListExpiredComponent,
+        UserSettingsComponent,
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        JwBootstrapSwitchNg2Module,
+        ImageUploadModule,
+        ImageUploadMyverModule,
+        MaterialModule,
+        ReviewModule,
+        BookingSelecterModule,
+    ],
+    providers: []
 })
 export class UserModule {}

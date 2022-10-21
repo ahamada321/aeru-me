@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { BarRatingModule } from "ngx-bar-rating";
+// import { BarRatingModule } from "ngx-bar-rating";
 
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -13,7 +13,7 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    BarRatingModule,
+    // BarRatingModule,
     SweetAlert2Module,
   ],
   exports: [ReviewComponent],

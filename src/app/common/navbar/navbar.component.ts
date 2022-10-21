@@ -5,7 +5,6 @@ import {
   PathLocationStrategy,
 } from "@angular/common";
 import { MyOriginAuthService } from "src/app/auth/service/auth.service";
-import { SocialAuthService } from "angularx-social-login";
 import { Router } from "@angular/router";
 import { LoginPopupComponent } from "src/app/auth/login-popup/login-popup.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -24,7 +23,6 @@ export class NavbarComponent implements OnInit {
     private element: ElementRef,
     private modalService: NgbModal,
     public auth: MyOriginAuthService,
-    private socialAuthService: SocialAuthService,
     private router: Router
   ) {}
 
@@ -86,7 +84,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.socialAuthService.signOut();
     this.auth.logout();
     this.sidebarClose();
     this.router.navigate(["/"]);

@@ -1,36 +1,51 @@
-<button (click)="openReviewModal(content)" class="btn btn-primary">感想を書く</button>
+<button (click)="openReviewModal(content)" class="btn btn-primary">
+  感想を書く
+</button>
 
 <ng-template #content let-modal>
-    <!-- <div class="modal-header">
+  <!-- <div class="modal-header">
       <h5 class="modal-title" id="modal-basic-title">Write a Review</h5>
       <button class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div> -->
-    <div class="modal-body text-center">
-      <form #reviewForm="ngForm" (ngSubmit)="confirmReview()">
-        <textarea type="text"
-                  class="form-control textarea-limited" 
-                  placeholder="サービスを受けてみていかがでしたか。ここにレビューを書いて感想を伝えましょう。"
-                  [(ngModel)]="review.comment"
-                  id="comment"
-                  name="comment"
-                  rows="5" 
-                  maxlength="150"
-                  required ></textarea>
-        <bar-rating [(ngModel)]="review.rating" 
+  <div class="modal-body text-center">
+    <form #reviewForm="ngForm" (ngSubmit)="confirmReview()">
+      <textarea
+        type="text"
+        class="form-control textarea-limited"
+        placeholder="サービスを受けてみていかがでしたか。ここにレビューを書いて感想を伝えましょう。"
+        [(ngModel)]="review.comment"
+        id="comment"
+        name="comment"
+        rows="5"
+        maxlength="150"
+        required
+      ></textarea>
+      <!-- <bar-rating [(ngModel)]="review.rating" 
                     name="rating"
                     [max]="5" 
                     [theme]="'stars'"
-                    required ></bar-rating>
-        <button *ngIf="reviewForm.valid" class="btn btn-primary btn-lg" type="submit">投稿する</button>
-        <button *ngIf="!reviewForm.valid" class="btn btn-gray btn-lg" [disabled]="true">投稿する</button>              
-      </form>
-    </div>
-  </ng-template>
+                    required ></bar-rating> -->
+      <button
+        *ngIf="reviewForm.valid"
+        class="btn btn-primary btn-lg"
+        type="submit"
+      >
+        投稿する
+      </button>
+      <button
+        *ngIf="!reviewForm.valid"
+        class="btn btn-gray btn-lg"
+        [disabled]="true"
+      >
+        投稿する
+      </button>
+    </form>
+  </div>
+</ng-template>
 
-
-  <!-- <button [swal]="reviewSwal" [disabled]="review.rating" class="btn btn-primary">レビューする</button>
+<!-- <button [swal]="reviewSwal" [disabled]="review.rating" class="btn btn-primary">レビューする</button>
 
   <swal
     #reviewSwal

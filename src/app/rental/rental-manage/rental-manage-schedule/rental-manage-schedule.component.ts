@@ -302,9 +302,11 @@ export class RentalManageScheduleComponent implements OnInit, OnDestroy {
   private showSwalSuccess() {
     Swal.fire({
       // title: 'User infomation has been updated!',
+      icon: "success",
       text: "定例スケジュールが更新されました！",
-      type: "success",
-      confirmButtonClass: "btn btn-primary btn-round btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
       timer: 5000,
     });
@@ -316,15 +318,14 @@ export class RentalManageScheduleComponent implements OnInit, OnDestroy {
   async handleDateClick(arg) {
     await this.delay(150);
     Swal.fire({
+      icon: "info",
       title: "以下日時をブロックしますか？",
       text: arg.dateStr,
-      type: "info",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      confirmButtonColor: "#f5593d",
+      cancelButtonColor: "#9A9A9A",
       confirmButtonText: "ブロック",
-      cancelButtonClass: "btn btn-gray btn-lg",
       cancelButtonText: "キャンセル",
       showCancelButton: true,
-      buttonsStyling: false,
       allowOutsideClick: false,
     }).then((result) => {
       if (result.value) {
@@ -353,18 +354,17 @@ export class RentalManageScheduleComponent implements OnInit, OnDestroy {
       return;
     }
     Swal.fire({
+      icon: "info",
       title: "以下日時をブロックしますか？",
       text:
         arg.startStr +
         " ~ " +
         moment(arg.endStr).subtract(1, "day").format("YYYY-MM-DD"),
-      type: "info",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      confirmButtonColor: "#f5593d",
+      cancelButtonColor: "#9A9A9A",
       confirmButtonText: "ブロック",
-      cancelButtonClass: "btn btn-gray btn-lg",
       cancelButtonText: "キャンセル",
       showCancelButton: true,
-      buttonsStyling: false,
       allowOutsideClick: false,
     }).then((result) => {
       if (result.value) {
@@ -402,14 +402,13 @@ export class RentalManageScheduleComponent implements OnInit, OnDestroy {
 
   private showSwalDeleteAlert(arg) {
     Swal.fire({
+      icon: "warning",
       title: "ブロックを削除しますか？",
-      type: "warning",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      confirmButtonColor: "#f5593d",
+      cancelButtonColor: "#9A9A9A",
       confirmButtonText: "削除",
-      cancelButtonClass: "btn btn-gray btn-lg",
       cancelButtonText: "キャンセル",
       showCancelButton: true,
-      buttonsStyling: false,
       allowOutsideClick: false,
     }).then((result) => {
       if (result.value) {

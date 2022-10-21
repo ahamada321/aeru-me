@@ -82,10 +82,12 @@ export class ContactFormTrialComponent implements OnInit, OnDestroy {
 
   private showSwalSuccess() {
     Swal.fire({
-      type: "success",
+      icon: "success",
       title: "送信されました",
       text: "数日以内にトライアルIDを発行致します",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
       timer: 5000,
     }).then(() => {

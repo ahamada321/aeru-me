@@ -165,9 +165,11 @@ export class RentalEditComponent implements OnInit {
   private showSwalSuccess() {
     Swal.fire({
       // title: 'User infomation has been updated!',
+      icon: "success",
       text: "商品情報を更新しました！",
-      type: "success",
-      confirmButtonClass: "btn btn-primary btn-lg",
+      customClass: {
+        confirmButton: "btn btn-primary btn-lg",
+      },
       buttonsStyling: false,
       timer: 5000,
     }).then(() => {
