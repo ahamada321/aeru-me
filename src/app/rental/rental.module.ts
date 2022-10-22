@@ -7,7 +7,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { MaterialModule } from "../common/modules/matmodule/matmodule";
-import { ChartsModule } from "ng2-charts";
+// import { ChartsModule } from "ng2-charts";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { AuthGuard } from "../auth/service/auth.guard";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
@@ -141,7 +141,7 @@ const routes: Routes = [
     NgbModule,
     MaterialModule,
     // EditableModule,
-    ChartsModule,
+    // ChartsModule,
     // GoogleMapsModule,
     PaymentModule,
     ReviewModule,
