@@ -1,9 +1,53 @@
 <footer class="footer footer-big">
   <div class="container">
     <div class="row">
+      <div class="col-md-6 col-sm-9 ml-auto mr-auto">
+        <div class="links">
+          <ul class="uppercase-links">
+            <li>
+              <a [routerLink]="['/']"> ホーム </a>
+            </li>
+            <li>
+              <a [routerLink]="['/privacy']"> プライバシー </a>
+            </li>
+            <li>
+              <a [routerLink]="['/terms']"> 利用規約 </a>
+            </li>
+            <!-- <li>
+              <a href="javascript:void(0)"> Portfolio </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"> Blog </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"> Contact </a>
+            </li> -->
+          </ul>
+          <hr />
+
+          <!-- <div class="copyright">
+            © {{ data | date: "yyyy" }}, made with
+            <i class="fa fa-heart heart"></i> by Aeru.me
+          </div> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-2">
+        <div class="logo-footer">
+          <a routerLink="/">
+            <img src="assets/img/logo/logo-finpa.png" alt="..." />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- <footer class="footer footer-big">
+  <div class="container">
+    <div class="row">
       <div class="col-sm-9 col-md-5 ml-auto mr-auto">
         <div class="links">
-          <!-- <div class="space-top"></div> -->
           <div class="row">
             <div class="col-xl-4 col-6">
               <div class="links">
@@ -15,15 +59,6 @@
               </div>
             </div>
             <div class="col-xl-4 col-6">
-              <div class="links">
-                <!-- <ul class="uppercase-links stacked-links">
-                  <li>
-                    <a [routerLink]="['/subscription/it-consulting']">
-                      IT-Zoomクラス
-                    </a>
-                  </li>
-                </ul> -->
-              </div>
             </div>
             <div class="col-xl-4 col-6">
               <div class="links">
@@ -47,9 +82,9 @@
 
           <hr />
           <div class="copyright">
-            <!-- <div class="pull-left">
+            <div class="pull-left">
                             © {{data | date: 'yyyy'}}, Aeru.me
-                        </div> -->
+                        </div>
             <div class="pull-right">
               <ul>
                 <li>
@@ -59,12 +94,12 @@
                 <li>
                   <a [routerLink]="['/privacy']"> プライバシー </a>
                 </li>
-                <!-- |
+                |
                 <li>
                   <a href="https://amzn.asia/5hkIiZb" target="_blank">
                     活動を応援する
                   </a>
-                </li> -->
+                </li>
               </ul>
             </div>
           </div>
@@ -81,4 +116,4 @@
       </div>
     </div>
   </div>
-</footer>
+</footer> -->
