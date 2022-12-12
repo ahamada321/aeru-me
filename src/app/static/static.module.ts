@@ -22,9 +22,11 @@ import { PrivacyComponent } from "./privacy/privacy.component";
 import { ELearningComponent } from "./e-learning/e-learning.component";
 import { TermsTextModule } from "./terms/helpers/terms-text/terms-text.module";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
+import { LandingBiritacoComponent } from "./landing-biritaco/landing-biritaco.component";
 
 const routes: Routes = [
-  { path: "", component: TopComponent },
+  { path: "", component: LandingBiritacoComponent },
+  // { path: "", component: TopComponent },
   { path: "lineup", component: LineupComponent },
   { path: "saas", component: LandingSaasComponent },
 

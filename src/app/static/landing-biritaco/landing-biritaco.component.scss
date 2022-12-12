@@ -1,0 +1,25 @@
+.neon_shadow {
+  text-shadow: 0px 0px 4px #00ff1a;
+}
+
+.card-subtitle {
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.card-image {
+  img {
+    max-height: 15rem;
+  }
+}
+.relative {
+  position: relative;
+}
+.tacoimg {
+  position: absolute;
+  width: 120px;
+  height: auto;
+  z-index: 3;
+  right: 120px;
+  bottom: -96px;
+}
