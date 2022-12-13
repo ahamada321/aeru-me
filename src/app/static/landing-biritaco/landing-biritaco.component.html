@@ -9,7 +9,9 @@
       <div class="container">
         <div class="space-50"></div>
         <h1 class="title">電子工作を身近に、楽しく</h1>
-        <a class="btn btn-lg btn-primary">今すぐ始める </a>
+        <a class="btn btn-lg btn-primary" (click)="smoothScroll('starting')"
+          >今すぐ始める
+        </a>
 
         <div class="space-top"></div>
       </div>
@@ -143,12 +145,14 @@
     </div>
   </div>
 
-  <div class="pricing-4 section section-dark">
+  <div class="pricing-4 section section-dark" id="starting">
     <div class="container">
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto text-center">
           <h2 class="title">基礎知識習得動画一覧</h2>
-          <h5 class="description">Youtubeで電子工作をする基礎知識を一挙公開</h5>
+          <h5 class="description">
+            Youtubeで電子工作をする基礎知識の一部を公開
+          </h5>
         </div>
       </div>
       <div class="space-top"></div>
@@ -207,12 +211,12 @@
       </div>
     </div>
   </div>
-  <!-- もっと本格的に学びたい人向け動画 -->
+  <!-- 本格的に学びたい人向け動画 -->
   <div class="pricing-4 section section-dark">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">もっと本格的に学びたい人向け動画</h2>
+          <h2 class="title">本格的に学びたい人向け動画</h2>
           <h5 class="description">
             元シリコンバレーエンジニアのビリーさんによる<br />
             「【初心者向け】直感的にわかる！電気回路/電子回路の基礎を学ぼう」
@@ -274,8 +278,10 @@
         <div class="col-md-8 ml-auto mr-auto text-center">
           <h2 class="title">役立つメルマガ登録</h2>
           <h5 class="description">
-            ビリタコ王国の最新情報やUdemyで使えるお得なクーポンを受け取れます<br />
-            ※登録完了画面は英語ですが、メルマガは日本語です
+            ビリタコ王国の最新情報やスペシャルクーポンを受け取れます<br />
+            メルマガ登録でビリーさん完全オリジナル<br />
+            <span class="neon_shadow">「初心者のための学習ロードマップ」</span
+            >プレゼント！！
           </h5>
           <div class="space-top"></div>
 
@@ -351,8 +357,22 @@
             </form>
           </div>
           <!--End mc_embed_signup-->
+          <div class="space-top"></div>
+          <h6 class="description">
+            (※登録完了画面は英語ですが日本語配信なのでご安心ください)
+          </h6>
         </div>
       </div>
     </div>
   </div>
 </div>
+<nav id="cd-vertical-nav">
+  <ul>
+    <li>
+      <a data-number="1" (click)="smoothScroll('starting')">
+        <span class="cd-dot"></span>
+        <span class="cd-label">Starting</span>
+      </a>
+    </li>
+  </ul>
+</nav>
