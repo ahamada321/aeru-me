@@ -24,4 +24,17 @@
   .flex_directon_reverse {
     flex-direction: column-reverse;
   }
+  .tacoimg {
+    width: 88px;
+    right: -10px;
+  }
+  .optionalParent {
+    width: 30%;
+    margin: 16px auto;
+  }
+}
+@media screen and (max-width: 414px) {
+  h2.title {
+    font-size: 24px;
+  }
 }
