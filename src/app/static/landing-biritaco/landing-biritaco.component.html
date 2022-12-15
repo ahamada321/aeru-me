@@ -263,120 +263,109 @@
             <span class="neon_shadow">「初心者のための学習ロードマップ」</span
             >プレゼント！！
           </h5>
-          <div class="space-top"></div>
+        </div>
+        <div class="space-top"></div>
 
-          <!-- mailchimpの時の -->
-          <div id="">
-            <form>
-              <div id="">
-                <div class="row">
-                  <div class="col-md-9 col-sm-8">
-                    <input
-                      type="email"
-                      placeholder="メールアドレスを入力..."
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="col-md-3 col-sm-4">
-                    <div class="optionalParent">
-                      <input
-                        type="submit"
-                        value="送信"
-                        class="btn btn-block btn-primary"
-                      />
-                    </div>
-                  </div>
+        <!-- mailchimpの時の -->
+        <div id="">
+          <form>
+            <div id="">
+              <div class="row">
+                <div class="col-md-9 col-sm-8">
+                  <input
+                    type="email"
+                    placeholder="メールアドレスを入力..."
+                    class="form-control"
+                  />
                 </div>
-              </div>
-            </form>
-          </div>
-          <!-- mailerliteのフォーム -->
-          <div id="mlb2-2617169" class="">
-            <div class="">
-              <div class="ml-form-embedWrapper embedForm">
-                <form
-                  class="ml-block-form"
-                  action="https://assets.mailerlite.com/jsonp/258165/forms/74517805478708820/subscribe"
-                  data-code=""
-                  method="post"
-                  target="_blank"
-                >
-                  <div class="row">
-                    <div class="ml-form-formContent col-md-9 col-sm-8">
-                      <div class="ml-form-fieldRow ml-last-item">
-                        <div
-                          class="ml-field-group ml-field-email ml-validate-email ml-validate-required"
-                        >
-                          <!-- input -->
-                          <input
-                            aria-label="email"
-                            aria-required="true"
-                            type="email"
-                            class="form-control"
-                            data-inputmask=""
-                            name="fields[email]"
-                            placeholder="メールアドレスを入力"
-                            autocomplete="email"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <input type="hidden" name="ml-submit" value="1" />
-
-                    <div class="ml-form-embedSubmit col-md-3 col-sm-4">
-                      <button type="submit" class="btn btn-block btn-primary">
-                        送信
-                      </button>
-
-                      <button
-                        disabled="disabled"
-                        style="display: none"
-                        type="button"
-                        class="loading"
-                      >
-                        <div class="ml-form-embedSubmitLoad"></div>
-                        <span class="sr-only">Loading...</span>
-                      </button>
-                    </div>
-
-                    <input type="hidden" name="anticsrf" value="true" />
-                  </div>
-                </form>
-
-                <div
-                  class="ml-form-successBody row-success"
-                  style="display: none"
-                >
-                  <div class="ml-form-successContent">
-                    <h4>Thank you!</h4>
-
-                    <p>You have successfully joined our subscriber list.</p>
+                <div class="col-md-3 col-sm-4">
+                  <div class="optionalParent">
+                    <input
+                      type="submit"
+                      value="送信"
+                      class="btn btn-block btn-primary"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <script>
-            function ml_webform_success_2617169() {
-              var $ = ml_jQuery || jQuery;
-              $(".ml-subscribe-form-2617169 .row-success").show();
-              $(".ml-subscribe-form-2617169 .row-form").hide();
-            }
-          </script>
-
-          <script
-            src="https://groot.mailerlite.com/js/w/webforms.min.js?v491724307ca3b85c1c754857e93994e5"
-            type="text/javascript"
-          ></script>
-          <!--End mc_embed_signup-->
-          <div class="space-top"></div>
-          <h6 class="description">
-            (※登録完了画面は英語ですが日本語配信なのでご安心ください)
-          </h6>
+          </form>
         </div>
+
+        <!-- mailerliteのフォーム -->
+        <div class="row">
+          <div
+            id="mlb2-2617169"
+            class="ml-subscribe-form ml-subscribe-form-2617169"
+          >
+            <form
+              action="https://assets.mailerlite.com/jsonp/258165/forms/74517805478708820/subscribe"
+              data-code=""
+              method="post"
+              target="_blank"
+            >
+              <div class="col-md-9 col-sm-8">
+                <input
+                  aria-label="email"
+                  aria-required="true"
+                  type="email"
+                  class="form-control"
+                  data-inputmask=""
+                  name="fields[email]"
+                  placeholder="メールアドレスを入力"
+                  autocomplete="email"
+                />
+              </div>
+
+              <div class="col-md-3 col-sm-4">
+                <input type="hidden" name="ml-submit" value="1" />
+                <div class="ml-form-embedSubmit">
+                  <button type="submit" class="btn btn-block btn-primary">
+                    送信
+                  </button>
+                  <button
+                    disabled="disabled"
+                    style="display: none"
+                    type="button"
+                    class="loading"
+                  >
+                    <div class="ml-form-embedSubmitLoad"></div>
+                    <span class="sr-only">Loading...</span>
+                  </button>
+                </div>
+                <input type="hidden" name="anticsrf" value="true" />
+              </div>
+            </form>
+
+            <div class="ml-form-successBody row-success" style="display: none">
+              <div class="ml-form-successContent">
+                <h4>Thank you!</h4>
+
+                <p>You have successfully joined our subscriber list.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function ml_webform_success_2617169() {
+            var $ = ml_jQuery || jQuery;
+            $(".ml-subscribe-form-2617169 .row-success").show();
+            $(".ml-subscribe-form-2617169 .row-form").hide();
+          }
+        </script>
+
+        <script
+          src="https://groot.mailerlite.com/js/w/webforms.min.js?v491724307ca3b85c1c754857e93994e5"
+          type="text/javascript"
+        ></script>
+
+        <!--End mc_embed_signup-->
       </div>
+      <div class="space-top"></div>
+      <h6 class="description">
+        (※登録完了画面は英語ですが日本語配信なのでご安心ください)
+      </h6>
     </div>
   </div>
 </div>
