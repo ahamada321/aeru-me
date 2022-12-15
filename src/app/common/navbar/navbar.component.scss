@@ -1,24 +1,25 @@
 .navbar {
   .navbar-brand {
     // background: url("/assets/img/logo/logo-w-aeru.svg") 0 0 no-repeat;
-    background: url("/assets/img/logo/logo-finpa.png") 0 0 no-repeat; // Recommend to use .svg
-    background-size: 150px; // Can remove if using .svg
-    margin-left: 10px;
+    background: url("/assets/img/logo/logo-my-best-teacher-invert.png") 0 0
+      no-repeat; // Recommend to use .svg
+    background-size: 200px; // Can remove if using .svg
+    // margin-left: 10px;
     margin-top: 7px;
-    width: 150px;
+    width: 250px;
     // height: auto;
-    height: 60px;
+    height: 61px;
   }
   &.navbar-transparent {
     .navbar-brand {
       // background: url("/assets/img/logo/logo-w-aeru-wh.svg") 0 0 no-repeat !important;
-      background: url("/assets/img/logo/logo-finpa-white.png") 0 0 no-repeat; // Recommend to use .svg
-      background-size: 150px; // Can remove if using .svg
-      margin-left: 10px;
+      background: url("/assets/img/logo/logo-my-best-teacher.png") 0 0 no-repeat; // Recommend to use .svg
+      background-size: 200px; // Can remove if using .svg
+      // margin-left: 10px;
       margin-top: 7px;
-      width: 150px;
+      width: 200px;
       // height: auto;
-      height: 60px;
+      height: 61px;
     }
   }
 }
