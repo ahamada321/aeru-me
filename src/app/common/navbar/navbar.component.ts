@@ -31,6 +31,15 @@ export class NavbarComponent implements OnInit {
     this.toggleButton = navbar.getElementsByClassName("navbar-toggler")[0];
   }
 
+  isLanding() {
+    var titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee === "/") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   sidebarOpen() {
     const toggleButton = this.toggleButton;
     const html = document.getElementsByTagName("html")[0];
