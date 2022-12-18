@@ -23,6 +23,7 @@ import { ELearningComponent } from "./e-learning/e-learning.component";
 import { TermsTextModule } from "./terms/helpers/terms-text/terms-text.module";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
 import { LandingBiritacoComponent } from "./landing-biritaco/landing-biritaco.component";
+import { MailingModule } from "../common/mailing/mailing.module";
 
 const routes: Routes = [
   { path: "", component: LandingBiritacoComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
   declarations: [
     TopComponent,
     LineupComponent,
+    LandingBiritacoComponent,
     LandingSaasComponent,
     LandingAptrainerComponent,
     AboutusComponent,
@@ -67,6 +69,7 @@ const routes: Routes = [
     JwBootstrapSwitchNg2Module,
     TermsTextModule,
     BookingDemoModule,
+    MailingModule,
   ],
   exports: [],
   providers: [],

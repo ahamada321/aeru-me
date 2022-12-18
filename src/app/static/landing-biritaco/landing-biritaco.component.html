@@ -267,68 +267,7 @@
       </div>
       <div class="space-top"></div>
 
-      <!-- mailerliteのフォーム -->
-      <form
-        action="https://assets.mailerlite.com/jsonp/258165/forms/74517805478708820/subscribe"
-        data-code=""
-        method="post"
-        target="_blank"
-      >
-        <div
-          class="row ml-subscribe-form ml-subscribe-form-2617169"
-          id="mlb2-2617169"
-        >
-          <div class="col-md-9 col-sm-8">
-            <input
-              aria-label="email"
-              aria-required="true"
-              type="email"
-              class="form-control"
-              data-inputmask=""
-              name="fields[email]"
-              placeholder="メールアドレスを入力"
-              autocomplete="email"
-            />
-          </div>
-          <input type="hidden" name="ml-submit" value="1" />
-          <div class="col-md-3 col-sm-4">
-            <div class="optionalParent ml-form-embedSubmit">
-              <button type="submit" class="btn btn-block btn-primary">
-                送信
-              </button>
-              <button
-                disabled="disabled"
-                style="display: none"
-                type="button"
-                class="loading"
-              >
-                <div class="ml-form-embedSubmitLoad"></div>
-                <span class="sr-only">Loading...</span>
-              </button>
-            </div>
-          </div>
-          <input type="hidden" name="anticsrf" value="true" />
-        </div>
-      </form>
-
-      <script>
-        function ml_webform_success_2617169() {
-          var $ = ml_jQuery || jQuery;
-          $(".ml-subscribe-form-2617169 .row-success").show();
-          $(".ml-subscribe-form-2617169 .row-form").hide();
-        }
-      </script>
-
-      <script
-        src="https://groot.mailerlite.com/js/w/webforms.min.js?v491724307ca3b85c1c754857e93994e5"
-        type="text/javascript"
-      ></script>
-      <!--End mc_embed_signup-->
-
-      <div class="space-top"></div>
-      <h6 class="description">
-        (※登録完了画面は英語ですが日本語配信なのでご安心ください)
-      </h6>
+      <app-mailing></app-mailing>
     </div>
   </div>
 </div>
