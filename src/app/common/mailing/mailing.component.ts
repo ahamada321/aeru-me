@@ -41,7 +41,7 @@ export class MailingComponent implements OnInit {
     Swal.fire({
       icon: "success",
       title: "登録完了しました",
-      text: "受信メールからメルマガ配信「同意」を押すことで役立つ情報を受信できるようになります。",
+      text: "メールアドレス宛に承認メールを送信しました。承認を押してください",
       customClass: {
         confirmButton: "btn btn-primary btn-lg",
       },
