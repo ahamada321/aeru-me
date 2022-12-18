@@ -9,8 +9,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BookingDemoModule } from "../common/booking-demo/booking-demo.module";
 import { TopComponent } from "./top/top.component";
-import { LineupComponent } from "./lineup/lineup.component";
-import { LandingSaasComponent } from "./landing-saas/landing-saas.component";
 import { LandingAptrainerComponent } from "./landing-aptrainer/landing-aptrainer.component";
 import { AboutusComponent } from "./aboutus/aboutus.component";
 import { MaintenanceComponent } from "./maintenance/maintenance.component";
@@ -28,13 +26,9 @@ import { MailingModule } from "../common/mailing/mailing.module";
 const routes: Routes = [
   { path: "", component: LandingBiritacoComponent },
   // { path: "", component: TopComponent },
-  { path: "lineup", component: LineupComponent },
-  { path: "saas", component: LandingSaasComponent },
-
   { path: "aboutus", component: AboutusComponent },
   { path: "terms", component: TermsComponent },
   { path: "privacy", component: PrivacyComponent },
-  // { path: 'faq',          component: FAQComponent },
 
   { path: "ap-trainer", component: LandingAptrainerComponent },
   { path: "maintenance", component: MaintenanceComponent },
@@ -46,9 +40,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     TopComponent,
-    LineupComponent,
     LandingBiritacoComponent,
-    LandingSaasComponent,
     LandingAptrainerComponent,
     AboutusComponent,
     MaintenanceComponent,
