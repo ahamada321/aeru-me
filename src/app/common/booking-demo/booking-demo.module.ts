@@ -1,7 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BookingDemoComponent } from "./booking-demo.component";
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from "@danielmoncada/angular-datetime-picker";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "../modules/matmodule/matmodule";

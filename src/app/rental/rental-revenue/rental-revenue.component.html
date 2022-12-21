@@ -1,13 +1,13 @@
 <section id="rentalRevenue">
   <div class="panel-header panel-header-lg">
-    <canvas baseChart id="dashboardChart"
+    <!-- <canvas baseChart id="dashboardChart"
             [chartType]="DashboardChartType"
             [options]="DashboardChartOptions"
             [datasets]="DashboardChartDatasets"
             [labels]="DashboardChartLabels"
             [colors]="DashboardChartColors"
             (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+            (chartClick)="chartClicked($event)"></canvas> -->
   </div>
 
   <div class="main" *ngIf="payments">
@@ -16,31 +16,37 @@
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card">
-              <a (click)="setRevenueToDashboardChart(payments); smoothScroll('rentalRevenue')">
+              <a
+                (click)="
+                  setRevenueToDashboardChart(payments);
+                  smoothScroll('rentalRevenue')
+                "
+              >
                 <div class="card-body">
                   <div class="info info-horizontal">
                     <div class="row">
                       <div class="col-4">
                         <div class="icon icon-success">
-                          <i class="nc-icon nc-money-coins" aria-hidden="true"></i>
+                          <i
+                            class="nc-icon nc-money-coins"
+                            aria-hidden="true"
+                          ></i>
                         </div>
                       </div>
                       <div class="col-8">
                         <div class="description">
-                            <p> Revenue [JPY]</p>
+                          <p>Revenue [JPY]</p>
                           <h4 class="info-title">{{ getTotalRevenue() }}</h4>
                         </div>
                       </div>
                     </div>
                     <hr />
                     <div class="card-footer">
-                      <div class="stats">
-                        This year: $2000
-                      </div>
+                      <div class="stats">This year: $2000</div>
                     </div>
                   </div>
                 </div>
-                </a>
+              </a>
             </div>
           </div>
 
@@ -53,21 +59,22 @@
                     <div class="row">
                       <div class="col-4">
                         <div class="icon icon-danger">
-                          <i class="nc-icon nc-favourite-28" aria-hidden="true"></i>
+                          <i
+                            class="nc-icon nc-favourite-28"
+                            aria-hidden="true"
+                          ></i>
                         </div>
                       </div>
                       <div class="col-8">
                         <div class="description">
-                            <p> Ratings</p>
+                          <p>Ratings</p>
                           <h2 class="info-title">4.2</h2>
                         </div>
                       </div>
                     </div>
                     <hr />
                     <div class="card-footer">
-                      <div class="stats">
-                        All time: 4.3
-                      </div>
+                      <div class="stats">All time: 4.3</div>
                     </div>
                   </div>
                 </div>
@@ -83,21 +90,22 @@
                     <div class="row">
                       <div class="col-4">
                         <div class="icon icon-primary">
-                          <i class="nc-icon nc-single-02" aria-hidden="true"></i>
+                          <i
+                            class="nc-icon nc-single-02"
+                            aria-hidden="true"
+                          ></i>
                         </div>
                       </div>
                       <div class="col-8">
                         <div class="description">
-                            <p> Enrollments</p>
-                          <h2 class="info-title">{{payments.length}}</h2>
+                          <p>Enrollments</p>
+                          <h2 class="info-title">{{ payments.length }}</h2>
                         </div>
                       </div>
                     </div>
                     <hr />
                     <div class="card-footer">
-                      <div class="stats">
-                        All time: 580
-                      </div>
+                      <div class="stats">All time: 580</div>
                     </div>
                   </div>
                 </div>
@@ -114,21 +122,22 @@
                     <div class="row">
                       <div class="col-4">
                         <div class="icon icon-warning">
-                          <i class="nc-icon nc-single-copy-04" aria-hidden="true"></i>
+                          <i
+                            class="nc-icon nc-single-copy-04"
+                            aria-hidden="true"
+                          ></i>
                         </div>
                       </div>
                       <div class="col-8">
                         <div class="description">
-                            <p> PageViews</p>
+                          <p>PageViews</p>
                           <h2 class="info-title">202</h2>
                         </div>
                       </div>
                     </div>
                     <hr />
                     <div class="card-footer">
-                      <div class="stats">
-                        This year: 1389
-                      </div>
+                      <div class="stats">This year: 1389</div>
                     </div>
                   </div>
                 </div>
@@ -139,34 +148,34 @@
 
         <div class="space-top"></div>
         <div class="row">
-            <div class="col-md-10 ml-auto mr-auto">
-                <h2 class="title">
-                    売上状況
-                </h2>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                              <th class="text-center">日付 </th>
-                              <th>商品名</th>
-                              <th>生徒名</th>
-                              <th>コース時間</th>
-                              <th class="text-center">売上 [JPY]</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let payment of payments">
-                                <td class="text-center">{{payment.paidAt | date: "yyyy / MM / dd"}}</td>
-                                <td>{{payment.booking.rental.rentalname}}</td>
-                                <td>{{payment.fromUser.username}}</td>
-                                <td>{{payment.booking.courseTime}} min</td>
-                                <td class="text-center">{{payment.ownerRevenue}} JPY</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+          <div class="col-md-10 ml-auto mr-auto">
+            <h2 class="title">売上状況</h2>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center">日付</th>
+                    <th>商品名</th>
+                    <th>生徒名</th>
+                    <th>コース時間</th>
+                    <th class="text-center">売上 [JPY]</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let payment of payments">
+                    <td class="text-center">
+                      {{ payment.paidAt | date: "yyyy / MM / dd" }}
+                    </td>
+                    <td>{{ payment.booking.rental.rentalname }}</td>
+                    <td>{{ payment.fromUser.username }}</td>
+                    <td>{{ payment.booking.courseTime }} min</td>
+                    <td class="text-center">{{ payment.ownerRevenue }} JPY</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-                <!-- <h4 class="title">
+            <!-- <h4 class="title">
                     <small>Ratings & Comments</small>
                 </h4>
                 <div class="table-responsive">
@@ -223,13 +232,14 @@
                         </tbody>
                     </table>
                 </div> -->
-                <ngb-pagination [collectionSize]="50" [(page)]="pageIndex" aria-label="Default pagination"></ngb-pagination>
-            </div>
+            <ngb-pagination
+              [collectionSize]="50"
+              [(page)]="pageIndex"
+              aria-label="Default pagination"
+            ></ngb-pagination>
+          </div>
         </div>
-
-
       </div>
     </div>
   </div>
-
 </section>

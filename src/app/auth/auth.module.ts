@@ -11,12 +11,6 @@ import { LoginNewPasswordComponent } from "./login-popup/login-newpassword/login
 import { RegisterComponent } from "./register/register.component";
 import { RegisterVerificationComponent } from "./register/register-verification/register-verification.component";
 import { RegisterSentComponent } from "./register/register-sent/register-sent.component";
-
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-} from "angularx-social-login";
-import { FacebookLoginProvider } from "angularx-social-login";
 import { environment } from "src/environments/environment";
 
 import { MyOriginAuthService } from "./service/auth.service";
@@ -52,14 +46,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    SocialLoginModule,
     JwBootstrapSwitchNg2Module,
     TermsTextModule,
   ],
   exports: [RouterModule, LoginPopupComponent],
-
-  entryComponents: [LoginPopupComponent],
-
   providers: [
     MyOriginAuthService,
     AuthGuard,
@@ -67,18 +57,6 @@ const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
-    },
-    {
-      provide: "SocialAuthServiceConfig",
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider(environment.FACEBOOK_APP_ID),
-          },
-        ],
-      } as SocialAuthServiceConfig,
     },
   ],
 })

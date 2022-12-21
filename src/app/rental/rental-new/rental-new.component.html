@@ -40,9 +40,7 @@
               </div>
 
               <ng-container *ngIf="auth.getUserRole() === 'Owner'">
-                <h6>
-                  商品名（個人名を推薦） <span class="icon-danger">*</span>
-                </h6>
+                <h6>名前（個人名を推薦） <span class="icon-danger">*</span></h6>
                 <input
                   [(ngModel)]="newRental.rentalname"
                   name="rentalname"
@@ -73,7 +71,7 @@
                   name="rentalname"
                   type="text"
                   class="form-control"
-                  placeholder="商品名"
+                  placeholder="田中 太郎"
                   maxlength="20"
                   disabled
                 />

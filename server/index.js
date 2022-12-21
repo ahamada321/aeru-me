@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const compression = require("compression");
-const bodyParser = require("body-parser");
 const path = require("path");
 const config = require("./config");
 const FakeDb = require("./fake-db");
@@ -17,7 +16,6 @@ const imageUploadRoutes = require("./routes/image-upload");
 
 mongoose
   .connect(config.DB_URI, {
-    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -30,8 +28,9 @@ mongoose
   .catch((err) => console.error(err));
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(compression()); // compress middleware
-app.use(bodyParser.json());
 
 app.use("/api/v1/rentals", rentalRoutes);
 app.use("/api/v1/users", userRoutes);

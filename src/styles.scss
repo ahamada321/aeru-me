@@ -3,7 +3,7 @@
 // @import "~@fullcalendar/daygrid/main.css";
 // @import "~@fullcalendar/timegrid/main.css";
 @import "~ngx-bar-rating/themes/br-stars-theme";
-@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
 
 html,
 body {
@@ -34,5 +34,5 @@ body {
   color: #b3b3b3;
 }
 
-// /* Importing Bootstrap SCSS file. */
+// __<<ngThemingMigrationEscapedComment1>>__
 // @import "~bootstrap/scss/bootstrap";

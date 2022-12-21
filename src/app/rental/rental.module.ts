@@ -7,12 +7,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { MaterialModule } from "../common/modules/matmodule/matmodule";
-import { ChartsModule } from "ng2-charts";
+// import { ChartsModule } from "ng2-charts";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { AuthGuard } from "../auth/service/auth.guard";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
 import { TagInputModule } from "ngx-chips";
-import { BarRatingModule } from "ngx-bar-rating";
+// import { BarRatingModule } from "ngx-bar-rating";
 
 import { RentalComponent } from "./rental.component";
 import { RentalListComponent } from "./rental-list/rental-list.component";
@@ -39,7 +39,7 @@ import { RentalNewComponent } from "./rental-new/rental-new.component";
 import { RentalRevenueComponent } from "./rental-revenue/rental-revenue.component";
 // import { RentalDetailUpdateComponent } from './rental-detail/rental-detail-update/rental-detail-update.component';
 import { NavbarBottomComponent } from "../common/navbar-bottom/navbar-bottom.component";
-import { GoogleMapsModule } from "../common/googlemaps/googlemaps.module";
+// import { GoogleMapsModule } from "../common/googlemaps/googlemaps.module";
 import { PaymentModule } from "../common/payment/payment.module";
 import { ReviewModule } from "../common/review/review.module";
 // import { EditableModule } from '../shared/editable/editable.module';
@@ -141,11 +141,11 @@ const routes: Routes = [
     NgbModule,
     MaterialModule,
     // EditableModule,
-    ChartsModule,
-    GoogleMapsModule,
+    // ChartsModule,
+    // GoogleMapsModule,
     PaymentModule,
     ReviewModule,
-    BarRatingModule,
+    // BarRatingModule,
     SearchbarModule,
     BookingSelecterModule,
     ImageUploadModule,
@@ -154,11 +154,6 @@ const routes: Routes = [
     FullCalendarModule,
     JwBootstrapSwitchNg2Module,
     TagInputModule,
-  ],
-  entryComponents: [
-    RentalIncomingDialog,
-    RentalIncomingSelectPlaceDialog,
-    TimePickerModal,
   ],
   providers: [RentalService, BookingService, BookingHelperService],
 })

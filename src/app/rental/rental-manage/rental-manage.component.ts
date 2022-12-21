@@ -44,15 +44,14 @@ export class RentalManageComponent implements OnInit, OnDestroy {
 
   onDelete(rentalId) {
     Swal.fire({
+      icon: "warning",
       title: "この操作は取り消せません",
       text: "この商品を削除します",
-      type: "warning",
-      confirmButtonClass: "btn btn-danger btn-lg",
-      cancelButtonClass: "btn btn-gray btn-lg",
+      confirmButtonColor: "#f5593d",
+      cancelButtonColor: "#9A9A9A",
       confirmButtonText: "削除",
       cancelButtonText: "キャンセル",
       showCancelButton: true,
-      buttonsStyling: false,
     }).then((result) => {
       if (!result.dismiss) {
         this.deleteRental(rentalId);
@@ -67,7 +66,9 @@ export class RentalManageComponent implements OnInit, OnDestroy {
         this.rentals.splice(index, 1);
         Swal.fire({
           text: "商品を削除しました",
-          confirmButtonClass: "btn btn-danger btn-lg",
+          customClass: {
+            confirmButton: "btn btn-danger btn-lg",
+          },
           buttonsStyling: false,
         });
       },

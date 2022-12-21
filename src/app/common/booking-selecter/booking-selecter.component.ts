@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { DateTimeAdapter } from "ng-pick-datetime";
 import { BookingService } from "src/app/rental/rental-detail/rental-detail-booking/services/booking.service";
 import { Rental } from "src/app/rental/service/rental.model";
 import { Booking } from "src/app/rental/rental-detail/rental-detail-booking/services/booking.model";
@@ -25,12 +24,8 @@ export class BookingSelecterComponent implements OnInit {
   @Input() selectedCourseTime: number = 60;
   @Output() newBookingInfo = new EventEmitter();
 
-  constructor(
-    private bookingService: BookingService,
-    private dateTimeAdapter: DateTimeAdapter<any>
-  ) {
+  constructor(private bookingService: BookingService) {
     // Initiate Datepicker
-    dateTimeAdapter.setLocale("ja-JP");
     this.selectedDate = new Date();
     this.maxDate.setDate(this.maxDate.getDate() + 8); // Enables to post before 6 days.
     this.maxDate = new Date(
